@@ -35,7 +35,10 @@
 
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
-html { overflow-x: hidden; }
+html {
+  overflow-x: hidden;
+  overflow-x: clip;
+}
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -1164,9 +1167,13 @@ button { font: inherit; border: none; background: none; cursor: pointer; }
     border-left: 0.5px solid var(--border);
     transform: translateX(100%);
     transition: transform var(--transition);
+    visibility: hidden;
   }
 
-  .navbar__nav.open { transform: translateX(0); }
+  .navbar__nav.open {
+    transform: translateX(0);
+    visibility: visible;
+  }
 
   .navbar__links {
     flex-direction: column;
