@@ -222,7 +222,7 @@
     extremadura:        { label: 'Extremadura',        itp: 0.08,  ajd: 0.015  },
     galicia:            { label: 'Galicia',            itp: 0.09,  ajd: 0.015  },
     la_rioja:           { label: 'La Rioja',           itp: 0.07,  ajd: 0.010  },
-    madrid:             { label: 'Madrid',             itp: 0.06,  ajd: 0.006  },
+    madrid:             { label: 'Madrid',             itp: 0.06,  ajd: 0.0075 },
     murcia:             { label: 'Murcia',             itp: 0.08,  ajd: 0.015  },
     navarra:            { label: 'Navarra',            itp: 0.06,  ajd: 0.005  },
     pais_vasco:         { label: 'País Vasco',         itp: 0.04,  ajd: 0.005  },
@@ -273,7 +273,7 @@
       taxLabel = `ITP · ${ccaa.label} (${(taxRate * 100).toFixed(0)}%)`;
     }
     const taxAmount = price * taxRate;
-    const gastos    = price * 0.008625; // notaría + registro + gestoría ≈ 0,87%
+    const gastos    = price * 0.0115; // notaría + registro + gestoría ≈ 1,15%
     const costTotal = price + taxAmount + gastos;
 
     // Loan = everything beyond savings (price + taxes + fees)
