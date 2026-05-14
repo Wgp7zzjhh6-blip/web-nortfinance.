@@ -520,16 +520,24 @@
         grid-template-columns: repeat(2, 1fr);
       }
     }
+    .rec-simulator__scroll-wrap {
+      width: 100%;
+    }
+
     @media (max-width: 600px) {
       .rec-guides__grid {
         grid-template-columns: 1fr;
       }
-      .rec-simulator {
-        overflow-x: hidden;
+      .rec-simulator__scroll-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 8px;
       }
       .rec-simulator__card {
-        padding: 32px 18px;
-        overflow: hidden;
+        padding: 32px 20px;
+        min-width: 320px;
+        width: max-content;
+        max-width: 90vw;
       }
       .sim-field__value {
         min-width: 0;
@@ -537,9 +545,6 @@
       }
       .sim-field__name {
         font-size: 10px;
-      }
-      input[type="range"] {
-        max-width: 100%;
       }
     }
   </style>
@@ -599,6 +604,7 @@
           <span class="text-gold">en Tiempo Real</span>
         </h2>
 
+        <div class="rec-simulator__scroll-wrap">
         <div class="rec-simulator__card reveal">
 
           <!-- ─── CONTROLES ─── -->
@@ -666,6 +672,7 @@
           </div>
 
         </div>
+        </div><!-- end scroll-wrap -->
       </div>
     </section>
 
