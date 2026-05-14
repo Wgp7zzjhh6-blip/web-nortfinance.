@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recursos · NortFinance</title>
+  <meta name="description" content="Simulador de hipoteca interactivo, guías prácticas y herramientas financieras para tomar decisiones con total claridad." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ════════════════════════════════════════════
+       RECURSOS PAGE — page-scoped styles
+       ════════════════════════════════════════════ */
+
+    /* ── Hero ── */
+    .rec-hero {
+      padding: 180px 0 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(5,5,5,0.84) 0%,
+          rgba(5,5,5,0.68) 45%,
+          rgba(5,5,5,0.84) 100%
+        ),
+        url('hero-recursos.jpg') center / cover no-repeat;
+      background-color: var(--bg);
+    }
+    .rec-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(212,175,55,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .rec-hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold-line);
+      border-radius: 20px;
+      padding: 6px 18px;
+      margin-bottom: 36px;
+    }
+    .rec-hero__badge-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 6px var(--gold-glow);
+      flex-shrink: 0;
+    }
+    .rec-hero__title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(42px, 6vw, 72px);
+      font-weight: 300;
+      line-height: 1.12;
+      color: var(--text);
+      max-width: 820px;
+      margin: 0 auto 28px;
+      letter-spacing: -0.01em;
+    }
+    .rec-hero__desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--text-sub);
+      max-width: 640px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .rec-hero__rule {
+      width: 60px;
+      height: 1px;
+      background: var(--gold-line);
+      margin: 48px auto 0;
+    }
+
+    /* ── Simulator section wrapper ── */
+    .rec-simulator {
+      padding: 100px 0;
+    }
+    .rec-simulator__eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .rec-simulator__title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 52px;
+      line-height: 1.15;
+    }
+
+    /* ── Simulator card ── */
+    .rec-simulator__card {
+      background: #0A0A0C;
+      border: 1px solid rgba(212,175,55,0.25);
+      border-radius: 16px;
+      padding: 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      box-shadow:
+        0 0 0 1px rgba(212,175,55,0.04),
+        0 0 60px rgba(212,175,55,0.04),
+        0 40px 100px rgba(0,0,0,0.55);
+      position: relative;
+      overflow: hidden;
+    }
+    .rec-simulator__card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.45), transparent);
+    }
+
+    /* Controls column */
+    .sim-controls__heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 40px;
+    }
+    .sim-field {
+      margin-bottom: 32px;
+    }
+    .sim-field:last-child {
+      margin-bottom: 0;
+    }
+    .sim-field__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 14px;
+    }
+    .sim-field__name {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-sub);
+    }
+    .sim-field__value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--gold);
+      min-width: 120px;
+      text-align: right;
+      transition: color 0.2s;
+    }
+
+    /* Custom range slider */
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 3px;
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+      background: linear-gradient(
+        to right,
+        var(--gold) 0%,
+        var(--gold) var(--fill, 20%),
+        rgba(255,255,255,0.08) var(--fill, 20%),
+        rgba(255,255,255,0.08) 100%
+      );
+      transition: background 0.05s;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow:
+        0 0 10px rgba(212,175,55,0.65),
+        0 0 22px rgba(212,175,55,0.22);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    input[type="range"]::-webkit-slider-thumb:hover,
+    input[type="range"]:active::-webkit-slider-thumb {
+      transform: scale(1.25);
+      box-shadow:
+        0 0 14px rgba(212,175,55,0.85),
+        0 0 32px rgba(212,175,55,0.35);
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: none;
+      box-shadow: 0 0 10px rgba(212,175,55,0.65);
+      cursor: pointer;
+    }
+    input[type="range"]::-moz-range-track {
+      height: 3px;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    /* Elegant select */
+    .sim-select {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: var(--radius);
+      padding: 14px 42px 14px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text);
+      cursor: pointer;
+      outline: none;
+      transition: border-color var(--transition);
+      -webkit-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23D4AF37' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+    }
+    .sim-select:focus {
+      border-color: rgba(212,175,55,0.45);
+      box-shadow: 0 0 0 3px rgba(212,175,55,0.07);
+    }
+    .sim-select option {
+      background: #0C0C0E;
+      color: var(--text);
+    }
+
+    /* Results column */
+    .sim-results {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-left: 1px solid rgba(255,255,255,0.06);
+      padding-left: 56px;
+    }
+    .sim-results__eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 14px;
+    }
+    .sim-results__cuota {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 5vw, 68px);
+      font-weight: 300;
+      background: var(--gold-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    .sim-results__cuota-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--text-faint);
+      letter-spacing: 0.06em;
+      margin-bottom: 36px;
+    }
+    .sim-results__divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+      margin-bottom: 26px;
+    }
+    .sim-results__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 16px;
+    }
+    .sim-results__row-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-faint);
+    }
+    .sim-results__row-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 21px;
+      font-weight: 400;
+      color: var(--text);
+    }
+    .sim-results__message {
+      background: rgba(212,175,55,0.05);
+      border: 1px solid rgba(212,175,55,0.14);
+      border-radius: 8px;
+      padding: 15px 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--text-sub);
+      line-height: 1.65;
+      margin: 22px 0 30px;
+      position: relative;
+    }
+    .sim-results__message::before {
+      content: '◆';
+      color: var(--gold);
+      font-size: 7px;
+      position: absolute;
+      top: 18px;
+      left: 20px;
+    }
+    .sim-results__message-text {
+      padding-left: 18px;
+      display: block;
+    }
+
+    /* ── Guides / Articles ── */
+    .rec-guides {
+      padding: 100px 0;
+      border-top: 1px solid var(--border);
+    }
+    .rec-guides__header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .rec-guides__eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .rec-guides__title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.15;
+    }
+    .rec-guides__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .guide-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+      display: flex;
+      flex-direction: column;
+      cursor: default;
+    }
+    .guide-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(212,175,55,0.4);
+      box-shadow:
+        0 0 0 1px rgba(212,175,55,0.1),
+        0 0 28px rgba(212,175,55,0.12),
+        0 20px 52px rgba(0,0,0,0.5);
+    }
+    .guide-card__icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      background: rgba(212,175,55,0.07);
+      border: 1px solid rgba(212,175,55,0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+      color: var(--gold);
+      flex-shrink: 0;
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+    .guide-card:hover .guide-card__icon {
+      background: rgba(212,175,55,0.13);
+      box-shadow: 0 0 16px rgba(212,175,55,0.18);
+    }
+    .guide-card__tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.75;
+      margin-bottom: 12px;
+    }
+    .guide-card__title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 23px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .guide-card__desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-sub);
+      line-height: 1.75;
+      flex: 1;
+    }
+    .guide-card__footer {
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.6;
+      transition: opacity 0.3s;
+    }
+    .guide-card__footer svg {
+      transition: transform 0.3s;
+    }
+    .guide-card:hover .guide-card__footer {
+      opacity: 1;
+    }
+    .guide-card:hover .guide-card__footer svg {
+      transform: translateX(5px);
+    }
+
+    /* ── CTA ── */
+    .rec-cta {
+      padding: 120px 0;
+      text-align: center;
+      position: relative;
+    }
+    .rec-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(212,175,55,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .rec-cta__eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .rec-cta__title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 300;
+      color: var(--text);
+      max-width: 700px;
+      margin: 0 auto 20px;
+      line-height: 1.12;
+    }
+    .rec-cta__desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--text-sub);
+      max-width: 520px;
+      margin: 0 auto 48px;
+      line-height: 1.7;
+    }
+    .rec-cta__actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 960px) {
+      .rec-simulator__card {
+        grid-template-columns: 1fr;
+        gap: 44px;
+        padding: 40px 32px;
+      }
+      .sim-results {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid rgba(255,255,255,0.06);
+        padding-top: 40px;
+      }
+      .rec-guides__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .rec-guides__grid {
+        grid-template-columns: 1fr;
+      }
+      .rec-simulator__card {
+        padding: 32px 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════ NAVBAR ══════════════════════════ -->
+  <header class="navbar" id="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__logo">
+        <img src="logo.png" alt="NortFinance" class="navbar__logo-img" onerror="this.style.display='none'" />
+        <span class="navbar__logo-text">Nort<span class="text-gold">Finance</span></span>
+      </a>
+      <nav class="navbar__nav" id="navMenu" aria-label="Navegación principal">
+        <ul class="navbar__links">
+          <li><a href="hipotecas.html" class="navbar__link">Hipotecas</a></li>
+          <li><a href="servicios.html" class="navbar__link">Servicios</a></li>
+          <li><a href="recursos.html" class="navbar__link active">Recursos</a></li>
+          <li><a href="contacto.html" class="navbar__link">Contacto</a></li>
+        </ul>
+        <a href="#rec-contacto" class="btn btn--gold navbar__cta">Mi Estudio Gratuito</a>
+      </nav>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ══════════════════════════ HERO ══════════════════════════ -->
+    <section class="rec-hero" id="inicio">
+      <div class="container">
+        <div class="reveal">
+          <div class="rec-hero__badge">
+            <span class="rec-hero__badge-dot"></span>
+            Recursos · NortFinance
+          </div>
+          <h1 class="rec-hero__title">
+            Conocimiento Financiero para<br />
+            <span class="text-gold">Tomar Decisiones Claras</span>
+          </h1>
+          <p class="rec-hero__desc">
+            Aportamos valor antes de vender. Explora nuestras guías, consejos prácticos y herramientas interactivas diseñadas para darte total claridad en tu estrategia hipotecaria.
+          </p>
+          <div class="rec-hero__rule" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════ SIMULADOR ══════════════════════════ -->
+    <section class="rec-simulator" id="simulador">
+      <div class="container">
+        <p class="rec-simulator__eyebrow reveal">Herramienta Interactiva</p>
+        <h2 class="rec-simulator__title reveal">
+          Simula tu Hipoteca<br />
+          <span class="text-gold">en Tiempo Real</span>
+        </h2>
+
+        <div class="rec-simulator__card reveal">
+
+          <!-- ─── CONTROLES ─── -->
+          <div class="sim-controls">
+            <h3 class="sim-controls__heading">Parámetros de tu operación</h3>
+
+            <div class="sim-field">
+              <div class="sim-field__header">
+                <span class="sim-field__name">Precio de la vivienda</span>
+                <span class="sim-field__value" id="sim-precio-val">300.000 €</span>
+              </div>
+              <input type="range" id="sim-precio" min="50000" max="1000000" step="5000" value="300000" aria-label="Precio de la vivienda" />
+            </div>
+
+            <div class="sim-field">
+              <div class="sim-field__header">
+                <span class="sim-field__name">Ahorros aportados</span>
+                <span class="sim-field__value" id="sim-ahorros-val">60.000 €</span>
+              </div>
+              <input type="range" id="sim-ahorros" min="0" max="300000" step="1000" value="60000" aria-label="Ahorros aportados" />
+            </div>
+
+            <div class="sim-field">
+              <div class="sim-field__header">
+                <span class="sim-field__name">Plazo de la hipoteca</span>
+                <span class="sim-field__value" id="sim-plazo-val">25 años</span>
+              </div>
+              <input type="range" id="sim-plazo" min="10" max="30" step="1" value="25" aria-label="Plazo en años" />
+            </div>
+
+            <div class="sim-field">
+              <div class="sim-field__header">
+                <span class="sim-field__name">Tipo de contrato</span>
+              </div>
+              <select id="sim-contrato" class="sim-select" aria-label="Tipo de contrato">
+                <option value="indefinido">Indefinido</option>
+                <option value="autonomo">Autónomo</option>
+                <option value="funcionario">Funcionario</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- ─── RESULTADOS ─── -->
+          <div class="sim-results">
+            <p class="sim-results__eyebrow">Cuota Mensual Estimada</p>
+            <div class="sim-results__cuota" id="res-cuota">—</div>
+            <p class="sim-results__cuota-note">Estimación orientativa · TIN variable según perfil</p>
+
+            <div class="sim-results__divider"></div>
+
+            <div class="sim-results__row">
+              <span class="sim-results__row-label">Financiación necesaria</span>
+              <span class="sim-results__row-value" id="res-financ">—</span>
+            </div>
+            <div class="sim-results__row">
+              <span class="sim-results__row-label">Tipo de interés orientativo</span>
+              <span class="sim-results__row-value" id="res-tasa">—</span>
+            </div>
+
+            <div class="sim-results__message" id="res-mensaje" aria-live="polite">
+              <span class="sim-results__message-text" id="res-mensaje-text"></span>
+            </div>
+
+            <a href="#rec-contacto" class="btn btn--gold btn--lg">Validar Estudio Gratis con un Asesor</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════ GUÍAS ══════════════════════════ -->
+    <section class="rec-guides" id="guias">
+      <div class="container">
+        <div class="rec-guides__header">
+          <p class="rec-guides__eyebrow reveal">Base de Conocimiento</p>
+          <h2 class="rec-guides__title reveal">
+            Guías Hipotecarias<br />
+            <span class="text-gold">y Consejos Prácticos</span>
+          </h2>
+        </div>
+
+        <div class="rec-guides__grid">
+
+          <article class="guide-card reveal">
+            <div class="guide-card__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
+            <p class="guide-card__tag">Guía Completa</p>
+            <h3 class="guide-card__title">Guía Hipotecaria Premium</h3>
+            <p class="guide-card__desc">Explicaciones simples sobre financiación y cómo prepararse para el banco. Todo lo que necesitas saber antes de iniciar el proceso.</p>
+            <div class="guide-card__footer">
+              Próximamente
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </article>
+
+          <article class="guide-card reveal">
+            <div class="guide-card__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <p class="guide-card__tag">Consejos Prácticos</p>
+            <h3 class="guide-card__title">Consejos para Compradores</h3>
+            <p class="guide-card__desc">Los errores comunes al elegir tu primera vivienda y cómo evitarlos. Decisiones que marcan la diferencia en el largo plazo.</p>
+            <div class="guide-card__footer">
+              Próximamente
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </article>
+
+          <article class="guide-card reveal">
+            <div class="guide-card__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+            </div>
+            <p class="guide-card__tag">Autónomos</p>
+            <h3 class="guide-card__title">Recursos para Autónomos</h3>
+            <p class="guide-card__desc">Cómo presentar tu perfil financiero para garantizar la aprobación de la firma. Estrategias específicas para trabajadores por cuenta propia.</p>
+            <div class="guide-card__footer">
+              Próximamente
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </article>
+
+          <article class="guide-card reveal">
+            <div class="guide-card__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </div>
+            <p class="guide-card__tag">Documentación</p>
+            <h3 class="guide-card__title">Documentación Necesaria</h3>
+            <p class="guide-card__desc">La lista de control definitiva con los papeles que te pedirán para el estudio. Sin sorpresas ni retrasos en el proceso de aprobación.</p>
+            <div class="guide-card__footer">
+              Próximamente
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </article>
+
+          <article class="guide-card reveal">
+            <div class="guide-card__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <p class="guide-card__tag">Comparativas</p>
+            <h3 class="guide-card__title">Comparativas Directas</h3>
+            <p class="guide-card__desc">Hipoteca Fija vs. Variable vs. Mixta: ¿Cuál se adapta a la situación actual? Análisis objetivo para elegir con criterio real.</p>
+            <div class="guide-card__footer">
+              Próximamente
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </article>
+
+          <article class="guide-card reveal">
+            <div class="guide-card__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <p class="guide-card__tag">FAQ</p>
+            <h3 class="guide-card__title">Dudas Frecuentes de la Firma</h3>
+            <p class="guide-card__desc">Resolución de las preguntas clave antes de dar el próximo paso. Claridad total sobre nuestro proceso y metodología de trabajo.</p>
+            <div class="guide-card__footer">
+              Próximamente
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════ CTA ══════════════════════════ -->
+    <section class="rec-cta" id="rec-contacto">
+      <div class="container">
+        <div class="reveal">
+          <p class="rec-cta__eyebrow">Da el Próximo Paso</p>
+          <h2 class="rec-cta__title">
+            Tu estrategia financiera<br />
+            merece <span class="text-gold">claridad absoluta</span>
+          </h2>
+          <p class="rec-cta__desc">
+            Hablemos de tu caso y usemos criterios reales para encontrar tu viabilidad.
+          </p>
+          <div class="rec-cta__actions">
+            <a href="contacto.html" class="btn btn--gold btn--lg">Mi Estudio Gratuito</a>
+            <a href="https://wa.me/34600000000" class="btn btn--outline btn--lg">Escríbenos</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════ FOOTER ══════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+
+        <div class="footer__col footer__col--brand">
+          <a href="index.html" class="footer__logo">
+            <img src="logo.png" alt="NortFinance" class="navbar__logo-img" onerror="this.style.display='none'" />
+            <span class="footer__logo-text">Nort<span class="text-gold">Finance</span></span>
+          </a>
+          <p class="footer__desc">Firma de asesoramiento financiero y soluciones hipotecarias premium. Tu hipoteca, tu inversión y tu patrimonio, gestionados con criterio real.</p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="#" class="footer__social-link" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__heading">Navegación</h4>
+          <ul class="footer__links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="hipotecas.html">Hipotecas</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="recursos.html">Recursos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__heading">Servicios</h4>
+          <ul class="footer__links">
+            <li><a href="hipotecas.html">Hipotecas Primera Vivienda</a></li>
+            <li><a href="servicios.html">Intermediación Inmobiliaria</a></li>
+            <li><a href="servicios.html">Inversión en Oro</a></li>
+            <li><a href="servicios.html">Club Privado de Inversores</a></li>
+            <li><a href="servicios.html">Corredor de Seguros</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__heading">Contacto</h4>
+          <ul class="footer__contact">
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/></svg>
+              <a href="mailto:info@nortfinance.com">info@nortfinance.com</a>
+            </li>
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.08-1.08a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 16.92Z"/></svg>
+              <a href="tel:+34600000000">+34 600 000 000</a>
+            </li>
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Lun–Vie · 9:00 – 19:00h
+            </li>
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              España
+            </li>
+          </ul>
+          <a href="contacto.html" class="btn btn--gold btn--sm footer__cta-btn">Mi Estudio Gratuito</a>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2026 NortFinance. Todos los derechos reservados.</p>
+        <div class="footer__legal">
+          <a href="#">Política de privacidad</a>
+          <span aria-hidden="true">·</span>
+          <a href="#">Cookies</a>
+          <span aria-hidden="true">·</span>
+          <a href="#">Aviso legal</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
