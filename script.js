@@ -324,9 +324,9 @@
     if (resMsgEl) {
       const pct = parseFloat(pctFinanc);
       if (pct > 90) {
-        resMsgEl.textContent = 'Financiación superior al 90 %. La mayoría de entidades limitan el préstamo al 80 % del valor de tasación; puede ser necesario aportar más ahorros o contar con garantías adicionales.';
+        resMsgEl.textContent = 'Financiación superior al 90 %. Algunas entidades financian hasta el 100 % con perfil sólido o inmuebles de banco. Es una operación viable, aunque requiere análisis detallado del perfil crediticio.';
       } else if (pct > 80) {
-        resMsgEl.textContent = 'Financiación entre el 80 % y el 90 %. Algunos bancos lo aceptan con buen perfil crediticio. Te recomendamos validarlo con un asesor antes de iniciar el proceso.';
+        resMsgEl.textContent = 'Financiación entre el 80 % y el 90 %. Varias entidades llegan hasta el 90–100 % en función del perfil. Con buena documentación y solvencia demostrable, es una operación completamente viable.';
       } else if (pct > 60) {
         resMsgEl.textContent = 'Financiación dentro del límite habitual del 80 %. Perfil favorable para la aprobación bancaria y acceso a las mejores condiciones del mercado.';
       } else {
