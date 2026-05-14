@@ -113,16 +113,12 @@
       background: #0A0A0C;
       border: 1px solid rgba(212,175,55,0.25);
       border-radius: 16px;
-      padding: 60px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      box-shadow:
-        0 0 0 1px rgba(212,175,55,0.04),
-        0 0 60px rgba(212,175,55,0.04),
-        0 40px 100px rgba(0,0,0,0.55);
+      padding: 52px;
+      max-width: 760px;
+      margin: 0 auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
       position: relative;
-      overflow: hidden;
+      box-sizing: border-box;
     }
     .rec-simulator__card::before {
       content: '';
@@ -252,13 +248,12 @@
       color: var(--text);
     }
 
-    /* Results column */
+    /* Results section — stacks below controls */
     .sim-results {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      border-left: 1px solid rgba(255,255,255,0.06);
-      padding-left: 56px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-top: 44px;
+      padding-top: 44px;
+      text-align: center;
     }
     .sim-results__eyebrow {
       font-family: 'Inter', sans-serif;
@@ -289,27 +284,31 @@
       letter-spacing: 0.06em;
       margin-bottom: 36px;
     }
-    .sim-results__divider {
-      width: 100%;
-      height: 1px;
-      background: rgba(255,255,255,0.06);
-      margin-bottom: 26px;
+    .sim-results__metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 28px 0;
+      text-align: left;
     }
-    .sim-results__row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 16px;
+    .sim-metric {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+      padding: 18px 20px;
     }
-    .sim-results__row-label {
+    .sim-metric__label {
       font-family: 'Inter', sans-serif;
-      font-size: 12px;
-      font-weight: 400;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       color: var(--text-faint);
+      margin-bottom: 8px;
     }
-    .sim-results__row-value {
+    .sim-metric__value {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 21px;
+      font-size: 26px;
       font-weight: 400;
       color: var(--text);
     }
@@ -505,59 +504,21 @@
 
     /* ── Responsive ── */
     @media (max-width: 960px) {
-      .rec-simulator__card {
-        grid-template-columns: 1fr;
-        gap: 44px;
-        padding: 40px 32px;
-      }
-      .sim-results {
-        border-left: none;
-        padding-left: 0;
-        border-top: 1px solid rgba(255,255,255,0.06);
-        padding-top: 40px;
-      }
       .rec-guides__grid {
         grid-template-columns: repeat(2, 1fr);
       }
-    }
-    .rec-simulator__scroll-wrap {
-      width: 100%;
     }
 
     @media (max-width: 600px) {
       .rec-guides__grid {
         grid-template-columns: 1fr;
       }
-      .rec-simulator__scroll-wrap {
-        overflow: hidden;
-      }
       .rec-simulator__card {
         padding: 32px 20px;
-        overflow: hidden;
-        max-width: 100%;
-        box-sizing: border-box;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.4);
       }
-      .sim-field__header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-      }
-      .sim-field__value {
-        min-width: 0;
-        font-size: 16px;
-        text-align: left;
-      }
-      .sim-field__name {
-        font-size: 10px;
-      }
-      .sim-results__row {
-        flex-direction: column;
-        gap: 2px;
-        margin-bottom: 20px;
-      }
-      .sim-results__row-value {
-        font-size: 18px;
+      .sim-results {
+        margin-top: 32px;
+        padding-top: 32px;
       }
     }
   </style>
@@ -666,15 +627,15 @@
             <div class="sim-results__cuota" id="res-cuota">—</div>
             <p class="sim-results__cuota-note">Estimación orientativa · TIN variable según perfil</p>
 
-            <div class="sim-results__divider"></div>
-
-            <div class="sim-results__row">
-              <span class="sim-results__row-label">Financiación necesaria</span>
-              <span class="sim-results__row-value" id="res-financ">—</span>
-            </div>
-            <div class="sim-results__row">
-              <span class="sim-results__row-label">Tipo de interés orientativo</span>
-              <span class="sim-results__row-value" id="res-tasa">—</span>
+            <div class="sim-results__metrics">
+              <div class="sim-metric">
+                <div class="sim-metric__label">Financiación necesaria</div>
+                <div class="sim-metric__value" id="res-financ">—</div>
+              </div>
+              <div class="sim-metric">
+                <div class="sim-metric__label">Tipo orientativo</div>
+                <div class="sim-metric__value" id="res-tasa">—</div>
+              </div>
             </div>
 
             <div class="sim-results__message" id="res-mensaje" aria-live="polite">
