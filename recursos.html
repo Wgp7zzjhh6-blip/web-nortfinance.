@@ -529,15 +529,21 @@
         grid-template-columns: 1fr;
       }
       .rec-simulator__scroll-wrap {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 8px;
+        overflow-x: visible;
       }
       .rec-simulator__card {
         padding: 32px 20px;
-        min-width: 320px;
-        width: max-content;
-        max-width: 90vw;
+        overflow: visible;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .sim-results__row {
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+      .sim-results__row-value {
+        font-size: 18px;
+        word-break: break-all;
       }
       .sim-field__value {
         min-width: 0;
