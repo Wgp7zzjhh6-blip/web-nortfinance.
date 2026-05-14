@@ -200,6 +200,7 @@
   const lblImpuesto        = document.getElementById('lbl-impuesto');
   const resImpuesto        = document.getElementById('res-impuesto-val');
   const resGastos          = document.getElementById('res-gastos');
+  const resTasacion        = document.getElementById('res-tasacion');
   const resCosteTotal      = document.getElementById('res-coste-total');
   const resAhorro          = document.getElementById('res-ahorro');
   const resTotalHip        = document.getElementById('res-total-hipoteca');
@@ -228,7 +229,8 @@
     pais_vasco:         { label: 'País Vasco',         itp: 0.04,  ajd: 0.005  },
   };
 
-  const DEFAULT_TIN = { fija: 3.5, variable: 2.5, mixta: 3.0 };
+  const DEFAULT_TIN  = { fija: 3.5, variable: 2.5 };
+  const TASACION     = 400;
 
   let estadoInmueble = 'segunda_mano';
   let tipoHipoteca   = 'fija';
@@ -265,16 +267,16 @@
       const ajdRate  = ccaa.ajd || 0;
       taxRate        = ivaRate + ajdRate;
       const taxType  = ccaa.igic ? 'IGIC' : 'IVA';
-      const ivaPct   = (ivaRate * 100).toFixed(0);
-      const ajdPct   = (ajdRate * 100).toFixed(1).replace('.0', '');
+      const ivaPct   = (ivaRate * 100).toFixed(2);
+      const ajdPct   = (ajdRate * 100).toFixed(2);
       taxLabel = `${taxType} + AJD · ${ccaa.label} (${ivaPct}% + ${ajdPct}%)`;
     } else {
       taxRate  = ccaa.itp;
-      taxLabel = `ITP · ${ccaa.label} (${(taxRate * 100).toFixed(0)}%)`;
+      taxLabel = `ITP · ${ccaa.label} (${(taxRate * 100).toFixed(2)}%)`;
     }
     const taxAmount = price * taxRate;
-    const gastos    = price * 0.0115; // notaría + registro + gestoría ≈ 1,15%
-    const costTotal = price + taxAmount + gastos;
+    const gastos    = price * 0.01;
+    const costTotal = price + taxAmount + gastos + TASACION;
 
     // Loan = everything beyond savings (price + taxes + fees)
     const loan          = Math.max(0, costTotal - savings);
@@ -296,7 +298,7 @@
     resQuota.textContent = loan > 0
       ? new Intl.NumberFormat('es-ES').format(Math.round(monthly)) + ' €/mes'
       : '0 €/mes';
-    const modalLabels = { fija: 'Hipoteca fija', variable: 'Variable · sujeta a revisión Euribor', mixta: 'Hipoteca mixta' };
+    const modalLabels = { fija: 'Hipoteca fija', variable: 'Variable · sujeta a revisión Euribor' };
     resQuotaNote.textContent = 'Estimación orientativa · ' + (modalLabels[tipoHipoteca] || '');
 
     // Metrics grid
@@ -310,6 +312,7 @@
     lblImpuesto.textContent   = taxLabel;
     resImpuesto.textContent   = fmtE(taxAmount);
     resGastos.textContent     = fmtE(gastos);
+    resTasacion.textContent   = fmtE(TASACION);
     resCosteTotal.textContent = fmtE(costTotal);
 
     // Breakdown — Financiación total
