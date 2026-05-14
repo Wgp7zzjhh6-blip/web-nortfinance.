@@ -182,31 +182,64 @@
   const priceInput   = document.getElementById('sim-precio');
   const savingsInput = document.getElementById('sim-ahorros');
   const yearsInput   = document.getElementById('sim-plazo');
+  const tinInput     = document.getElementById('sim-tin');
   const contractSel  = document.getElementById('sim-contrato');
+  const ccaaSel      = document.getElementById('sim-ccaa');
 
   const priceVal   = document.getElementById('sim-precio-val');
   const savingsVal = document.getElementById('sim-ahorros-val');
   const yearsVal   = document.getElementById('sim-plazo-val');
+  const tinVal     = document.getElementById('sim-tin-val');
 
-  const resQuota  = document.getElementById('res-cuota');
-  const resFinanc = document.getElementById('res-financ');
-  const resTasa   = document.getElementById('res-tasa');
-  const resMsgEl  = document.getElementById('res-mensaje-text');
+  const resQuota      = document.getElementById('res-cuota');
+  const resQuotaNote  = document.getElementById('res-cuota-note');
+  const resFinanc     = document.getElementById('res-financ');
+  const resPct        = document.getElementById('res-pct');
+  const resTasa       = document.getElementById('res-tasa');
+  const resIntereses  = document.getElementById('res-intereses');
+  const resPrecio     = document.getElementById('res-precio');
+  const lblImpuesto   = document.getElementById('lbl-impuesto');
+  const resImpuesto   = document.getElementById('res-impuesto-val');
+  const resGastos     = document.getElementById('res-gastos');
+  const resCosteTotal = document.getElementById('res-coste-total');
+  const resTotalHip   = document.getElementById('res-total-hipoteca');
+  const resGrandTotal = document.getElementById('res-grand-total');
+  const resMsgEl      = document.getElementById('res-mensaje-text');
 
-  const RATES = {
-    indefinido:  0.035,
-    autonomo:    0.040,
-    funcionario: 0.032,
+  // ITP by CCAA (segunda mano). Canarias uses IGIC instead of ITP/IVA.
+  const CCAA = {
+    andalucia:          { label: 'Andalucía',          itp: 0.07 },
+    aragon:             { label: 'Aragón',             itp: 0.08 },
+    asturias:           { label: 'Asturias',           itp: 0.08 },
+    baleares:           { label: 'Baleares',           itp: 0.08 },
+    canarias:           { label: 'Canarias',           itp: 0.065, igic: true },
+    cantabria:          { label: 'Cantabria',          itp: 0.10 },
+    castilla_la_mancha: { label: 'Castilla-La Mancha', itp: 0.09 },
+    castilla_y_leon:    { label: 'Castilla y León',    itp: 0.08 },
+    cataluna:           { label: 'Cataluña',           itp: 0.10 },
+    com_valenciana:     { label: 'C. Valenciana',      itp: 0.10 },
+    extremadura:        { label: 'Extremadura',        itp: 0.08 },
+    galicia:            { label: 'Galicia',            itp: 0.09 },
+    la_rioja:           { label: 'La Rioja',           itp: 0.07 },
+    madrid:             { label: 'Madrid',             itp: 0.06 },
+    murcia:             { label: 'Murcia',             itp: 0.08 },
+    navarra:            { label: 'Navarra',            itp: 0.06 },
+    pais_vasco:         { label: 'País Vasco',         itp: 0.04 },
   };
 
-  const MESSAGES = {
+  const CONTRACT_MSG = {
     indefinido:  'Perfil empleado estable. Las entidades financian habitualmente hasta el 80 % del valor de tasación.',
     autonomo:    'Con 2 años de actividad demostrable y declaraciones actualizadas, la financiación es completamente viable.',
     funcionario: 'Perfil de bajo riesgo. Acceso preferente a las condiciones más competitivas del mercado hipotecario.',
   };
 
-  function fmt(n) {
-    return new Intl.NumberFormat('es-ES', { maximumFractionDigits: 0 }).format(n);
+  const DEFAULT_TIN = { fija: 3.5, variable: 2.5, mixta: 3.0 };
+
+  let estadoInmueble = 'segunda_mano';
+  let tipoHipoteca   = 'fija';
+
+  function fmtE(n) {
+    return new Intl.NumberFormat('es-ES', { maximumFractionDigits: 0 }).format(Math.round(n)) + ' €';
   }
 
   function calcMonthly(loan, annualRate, years) {
@@ -224,31 +257,89 @@
   }
 
   function calculate() {
-    const price    = parseFloat(priceInput.value);
-    const savings  = parseFloat(savingsInput.value);
-    const years    = parseFloat(yearsInput.value);
-    const contract = contractSel.value;
+    const price   = parseFloat(priceInput.value);
+    const savings = parseFloat(savingsInput.value);
+    const years   = parseFloat(yearsInput.value);
+    const tin     = parseFloat(tinInput.value) / 100;
+    const ccaa    = CCAA[ccaaSel.value] || CCAA.madrid;
 
-    const loan    = Math.max(0, price - savings);
-    const rate    = RATES[contract] || RATES.indefinido;
-    const monthly = calcMonthly(loan, rate, years);
+    const loan          = Math.max(0, price - savings);
+    const monthly       = calcMonthly(loan, tin, years);
+    const totalPaid     = monthly * years * 12;
+    const totalInterest = Math.max(0, totalPaid - loan);
+    const pctFinanc     = price > 0 ? (loan / price * 100).toFixed(0) : 0;
 
-    priceVal.textContent   = fmt(price) + ' €';
-    savingsVal.textContent = fmt(savings) + ' €';
+    // Taxes
+    let taxRate, taxLabel;
+    if (estadoInmueble === 'nuevo') {
+      taxRate  = ccaa.igic ? 0.065 : 0.10;
+      const taxType = ccaa.igic ? 'IGIC' : 'IVA';
+      taxLabel = `${taxType} · ${ccaa.label} (${(taxRate * 100).toFixed(0)}%)`;
+    } else {
+      taxRate  = ccaa.itp;
+      taxLabel = `ITP · ${ccaa.label} (${(taxRate * 100).toFixed(0)}%)`;
+    }
+    const taxAmount  = price * taxRate;
+    const gastos     = price * 0.01;
+    const costTotal  = price + taxAmount + gastos;
+    const grandTotal = costTotal - savings + totalPaid;
+
+    // Labels
+    priceVal.textContent   = new Intl.NumberFormat('es-ES').format(price) + ' €';
+    savingsVal.textContent = new Intl.NumberFormat('es-ES').format(savings) + ' €';
     yearsVal.textContent   = years + ' años';
+    tinVal.textContent     = (tin * 100).toFixed(2).replace('.', ',') + ' %';
 
-    resQuota.textContent  = loan > 0 ? fmt(Math.round(monthly)) + ' €/mes' : '0 €/mes';
-    resFinanc.textContent = fmt(loan) + ' €';
-    resTasa.textContent   = (rate * 100).toFixed(1).replace('.', ',') + ' % TIN est.';
-    resMsgEl.textContent  = MESSAGES[contract] || '';
+    // Cuota + note
+    resQuota.textContent = loan > 0
+      ? new Intl.NumberFormat('es-ES').format(Math.round(monthly)) + ' €/mes'
+      : '0 €/mes';
+    const modalLabels = { fija: 'Hipoteca fija', variable: 'Variable · sujeta a revisión Euribor', mixta: 'Hipoteca mixta' };
+    resQuotaNote.textContent = 'Estimación orientativa · ' + (modalLabels[tipoHipoteca] || '');
 
-    [priceInput, savingsInput, yearsInput].forEach(updateFill);
+    // Metrics
+    resFinanc.textContent   = fmtE(loan);
+    resPct.textContent      = pctFinanc + ' %';
+    resTasa.textContent     = (tin * 100).toFixed(2).replace('.', ',') + ' % TIN';
+    resIntereses.textContent = fmtE(totalInterest);
+
+    // Breakdown
+    resPrecio.textContent    = fmtE(price);
+    lblImpuesto.textContent  = taxLabel;
+    resImpuesto.textContent  = fmtE(taxAmount);
+    resGastos.textContent    = fmtE(gastos);
+    resCosteTotal.textContent = fmtE(costTotal);
+    resTotalHip.textContent  = fmtE(totalPaid);
+    resGrandTotal.textContent = fmtE(grandTotal);
+
+    resMsgEl.textContent = CONTRACT_MSG[contractSel.value] || '';
+
+    [priceInput, savingsInput, yearsInput, tinInput].forEach(updateFill);
   }
 
-  [priceInput, savingsInput, yearsInput].forEach(inp => {
-    inp.addEventListener('input', calculate);
+  // Toggle buttons (estado + hipoteca)
+  simWrap.querySelectorAll('.sim-toggle__btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const group = btn.dataset.group;
+      simWrap.querySelectorAll(`.sim-toggle__btn[data-group="${group}"]`)
+        .forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      if (group === 'estado') {
+        estadoInmueble = btn.dataset.value;
+      } else if (group === 'hipoteca') {
+        tipoHipoteca = btn.dataset.value;
+        tinInput.value = DEFAULT_TIN[tipoHipoteca] || 3.5;
+      }
+      calculate();
+    });
   });
+
+  [priceInput, savingsInput, yearsInput, tinInput].forEach(inp =>
+    inp.addEventListener('input', calculate)
+  );
   contractSel.addEventListener('change', calculate);
+  ccaaSel.addEventListener('change', calculate);
 
   calculate();
 })();

@@ -502,6 +502,125 @@
       flex-wrap: wrap;
     }
 
+    /* ── Simulator groups ── */
+    .sim-group {
+      margin-bottom: 30px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .sim-group:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .sim-group__label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+      margin-bottom: 20px;
+    }
+
+    /* ── Toggle pills ── */
+    .sim-toggle {
+      display: flex;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 4px;
+      gap: 4px;
+    }
+    .sim-toggle__btn {
+      flex: 1;
+      padding: 9px 12px;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      background: transparent;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-sub);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .sim-toggle__btn.active {
+      background: rgba(212,175,55,0.12);
+      color: var(--gold);
+      border-color: rgba(212,175,55,0.25);
+    }
+    .sim-toggle__btn:hover:not(.active) {
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+    }
+
+    /* ── Cost breakdown ── */
+    .sim-breakdown {
+      background: rgba(255,255,255,0.015);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+      text-align: left;
+    }
+    .sim-breakdown__title {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 14px;
+    }
+    .sim-breakdown__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      gap: 12px;
+    }
+    .sim-breakdown__row:last-child { border-bottom: none; }
+    .sim-breakdown__row > span:first-child {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--text-sub);
+    }
+    .sim-breakdown__row > span:last-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--text);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .sim-breakdown__row--total > span:first-child {
+      color: var(--text);
+      font-weight: 400;
+    }
+    .sim-breakdown__row--total > span:last-child {
+      color: var(--text);
+      font-size: 19px;
+    }
+    .sim-breakdown__row--grand-total {
+      margin-top: 6px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(212,175,55,0.2);
+    }
+    .sim-breakdown__row--grand-total > span:first-child {
+      color: var(--gold);
+      font-weight: 500;
+    }
+    .sim-breakdown__row--grand-total > span:last-child {
+      color: var(--gold);
+      font-size: 22px;
+    }
+
     /* ── Responsive ── */
     @media (max-width: 960px) {
       .rec-guides__grid {
@@ -578,54 +697,123 @@
           <span class="text-gold">en Tiempo Real</span>
         </h2>
 
-        <div class="rec-simulator__scroll-wrap">
         <div class="rec-simulator__card reveal">
 
           <!-- ─── CONTROLES ─── -->
           <div class="sim-controls">
             <h3 class="sim-controls__heading">Parámetros de tu operación</h3>
 
-            <div class="sim-field">
-              <div class="sim-field__header">
-                <span class="sim-field__name">Precio de la vivienda</span>
-                <span class="sim-field__value" id="sim-precio-val">300.000 €</span>
+            <!-- Grupo: Inmueble -->
+            <div class="sim-group">
+              <p class="sim-group__label">El Inmueble</p>
+
+              <div class="sim-field">
+                <div class="sim-field__header">
+                  <span class="sim-field__name">Precio de la vivienda</span>
+                  <span class="sim-field__value" id="sim-precio-val">300.000 €</span>
+                </div>
+                <input type="range" id="sim-precio" min="50000" max="1000000" step="5000" value="300000" aria-label="Precio de la vivienda" />
               </div>
-              <input type="range" id="sim-precio" min="50000" max="1000000" step="5000" value="300000" aria-label="Precio de la vivienda" />
+
+              <div class="sim-field">
+                <div class="sim-field__header">
+                  <span class="sim-field__name">Comunidad Autónoma</span>
+                </div>
+                <select id="sim-ccaa" class="sim-select" aria-label="Comunidad Autónoma">
+                  <option value="andalucia">Andalucía</option>
+                  <option value="aragon">Aragón</option>
+                  <option value="asturias">Asturias</option>
+                  <option value="baleares">Baleares</option>
+                  <option value="canarias">Canarias</option>
+                  <option value="cantabria">Cantabria</option>
+                  <option value="castilla_la_mancha">Castilla-La Mancha</option>
+                  <option value="castilla_y_leon">Castilla y León</option>
+                  <option value="cataluna">Cataluña</option>
+                  <option value="com_valenciana">Comunidad Valenciana</option>
+                  <option value="extremadura">Extremadura</option>
+                  <option value="galicia">Galicia</option>
+                  <option value="la_rioja">La Rioja</option>
+                  <option value="madrid" selected>Madrid</option>
+                  <option value="murcia">Murcia</option>
+                  <option value="navarra">Navarra</option>
+                  <option value="pais_vasco">País Vasco</option>
+                </select>
+              </div>
+
+              <div class="sim-field">
+                <div class="sim-field__header">
+                  <span class="sim-field__name">Estado del inmueble</span>
+                </div>
+                <div class="sim-toggle" role="group" aria-label="Estado del inmueble">
+                  <button class="sim-toggle__btn active" data-group="estado" data-value="segunda_mano">Segunda mano</button>
+                  <button class="sim-toggle__btn" data-group="estado" data-value="nuevo">Vivienda nueva</button>
+                </div>
+              </div>
             </div>
 
-            <div class="sim-field">
-              <div class="sim-field__header">
-                <span class="sim-field__name">Ahorros aportados</span>
-                <span class="sim-field__value" id="sim-ahorros-val">60.000 €</span>
+            <!-- Grupo: Financiación -->
+            <div class="sim-group">
+              <p class="sim-group__label">Tu Financiación</p>
+
+              <div class="sim-field">
+                <div class="sim-field__header">
+                  <span class="sim-field__name">Ahorros aportados</span>
+                  <span class="sim-field__value" id="sim-ahorros-val">60.000 €</span>
+                </div>
+                <input type="range" id="sim-ahorros" min="0" max="500000" step="1000" value="60000" aria-label="Ahorros aportados" />
               </div>
-              <input type="range" id="sim-ahorros" min="0" max="300000" step="1000" value="60000" aria-label="Ahorros aportados" />
+
+              <div class="sim-field">
+                <div class="sim-field__header">
+                  <span class="sim-field__name">Plazo de la hipoteca</span>
+                  <span class="sim-field__value" id="sim-plazo-val">25 años</span>
+                </div>
+                <input type="range" id="sim-plazo" min="10" max="30" step="1" value="25" aria-label="Plazo en años" />
+              </div>
+
+              <div class="sim-field">
+                <div class="sim-field__header">
+                  <span class="sim-field__name">Tipo de contrato</span>
+                </div>
+                <select id="sim-contrato" class="sim-select" aria-label="Tipo de contrato">
+                  <option value="indefinido">Indefinido</option>
+                  <option value="autonomo">Autónomo</option>
+                  <option value="funcionario">Funcionario</option>
+                </select>
+              </div>
             </div>
 
-            <div class="sim-field">
-              <div class="sim-field__header">
-                <span class="sim-field__name">Plazo de la hipoteca</span>
-                <span class="sim-field__value" id="sim-plazo-val">25 años</span>
+            <!-- Grupo: Tipo de interés -->
+            <div class="sim-group">
+              <p class="sim-group__label">Tipo de Interés</p>
+
+              <div class="sim-field">
+                <div class="sim-field__header">
+                  <span class="sim-field__name">Modalidad hipotecaria</span>
+                </div>
+                <div class="sim-toggle" role="group" aria-label="Modalidad hipotecaria">
+                  <button class="sim-toggle__btn active" data-group="hipoteca" data-value="fija">Fija</button>
+                  <button class="sim-toggle__btn" data-group="hipoteca" data-value="variable">Variable</button>
+                  <button class="sim-toggle__btn" data-group="hipoteca" data-value="mixta">Mixta</button>
+                </div>
               </div>
-              <input type="range" id="sim-plazo" min="10" max="30" step="1" value="25" aria-label="Plazo en años" />
+
+              <div class="sim-field">
+                <div class="sim-field__header">
+                  <span class="sim-field__name">TIN anual</span>
+                  <span class="sim-field__value" id="sim-tin-val">3,50 %</span>
+                </div>
+                <input type="range" id="sim-tin" min="1" max="7" step="0.05" value="3.5" aria-label="Tipo de interés nominal" />
+              </div>
             </div>
 
-            <div class="sim-field">
-              <div class="sim-field__header">
-                <span class="sim-field__name">Tipo de contrato</span>
-              </div>
-              <select id="sim-contrato" class="sim-select" aria-label="Tipo de contrato">
-                <option value="indefinido">Indefinido</option>
-                <option value="autonomo">Autónomo</option>
-                <option value="funcionario">Funcionario</option>
-              </select>
-            </div>
-          </div>
+          </div><!-- end sim-controls -->
 
           <!-- ─── RESULTADOS ─── -->
           <div class="sim-results">
             <p class="sim-results__eyebrow">Cuota Mensual Estimada</p>
             <div class="sim-results__cuota" id="res-cuota">—</div>
-            <p class="sim-results__cuota-note">Estimación orientativa · TIN variable según perfil</p>
+            <p class="sim-results__cuota-note" id="res-cuota-note">Estimación orientativa · Hipoteca fija</p>
 
             <div class="sim-results__metrics">
               <div class="sim-metric">
@@ -633,8 +821,44 @@
                 <div class="sim-metric__value" id="res-financ">—</div>
               </div>
               <div class="sim-metric">
-                <div class="sim-metric__label">Tipo orientativo</div>
+                <div class="sim-metric__label">% Financiación</div>
+                <div class="sim-metric__value" id="res-pct">—</div>
+              </div>
+              <div class="sim-metric">
+                <div class="sim-metric__label">TIN aplicado</div>
                 <div class="sim-metric__value" id="res-tasa">—</div>
+              </div>
+              <div class="sim-metric">
+                <div class="sim-metric__label">Total intereses</div>
+                <div class="sim-metric__value" id="res-intereses">—</div>
+              </div>
+            </div>
+
+            <div class="sim-breakdown">
+              <p class="sim-breakdown__title">Desglose de costes</p>
+              <div class="sim-breakdown__row">
+                <span>Precio del inmueble</span>
+                <span id="res-precio">—</span>
+              </div>
+              <div class="sim-breakdown__row">
+                <span id="lbl-impuesto">ITP · Madrid (6%)</span>
+                <span id="res-impuesto-val">—</span>
+              </div>
+              <div class="sim-breakdown__row">
+                <span>Notaría y registro (~1%)</span>
+                <span id="res-gastos">—</span>
+              </div>
+              <div class="sim-breakdown__row sim-breakdown__row--total">
+                <span>Coste total del inmueble</span>
+                <span id="res-coste-total">—</span>
+              </div>
+              <div class="sim-breakdown__row">
+                <span>Total pagado en hipoteca</span>
+                <span id="res-total-hipoteca">—</span>
+              </div>
+              <div class="sim-breakdown__row sim-breakdown__row--grand-total">
+                <span>Coste total con hipoteca</span>
+                <span id="res-grand-total">—</span>
               </div>
             </div>
 
@@ -646,7 +870,6 @@
           </div>
 
         </div>
-        </div><!-- end scroll-wrap -->
       </div>
     </section>
 
