@@ -207,24 +207,25 @@
   const resGrandTotal      = document.getElementById('res-grand-total');
   const resMsgEl           = document.getElementById('res-mensaje-text');
 
+  // itp = segunda mano; ajd = nueva (IVA/IGIC + AJD); igic = Canarias usa IGIC en vez de IVA
   const CCAA = {
-    andalucia:          { label: 'Andalucía',          itp: 0.07 },
-    aragon:             { label: 'Aragón',             itp: 0.08 },
-    asturias:           { label: 'Asturias',           itp: 0.08 },
-    baleares:           { label: 'Baleares',           itp: 0.08 },
-    canarias:           { label: 'Canarias',           itp: 0.065, igic: true },
-    cantabria:          { label: 'Cantabria',          itp: 0.10 },
-    castilla_la_mancha: { label: 'Castilla-La Mancha', itp: 0.09 },
-    castilla_y_leon:    { label: 'Castilla y León',    itp: 0.08 },
-    cataluna:           { label: 'Cataluña',           itp: 0.10 },
-    com_valenciana:     { label: 'C. Valenciana',      itp: 0.10 },
-    extremadura:        { label: 'Extremadura',        itp: 0.08 },
-    galicia:            { label: 'Galicia',            itp: 0.09 },
-    la_rioja:           { label: 'La Rioja',           itp: 0.07 },
-    madrid:             { label: 'Madrid',             itp: 0.06 },
-    murcia:             { label: 'Murcia',             itp: 0.08 },
-    navarra:            { label: 'Navarra',            itp: 0.06 },
-    pais_vasco:         { label: 'País Vasco',         itp: 0.04 },
+    andalucia:          { label: 'Andalucía',          itp: 0.07,  ajd: 0.012  },
+    aragon:             { label: 'Aragón',             itp: 0.08,  ajd: 0.015  },
+    asturias:           { label: 'Asturias',           itp: 0.08,  ajd: 0.012  },
+    baleares:           { label: 'Baleares',           itp: 0.08,  ajd: 0.012  },
+    canarias:           { label: 'Canarias',           itp: 0.065, ajd: 0.0075, igic: true },
+    cantabria:          { label: 'Cantabria',          itp: 0.10,  ajd: 0.015  },
+    castilla_la_mancha: { label: 'Castilla-La Mancha', itp: 0.09,  ajd: 0.009  },
+    castilla_y_leon:    { label: 'Castilla y León',    itp: 0.08,  ajd: 0.015  },
+    cataluna:           { label: 'Cataluña',           itp: 0.10,  ajd: 0.015  },
+    com_valenciana:     { label: 'C. Valenciana',      itp: 0.10,  ajd: 0.015  },
+    extremadura:        { label: 'Extremadura',        itp: 0.08,  ajd: 0.015  },
+    galicia:            { label: 'Galicia',            itp: 0.09,  ajd: 0.015  },
+    la_rioja:           { label: 'La Rioja',           itp: 0.07,  ajd: 0.010  },
+    madrid:             { label: 'Madrid',             itp: 0.06,  ajd: 0.006  },
+    murcia:             { label: 'Murcia',             itp: 0.08,  ajd: 0.015  },
+    navarra:            { label: 'Navarra',            itp: 0.06,  ajd: 0.005  },
+    pais_vasco:         { label: 'País Vasco',         itp: 0.04,  ajd: 0.005  },
   };
 
   const DEFAULT_TIN = { fija: 3.5, variable: 2.5, mixta: 3.0 };
@@ -260,15 +261,19 @@
     // Taxes
     let taxRate, taxLabel;
     if (estadoInmueble === 'nuevo') {
-      taxRate  = ccaa.igic ? 0.065 : 0.10;
-      const taxType = ccaa.igic ? 'IGIC' : 'IVA';
-      taxLabel = `${taxType} · ${ccaa.label} (${(taxRate * 100).toFixed(0)}%)`;
+      const ivaRate  = ccaa.igic ? 0.065 : 0.10;
+      const ajdRate  = ccaa.ajd || 0;
+      taxRate        = ivaRate + ajdRate;
+      const taxType  = ccaa.igic ? 'IGIC' : 'IVA';
+      const ivaPct   = (ivaRate * 100).toFixed(0);
+      const ajdPct   = (ajdRate * 100).toFixed(1).replace('.0', '');
+      taxLabel = `${taxType} + AJD · ${ccaa.label} (${ivaPct}% + ${ajdPct}%)`;
     } else {
       taxRate  = ccaa.itp;
       taxLabel = `ITP · ${ccaa.label} (${(taxRate * 100).toFixed(0)}%)`;
     }
     const taxAmount = price * taxRate;
-    const gastos    = price * 0.0115;
+    const gastos    = price * 0.008625; // notaría + registro + gestoría ≈ 0,87%
     const costTotal = price + taxAmount + gastos;
 
     // Loan = everything beyond savings (price + taxes + fees)
