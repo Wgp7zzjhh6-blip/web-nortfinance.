@@ -321,7 +321,18 @@
     resInteresesBreakdown.textContent = fmtE(totalInterest);
     resGrandTotal.textContent        = fmtE(grandTotal);
 
-    if (resMsgEl) resMsgEl.textContent = '';
+    if (resMsgEl) {
+      const pct = parseFloat(pctFinanc);
+      if (pct > 90) {
+        resMsgEl.textContent = 'Financiación superior al 90 %. La mayoría de entidades limitan el préstamo al 80 % del valor de tasación; puede ser necesario aportar más ahorros o contar con garantías adicionales.';
+      } else if (pct > 80) {
+        resMsgEl.textContent = 'Financiación entre el 80 % y el 90 %. Algunos bancos lo aceptan con buen perfil crediticio. Te recomendamos validarlo con un asesor antes de iniciar el proceso.';
+      } else if (pct > 60) {
+        resMsgEl.textContent = 'Financiación dentro del límite habitual del 80 %. Perfil favorable para la aprobación bancaria y acceso a las mejores condiciones del mercado.';
+      } else {
+        resMsgEl.textContent = 'Financiación conservadora. Excelente posición negociadora para obtener las condiciones más competitivas y reducir el coste total de la operación.';
+      }
+    }
 
     [priceInput, savingsInput, yearsInput, tinInput].forEach(updateFill);
   }
