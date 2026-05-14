@@ -712,7 +712,7 @@
                   <span class="sim-field__name">Precio de la vivienda</span>
                   <span class="sim-field__value" id="sim-precio-val">300.000 €</span>
                 </div>
-                <input type="range" id="sim-precio" min="50000" max="1000000" step="5000" value="300000" aria-label="Precio de la vivienda" />
+                <input type="range" id="sim-precio" min="50000" max="1000000" step="1000" value="300000" aria-label="Precio de la vivienda" />
               </div>
 
               <div class="sim-field">
@@ -768,19 +768,9 @@
                   <span class="sim-field__name">Plazo de la hipoteca</span>
                   <span class="sim-field__value" id="sim-plazo-val">25 años</span>
                 </div>
-                <input type="range" id="sim-plazo" min="10" max="30" step="1" value="25" aria-label="Plazo en años" />
+                <input type="range" id="sim-plazo" min="10" max="40" step="1" value="25" aria-label="Plazo en años" />
               </div>
 
-              <div class="sim-field">
-                <div class="sim-field__header">
-                  <span class="sim-field__name">Tipo de contrato</span>
-                </div>
-                <select id="sim-contrato" class="sim-select" aria-label="Tipo de contrato">
-                  <option value="indefinido">Indefinido</option>
-                  <option value="autonomo">Autónomo</option>
-                  <option value="funcionario">Funcionario</option>
-                </select>
-              </div>
             </div>
 
             <!-- Grupo: Tipo de interés -->
@@ -800,10 +790,10 @@
 
               <div class="sim-field">
                 <div class="sim-field__header">
-                  <span class="sim-field__name">TIN anual</span>
-                  <span class="sim-field__value" id="sim-tin-val">3,50 %</span>
+                  <span class="sim-field__name">Tipo de interés</span>
+                  <span class="sim-field__value" id="sim-tin-val">3,5 %</span>
                 </div>
-                <input type="range" id="sim-tin" min="1" max="7" step="0.05" value="3.5" aria-label="Tipo de interés nominal" />
+                <input type="range" id="sim-tin" min="1" max="7" step="0.1" value="3.5" aria-label="Tipo de interés nominal" />
               </div>
             </div>
 
@@ -835,7 +825,7 @@
             </div>
 
             <div class="sim-breakdown">
-              <p class="sim-breakdown__title">Desglose de costes</p>
+              <p class="sim-breakdown__title">Coste del inmueble</p>
               <div class="sim-breakdown__row">
                 <span>Precio del inmueble</span>
                 <span id="res-precio">—</span>
@@ -845,16 +835,28 @@
                 <span id="res-impuesto-val">—</span>
               </div>
               <div class="sim-breakdown__row">
-                <span>Notaría y registro (~1%)</span>
+                <span>Notaría, registro y gestoría (~1,15%)</span>
                 <span id="res-gastos">—</span>
               </div>
               <div class="sim-breakdown__row sim-breakdown__row--total">
                 <span>Coste total del inmueble</span>
                 <span id="res-coste-total">—</span>
               </div>
+            </div>
+
+            <div class="sim-breakdown" style="margin-top:12px;">
+              <p class="sim-breakdown__title">Financiación total</p>
               <div class="sim-breakdown__row">
-                <span>Total pagado en hipoteca</span>
+                <span>Ahorro aportado</span>
+                <span id="res-ahorro">—</span>
+              </div>
+              <div class="sim-breakdown__row">
+                <span>Importe hipoteca solicitada</span>
                 <span id="res-total-hipoteca">—</span>
+              </div>
+              <div class="sim-breakdown__row">
+                <span>Intereses de la hipoteca</span>
+                <span id="res-intereses-breakdown">—</span>
               </div>
               <div class="sim-breakdown__row sim-breakdown__row--grand-total">
                 <span>Coste total con hipoteca</span>

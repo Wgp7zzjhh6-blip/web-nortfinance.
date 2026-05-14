@@ -183,7 +183,6 @@
   const savingsInput = document.getElementById('sim-ahorros');
   const yearsInput   = document.getElementById('sim-plazo');
   const tinInput     = document.getElementById('sim-tin');
-  const contractSel  = document.getElementById('sim-contrato');
   const ccaaSel      = document.getElementById('sim-ccaa');
 
   const priceVal   = document.getElementById('sim-precio-val');
@@ -191,22 +190,23 @@
   const yearsVal   = document.getElementById('sim-plazo-val');
   const tinVal     = document.getElementById('sim-tin-val');
 
-  const resQuota      = document.getElementById('res-cuota');
-  const resQuotaNote  = document.getElementById('res-cuota-note');
-  const resFinanc     = document.getElementById('res-financ');
-  const resPct        = document.getElementById('res-pct');
-  const resTasa       = document.getElementById('res-tasa');
-  const resIntereses  = document.getElementById('res-intereses');
-  const resPrecio     = document.getElementById('res-precio');
-  const lblImpuesto   = document.getElementById('lbl-impuesto');
-  const resImpuesto   = document.getElementById('res-impuesto-val');
-  const resGastos     = document.getElementById('res-gastos');
-  const resCosteTotal = document.getElementById('res-coste-total');
-  const resTotalHip   = document.getElementById('res-total-hipoteca');
-  const resGrandTotal = document.getElementById('res-grand-total');
-  const resMsgEl      = document.getElementById('res-mensaje-text');
+  const resQuota           = document.getElementById('res-cuota');
+  const resQuotaNote       = document.getElementById('res-cuota-note');
+  const resFinanc          = document.getElementById('res-financ');
+  const resPct             = document.getElementById('res-pct');
+  const resTasa            = document.getElementById('res-tasa');
+  const resIntereses       = document.getElementById('res-intereses');
+  const resPrecio          = document.getElementById('res-precio');
+  const lblImpuesto        = document.getElementById('lbl-impuesto');
+  const resImpuesto        = document.getElementById('res-impuesto-val');
+  const resGastos          = document.getElementById('res-gastos');
+  const resCosteTotal      = document.getElementById('res-coste-total');
+  const resAhorro          = document.getElementById('res-ahorro');
+  const resTotalHip        = document.getElementById('res-total-hipoteca');
+  const resInteresesBreakdown = document.getElementById('res-intereses-breakdown');
+  const resGrandTotal      = document.getElementById('res-grand-total');
+  const resMsgEl           = document.getElementById('res-mensaje-text');
 
-  // ITP by CCAA (segunda mano). Canarias uses IGIC instead of ITP/IVA.
   const CCAA = {
     andalucia:          { label: 'Andalucía',          itp: 0.07 },
     aragon:             { label: 'Aragón',             itp: 0.08 },
@@ -225,12 +225,6 @@
     murcia:             { label: 'Murcia',             itp: 0.08 },
     navarra:            { label: 'Navarra',            itp: 0.06 },
     pais_vasco:         { label: 'País Vasco',         itp: 0.04 },
-  };
-
-  const CONTRACT_MSG = {
-    indefinido:  'Perfil empleado estable. Las entidades financian habitualmente hasta el 80 % del valor de tasación.',
-    autonomo:    'Con 2 años de actividad demostrable y declaraciones actualizadas, la financiación es completamente viable.',
-    funcionario: 'Perfil de bajo riesgo. Acceso preferente a las condiciones más competitivas del mercado hipotecario.',
   };
 
   const DEFAULT_TIN = { fija: 3.5, variable: 2.5, mixta: 3.0 };
@@ -263,12 +257,6 @@
     const tin     = parseFloat(tinInput.value) / 100;
     const ccaa    = CCAA[ccaaSel.value] || CCAA.madrid;
 
-    const loan          = Math.max(0, price - savings);
-    const monthly       = calcMonthly(loan, tin, years);
-    const totalPaid     = monthly * years * 12;
-    const totalInterest = Math.max(0, totalPaid - loan);
-    const pctFinanc     = price > 0 ? (loan / price * 100).toFixed(0) : 0;
-
     // Taxes
     let taxRate, taxLabel;
     if (estadoInmueble === 'nuevo') {
@@ -279,16 +267,25 @@
       taxRate  = ccaa.itp;
       taxLabel = `ITP · ${ccaa.label} (${(taxRate * 100).toFixed(0)}%)`;
     }
-    const taxAmount  = price * taxRate;
-    const gastos     = price * 0.01;
-    const costTotal  = price + taxAmount + gastos;
-    const grandTotal = costTotal - savings + totalPaid;
+    const taxAmount = price * taxRate;
+    const gastos    = price * 0.0115;
+    const costTotal = price + taxAmount + gastos;
 
-    // Labels
+    // Loan = everything beyond savings (price + taxes + fees)
+    const loan          = Math.max(0, costTotal - savings);
+    const monthly       = calcMonthly(loan, tin, years);
+    const totalPaid     = monthly * years * 12;
+    const totalInterest = Math.max(0, totalPaid - loan);
+    const pctFinanc     = costTotal > 0 ? (loan / costTotal * 100).toFixed(0) : 0;
+
+    // Grand total: savings + loan + interest = costTotal + interest
+    const grandTotal = costTotal + totalInterest;
+
+    // Slider labels
     priceVal.textContent   = new Intl.NumberFormat('es-ES').format(price) + ' €';
     savingsVal.textContent = new Intl.NumberFormat('es-ES').format(savings) + ' €';
     yearsVal.textContent   = years + ' años';
-    tinVal.textContent     = (tin * 100).toFixed(2).replace('.', ',') + ' %';
+    tinVal.textContent     = (tin * 100).toFixed(1).replace('.', ',') + ' %';
 
     // Cuota + note
     resQuota.textContent = loan > 0
@@ -297,38 +294,40 @@
     const modalLabels = { fija: 'Hipoteca fija', variable: 'Variable · sujeta a revisión Euribor', mixta: 'Hipoteca mixta' };
     resQuotaNote.textContent = 'Estimación orientativa · ' + (modalLabels[tipoHipoteca] || '');
 
-    // Metrics
-    resFinanc.textContent   = fmtE(loan);
-    resPct.textContent      = pctFinanc + ' %';
-    resTasa.textContent     = (tin * 100).toFixed(2).replace('.', ',') + ' % TIN';
+    // Metrics grid
+    resFinanc.textContent    = fmtE(loan);
+    resPct.textContent       = pctFinanc + ' %';
+    resTasa.textContent      = (tin * 100).toFixed(1).replace('.', ',') + ' % TIN';
     resIntereses.textContent = fmtE(totalInterest);
 
-    // Breakdown
-    resPrecio.textContent    = fmtE(price);
-    lblImpuesto.textContent  = taxLabel;
-    resImpuesto.textContent  = fmtE(taxAmount);
-    resGastos.textContent    = fmtE(gastos);
+    // Breakdown — Coste del inmueble
+    resPrecio.textContent     = fmtE(price);
+    lblImpuesto.textContent   = taxLabel;
+    resImpuesto.textContent   = fmtE(taxAmount);
+    resGastos.textContent     = fmtE(gastos);
     resCosteTotal.textContent = fmtE(costTotal);
-    resTotalHip.textContent  = fmtE(totalPaid);
-    resGrandTotal.textContent = fmtE(grandTotal);
 
-    resMsgEl.textContent = CONTRACT_MSG[contractSel.value] || '';
+    // Breakdown — Financiación total
+    resAhorro.textContent            = fmtE(savings);
+    resTotalHip.textContent          = fmtE(loan);
+    resInteresesBreakdown.textContent = fmtE(totalInterest);
+    resGrandTotal.textContent        = fmtE(grandTotal);
+
+    if (resMsgEl) resMsgEl.textContent = '';
 
     [priceInput, savingsInput, yearsInput, tinInput].forEach(updateFill);
   }
 
-  // Toggle buttons (estado + hipoteca)
   simWrap.querySelectorAll('.sim-toggle__btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const group = btn.dataset.group;
       simWrap.querySelectorAll(`.sim-toggle__btn[data-group="${group}"]`)
         .forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-
       if (group === 'estado') {
         estadoInmueble = btn.dataset.value;
       } else if (group === 'hipoteca') {
-        tipoHipoteca = btn.dataset.value;
+        tipoHipoteca   = btn.dataset.value;
         tinInput.value = DEFAULT_TIN[tipoHipoteca] || 3.5;
       }
       calculate();
@@ -338,7 +337,6 @@
   [priceInput, savingsInput, yearsInput, tinInput].forEach(inp =>
     inp.addEventListener('input', calculate)
   );
-  contractSel.addEventListener('change', calculate);
   ccaaSel.addEventListener('change', calculate);
 
   calculate();
