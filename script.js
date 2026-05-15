@@ -609,19 +609,15 @@
     check();
     book.addEventListener('click', () => {
       book.disabled = true;
-      book.textContent = 'Enviando...';
+      window.open(CALENDAR_URL, '_blank', 'noopener,noreferrer');
+      close();
       const payload = Object.assign({}, answers, answers._contact);
       delete payload._contact;
       fetch('https://formspree.io/f/xrejngqv', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(payload),
-      })
-        .catch(() => {})
-        .finally(() => {
-          window.open(CALENDAR_URL, '_blank', 'noopener,noreferrer');
-          close();
-        });
+      }).catch(() => {});
     });
     content.querySelector('#qBack').addEventListener('click', () => { step--; render(); });
     nombre.focus();
