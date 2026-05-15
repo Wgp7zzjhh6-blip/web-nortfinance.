@@ -361,6 +361,278 @@
   calculate();
 })();
 
+/* ── Questionnaire Modal ─────────────────────────────────── */
+(function () {
+  const CALENDAR_URL = 'https://calendar.app.google/eswZcNy9r4kqvqsMA';
+
+  const CCAA = ['Andalucía','Aragón','Asturias','Islas Baleares','Islas Canarias',
+    'Cantabria','Castilla-La Mancha','Castilla y León','Cataluña','Ceuta',
+    'Comunidad de Madrid','Comunidad Valenciana','Extremadura','Galicia',
+    'La Rioja','Melilla','Región de Murcia','Navarra','País Vasco'];
+
+  const SERVICES = [
+    { id: 'nueva_hipoteca',   label: 'Nueva hipoteca' },
+    { id: 'mejorar_hipoteca', label: 'Mejorar hipoteca actual' },
+    { id: 'reunificar_deuda', label: 'Reunificar deuda' },
+    { id: 'otros_servicios',  label: 'Otros servicios' },
+  ];
+
+  const TITULAR_FIELDS = [
+    { id: 'situacion', q_fn: n => `Titular ${n} · ¿Situación laboral?`,
+      type: 'options', opts: ['Asalariado/a', 'Autónomo/a', 'Funcionario/a', 'Otra situación'] },
+    { id: 'edad',      q_fn: n => `Titular ${n} · ¿Cuántos años tienes?`,
+      type: 'options', opts: ['Menos de 30', '30 – 40', '41 – 55', 'Más de 55'] },
+    { id: 'ingresos',  q_fn: n => `Titular ${n} · ¿Cuánto ganas al mes (neto)?`,
+      type: 'text', placeholder: 'Ej. 2.500 €' },
+    { id: 'antiguedad', q_fn: n => `Titular ${n} · ¿Antigüedad laboral?`,
+      type: 'options', opts: ['Menos de 1 año', '1 – 3 años', '3 – 10 años', 'Más de 10 años'] },
+    { id: 'pagas',     q_fn: n => `Titular ${n} · ¿Número de pagas anuales?`,
+      type: 'options', opts: ['12 pagas', '14 pagas', 'Más de 14', 'Variable / comisiones'] },
+  ];
+
+  const BASE_QUESTIONS = {
+    nueva_hipoteca: [
+      { id: 'precio',        type: 'options', q: '¿Cuál es el precio aproximado de la vivienda?',
+        opts: ['Menos de 150.000 €', '150.000 – 300.000 €', '300.000 – 500.000 €', 'Más de 500.000 €'] },
+      { id: 'ccaa',          type: 'select',  q: '¿En qué comunidad autónoma está la vivienda?', opts: CCAA },
+      { id: 'ahorro',        type: 'options', q: '¿Cuánto tienes ahorrado para la entrada?',
+        opts: ['Menos del 20 %', 'Entre el 20 % y el 30 %', 'Más del 30 %', 'No lo sé todavía'] },
+      { id: 'banco',         type: 'text',    q: '¿Con qué banco trabajas actualmente?',
+        placeholder: 'Ej. BBVA, Santander, CaixaBank...' },
+      { id: 'deudas',        type: 'options', q: '¿Tienes otras deudas activas?',
+        opts: ['No', 'Sí, algún préstamo', 'Sí, varias deudas'] },
+      { id: 'num_titulares', type: 'options', q: '¿Cuántos titulares tendrá la hipoteca?',
+        opts: ['1', '2', 'Más de 2'], titulares_trigger: true },
+    ],
+    mejorar_hipoteca: [
+      { id: 'tipo_interes',   type: 'options', q: '¿Qué tipo de interés tienes actualmente?',
+        opts: ['Variable', 'Fijo', 'Mixto', 'No lo sé'] },
+      { id: 'años_restantes', type: 'options', q: '¿Cuántos años te quedan de hipoteca?',
+        opts: ['Menos de 5 años', 'Entre 5 y 15 años', 'Más de 15 años'] },
+      { id: 'motivo',         type: 'options', q: '¿Por qué quieres mejorarla?',
+        opts: ['Bajar la cuota', 'Pasar de variable a fijo', 'Cambiar de banco', 'Reducir el plazo'] },
+    ],
+    reunificar_deuda: [
+      { id: 'tipo_deuda',  type: 'options', q: '¿Qué tipo de deudas tienes?',
+        opts: ['Hipoteca + préstamos', 'Solo préstamos / tarjetas', 'Hipoteca + tarjetas'] },
+      { id: 'total_deuda', type: 'options', q: '¿Cuál es el total aproximado de tu deuda?',
+        opts: ['Menos de 50.000 €', '50.000 – 100.000 €', 'Más de 100.000 €'] },
+      { id: 'vivienda',    type: 'options', q: '¿Tienes vivienda propia?',
+        opts: ['Sí, con hipoteca', 'Sí, sin hipoteca', 'No'] },
+    ],
+    otros_servicios: [
+      { id: 'servicio', type: 'options', q: '¿Qué servicio te interesa?',
+        opts: ['Intermediación inmobiliaria', 'Inversión en Oro', 'Club Privado de Inversores', 'Corredor de Seguros'] },
+    ],
+  };
+
+  function buildSteps(serviceId, numTitulares) {
+    const base = (BASE_QUESTIONS[serviceId] || []).map(q => Object.assign({}, q));
+    if (serviceId === 'nueva_hipoteca' && numTitulares > 0) {
+      const trigIdx = base.findIndex(s => s.titulares_trigger);
+      const titSteps = [];
+      for (let t = 1; t <= numTitulares; t++) {
+        TITULAR_FIELDS.forEach(f => titSteps.push({
+          id: `t${t}_${f.id}`, type: f.type, q: f.q_fn(t),
+          opts: f.opts, placeholder: f.placeholder,
+        }));
+      }
+      base.splice(trigIdx + 1, 0, ...titSteps);
+    }
+    base.push({ id: 'contact', type: 'contact' });
+    return base;
+  }
+
+  const overlay     = document.getElementById('questModal');
+  const content     = document.getElementById('questContent');
+  const progressBar = document.getElementById('questProgressBar');
+  if (!overlay) return;
+
+  let service = null, step = -1, answers = {}, steps = [];
+
+  function open() {
+    service = null; step = -1; answers = {}; steps = [];
+    overlay.classList.add('open');
+    overlay.removeAttribute('aria-hidden');
+    document.body.style.overflow = 'hidden';
+    render();
+  }
+
+  function close() {
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  function pct() {
+    if (step < 0 || !steps.length) return 0;
+    return Math.round(((step + 1) / steps.length) * 100);
+  }
+
+  function render() {
+    progressBar.style.width = pct() + '%';
+    content.innerHTML = '';
+    if (step === -1) { renderService(); return; }
+    const s = steps[step];
+    if (!s) return;
+    if      (s.type === 'options') renderOptions(s);
+    else if (s.type === 'select')  renderSelect(s);
+    else if (s.type === 'text')    renderText(s);
+    else if (s.type === 'contact') renderContact();
+  }
+
+  function nav(back) {
+    return `<div class="quest-nav">
+      ${back ? '<button class="quest-back" id="qBack">← Volver</button>' : '<span></span>'}
+      <button class="quest-next" id="qNext" disabled>Continuar →</button>
+    </div>`;
+  }
+
+  function renderService() {
+    content.innerHTML = `
+      <div class="quest-step-label">¿En qué podemos ayudarte?</div>
+      <div class="quest-question">¿Qué necesitas?</div>
+      <div class="quest-options">
+        ${SERVICES.map(s => `<button class="quest-option${service === s.id ? ' selected' : ''}" data-svc="${s.id}">${s.label}</button>`).join('')}
+      </div>
+      <div class="quest-nav"><span></span><button class="quest-next" id="qNext"${!service ? ' disabled' : ''}>Continuar →</button></div>`;
+    content.querySelectorAll('.quest-option').forEach(b => b.addEventListener('click', () => {
+      service = b.dataset.svc;
+      content.querySelectorAll('.quest-option').forEach(x => x.classList.remove('selected'));
+      b.classList.add('selected');
+      content.querySelector('#qNext').disabled = false;
+    }));
+    content.querySelector('#qNext').addEventListener('click', () => {
+      if (!service) return;
+      steps = buildSteps(service, 0);
+      step = 0; render();
+    });
+  }
+
+  function renderOptions(s) {
+    const sel = answers[s.id];
+    content.innerHTML = `
+      <div class="quest-step-label">Paso ${step + 1} de ${steps.length - 1}</div>
+      <div class="quest-question">${s.q}</div>
+      <div class="quest-options">
+        ${s.opts.map(o => `<button class="quest-option${sel === o ? ' selected' : ''}" data-val="${o}">${o}</button>`).join('')}
+      </div>
+      ${nav(step > 0)}`;
+    if (sel) content.querySelector('#qNext').disabled = false;
+    content.querySelectorAll('.quest-option').forEach(b => b.addEventListener('click', () => {
+      answers[s.id] = b.dataset.val;
+      content.querySelectorAll('.quest-option').forEach(x => x.classList.remove('selected'));
+      b.classList.add('selected');
+      content.querySelector('#qNext').disabled = false;
+      if (s.titulares_trigger) {
+        const n = b.dataset.val === '1' ? 1 : b.dataset.val === '2' ? 2 : 3;
+        steps = buildSteps(service, n);
+      }
+    }));
+    content.querySelector('#qNext').addEventListener('click', () => {
+      if (!answers[s.id]) return;
+      if (s.titulares_trigger) {
+        const n = answers[s.id] === '1' ? 1 : answers[s.id] === '2' ? 2 : 3;
+        steps = buildSteps(service, n);
+      }
+      step++; render();
+    });
+    if (step > 0) content.querySelector('#qBack').addEventListener('click', () => { step--; render(); });
+  }
+
+  function renderSelect(s) {
+    const sel = answers[s.id] || '';
+    content.innerHTML = `
+      <div class="quest-step-label">Paso ${step + 1} de ${steps.length - 1}</div>
+      <div class="quest-question">${s.q}</div>
+      <div class="quest-select-wrap">
+        <select class="quest-select" id="qSel">
+          <option value="">— Selecciona una opción —</option>
+          ${s.opts.map(o => `<option value="${o}"${sel === o ? ' selected' : ''}>${o}</option>`).join('')}
+        </select>
+      </div>
+      ${nav(step > 0)}`;
+    if (sel) content.querySelector('#qNext').disabled = false;
+    content.querySelector('#qSel').addEventListener('change', e => {
+      answers[s.id] = e.target.value || null;
+      content.querySelector('#qNext').disabled = !e.target.value;
+    });
+    content.querySelector('#qNext').addEventListener('click', () => { if (answers[s.id]) { step++; render(); } });
+    if (step > 0) content.querySelector('#qBack').addEventListener('click', () => { step--; render(); });
+  }
+
+  function renderText(s) {
+    const val = answers[s.id] || '';
+    content.innerHTML = `
+      <div class="quest-step-label">Paso ${step + 1} de ${steps.length - 1}</div>
+      <div class="quest-question">${s.q}</div>
+      <div class="quest-text-wrap">
+        <input class="quest-input" id="qIn" type="text" placeholder="${s.placeholder || ''}" value="${val}" autocomplete="off" />
+      </div>
+      ${nav(step > 0)}`;
+    if (val) content.querySelector('#qNext').disabled = false;
+    const inp = content.querySelector('#qIn');
+    inp.addEventListener('input', () => {
+      answers[s.id] = inp.value.trim() || null;
+      content.querySelector('#qNext').disabled = !inp.value.trim();
+    });
+    content.querySelector('#qNext').addEventListener('click', () => { if (answers[s.id]) { step++; render(); } });
+    if (step > 0) content.querySelector('#qBack').addEventListener('click', () => { step--; render(); });
+    inp.focus();
+  }
+
+  function renderContact() {
+    progressBar.style.width = '100%';
+    const a = answers._contact || {};
+    content.innerHTML = `
+      <div class="quest-step-label">Último paso</div>
+      <div class="quest-question">¿Cómo nos ponemos en contacto contigo?</div>
+      <div class="quest-contact-form">
+        <input class="quest-input" id="qNombre" type="text"  placeholder="Nombre completo"       value="${a.nombre   || ''}" />
+        <input class="quest-input" id="qEmail"  type="email" placeholder="Correo electrónico"    value="${a.email    || ''}" />
+        <input class="quest-input" id="qTel"    type="tel"   placeholder="Teléfono"               value="${a.telefono || ''}" />
+      </div>
+      <div class="quest-nav" style="flex-direction:column;gap:12px;align-items:stretch;margin-top:24px">
+        <button class="quest-book-btn" id="qBook" disabled>Solicitar llamada →</button>
+        <button class="quest-back" id="qBack" style="align-self:flex-start">← Volver</button>
+      </div>`;
+    const nombre = content.querySelector('#qNombre');
+    const email  = content.querySelector('#qEmail');
+    const tel    = content.querySelector('#qTel');
+    const book   = content.querySelector('#qBook');
+    function check() {
+      const ok = nombre.value.trim() && email.value.includes('@') && tel.value.trim().length >= 9;
+      book.disabled = !ok;
+      answers._contact = { nombre: nombre.value.trim(), email: email.value.trim(), telefono: tel.value.trim() };
+    }
+    [nombre, email, tel].forEach(i => i.addEventListener('input', check));
+    check();
+    book.addEventListener('click', () => {
+      book.disabled = true;
+      book.textContent = 'Enviando...';
+      const payload = Object.assign({}, answers, answers._contact);
+      delete payload._contact;
+      fetch('https://formspree.io/f/xrejngqv', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+        .catch(() => {})
+        .finally(() => {
+          window.open(CALENDAR_URL, '_blank', 'noopener,noreferrer');
+          close();
+        });
+    });
+    content.querySelector('#qBack').addEventListener('click', () => { step--; render(); });
+    nombre.focus();
+  }
+
+  document.querySelectorAll('[data-estudio]').forEach(b => b.addEventListener('click', e => { e.preventDefault(); open(); }));
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  overlay.querySelector('.quest-close').addEventListener('click', close);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('open')) close(); });
+})();
+
 /* ── Contact form handler (contacto.html only) ───────────── */
 (function () {
   const form      = document.getElementById('contactForm');
