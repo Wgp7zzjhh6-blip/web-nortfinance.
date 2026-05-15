@@ -639,20 +639,26 @@
         <input class="quest-input" id="qEmail"  type="email" placeholder="Correo electrónico" value="${a.email    || ''}" />
         <input class="quest-input" id="qTel"    type="tel"   placeholder="Teléfono"            value="${a.telefono || ''}" />
       </div>
-      <div class="quest-nav" style="flex-direction:column;gap:12px;align-items:stretch;margin-top:24px">
+      <label class="quest-privacy-check">
+        <input type="checkbox" id="qPrivacy" />
+        <span>He leído y acepto la <a href="privacidad.html" target="_blank" rel="noopener">Política de privacidad</a></span>
+      </label>
+      <div class="quest-nav" style="flex-direction:column;gap:12px;align-items:stretch;margin-top:16px">
         <button class="quest-book-btn" id="qBook" disabled>Solicitar llamada →</button>
         <button class="quest-back" id="qBack" style="align-self:flex-start">← Volver</button>
       </div>`;
-    const nombre = content.querySelector('#qNombre');
-    const email  = content.querySelector('#qEmail');
-    const tel    = content.querySelector('#qTel');
-    const book   = content.querySelector('#qBook');
+    const nombre  = content.querySelector('#qNombre');
+    const email   = content.querySelector('#qEmail');
+    const tel     = content.querySelector('#qTel');
+    const privacy = content.querySelector('#qPrivacy');
+    const book    = content.querySelector('#qBook');
     function check() {
-      const ok = nombre.value.trim() && email.value.includes('@') && tel.value.trim().length >= 9;
+      const ok = nombre.value.trim() && email.value.includes('@') && tel.value.trim().length >= 9 && privacy.checked;
       book.disabled = !ok;
       answers._contact = { nombre: nombre.value.trim(), email: email.value.trim(), telefono: tel.value.trim() };
     }
     [nombre, email, tel].forEach(i => i.addEventListener('input', check));
+    privacy.addEventListener('change', check);
     check();
     book.addEventListener('click', () => {
       book.disabled = true;
