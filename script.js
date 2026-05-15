@@ -613,6 +613,9 @@
       close();
       const payload = Object.assign({}, answers, answers._contact);
       delete payload._contact;
+      const serviceLabel = (SERVICES.find(s => s.id === service) || {}).label || service;
+      payload._subject = `Lead NortFinance · ${payload.nombre} · ${serviceLabel}`;
+      payload._replyto = payload.email;
       fetch('https://formspree.io/f/xrejngqv', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
