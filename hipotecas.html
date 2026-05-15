@@ -258,6 +258,10 @@
       transition: width var(--transition), opacity var(--transition);
     }
     .qh-block:hover .qh-block__line { width: 56px; opacity: 0.8; }
+    .qh-block--active { background: rgba(14,14,18,1); }
+    .qh-block--active .qh-block__num { opacity: 0.3; }
+    .qh-block--active .qh-block__line { width: 56px; opacity: 0.8; }
+    .qh-dots { display: none; }
 
     /* ── Qué nos diferencia ─────────────────────────────────── */
     .diferencia { padding: 140px 0; background: var(--bg); }
@@ -401,6 +405,9 @@
         padding-bottom: 12px;
       }
       .qh-block { scroll-snap-align: start; }
+      .qh-dots { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
+      .qh-dot { width: 28px; height: 1.5px; background: rgba(212,175,55,.2); border-radius: 1px; transition: background .3s, width .3s; }
+      .qh-dot--active { background: rgba(212,175,55,.85); width: 40px; }
       .hipo-hero__actions { flex-direction: column; width: 100%; }
       .hipo-hero__actions .btn--lg { width: 100%; justify-content: center; }
       .hipo-cta__actions { flex-direction: column; width: 100%; }
@@ -649,6 +656,12 @@
           </div>
 
         </div>
+        <div class="qh-dots" id="qhDots" aria-hidden="true">
+          <span class="qh-dot qh-dot--active"></span>
+          <span class="qh-dot"></span>
+          <span class="qh-dot"></span>
+          <span class="qh-dot"></span>
+        </div>
       </div>
     </section>
 
@@ -841,5 +854,36 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    (function () {
+      function initQhScroll() {
+        var grid = document.querySelector('.que-hacemos__grid');
+        var blocks = Array.from(document.querySelectorAll('.qh-block'));
+        var dots = Array.from(document.querySelectorAll('.qh-dot'));
+        if (!grid || !blocks.length || !dots.length) return;
+        if (window.innerWidth > 600) return;
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              blocks.forEach(function (b) { b.classList.remove('qh-block--active'); });
+              dots.forEach(function (d) { d.classList.remove('qh-dot--active'); });
+              entry.target.classList.add('qh-block--active');
+              var idx = blocks.indexOf(entry.target);
+              if (dots[idx]) dots[idx].classList.add('qh-dot--active');
+            }
+          });
+        }, { root: grid, threshold: 0.5 });
+
+        blocks.forEach(function (b) { observer.observe(b); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initQhScroll);
+      } else {
+        initQhScroll();
+      }
+    })();
+  </script>
 </body>
 </html>
