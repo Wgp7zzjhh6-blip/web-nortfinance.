@@ -383,7 +383,7 @@
     { key: 'ingresos',   label: 'Ingresos mensuales netos',    placeholder: 'Ej. 2.500 €' },
     { key: 'antiguedad', label: 'Antigüedad laboral',          placeholder: 'Ej. 5 años' },
     { key: 'pagas',      label: 'Número de pagas anuales',     placeholder: 'Ej. 14' },
-    { key: 'deudas',     label: 'Importe mensual de deudas activas', type: 'yn_text', placeholder: 'Ej. 350 €/mes' },
+    { key: 'deudas',     label: '¿Tienes deudas activas?', type: 'yn_text', placeholder: 'Importe mensual de las deudas (Ej. 350 €/mes)' },
   ];
 
   const BASE_QUESTIONS = {
