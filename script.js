@@ -365,11 +365,6 @@
 (function () {
   const CALENDAR_URL = 'https://calendar.app.google/eswZcNy9r4kqvqsMA';
 
-  const CCAA = ['Andalucía','Aragón','Asturias','Islas Baleares','Islas Canarias',
-    'Cantabria','Castilla-La Mancha','Castilla y León','Cataluña','Ceuta',
-    'Comunidad de Madrid','Comunidad Valenciana','Extremadura','Galicia',
-    'La Rioja','Melilla','Región de Murcia','Navarra','País Vasco'];
-
   const SERVICES = [
     { id: 'nueva_hipoteca',   label: 'Nueva hipoteca' },
     { id: 'mejorar_hipoteca', label: 'Mejorar hipoteca actual' },
@@ -378,39 +373,29 @@
   ];
 
   const TITULAR_FIELDS = [
-    { id: 'situacion', q_fn: n => `Titular ${n} · ¿Situación laboral?`,
-      type: 'options', opts: ['Asalariado/a', 'Autónomo/a', 'Funcionario/a', 'Otra situación'] },
-    { id: 'edad',      q_fn: n => `Titular ${n} · ¿Cuántos años tienes?`,
-      type: 'options', opts: ['Menos de 30', '30 – 40', '41 – 55', 'Más de 55'] },
-    { id: 'ingresos',  q_fn: n => `Titular ${n} · ¿Cuánto ganas al mes (neto)?`,
-      type: 'text', placeholder: 'Ej. 2.500 €' },
-    { id: 'antiguedad', q_fn: n => `Titular ${n} · ¿Antigüedad laboral?`,
-      type: 'options', opts: ['Menos de 1 año', '1 – 3 años', '3 – 10 años', 'Más de 10 años'] },
-    { id: 'pagas',     q_fn: n => `Titular ${n} · ¿Número de pagas anuales?`,
-      type: 'options', opts: ['12 pagas', '14 pagas', 'Más de 14', 'Variable / comisiones'] },
+    { key: 'situacion',  label: 'Situación laboral',           placeholder: 'Asalariado/a, Autónomo/a, Funcionario/a...' },
+    { key: 'edad',       label: 'Edad',                        placeholder: 'Ej. 35' },
+    { key: 'ingresos',   label: 'Ingresos mensuales netos',    placeholder: 'Ej. 2.500 €' },
+    { key: 'antiguedad', label: 'Antigüedad laboral',          placeholder: 'Ej. 5 años' },
+    { key: 'pagas',      label: 'Número de pagas anuales',     placeholder: 'Ej. 14' },
   ];
+
+  const TITULAR_FIELDS_CON_DEUDAS = TITULAR_FIELDS.concat([
+    { key: 'deudas', label: 'Deudas activas', placeholder: 'Préstamos, tarjetas, importe aproximado...' },
+  ]);
 
   const BASE_QUESTIONS = {
     nueva_hipoteca: [
-      { id: 'precio',        type: 'options', q: '¿Cuál es el precio aproximado de la vivienda?',
+      { id: 'precio', type: 'options', q: '¿Cuál es el precio aproximado de la vivienda?',
         opts: ['Menos de 150.000 €', '150.000 – 300.000 €', '300.000 – 500.000 €', 'Más de 500.000 €'] },
-      { id: 'ccaa',          type: 'select',  q: '¿En qué comunidad autónoma está la vivienda?', opts: CCAA },
-      { id: 'ahorro',        type: 'options', q: '¿Cuánto tienes ahorrado para la entrada?',
-        opts: ['Menos del 20 %', 'Entre el 20 % y el 30 %', 'Más del 30 %', 'No lo sé todavía'] },
-      { id: 'banco',         type: 'text',    q: '¿Con qué banco trabajas actualmente?',
-        placeholder: 'Ej. BBVA, Santander, CaixaBank...' },
-      { id: 'deudas',        type: 'options', q: '¿Tienes otras deudas activas?',
-        opts: ['No', 'Sí, algún préstamo', 'Sí, varias deudas'] },
+      { id: 'ahorro', type: 'text', q: '¿Cuánto tienes ahorrado para la entrada?', placeholder: 'Ej. 40.000 €' },
+      { id: 'banco',  type: 'text', q: '¿Con qué banco trabajas actualmente?', placeholder: 'Ej. BBVA, Santander, CaixaBank...' },
       { id: 'num_titulares', type: 'options', q: '¿Cuántos titulares tendrá la hipoteca?',
         opts: ['1', '2', 'Más de 2'], titulares_trigger: true },
     ],
     mejorar_hipoteca: [
-      { id: 'tipo_interes',   type: 'options', q: '¿Qué tipo de interés tienes actualmente?',
-        opts: ['Variable', 'Fijo', 'Mixto', 'No lo sé'] },
-      { id: 'años_restantes', type: 'options', q: '¿Cuántos años te quedan de hipoteca?',
-        opts: ['Menos de 5 años', 'Entre 5 y 15 años', 'Más de 15 años'] },
-      { id: 'motivo',         type: 'options', q: '¿Por qué quieres mejorarla?',
-        opts: ['Bajar la cuota', 'Pasar de variable a fijo', 'Cambiar de banco', 'Reducir el plazo'] },
+      { id: 'num_titulares', type: 'options', q: '¿Cuántas personas solicitan la hipoteca?',
+        opts: ['1', '2', 'Más de 2'], titulares_trigger: true },
     ],
     reunificar_deuda: [
       { id: 'tipo_deuda',  type: 'options', q: '¿Qué tipo de deudas tienes?',
@@ -428,14 +413,12 @@
 
   function buildSteps(serviceId, numTitulares) {
     const base = (BASE_QUESTIONS[serviceId] || []).map(q => Object.assign({}, q));
-    if (serviceId === 'nueva_hipoteca' && numTitulares > 0) {
+    const conDeudas = serviceId === 'mejorar_hipoteca';
+    if ((serviceId === 'nueva_hipoteca' || serviceId === 'mejorar_hipoteca') && numTitulares > 0) {
       const trigIdx = base.findIndex(s => s.titulares_trigger);
       const titSteps = [];
       for (let t = 1; t <= numTitulares; t++) {
-        TITULAR_FIELDS.forEach(f => titSteps.push({
-          id: `t${t}_${f.id}`, type: f.type, q: f.q_fn(t),
-          opts: f.opts, placeholder: f.placeholder,
-        }));
+        titSteps.push({ id: `titular_${t}`, type: 'titular_form', titular_num: t, con_deudas: conDeudas });
       }
       base.splice(trigIdx + 1, 0, ...titSteps);
     }
@@ -475,10 +458,10 @@
     if (step === -1) { renderService(); return; }
     const s = steps[step];
     if (!s) return;
-    if      (s.type === 'options') renderOptions(s);
-    else if (s.type === 'select')  renderSelect(s);
-    else if (s.type === 'text')    renderText(s);
-    else if (s.type === 'contact') renderContact();
+    if      (s.type === 'options')      renderOptions(s);
+    else if (s.type === 'text')         renderText(s);
+    else if (s.type === 'titular_form') renderTitularForm(s);
+    else if (s.type === 'contact')      renderContact();
   }
 
   function nav(back) {
@@ -540,27 +523,6 @@
     if (step > 0) content.querySelector('#qBack').addEventListener('click', () => { step--; render(); });
   }
 
-  function renderSelect(s) {
-    const sel = answers[s.id] || '';
-    content.innerHTML = `
-      <div class="quest-step-label">Paso ${step + 1} de ${steps.length - 1}</div>
-      <div class="quest-question">${s.q}</div>
-      <div class="quest-select-wrap">
-        <select class="quest-select" id="qSel">
-          <option value="">— Selecciona una opción —</option>
-          ${s.opts.map(o => `<option value="${o}"${sel === o ? ' selected' : ''}>${o}</option>`).join('')}
-        </select>
-      </div>
-      ${nav(step > 0)}`;
-    if (sel) content.querySelector('#qNext').disabled = false;
-    content.querySelector('#qSel').addEventListener('change', e => {
-      answers[s.id] = e.target.value || null;
-      content.querySelector('#qNext').disabled = !e.target.value;
-    });
-    content.querySelector('#qNext').addEventListener('click', () => { if (answers[s.id]) { step++; render(); } });
-    if (step > 0) content.querySelector('#qBack').addEventListener('click', () => { step--; render(); });
-  }
-
   function renderText(s) {
     const val = answers[s.id] || '';
     content.innerHTML = `
@@ -581,6 +543,39 @@
     inp.focus();
   }
 
+  function renderTitularForm(s) {
+    const val = answers[s.id] || {};
+    const fields = s.con_deudas ? TITULAR_FIELDS_CON_DEUDAS : TITULAR_FIELDS;
+    content.innerHTML = `
+      <div class="quest-step-label">Titular ${s.titular_num} · Paso ${step + 1} de ${steps.length - 1}</div>
+      <div class="quest-question">Datos del Titular ${s.titular_num}</div>
+      <div class="quest-titular-form">
+        ${fields.map(f => `
+          <div class="quest-field">
+            <label class="quest-label">${f.label}</label>
+            <input class="quest-input" data-key="${f.key}" type="text" placeholder="${f.placeholder}" value="${(val[f.key] || '').replace(/"/g, '&quot;')}" autocomplete="off" />
+          </div>`).join('')}
+      </div>
+      ${nav(step > 0)}`;
+    function checkFields() {
+      const data = {};
+      content.querySelectorAll('[data-key]').forEach(i => { if (i.value.trim()) data[i.dataset.key] = i.value.trim(); });
+      const firstFilled = content.querySelector('[data-key="situacion"]').value.trim();
+      content.querySelector('#qNext').disabled = !firstFilled;
+      answers[s.id] = Object.keys(data).length ? data : null;
+    }
+    content.querySelectorAll('[data-key]').forEach(i => i.addEventListener('input', checkFields));
+    checkFields();
+    content.querySelector('#qNext').addEventListener('click', () => {
+      const data = {};
+      content.querySelectorAll('[data-key]').forEach(i => { if (i.value.trim()) data[i.dataset.key] = i.value.trim(); });
+      answers[s.id] = data;
+      step++; render();
+    });
+    if (step > 0) content.querySelector('#qBack').addEventListener('click', () => { step--; render(); });
+    content.querySelector('[data-key="situacion"]').focus();
+  }
+
   function renderContact() {
     progressBar.style.width = '100%';
     const a = answers._contact || {};
@@ -588,9 +583,9 @@
       <div class="quest-step-label">Último paso</div>
       <div class="quest-question">¿Cómo nos ponemos en contacto contigo?</div>
       <div class="quest-contact-form">
-        <input class="quest-input" id="qNombre" type="text"  placeholder="Nombre completo"       value="${a.nombre   || ''}" />
-        <input class="quest-input" id="qEmail"  type="email" placeholder="Correo electrónico"    value="${a.email    || ''}" />
-        <input class="quest-input" id="qTel"    type="tel"   placeholder="Teléfono"               value="${a.telefono || ''}" />
+        <input class="quest-input" id="qNombre" type="text"  placeholder="Nombre completo"    value="${a.nombre   || ''}" />
+        <input class="quest-input" id="qEmail"  type="email" placeholder="Correo electrónico" value="${a.email    || ''}" />
+        <input class="quest-input" id="qTel"    type="tel"   placeholder="Teléfono"            value="${a.telefono || ''}" />
       </div>
       <div class="quest-nav" style="flex-direction:column;gap:12px;align-items:stretch;margin-top:24px">
         <button class="quest-book-btn" id="qBook" disabled>Solicitar llamada →</button>
@@ -611,8 +606,16 @@
       book.disabled = true;
       window.open(CALENDAR_URL, '_blank', 'noopener,noreferrer');
       close();
-      const payload = Object.assign({}, answers, answers._contact);
-      delete payload._contact;
+      const payload = {};
+      Object.keys(answers).forEach(key => {
+        if (key === '_contact') {
+          Object.assign(payload, answers._contact);
+        } else if (answers[key] && typeof answers[key] === 'object') {
+          Object.keys(answers[key]).forEach(f => { payload[`${key} - ${f}`] = answers[key][f]; });
+        } else {
+          payload[key] = answers[key];
+        }
+      });
       const serviceLabel = (SERVICES.find(s => s.id === service) || {}).label || service;
       payload._subject = `Lead NortFinance · ${payload.nombre} · ${serviceLabel}`;
       payload._replyto = payload.email;
