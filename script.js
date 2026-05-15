@@ -365,6 +365,11 @@
 (function () {
   const CALENDAR_URL = 'https://calendar.app.google/eswZcNy9r4kqvqsMA';
 
+  const CCAA = ['Andalucía','Aragón','Asturias','Islas Baleares','Islas Canarias',
+    'Cantabria','Castilla-La Mancha','Castilla y León','Cataluña','Ceuta',
+    'Comunidad de Madrid','Comunidad Valenciana','Extremadura','Galicia',
+    'La Rioja','Melilla','Región de Murcia','Navarra','País Vasco'];
+
   const SERVICES = [
     { id: 'nueva_hipoteca',   label: 'Nueva hipoteca' },
     { id: 'mejorar_hipoteca', label: 'Mejorar hipoteca actual' },
@@ -378,22 +383,21 @@
     { key: 'ingresos',   label: 'Ingresos mensuales netos',    placeholder: 'Ej. 2.500 €' },
     { key: 'antiguedad', label: 'Antigüedad laboral',          placeholder: 'Ej. 5 años' },
     { key: 'pagas',      label: 'Número de pagas anuales',     placeholder: 'Ej. 14' },
+    { key: 'deudas',     label: 'Importe mensual de deudas activas', type: 'yn_text', placeholder: 'Ej. 350 €/mes' },
   ];
-
-  const TITULAR_FIELDS_CON_DEUDAS = TITULAR_FIELDS.concat([
-    { key: 'deudas', label: 'Deudas activas', placeholder: 'Préstamos, tarjetas, importe aproximado...' },
-  ]);
 
   const BASE_QUESTIONS = {
     nueva_hipoteca: [
       { id: 'precio', type: 'options', q: '¿Cuál es el precio aproximado de la vivienda?',
         opts: ['Menos de 150.000 €', '150.000 – 300.000 €', '300.000 – 500.000 €', 'Más de 500.000 €'] },
-      { id: 'ahorro', type: 'text', q: '¿Cuánto tienes ahorrado para la entrada?', placeholder: 'Ej. 40.000 €' },
-      { id: 'banco',  type: 'text', q: '¿Con qué banco trabajas actualmente?', placeholder: 'Ej. BBVA, Santander, CaixaBank...' },
+      { id: 'ahorro', type: 'text',   q: '¿Cuánto tienes ahorrado para la entrada?', placeholder: 'Ej. 40.000 €' },
+      { id: 'banco',  type: 'text',   q: '¿Con qué banco trabajas actualmente?', placeholder: 'Ej. BBVA, Santander, CaixaBank...' },
+      { id: 'ccaa',   type: 'select', q: '¿En qué comunidad autónoma está la vivienda?', opts: CCAA },
       { id: 'num_titulares', type: 'options', q: '¿Cuántos titulares tendrá la hipoteca?',
         opts: ['1', '2', 'Más de 2'], titulares_trigger: true },
     ],
     mejorar_hipoteca: [
+      { id: 'ccaa',   type: 'select', q: '¿En qué comunidad autónoma está la vivienda?', opts: CCAA },
       { id: 'num_titulares', type: 'options', q: '¿Cuántas personas solicitan la hipoteca?',
         opts: ['1', '2', 'Más de 2'], titulares_trigger: true },
     ],
@@ -413,12 +417,11 @@
 
   function buildSteps(serviceId, numTitulares) {
     const base = (BASE_QUESTIONS[serviceId] || []).map(q => Object.assign({}, q));
-    const conDeudas = serviceId === 'mejorar_hipoteca';
     if ((serviceId === 'nueva_hipoteca' || serviceId === 'mejorar_hipoteca') && numTitulares > 0) {
       const trigIdx = base.findIndex(s => s.titulares_trigger);
       const titSteps = [];
       for (let t = 1; t <= numTitulares; t++) {
-        titSteps.push({ id: `titular_${t}`, type: 'titular_form', titular_num: t, con_deudas: conDeudas });
+        titSteps.push({ id: `titular_${t}`, type: 'titular_form', titular_num: t });
       }
       base.splice(trigIdx + 1, 0, ...titSteps);
     }
@@ -460,6 +463,7 @@
     if (!s) return;
     if      (s.type === 'options')      renderOptions(s);
     else if (s.type === 'text')         renderText(s);
+    else if (s.type === 'select')       renderSelect(s);
     else if (s.type === 'titular_form') renderTitularForm(s);
     else if (s.type === 'contact')      renderContact();
   }
@@ -543,23 +547,70 @@
     inp.focus();
   }
 
+  function renderSelect(s) {
+    const sel = answers[s.id] || '';
+    content.innerHTML = `
+      <div class="quest-step-label">Paso ${step + 1} de ${steps.length - 1}</div>
+      <div class="quest-question">${s.q}</div>
+      <div class="quest-select-wrap">
+        <select class="quest-select" id="qSel">
+          <option value="">— Selecciona una opción —</option>
+          ${s.opts.map(o => `<option value="${o}"${sel === o ? ' selected' : ''}>${o}</option>`).join('')}
+        </select>
+      </div>
+      ${nav(step > 0)}`;
+    if (sel) content.querySelector('#qNext').disabled = false;
+    content.querySelector('#qSel').addEventListener('change', e => {
+      answers[s.id] = e.target.value || null;
+      content.querySelector('#qNext').disabled = !e.target.value;
+    });
+    content.querySelector('#qNext').addEventListener('click', () => { if (answers[s.id]) { step++; render(); } });
+    if (step > 0) content.querySelector('#qBack').addEventListener('click', () => { step--; render(); });
+  }
+
   function renderTitularForm(s) {
     const val = answers[s.id] || {};
-    const fields = s.con_deudas ? TITULAR_FIELDS_CON_DEUDAS : TITULAR_FIELDS;
+    const regularFields = TITULAR_FIELDS.filter(f => f.type !== 'yn_text');
+    const ynFields      = TITULAR_FIELDS.filter(f => f.type === 'yn_text');
     content.innerHTML = `
       <div class="quest-step-label">Titular ${s.titular_num} · Paso ${step + 1} de ${steps.length - 1}</div>
       <div class="quest-question">Datos del Titular ${s.titular_num}</div>
       <div class="quest-titular-form">
-        ${fields.map(f => `
+        ${regularFields.map(f => `
           <div class="quest-field">
             <label class="quest-label">${f.label}</label>
             <input class="quest-input" data-key="${f.key}" type="text" placeholder="${f.placeholder}" value="${(val[f.key] || '').replace(/"/g, '&quot;')}" autocomplete="off" />
           </div>`).join('')}
+        ${ynFields.map(f => `
+          <div class="quest-field">
+            <label class="quest-label">${f.label}</label>
+            <div class="quest-yn">
+              <button type="button" class="quest-yn-btn${val[f.key+'_yn']==='no'?' active':''}" data-yn-field="${f.key}" data-yn="no">No</button>
+              <button type="button" class="quest-yn-btn${val[f.key+'_yn']==='si'?' active':''}" data-yn-field="${f.key}" data-yn="si">Sí</button>
+            </div>
+            <input class="quest-input" data-key="${f.key}_importe" type="text" placeholder="${f.placeholder}"
+                   value="${(val[f.key+'_importe']||'').replace(/"/g,'&quot;')}"
+                   style="display:${val[f.key+'_yn']==='si'?'block':'none'};margin-top:8px" autocomplete="off" />
+          </div>`).join('')}
       </div>
       ${nav(step > 0)}`;
+
+    content.querySelectorAll('.quest-yn-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const field = btn.dataset.ynField;
+        content.querySelectorAll(`[data-yn-field="${field}"]`).forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const inp = content.querySelector(`[data-key="${field}_importe"]`);
+        inp.style.display = btn.dataset.yn === 'si' ? 'block' : 'none';
+        if (btn.dataset.yn === 'si') inp.focus(); else inp.value = '';
+        checkFields();
+      });
+    });
+
     function checkFields() {
       const data = {};
       content.querySelectorAll('[data-key]').forEach(i => { if (i.value.trim()) data[i.dataset.key] = i.value.trim(); });
+      content.querySelectorAll('.quest-yn-btn.active').forEach(b => { data[b.dataset.ynField + '_yn'] = b.dataset.yn; });
       const firstFilled = content.querySelector('[data-key="situacion"]').value.trim();
       content.querySelector('#qNext').disabled = !firstFilled;
       answers[s.id] = Object.keys(data).length ? data : null;
@@ -569,6 +620,7 @@
     content.querySelector('#qNext').addEventListener('click', () => {
       const data = {};
       content.querySelectorAll('[data-key]').forEach(i => { if (i.value.trim()) data[i.dataset.key] = i.value.trim(); });
+      content.querySelectorAll('.quest-yn-btn.active').forEach(b => { data[b.dataset.ynField + '_yn'] = b.dataset.yn; });
       answers[s.id] = data;
       step++; render();
     });
@@ -611,7 +663,17 @@
         if (key === '_contact') {
           Object.assign(payload, answers._contact);
         } else if (answers[key] && typeof answers[key] === 'object') {
-          Object.keys(answers[key]).forEach(f => { payload[`${key} - ${f}`] = answers[key][f]; });
+          const obj = answers[key];
+          const processed = {};
+          Object.keys(obj).forEach(f => {
+            if (f.endsWith('_yn')) {
+              const base = f.replace('_yn', '');
+              processed[base] = obj[f] === 'no' ? 'No' : (obj[base + '_importe'] || 'Sí');
+            } else if (!f.endsWith('_importe')) {
+              processed[f] = obj[f];
+            }
+          });
+          Object.keys(processed).forEach(f => { payload[`${key} - ${f}`] = processed[f]; });
         } else {
           payload[key] = answers[key];
         }
