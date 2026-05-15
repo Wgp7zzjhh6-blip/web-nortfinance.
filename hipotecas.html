@@ -394,20 +394,13 @@
       .para-quien__grid { grid-template-columns: 1fr; }
       .pq-card:nth-child(1) { grid-column: span 1; }
       .que-hacemos__grid {
-        grid-template-columns: repeat(4, min(280px, 80vw));
+        grid-template-columns: repeat(4, min(260px, 78vw));
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
-        padding-bottom: 16px;
-        gap: 12px;
+        padding-bottom: 12px;
       }
-      .qh-block {
-        scroll-snap-align: start;
-        border: 0.5px solid rgba(212,175,55,.2);
-        border-radius: 12px;
-        padding: 40px 28px;
-        background: #050505;
-      }
+      .qh-block { scroll-snap-align: start; }
       .hipo-hero__actions { flex-direction: column; width: 100%; }
       .hipo-hero__actions .btn--lg { width: 100%; justify-content: center; }
       .hipo-cta__actions { flex-direction: column; width: 100%; }
