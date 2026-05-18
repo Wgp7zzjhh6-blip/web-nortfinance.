@@ -519,12 +519,17 @@
         </ul>
         <a href="https://calendar.app.google/eswZcNy9r4kqvqsMA" target="_blank" class="btn btn--gold navbar__cta">Mi Estudio Gratuito</a>
       </nav>
-      <div class="lang-switch" id="langSwitch">
-        <button class="lang-btn lang-btn--active" data-lang="es">ES</button>
-        <span class="lang-sep" aria-hidden="true">·</span>
-        <button class="lang-btn" data-lang="ca">CA</button>
-        <span class="lang-sep" aria-hidden="true">·</span>
-        <button class="lang-btn" data-lang="en">EN</button>
+      <div class="lang-dropdown" id="langDropdown">
+        <button class="lang-current" id="langToggle" aria-haspopup="listbox" aria-expanded="false">
+          <span id="langCurrentFlag">🇪🇸</span>
+          <span id="langCurrentCode">ES</span>
+          <svg class="lang-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="1 1 5 5 9 1"/></svg>
+        </button>
+        <ul class="lang-menu" role="listbox">
+          <li><button class="lang-option lang-option--active" data-lang="es" data-flag="🇪🇸">🇪🇸 Español</button></li>
+          <li><button class="lang-option" data-lang="ca" data-flag="🏴󠁥󠁳󠁣󠁴󠁿">🏴󠁥󠁳󠁣󠁴󠁿 Català</button></li>
+          <li><button class="lang-option" data-lang="en" data-flag="🇬🇧">🇬🇧 English</button></li>
+        </ul>
       </div>
       <button class="navbar__hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
         <span></span><span></span><span></span>

@@ -567,8 +567,14 @@
   }
 
   function updateSwitcher(lang) {
-    document.querySelectorAll('.lang-btn').forEach(function (btn) {
-      btn.classList.toggle('lang-btn--active', btn.getAttribute('data-lang') === lang);
+    var flagMap = { es: '🇪🇸', ca: '🏴󠁥󠁳󠁣󠁴󠁿', en: '🇬🇧' };
+    var codeMap = { es: 'ES', ca: 'CA', en: 'EN' };
+    var flagEl = document.getElementById('langCurrentFlag');
+    var codeEl = document.getElementById('langCurrentCode');
+    if (flagEl) flagEl.textContent = flagMap[lang] || flagMap.es;
+    if (codeEl) codeEl.textContent = codeMap[lang] || codeMap.es;
+    document.querySelectorAll('.lang-option').forEach(function (btn) {
+      btn.classList.toggle('lang-option--active', btn.getAttribute('data-lang') === lang);
     });
   }
 
@@ -576,14 +582,35 @@
     try { localStorage.setItem('nf_lang', lang); } catch (e) {}
     applyTranslations(lang);
     updateSwitcher(lang);
+    var dropdown = document.getElementById('langDropdown');
+    if (dropdown) dropdown.classList.remove('open');
   }
 
   function init() {
     var saved = 'es';
     try { saved = localStorage.getItem('nf_lang') || 'es'; } catch (e) {}
-    document.querySelectorAll('.lang-btn').forEach(function (btn) {
+
+    var toggle = document.getElementById('langToggle');
+    var dropdown = document.getElementById('langDropdown');
+
+    if (toggle && dropdown) {
+      toggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        dropdown.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', dropdown.classList.contains('open'));
+      });
+      document.addEventListener('click', function (e) {
+        if (!dropdown.contains(e.target)) {
+          dropdown.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    document.querySelectorAll('.lang-option').forEach(function (btn) {
       btn.addEventListener('click', function () { setLang(btn.getAttribute('data-lang')); });
     });
+
     if (saved !== 'es') applyTranslations(saved);
     updateSwitcher(saved);
   }
