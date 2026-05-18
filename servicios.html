@@ -378,7 +378,7 @@
           <li><a href="recursos.html" class="navbar__link" data-i18n="nav.resources">Recursos</a></li>
           <li><a href="contacto.html" class="navbar__link" data-i18n="nav.contact">Contacto</a></li>
         </ul>
-        <a href="#srv-contacto" class="btn btn--gold navbar__cta" data-i18n="nav.cta">Mi Estudio Gratuito</a>
+        <a href="#" data-estudio class="btn btn--gold navbar__cta" data-i18n="nav.cta">Mi Estudio Gratuito</a>
       </nav>
       <div class="lang-dropdown" id="langDropdown">
         <button class="lang-current" id="langToggle" aria-haspopup="listbox" aria-expanded="false">
@@ -406,18 +406,18 @@
         <div class="srv-hero__inner reveal">
           <div class="srv-hero__badge">
             <span class="srv-hero__badge-dot"></span>
-            Servicios · NortFinance
+            <span data-i18n="srv.hero.badge">Servicios · NortFinance</span>
           </div>
-          <h1 class="srv-hero__title">
+          <h1 class="srv-hero__title" data-i18n-html="srv.hero.title">
             Soluciones Financieras y<br />
             <span class="text-gold">Patrimoniales</span><br />
             de Alto Nivel.
           </h1>
-          <p class="srv-hero__desc">
+          <p class="srv-hero__desc" data-i18n="srv.hero.desc">
             Ofrecemos un asesoramiento integral, cercano y estratégico. Nos encargamos de todo el proceso para proteger y hacer crecer tu patrimonio.
           </p>
           <div class="srv-hero__actions">
-            <a href="#srv-contacto" class="btn btn--gold btn--lg">Mi Estudio Gratuito</a>
+            <a href="#" data-estudio class="btn btn--gold btn--lg" data-i18n="nav.cta">Mi Estudio Gratuito</a>
           </div>
           <div class="srv-hero__rule" aria-hidden="true"></div>
         </div>
@@ -428,8 +428,8 @@
     <section class="srv-arquitectura" id="servicios">
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-tag">Arquitectura de servicios</span>
-          <h2 class="section-title">
+          <span class="section-tag" data-i18n="srv.arch.tag">Arquitectura de servicios</span>
+          <h2 class="section-title" data-i18n-html="srv.arch.title">
             Lo que hacemos <span class="text-gold">por ti</span>
           </h2>
         </div>
@@ -444,13 +444,13 @@
                 <path d="M9 21V12h6v9"/>
               </svg>
             </div>
-            <span class="srv-card__tag">Financiación</span>
-            <h3 class="srv-card__title">Tipos de Hipotecas</h3>
-            <p class="srv-card__desc">Te ofreceremos la hipoteca que mejor se adapte a tus necesidades en función de tu edad, ingresos, necesidad de financiación y cuota máxima que puedes asumir. Financiación desde el 100% hasta lo que necesites.</p>
+            <span class="srv-card__tag" data-i18n="srv.c1.tag">Financiación</span>
+            <h3 class="srv-card__title" data-i18n="srv.c1.title">Tipos de Hipotecas</h3>
+            <p class="srv-card__desc" data-i18n="srv.c1.desc">Te ofreceremos la hipoteca que mejor se adapte a tus necesidades en función de tu edad, ingresos, necesidad de financiación y cuota máxima que puedes asumir. Financiación desde el 100% hasta lo que necesites.</p>
             <ul class="srv-card__list">
-              <li>Subrogaciones</li>
-              <li>Novaciones</li>
-              <li>Reunificación de deuda</li>
+              <li data-i18n="srv.c1.l1">Subrogaciones</li>
+              <li data-i18n="srv.c1.l2">Novaciones</li>
+              <li data-i18n="srv.c1.l3">Reunificación de deuda</li>
             </ul>
           </div>
 
@@ -463,15 +463,15 @@
                 <path d="M7 9l3 3 4-4 3 2"/>
               </svg>
             </div>
-            <span class="srv-card__tag">Inmobiliaria</span>
-            <h3 class="srv-card__title">Intermediación Inmobiliaria</h3>
-            <p class="srv-card__desc">Te acompaño en todo el proceso de compra o venta de inmuebles, ofreciendo un servicio integral y cercano.</p>
+            <span class="srv-card__tag" data-i18n="srv.c2.tag">Inmobiliaria</span>
+            <h3 class="srv-card__title" data-i18n="srv.c2.title">Intermediación Inmobiliaria</h3>
+            <p class="srv-card__desc" data-i18n="srv.c2.desc">Te acompaño en todo el proceso de compra o venta de inmuebles, ofreciendo un servicio integral y cercano.</p>
             <ul class="srv-card__list">
-              <li>Venta de propiedades</li>
-              <li>Búsqueda de oportunidades</li>
-              <li>Valoración de inmuebles</li>
-              <li>Estrategia de comercialización</li>
-              <li>Coordinación documental</li>
+              <li data-i18n="srv.c2.l1">Venta de propiedades</li>
+              <li data-i18n="srv.c2.l2">Búsqueda de oportunidades</li>
+              <li data-i18n="srv.c2.l3">Valoración de inmuebles</li>
+              <li data-i18n="srv.c2.l4">Estrategia de comercialización</li>
+              <li data-i18n="srv.c2.l5">Coordinación documental</li>
             </ul>
           </div>
 
@@ -483,14 +483,14 @@
                 <polyline points="17 7 21 7 21 11"/>
               </svg>
             </div>
-            <span class="srv-card__tag">Inversión</span>
-            <h3 class="srv-card__title">Asesoramiento en Inversiones (Unit Linked)</h3>
-            <p class="srv-card__desc">Te ayudo a construir una estrategia patrimonial adaptada a tus objetivos y perfil de riesgo mediante soluciones de inversión vinculadas a seguros de vida ahorro.</p>
+            <span class="srv-card__tag" data-i18n="srv.c3.tag">Inversión</span>
+            <h3 class="srv-card__title" data-i18n="srv.c3.title">Asesoramiento en Inversiones (Unit Linked)</h3>
+            <p class="srv-card__desc" data-i18n="srv.c3.desc">Te ayudo a construir una estrategia patrimonial adaptada a tus objetivos y perfil de riesgo mediante soluciones de inversión vinculadas a seguros de vida ahorro.</p>
             <ul class="srv-card__list">
-              <li>Planificación patrimonial</li>
-              <li>Optimización fiscal</li>
-              <li>Inversión a largo plazo</li>
-              <li>Diversificación financiera</li>
+              <li data-i18n="srv.c3.l1">Planificación patrimonial</li>
+              <li data-i18n="srv.c3.l2">Optimización fiscal</li>
+              <li data-i18n="srv.c3.l3">Inversión a largo plazo</li>
+              <li data-i18n="srv.c3.l4">Diversificación financiera</li>
             </ul>
           </div>
 
@@ -501,14 +501,14 @@
                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
               </svg>
             </div>
-            <span class="srv-card__tag">Activo refugio</span>
-            <h3 class="srv-card__title">Inversión en Oro</h3>
-            <p class="srv-card__desc">Asesoramiento en inversión en oro físico como activo refugio y diversificación patrimonial.</p>
+            <span class="srv-card__tag" data-i18n="srv.c4.tag">Activo refugio</span>
+            <h3 class="srv-card__title" data-i18n="srv.c4.title">Inversión en Oro</h3>
+            <p class="srv-card__desc" data-i18n="srv.c4.desc">Asesoramiento en inversión en oro físico como activo refugio y diversificación patrimonial.</p>
             <ul class="srv-card__list">
-              <li>Oro de inversión</li>
-              <li>Lingotes certificados</li>
-              <li>Preservación patrimonial</li>
-              <li>Compra segura y almacenamiento</li>
+              <li data-i18n="srv.c4.l1">Oro de inversión</li>
+              <li data-i18n="srv.c4.l2">Lingotes certificados</li>
+              <li data-i18n="srv.c4.l3">Preservación patrimonial</li>
+              <li data-i18n="srv.c4.l4">Compra segura y almacenamiento</li>
             </ul>
           </div>
 
@@ -519,13 +519,13 @@
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
               </svg>
             </div>
-            <span class="srv-card__tag">Protección</span>
-            <h3 class="srv-card__title">Corredor de Seguros</h3>
-            <p class="srv-card__desc">Como agentes de seguros, buscamos soluciones adaptadas a cada cliente y situación.</p>
+            <span class="srv-card__tag" data-i18n="srv.c5.tag">Protección</span>
+            <h3 class="srv-card__title" data-i18n="srv.c5.title">Corredor de Seguros</h3>
+            <p class="srv-card__desc" data-i18n="srv.c5.desc">Como agentes de seguros, buscamos soluciones adaptadas a cada cliente y situación.</p>
             <ul class="srv-card__list">
-              <li>Seguro de vida</li>
-              <li>Seguro de hogar</li>
-              <li>Protección de hipoteca e impagos</li>
+              <li data-i18n="srv.c5.l1">Seguro de vida</li>
+              <li data-i18n="srv.c5.l2">Seguro de hogar</li>
+              <li data-i18n="srv.c5.l3">Protección de hipoteca e impagos</li>
             </ul>
           </div>
 
@@ -539,20 +539,20 @@
                 <polyline points="1 20 23 20"/>
               </svg>
             </div>
-            <span class="srv-card__tag">Alto impacto</span>
-            <h3 class="srv-card__title">Inversión Inmobiliaria</h3>
+            <span class="srv-card__tag" data-i18n="srv.c6.tag">Alto impacto</span>
+            <h3 class="srv-card__title" data-i18n="srv.c6.title">Inversión Inmobiliaria</h3>
             <div class="srv-card__body">
               <div class="srv-card__header">
-                <p class="srv-card__desc">Analizo oportunidades inmobiliarias para identificar operaciones con potencial de rentabilidad y revalorización. Ayudo a inversores y compradores a tomar decisiones basadas en criterios financieros reales, estudiando la viabilidad y el potencial de cada activo.</p>
+                <p class="srv-card__desc" data-i18n="srv.c6.desc">Analizo oportunidades inmobiliarias para identificar operaciones con potencial de rentabilidad y revalorización. Ayudo a inversores y compradores a tomar decisiones basadas en criterios financieros reales, estudiando la viabilidad y el potencial de cada activo.</p>
                 <ul class="srv-card__list">
-                  <li>Análisis de rentabilidad</li>
-                  <li>Estudio de revalorización del inmueble</li>
-                  <li>Evaluación de riesgo y viabilidad</li>
-                  <li>Estrategias de inversión patrimonial</li>
-                  <li>Inversiones para alquiler o reventa</li>
+                  <li data-i18n="srv.c6.l1">Análisis de rentabilidad</li>
+                  <li data-i18n="srv.c6.l2">Estudio de revalorización del inmueble</li>
+                  <li data-i18n="srv.c6.l3">Evaluación de riesgo y viabilidad</li>
+                  <li data-i18n="srv.c6.l4">Estrategias de inversión patrimonial</li>
+                  <li data-i18n="srv.c6.l5">Inversiones para alquiler o reventa</li>
                 </ul>
               </div>
-              <div class="srv-card__quote">
+              <div class="srv-card__quote" data-i18n-html="srv.c6.quote">
                 Además, formo parte de una red y club privado de inversores inmobiliarios especializados en operaciones de compra, rehabilitación y venta de inmuebles con objetivos de rentabilidad aproximados entre el <strong>15% y el 25%</strong>, según la operación y condiciones de mercado.
               </div>
             </div>
@@ -566,17 +566,17 @@
     <section class="srv-cta" id="srv-contacto">
       <div class="container">
         <div class="srv-cta__inner reveal">
-          <span class="section-tag">¿Hablamos?</span>
-          <h2 class="srv-cta__title">
+          <span class="section-tag" data-i18n="srv.cta.tag">¿Hablamos?</span>
+          <h2 class="srv-cta__title" data-i18n-html="srv.cta.title">
             Diseñemos juntos tu próxima<br />
             <span class="text-gold">estrategia financiera</span>
           </h2>
-          <p class="srv-cta__desc">
+          <p class="srv-cta__desc" data-i18n="srv.cta.desc">
             El primer paso es gratuito. Cuéntanos tu situación y te proponemos el mejor camino.
           </p>
           <div class="srv-cta__actions">
-            <a href="mailto:info@nortfinance.com" class="btn btn--gold btn--lg">Mi Estudio Gratuito</a>
-            <a href="https://wa.me/34600000000" class="btn btn--outline btn--lg" target="_blank" rel="noopener noreferrer">Escríbenos</a>
+            <a href="#" data-estudio class="btn btn--gold btn--lg" data-i18n="nav.cta">Mi Estudio Gratuito</a>
+            <a href="https://wa.me/34600000000" class="btn btn--outline btn--lg" target="_blank" rel="noopener noreferrer" data-i18n="srv.cta.btn2">Escríbenos</a>
           </div>
         </div>
       </div>
@@ -647,7 +647,7 @@
               <span data-i18n="footer.location">España</span>
             </li>
           </ul>
-          <a href="contacto.html" class="btn btn--gold btn--sm footer__cta-btn" data-i18n="footer.cta">Mi Estudio Gratuito</a>
+          <a href="#" data-estudio class="btn btn--gold btn--sm footer__cta-btn" data-i18n="footer.cta">Mi Estudio Gratuito</a>
         </div>
 
       </div>
@@ -666,6 +666,14 @@
       </div>
     </div>
   </footer>
+
+  <div id="questModal" class="quest-overlay" aria-modal="true" role="dialog" aria-hidden="true">
+    <div class="quest-dialog">
+      <button class="quest-close" aria-label="Cerrar">×</button>
+      <div class="quest-progress"><div class="quest-progress-bar" id="questProgressBar"></div></div>
+      <div id="questContent"></div>
+    </div>
+  </div>
 
   <script src="i18n.js"></script>
   <script src="script.js"></script>

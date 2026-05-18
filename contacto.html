@@ -512,12 +512,12 @@
       </a>
       <nav class="navbar__nav" id="navMenu" aria-label="Navegación principal">
         <ul class="navbar__links">
-          <li><a href="hipotecas.html" class="navbar__link">Hipotecas</a></li>
-          <li><a href="servicios.html" class="navbar__link">Servicios</a></li>
-          <li><a href="recursos.html" class="navbar__link">Recursos</a></li>
-          <li><a href="contacto.html" class="navbar__link active">Contacto</a></li>
+          <li><a href="hipotecas.html" class="navbar__link" data-i18n="nav.mortgages">Hipotecas</a></li>
+          <li><a href="servicios.html" class="navbar__link" data-i18n="nav.services">Servicios</a></li>
+          <li><a href="recursos.html" class="navbar__link" data-i18n="nav.resources">Recursos</a></li>
+          <li><a href="contacto.html" class="navbar__link active" data-i18n="nav.contact">Contacto</a></li>
         </ul>
-        <a href="https://calendar.app.google/eswZcNy9r4kqvqsMA" target="_blank" class="btn btn--gold navbar__cta">Mi Estudio Gratuito</a>
+        <a href="#" data-estudio class="btn btn--gold navbar__cta" data-i18n="nav.cta">Mi Estudio Gratuito</a>
       </nav>
       <div class="lang-dropdown" id="langDropdown">
         <button class="lang-current" id="langToggle" aria-haspopup="listbox" aria-expanded="false">
@@ -545,13 +545,13 @@
         <div class="reveal">
           <div class="cnt-hero__badge">
             <span class="cnt-hero__badge-dot"></span>
-            Contacto · NortFinance
+            <span data-i18n="cnt.hero.badge">Contacto · NortFinance</span>
           </div>
-          <h1 class="cnt-hero__title">
+          <h1 class="cnt-hero__title" data-i18n-html="cnt.hero.title">
             Hablemos de tu<br />
             <span class="text-gold">situación financiera</span>
           </h1>
-          <p class="cnt-hero__desc">
+          <p class="cnt-hero__desc" data-i18n="cnt.hero.desc">
             Cuéntanos tu caso y diseñaremos una estrategia hipotecaria a tu medida. Sin costes iniciales ni compromisos de ningún tipo.
           </p>
           <div class="cnt-hero__rule" aria-hidden="true"></div>
@@ -565,22 +565,22 @@
         <div class="cnt-trust__row reveal">
           <span class="cnt-trust__pill">
             <span class="cnt-trust__pill-dot"></span>
-            Estudio 100% Gratuito
+            <span data-i18n="cnt.trust1">Estudio 100% Gratuito</span>
           </span>
           <span class="cnt-trust__sep" aria-hidden="true"></span>
           <span class="cnt-trust__pill">
             <span class="cnt-trust__pill-dot"></span>
-            Sin Compromisos
+            <span data-i18n="cnt.trust2">Sin Compromisos</span>
           </span>
           <span class="cnt-trust__sep" aria-hidden="true"></span>
           <span class="cnt-trust__pill">
             <span class="cnt-trust__pill-dot"></span>
-            Respuesta en menos de 24h
+            <span data-i18n="cnt.trust3">Respuesta en menos de 24h</span>
           </span>
           <span class="cnt-trust__sep" aria-hidden="true"></span>
           <span class="cnt-trust__pill">
             <span class="cnt-trust__pill-dot"></span>
-            Firma Familiar y Cercana
+            <span data-i18n="cnt.trust4">Firma Familiar y Cercana</span>
           </span>
         </div>
       </div>
@@ -594,7 +594,7 @@
           <!-- ─── COLUMNA IZQUIERDA: FORMULARIO ─── -->
           <div class="cnt-form-col reveal">
             <div class="cnt-form-card">
-              <h2 class="cnt-form-card__heading">
+              <h2 class="cnt-form-card__heading" data-i18n-html="cnt.form.heading">
                 Cuéntanos tu caso<br />
                 <span>y te damos claridad</span>
               </h2>
@@ -602,7 +602,7 @@
               <form class="cnt-form" id="contactForm" novalidate>
 
                 <div class="cnt-form__field">
-                  <label class="cnt-form__label" for="cnt-nombre">Nombre completo <span style="color:var(--gold)">*</span></label>
+                  <label class="cnt-form__label" for="cnt-nombre"><span data-i18n="cnt.form.name">Nombre completo</span> <span style="color:var(--gold)">*</span></label>
                   <input
                     type="text"
                     id="cnt-nombre"
@@ -616,7 +616,7 @@
 
                 <div class="cnt-form__row">
                   <div class="cnt-form__field" style="margin-bottom:0">
-                    <label class="cnt-form__label" for="cnt-telefono">Teléfono <span style="color:var(--gold)">*</span></label>
+                    <label class="cnt-form__label" for="cnt-telefono"><span data-i18n="cnt.form.tel">Teléfono</span> <span style="color:var(--gold)">*</span></label>
                     <input
                       type="tel"
                       id="cnt-telefono"
@@ -628,7 +628,7 @@
                     />
                   </div>
                   <div class="cnt-form__field" style="margin-bottom:0">
-                    <label class="cnt-form__label" for="cnt-email">Correo electrónico <span style="color:var(--gold)">*</span></label>
+                    <label class="cnt-form__label" for="cnt-email"><span data-i18n="cnt.form.email">Correo electrónico</span> <span style="color:var(--gold)">*</span></label>
                     <input
                       type="email"
                       id="cnt-email"
@@ -642,7 +642,7 @@
                 </div>
 
                 <div class="cnt-form__field" style="margin-top:16px">
-                  <label class="cnt-form__label" for="cnt-situacion">Situación actual <span style="color:var(--gold)">*</span></label>
+                  <label class="cnt-form__label" for="cnt-situacion"><span data-i18n="cnt.form.situation">Situación actual</span> <span style="color:var(--gold)">*</span></label>
                   <select id="cnt-situacion" name="situacion" class="cnt-form__select" required>
                     <option value="" disabled selected>Selecciona tu situación</option>
                     <option value="primera-vivienda">Quiero comprar mi primera vivienda</option>
@@ -654,7 +654,7 @@
                 </div>
 
                 <div class="cnt-form__field">
-                  <label class="cnt-form__label" for="cnt-mensaje">Mensaje o detalles de tu caso</label>
+                  <label class="cnt-form__label" for="cnt-mensaje" data-i18n="cnt.form.msg">Mensaje o detalles de tu caso</label>
                   <textarea
                     id="cnt-mensaje"
                     name="mensaje"
@@ -664,11 +664,11 @@
                   ></textarea>
                 </div>
 
-                <button type="submit" class="cnt-form__submit" id="cnt-submit-btn">
+                <button type="submit" class="cnt-form__submit" id="cnt-submit-btn" data-i18n="cnt.form.submit">
                   Solicitar Mi Estudio Gratuito
                 </button>
 
-                <p class="cnt-form__legal">
+                <p class="cnt-form__legal" data-i18n-html="cnt.form.legal">
                   Al enviar, aceptas nuestra <a href="#">política de privacidad</a>. Tus datos no serán cedidos a terceros.
                 </p>
 
@@ -679,7 +679,7 @@
           <!-- ─── COLUMNA DERECHA: CONTACTO DIRECTO ─── -->
           <div class="cnt-info-col reveal">
 
-            <p class="cnt-info-col__heading">Contacto Directo</p>
+            <p class="cnt-info-col__heading" data-i18n="cnt.info.heading">Contacto Directo</p>
 
             <!-- WhatsApp card -->
             <div class="cnt-wa-card">
@@ -689,14 +689,14 @@
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
                   </svg>
                 </div>
-                <h3 class="cnt-wa-card__title">Línea Personal<br />de WhatsApp</h3>
+                <h3 class="cnt-wa-card__title" data-i18n-html="cnt.wa.title">Línea Personal<br />de WhatsApp</h3>
               </div>
-              <p class="cnt-wa-card__desc">
+              <p class="cnt-wa-card__desc" data-i18n="cnt.wa.desc">
                 Escríbenos directamente sin formularios. Respondemos de persona a persona, con la cercanía de una firma familiar.
               </p>
               <a href="https://wa.me/34600000000" class="cnt-wa-btn" target="_blank" rel="noopener noreferrer">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
-                Escribir por WhatsApp Directo
+                <span data-i18n="cnt.wa.btn">Escribir por WhatsApp Directo</span>
               </a>
             </div>
 
@@ -708,7 +708,7 @@
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/></svg>
                 </div>
                 <div class="cnt-info-item__body">
-                  <p class="cnt-info-item__label">Correo oficial</p>
+                  <p class="cnt-info-item__label" data-i18n="cnt.info.l1">Correo oficial</p>
                   <p class="cnt-info-item__value">
                     <a href="mailto:info@nortfinance.com">info@nortfinance.com</a>
                   </p>
@@ -720,8 +720,8 @@
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 </div>
                 <div class="cnt-info-item__body">
-                  <p class="cnt-info-item__label">Horario de atención personalizada</p>
-                  <p class="cnt-info-item__value">Lunes a Viernes<br />9:00h a 19:00h</p>
+                  <p class="cnt-info-item__label" data-i18n="cnt.info.l2">Horario de atención personalizada</p>
+                  <p class="cnt-info-item__value" data-i18n-html="cnt.info.v2">Lunes a Viernes<br />9:00h a 19:00h</p>
                 </div>
               </div>
 
@@ -730,8 +730,8 @@
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 </div>
                 <div class="cnt-info-item__body">
-                  <p class="cnt-info-item__label">Nuestro compromiso</p>
-                  <p class="cnt-info-item__value">
+                  <p class="cnt-info-item__label" data-i18n="cnt.info.l3">Nuestro compromiso</p>
+                  <p class="cnt-info-item__value" data-i18n="cnt.info.v3">
                     Como firma familiar, respondemos directamente de persona a persona en menos de 24 horas.
                   </p>
                 </div>
@@ -810,7 +810,7 @@
               <span data-i18n="footer.location">España</span>
             </li>
           </ul>
-          <a href="https://calendar.app.google/eswZcNy9r4kqvqsMA" target="_blank" class="btn btn--gold btn--sm footer__cta-btn" data-i18n="footer.cta">Mi Estudio Gratuito</a>
+          <a href="#" data-estudio class="btn btn--gold btn--sm footer__cta-btn" data-i18n="footer.cta">Mi Estudio Gratuito</a>
         </div>
 
       </div>
@@ -827,6 +827,14 @@
       </div>
     </div>
   </footer>
+
+  <div id="questModal" class="quest-overlay" aria-modal="true" role="dialog" aria-hidden="true">
+    <div class="quest-dialog">
+      <button class="quest-close" aria-label="Cerrar">×</button>
+      <div class="quest-progress"><div class="quest-progress-bar" id="questProgressBar"></div></div>
+      <div id="questContent"></div>
+    </div>
+  </div>
 
   <script src="i18n.js"></script>
   <script src="script.js"></script>

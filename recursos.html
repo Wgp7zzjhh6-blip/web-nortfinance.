@@ -666,7 +666,7 @@
           <li><a href="recursos.html" class="navbar__link active" data-i18n="nav.resources">Recursos</a></li>
           <li><a href="contacto.html" class="navbar__link" data-i18n="nav.contact">Contacto</a></li>
         </ul>
-        <a href="#rec-contacto" class="btn btn--gold navbar__cta" data-i18n="nav.cta">Mi Estudio Gratuito</a>
+        <a href="#" data-estudio class="btn btn--gold navbar__cta" data-i18n="nav.cta">Mi Estudio Gratuito</a>
       </nav>
       <div class="lang-dropdown" id="langDropdown">
         <button class="lang-current" id="langToggle" aria-haspopup="listbox" aria-expanded="false">
@@ -694,13 +694,13 @@
         <div class="reveal">
           <div class="rec-hero__badge">
             <span class="rec-hero__badge-dot"></span>
-            Recursos · NortFinance
+            <span data-i18n="rec.hero.badge">Recursos · NortFinance</span>
           </div>
-          <h1 class="rec-hero__title">
+          <h1 class="rec-hero__title" data-i18n-html="rec.hero.title">
             Conocimiento Financiero para<br />
             <span class="text-gold">Tomar Decisiones Claras</span>
           </h1>
-          <p class="rec-hero__desc">
+          <p class="rec-hero__desc" data-i18n="rec.hero.desc">
             Aportamos valor antes de vender. Explora nuestras guías, consejos prácticos y herramientas interactivas diseñadas para darte total claridad en tu estrategia hipotecaria.
           </p>
           <div class="rec-hero__rule" aria-hidden="true"></div>
@@ -711,8 +711,8 @@
     <!-- ══════════════════════════ SIMULADOR ══════════════════════════ -->
     <section class="rec-simulator" id="simulador">
       <div class="container">
-        <p class="rec-simulator__eyebrow reveal">Herramienta Interactiva</p>
-        <h2 class="rec-simulator__title reveal">
+        <p class="rec-simulator__eyebrow reveal" data-i18n="rec.sim.eyebrow">Herramienta Interactiva</p>
+        <h2 class="rec-simulator__title reveal" data-i18n-html="rec.sim.title">
           Simula tu Hipoteca<br />
           <span class="text-gold">en Tiempo Real</span>
         </h2>
@@ -721,15 +721,15 @@
 
           <!-- ─── CONTROLES ─── -->
           <div class="sim-controls">
-            <h3 class="sim-controls__heading">Parámetros de tu operación</h3>
+            <h3 class="sim-controls__heading" data-i18n="rec.sim.heading">Parámetros de tu operación</h3>
 
             <!-- Grupo: Inmueble -->
             <div class="sim-group">
-              <p class="sim-group__label">El Inmueble</p>
+              <p class="sim-group__label" data-i18n="rec.sim.g1">El Inmueble</p>
 
               <div class="sim-field">
                 <div class="sim-field__header">
-                  <span class="sim-field__name">Precio de la vivienda</span>
+                  <span class="sim-field__name" data-i18n="rec.sim.precio">Precio de la vivienda</span>
                   <span class="sim-field__value" id="sim-precio-val">300.000 €</span>
                 </div>
                 <input type="range" id="sim-precio" min="50000" max="1000000" step="1000" value="300000" aria-label="Precio de la vivienda" />
@@ -737,7 +737,7 @@
 
               <div class="sim-field">
                 <div class="sim-field__header">
-                  <span class="sim-field__name">Comunidad Autónoma</span>
+                  <span class="sim-field__name" data-i18n="rec.sim.ccaa">Comunidad Autónoma</span>
                 </div>
                 <select id="sim-ccaa" class="sim-select" aria-label="Comunidad Autónoma">
                   <option value="andalucia">Andalucía</option>
@@ -762,22 +762,22 @@
 
               <div class="sim-field">
                 <div class="sim-field__header">
-                  <span class="sim-field__name">Estado del inmueble</span>
+                  <span class="sim-field__name" data-i18n="rec.sim.estado">Estado del inmueble</span>
                 </div>
                 <div class="sim-toggle" role="group" aria-label="Estado del inmueble">
-                  <button class="sim-toggle__btn active" data-group="estado" data-value="segunda_mano">Segunda mano</button>
-                  <button class="sim-toggle__btn" data-group="estado" data-value="nuevo">Vivienda nueva</button>
+                  <button class="sim-toggle__btn active" data-group="estado" data-value="segunda_mano" data-i18n="rec.sim.estado.used">Segunda mano</button>
+                  <button class="sim-toggle__btn" data-group="estado" data-value="nuevo" data-i18n="rec.sim.estado.new">Vivienda nueva</button>
                 </div>
               </div>
             </div>
 
             <!-- Grupo: Financiación -->
             <div class="sim-group">
-              <p class="sim-group__label">Tu Financiación</p>
+              <p class="sim-group__label" data-i18n="rec.sim.g2">Tu Financiación</p>
 
               <div class="sim-field">
                 <div class="sim-field__header">
-                  <span class="sim-field__name">Ahorros aportados</span>
+                  <span class="sim-field__name" data-i18n="rec.sim.ahorros">Ahorros aportados</span>
                   <span class="sim-field__value" id="sim-ahorros-val">60.000 €</span>
                 </div>
                 <input type="range" id="sim-ahorros" min="0" max="500000" step="1000" value="60000" aria-label="Ahorros aportados" />
@@ -785,7 +785,7 @@
 
               <div class="sim-field">
                 <div class="sim-field__header">
-                  <span class="sim-field__name">Plazo de la hipoteca</span>
+                  <span class="sim-field__name" data-i18n="rec.sim.plazo">Plazo de la hipoteca</span>
                   <span class="sim-field__value" id="sim-plazo-val">25 años</span>
                 </div>
                 <input type="range" id="sim-plazo" min="10" max="40" step="1" value="25" aria-label="Plazo en años" />
@@ -795,21 +795,21 @@
 
             <!-- Grupo: Tipo de interés -->
             <div class="sim-group">
-              <p class="sim-group__label">Tipo de Interés</p>
+              <p class="sim-group__label" data-i18n="rec.sim.g3">Tipo de Interés</p>
 
               <div class="sim-field">
                 <div class="sim-field__header">
-                  <span class="sim-field__name">Modalidad hipotecaria</span>
+                  <span class="sim-field__name" data-i18n="rec.sim.modalidad">Modalidad hipotecaria</span>
                 </div>
                 <div class="sim-toggle" role="group" aria-label="Modalidad hipotecaria">
-                  <button class="sim-toggle__btn active" data-group="hipoteca" data-value="fija">Fija</button>
-                  <button class="sim-toggle__btn" data-group="hipoteca" data-value="variable">Variable</button>
+                  <button class="sim-toggle__btn active" data-group="hipoteca" data-value="fija" data-i18n="rec.sim.mod.fixed">Fija</button>
+                  <button class="sim-toggle__btn" data-group="hipoteca" data-value="variable" data-i18n="rec.sim.mod.var">Variable</button>
                 </div>
               </div>
 
               <div class="sim-field">
                 <div class="sim-field__header">
-                  <span class="sim-field__name">Tipo de interés</span>
+                  <span class="sim-field__name" data-i18n="rec.sim.tin">Tipo de interés</span>
                   <span class="sim-field__value" id="sim-tin-val">3,5 %</span>
                 </div>
                 <input type="range" id="sim-tin" min="1" max="7" step="0.1" value="3.5" aria-label="Tipo de interés nominal" />
@@ -820,33 +820,33 @@
 
           <!-- ─── RESULTADOS ─── -->
           <div class="sim-results">
-            <p class="sim-results__eyebrow">Cuota Mensual Estimada</p>
+            <p class="sim-results__eyebrow" data-i18n="rec.sim.res.eyebrow">Cuota Mensual Estimada</p>
             <div class="sim-results__cuota" id="res-cuota">—</div>
             <p class="sim-results__cuota-note" id="res-cuota-note">Estimación orientativa · Hipoteca fija</p>
 
             <div class="sim-results__metrics">
               <div class="sim-metric">
-                <div class="sim-metric__label">Financiación necesaria</div>
+                <div class="sim-metric__label" data-i18n="rec.sim.m1">Financiación necesaria</div>
                 <div class="sim-metric__value" id="res-financ">—</div>
               </div>
               <div class="sim-metric">
-                <div class="sim-metric__label">% Financiación</div>
+                <div class="sim-metric__label" data-i18n="rec.sim.m2">% Financiación</div>
                 <div class="sim-metric__value" id="res-pct">—</div>
               </div>
               <div class="sim-metric">
-                <div class="sim-metric__label">TIN aplicado</div>
+                <div class="sim-metric__label" data-i18n="rec.sim.m3">TIN aplicado</div>
                 <div class="sim-metric__value" id="res-tasa">—</div>
               </div>
               <div class="sim-metric">
-                <div class="sim-metric__label">Total intereses</div>
+                <div class="sim-metric__label" data-i18n="rec.sim.m4">Total intereses</div>
                 <div class="sim-metric__value" id="res-intereses">—</div>
               </div>
             </div>
 
             <div class="sim-breakdown">
-              <p class="sim-breakdown__title">Coste del inmueble</p>
+              <p class="sim-breakdown__title" data-i18n="rec.sim.bd1.title">Coste del inmueble</p>
               <div class="sim-breakdown__row">
-                <span>Precio del inmueble</span>
+                <span data-i18n="rec.sim.bd1.r1">Precio del inmueble</span>
                 <span id="res-precio">—</span>
               </div>
               <div class="sim-breakdown__row">
@@ -854,35 +854,35 @@
                 <span id="res-impuesto-val">—</span>
               </div>
               <div class="sim-breakdown__row">
-                <span>Notaría, registro y gestoría (~1%)</span>
+                <span data-i18n="rec.sim.bd1.r3">Notaría, registro y gestoría (~1%)</span>
                 <span id="res-gastos">—</span>
               </div>
               <div class="sim-breakdown__row">
-                <span>Tasación del inmueble (~400 €)</span>
+                <span data-i18n="rec.sim.bd1.r4">Tasación del inmueble (~400 €)</span>
                 <span id="res-tasacion">—</span>
               </div>
               <div class="sim-breakdown__row sim-breakdown__row--total">
-                <span>Coste total del inmueble</span>
+                <span data-i18n="rec.sim.bd1.total">Coste total del inmueble</span>
                 <span id="res-coste-total">—</span>
               </div>
             </div>
 
             <div class="sim-breakdown" style="margin-top:12px;">
-              <p class="sim-breakdown__title">Financiación total</p>
+              <p class="sim-breakdown__title" data-i18n="rec.sim.bd2.title">Financiación total</p>
               <div class="sim-breakdown__row">
-                <span>Ahorro aportado</span>
+                <span data-i18n="rec.sim.bd2.r1">Ahorro aportado</span>
                 <span id="res-ahorro">—</span>
               </div>
               <div class="sim-breakdown__row">
-                <span>Importe hipoteca solicitada</span>
+                <span data-i18n="rec.sim.bd2.r2">Importe hipoteca solicitada</span>
                 <span id="res-total-hipoteca">—</span>
               </div>
               <div class="sim-breakdown__row">
-                <span>Intereses de la hipoteca</span>
+                <span data-i18n="rec.sim.bd2.r3">Intereses de la hipoteca</span>
                 <span id="res-intereses-breakdown">—</span>
               </div>
               <div class="sim-breakdown__row sim-breakdown__row--grand-total">
-                <span>Coste total con hipoteca</span>
+                <span data-i18n="rec.sim.bd2.total">Coste total con hipoteca</span>
                 <span id="res-grand-total">—</span>
               </div>
             </div>
@@ -891,7 +891,7 @@
               <span class="sim-results__message-text" id="res-mensaje-text"></span>
             </div>
 
-            <a href="#rec-contacto" class="btn btn--gold btn--lg">Validar Estudio Gratis con un Asesor</a>
+            <a href="#" data-estudio class="btn btn--gold btn--lg" data-i18n="rec.sim.cta">Validar Estudio Gratis con un Asesor</a>
           </div>
 
         </div>
@@ -902,8 +902,8 @@
     <section class="rec-guides" id="guias">
       <div class="container">
         <div class="rec-guides__header">
-          <p class="rec-guides__eyebrow reveal">Base de Conocimiento</p>
-          <h2 class="rec-guides__title reveal">
+          <p class="rec-guides__eyebrow reveal" data-i18n="rec.guides.eyebrow">Base de Conocimiento</p>
+          <h2 class="rec-guides__title reveal" data-i18n-html="rec.guides.title">
             Guías Hipotecarias<br />
             <span class="text-gold">y Consejos Prácticos</span>
           </h2>
@@ -915,11 +915,11 @@
             <div class="guide-card__icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
             </div>
-            <p class="guide-card__tag">Guía Completa</p>
-            <h3 class="guide-card__title">Guía Hipotecaria Premium</h3>
-            <p class="guide-card__desc">Explicaciones simples sobre financiación y cómo prepararse para el banco. Todo lo que necesitas saber antes de iniciar el proceso.</p>
+            <p class="guide-card__tag" data-i18n="rec.g1.tag">Guía Completa</p>
+            <h3 class="guide-card__title" data-i18n="rec.g1.title">Guía Hipotecaria Premium</h3>
+            <p class="guide-card__desc" data-i18n="rec.g1.desc">Explicaciones simples sobre financiación y cómo prepararse para el banco. Todo lo que necesitas saber antes de iniciar el proceso.</p>
             <div class="guide-card__footer">
-              Próximamente
+              <span data-i18n="rec.g.footer">Próximamente</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </article>
@@ -928,11 +928,11 @@
             <div class="guide-card__icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             </div>
-            <p class="guide-card__tag">Consejos Prácticos</p>
-            <h3 class="guide-card__title">Consejos para Compradores</h3>
-            <p class="guide-card__desc">Los errores comunes al elegir tu primera vivienda y cómo evitarlos. Decisiones que marcan la diferencia en el largo plazo.</p>
+            <p class="guide-card__tag" data-i18n="rec.g2.tag">Consejos Prácticos</p>
+            <h3 class="guide-card__title" data-i18n="rec.g2.title">Consejos para Compradores</h3>
+            <p class="guide-card__desc" data-i18n="rec.g2.desc">Los errores comunes al elegir tu primera vivienda y cómo evitarlos. Decisiones que marcan la diferencia en el largo plazo.</p>
             <div class="guide-card__footer">
-              Próximamente
+              <span data-i18n="rec.g.footer">Próximamente</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </article>
@@ -941,11 +941,11 @@
             <div class="guide-card__icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
             </div>
-            <p class="guide-card__tag">Autónomos</p>
-            <h3 class="guide-card__title">Recursos para Autónomos</h3>
-            <p class="guide-card__desc">Cómo presentar tu perfil financiero para garantizar la aprobación de la firma. Estrategias específicas para trabajadores por cuenta propia.</p>
+            <p class="guide-card__tag" data-i18n="rec.g3.tag">Autónomos</p>
+            <h3 class="guide-card__title" data-i18n="rec.g3.title">Recursos para Autónomos</h3>
+            <p class="guide-card__desc" data-i18n="rec.g3.desc">Cómo presentar tu perfil financiero para garantizar la aprobación de la firma. Estrategias específicas para trabajadores por cuenta propia.</p>
             <div class="guide-card__footer">
-              Próximamente
+              <span data-i18n="rec.g.footer">Próximamente</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </article>
@@ -954,11 +954,11 @@
             <div class="guide-card__icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
             </div>
-            <p class="guide-card__tag">Documentación</p>
-            <h3 class="guide-card__title">Documentación Necesaria</h3>
-            <p class="guide-card__desc">La lista de control definitiva con los papeles que te pedirán para el estudio. Sin sorpresas ni retrasos en el proceso de aprobación.</p>
+            <p class="guide-card__tag" data-i18n="rec.g4.tag">Documentación</p>
+            <h3 class="guide-card__title" data-i18n="rec.g4.title">Documentación Necesaria</h3>
+            <p class="guide-card__desc" data-i18n="rec.g4.desc">La lista de control definitiva con los papeles que te pedirán para el estudio. Sin sorpresas ni retrasos en el proceso de aprobación.</p>
             <div class="guide-card__footer">
-              Próximamente
+              <span data-i18n="rec.g.footer">Próximamente</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </article>
@@ -967,11 +967,11 @@
             <div class="guide-card__icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
             </div>
-            <p class="guide-card__tag">Comparativas</p>
-            <h3 class="guide-card__title">Comparativas Directas</h3>
-            <p class="guide-card__desc">Hipoteca Fija vs. Variable vs. Mixta: ¿Cuál se adapta a la situación actual? Análisis objetivo para elegir con criterio real.</p>
+            <p class="guide-card__tag" data-i18n="rec.g5.tag">Comparativas</p>
+            <h3 class="guide-card__title" data-i18n="rec.g5.title">Comparativas Directas</h3>
+            <p class="guide-card__desc" data-i18n="rec.g5.desc">Hipoteca Fija vs. Variable vs. Mixta: ¿Cuál se adapta a la situación actual? Análisis objetivo para elegir con criterio real.</p>
             <div class="guide-card__footer">
-              Próximamente
+              <span data-i18n="rec.g.footer">Próximamente</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </article>
@@ -980,11 +980,11 @@
             <div class="guide-card__icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
             </div>
-            <p class="guide-card__tag">FAQ</p>
-            <h3 class="guide-card__title">Dudas Frecuentes de la Firma</h3>
-            <p class="guide-card__desc">Resolución de las preguntas clave antes de dar el próximo paso. Claridad total sobre nuestro proceso y metodología de trabajo.</p>
+            <p class="guide-card__tag" data-i18n="rec.g6.tag">FAQ</p>
+            <h3 class="guide-card__title" data-i18n="rec.g6.title">Dudas Frecuentes de la Firma</h3>
+            <p class="guide-card__desc" data-i18n="rec.g6.desc">Resolución de las preguntas clave antes de dar el próximo paso. Claridad total sobre nuestro proceso y metodología de trabajo.</p>
             <div class="guide-card__footer">
-              Próximamente
+              <span data-i18n="rec.g.footer">Próximamente</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </article>
@@ -997,17 +997,17 @@
     <section class="rec-cta" id="rec-contacto">
       <div class="container">
         <div class="reveal">
-          <p class="rec-cta__eyebrow">Da el Próximo Paso</p>
-          <h2 class="rec-cta__title">
+          <p class="rec-cta__eyebrow" data-i18n="rec.cta.eyebrow">Da el Próximo Paso</p>
+          <h2 class="rec-cta__title" data-i18n-html="rec.cta.title">
             Tu estrategia financiera<br />
             merece <span class="text-gold">claridad absoluta</span>
           </h2>
-          <p class="rec-cta__desc">
+          <p class="rec-cta__desc" data-i18n="rec.cta.desc">
             Hablemos de tu caso y usemos criterios reales para encontrar tu viabilidad.
           </p>
           <div class="rec-cta__actions">
-            <a href="contacto.html" class="btn btn--gold btn--lg">Mi Estudio Gratuito</a>
-            <a href="https://wa.me/34600000000" class="btn btn--outline btn--lg">Escríbenos</a>
+            <a href="#" data-estudio class="btn btn--gold btn--lg" data-i18n="nav.cta">Mi Estudio Gratuito</a>
+            <a href="https://wa.me/34600000000" class="btn btn--outline btn--lg" data-i18n="rec.cta.btn2">Escríbenos</a>
           </div>
         </div>
       </div>
@@ -1078,7 +1078,7 @@
               <span data-i18n="footer.location">España</span>
             </li>
           </ul>
-          <a href="contacto.html" class="btn btn--gold btn--sm footer__cta-btn" data-i18n="footer.cta">Mi Estudio Gratuito</a>
+          <a href="#" data-estudio class="btn btn--gold btn--sm footer__cta-btn" data-i18n="footer.cta">Mi Estudio Gratuito</a>
         </div>
 
       </div>
@@ -1097,6 +1097,14 @@
       </div>
     </div>
   </footer>
+
+  <div id="questModal" class="quest-overlay" aria-modal="true" role="dialog" aria-hidden="true">
+    <div class="quest-dialog">
+      <button class="quest-close" aria-label="Cerrar">×</button>
+      <div class="quest-progress"><div class="quest-progress-bar" id="questProgressBar"></div></div>
+      <div id="questContent"></div>
+    </div>
+  </div>
 
   <script src="i18n.js"></script>
   <script src="script.js"></script>
