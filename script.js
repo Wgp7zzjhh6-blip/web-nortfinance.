@@ -172,6 +172,26 @@
 
   sections.forEach(s => sectionObserver.observe(s));
 
+  /* ── Reading progress bar ──────────────────────────────────── */
+  const progressBar = document.querySelector('.reading-progress');
+  if (progressBar) {
+    window.addEventListener('scroll', () => {
+      const doc = document.documentElement;
+      const scrolled = doc.scrollTop || document.body.scrollTop;
+      const total = doc.scrollHeight - doc.clientHeight;
+      progressBar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
+    }, { passive: true });
+  }
+
+  /* ── Back to top ────────────────────────────────────────────── */
+  const backToTop = document.querySelector('.back-to-top');
+  if (backToTop) {
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
+
 })();
 
 /* ── Mortgage simulator (recursos.html only) ─────────────── */
