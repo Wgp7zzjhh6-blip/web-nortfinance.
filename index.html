@@ -73,13 +73,21 @@
 
       <nav class="navbar__nav" id="navMenu" aria-label="Navegación principal">
         <ul class="navbar__links">
-          <li><a href="hipotecas.html" class="navbar__link">Hipotecas</a></li>
-          <li><a href="servicios.html" class="navbar__link">Servicios</a></li>
-          <li><a href="recursos.html" class="navbar__link">Recursos</a></li>
-          <li><a href="contacto.html" class="navbar__link">Contacto</a></li>
+          <li><a href="hipotecas.html" class="navbar__link" data-i18n="nav.mortgages">Hipotecas</a></li>
+          <li><a href="servicios.html" class="navbar__link" data-i18n="nav.services">Servicios</a></li>
+          <li><a href="recursos.html" class="navbar__link" data-i18n="nav.resources">Recursos</a></li>
+          <li><a href="contacto.html" class="navbar__link" data-i18n="nav.contact">Contacto</a></li>
         </ul>
-        <a href="#" data-estudio class="btn btn--gold navbar__cta">Mi Estudio Gratuito</a>
+        <a href="#" data-estudio class="btn btn--gold navbar__cta" data-i18n="nav.cta">Mi Estudio Gratuito</a>
       </nav>
+
+      <div class="lang-switch" id="langSwitch">
+        <button class="lang-btn lang-btn--active" data-lang="es">ES</button>
+        <span class="lang-sep" aria-hidden="true">·</span>
+        <button class="lang-btn" data-lang="ca">CA</button>
+        <span class="lang-sep" aria-hidden="true">·</span>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
 
       <button class="navbar__hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
         <span></span>
@@ -96,34 +104,34 @@
       <div class="container hero__inner">
         <div class="hero__badge">
           <span class="hero__badge-dot"></span>
-          Firma de Asesoramiento Hipotecario
+          <span data-i18n="hero.badge">Firma de Asesoramiento Hipotecario</span>
         </div>
-        <h1 class="hero__title">
+        <h1 class="hero__title" data-i18n-html="hero.title">
           Hipoteca, Inversión<br />
           y <span class="text-gold">Estrategia Patrimonial</span>
         </h1>
-        <p class="hero__subtitle">
+        <p class="hero__subtitle" data-i18n-html="hero.subtitle">
           Gestionamos tu hipoteca, optimizamos tus inversiones y protegemos tu patrimonio.<br class="desktop-break" />
           Una firma familiar con criterios reales y resultados medibles.
         </p>
         <div class="hero__actions">
-          <a href="#" data-estudio class="btn btn--gold btn--lg">Mi Estudio Gratuito</a>
-          <a href="#proceso" class="btn btn--outline btn--lg">Cómo trabajamos →</a>
+          <a href="#" data-estudio class="btn btn--gold btn--lg" data-i18n="nav.cta">Mi Estudio Gratuito</a>
+          <a href="#proceso" class="btn btn--outline btn--lg" data-i18n="hero.cta2">Cómo trabajamos →</a>
         </div>
         <div class="hero__trust">
           <div class="hero__trust-item">
             <span class="trust-dash" aria-hidden="true">—</span>
-            Sin compromiso inicial
+            <span data-i18n="hero.trust1">Sin compromiso inicial</span>
           </div>
           <div class="hero__trust-sep" aria-hidden="true">·</div>
           <div class="hero__trust-item">
             <span class="trust-dash" aria-hidden="true">—</span>
-            100% Transparentes
+            <span data-i18n="hero.trust2">100% Transparentes</span>
           </div>
           <div class="hero__trust-sep" aria-hidden="true">·</div>
           <div class="hero__trust-item">
             <span class="trust-dash" aria-hidden="true">—</span>
-            Respuesta en 24h
+            <span data-i18n="hero.trust3">Respuesta en 24h</span>
           </div>
         </div>
       </div>
@@ -137,7 +145,7 @@
             <div class="stats__number">
               <span class="counter text-gold" data-target="200">0</span><span class="text-gold">+</span>
             </div>
-            <div class="stats__label">Hipotecas gestionadas</div>
+            <div class="stats__label" data-i18n="stats.mortgages">Hipotecas gestionadas</div>
             <div class="stats__bar"></div>
           </div>
           <div class="stats__divider" aria-hidden="true"></div>
@@ -145,7 +153,7 @@
             <div class="stats__number">
               <span class="counter text-gold" data-target="20">0</span><span class="text-gold">+</span>
             </div>
-            <div class="stats__label">Entidades bancarias</div>
+            <div class="stats__label" data-i18n="stats.banks">Entidades bancarias</div>
             <div class="stats__bar"></div>
           </div>
           <div class="stats__divider" aria-hidden="true"></div>
@@ -153,7 +161,7 @@
             <div class="stats__number">
               <span class="counter text-gold" data-target="100">0</span><span class="text-gold">%</span>
             </div>
-            <div class="stats__label">Transparentes</div>
+            <div class="stats__label" data-i18n="stats.transparent">Transparentes</div>
             <div class="stats__bar"></div>
           </div>
           <div class="stats__divider" aria-hidden="true"></div>
@@ -161,7 +169,7 @@
             <div class="stats__number">
               <span class="text-gold">24</span><span class="text-gold">h</span>
             </div>
-            <div class="stats__label">Respuesta garantizada</div>
+            <div class="stats__label" data-i18n="stats.response">Respuesta garantizada</div>
             <div class="stats__bar"></div>
           </div>
         </div>
@@ -172,8 +180,8 @@
     <section class="why" id="servicios">
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-tag">Nuestra diferencia</span>
-          <h2 class="section-title">
+          <span class="section-tag" data-i18n="why.tag">Nuestra diferencia</span>
+          <h2 class="section-title" data-i18n-html="why.title">
             ¿Por qué elegir <span class="text-gold">NortFinance?</span>
           </h2>
         </div>
@@ -187,8 +195,8 @@
                 <defs><linearGradient id="wi1" x1="6" y1="6" x2="34" y2="34"><stop offset="0%" stop-color="#F3E7C4"/><stop offset="50%" stop-color="#E5C158"/><stop offset="100%" stop-color="#B88728"/></linearGradient></defs>
               </svg>
             </div>
-            <h3 class="card__title">Cercanía real,<br /><span class="text-gold">no automatizada</span></h3>
-            <p class="card__text">Trabajamos contigo directamente, de persona a persona. Sin formularios que nadie lee ni bots que responden.</p>
+            <h3 class="card__title" data-i18n-html="why.c1.title">Cercanía real,<br /><span class="text-gold">no automatizada</span></h3>
+            <p class="card__text" data-i18n="why.c1.text">Trabajamos contigo directamente, de persona a persona. Sin formularios que nadie lee ni bots que responden.</p>
           </div>
 
           <div class="card card--why reveal">
@@ -198,8 +206,8 @@
                 <defs><linearGradient id="wi2" x1="8" y1="8" x2="36" y2="36"><stop offset="0%" stop-color="#F3E7C4"/><stop offset="50%" stop-color="#E5C158"/><stop offset="100%" stop-color="#B88728"/></linearGradient></defs>
               </svg>
             </div>
-            <h3 class="card__title">Estrategia adaptada<br /><span class="text-gold">a tu situación</span></h3>
-            <p class="card__text">Cada cliente es único. Analizamos tu perfil en profundidad para encontrar la solución coherente con tu realidad.</p>
+            <h3 class="card__title" data-i18n-html="why.c2.title">Estrategia adaptada<br /><span class="text-gold">a tu situación</span></h3>
+            <p class="card__text" data-i18n="why.c2.text">Cada cliente es único. Analizamos tu perfil en profundidad para encontrar la solución coherente con tu realidad.</p>
           </div>
 
           <div class="card card--why reveal">
@@ -212,8 +220,8 @@
                 <defs><linearGradient id="wi3" x1="8" y1="8" x2="32" y2="34"><stop offset="0%" stop-color="#F3E7C4"/><stop offset="50%" stop-color="#E5C158"/><stop offset="100%" stop-color="#B88728"/></linearGradient></defs>
               </svg>
             </div>
-            <h3 class="card__title">Transparencia<br /><span class="text-gold">desde el primer momento</span></h3>
-            <p class="card__text">Te decimos la verdad sobre viabilidad, opciones y condiciones reales desde el inicio.</p>
+            <h3 class="card__title" data-i18n-html="why.c3.title">Transparencia<br /><span class="text-gold">desde el primer momento</span></h3>
+            <p class="card__text" data-i18n="why.c3.text">Te decimos la verdad sobre viabilidad, opciones y condiciones reales desde el inicio.</p>
           </div>
 
           <div class="card card--why reveal">
@@ -225,8 +233,8 @@
                 <defs><linearGradient id="wi4" x1="8" y1="8" x2="32" y2="32"><stop offset="0%" stop-color="#F3E7C4"/><stop offset="50%" stop-color="#E5C158"/><stop offset="100%" stop-color="#B88728"/></linearGradient></defs>
               </svg>
             </div>
-            <h3 class="card__title">Acompañamiento<br /><span class="text-gold">durante todo el proceso</span></h3>
-            <p class="card__text">Estamos a tu lado desde el análisis inicial hasta la firma notarial.</p>
+            <h3 class="card__title" data-i18n-html="why.c4.title">Acompañamiento<br /><span class="text-gold">durante todo el proceso</span></h3>
+            <p class="card__text" data-i18n="why.c4.text">Estamos a tu lado desde el análisis inicial hasta la firma notarial.</p>
           </div>
 
         </div>
@@ -239,34 +247,34 @@
         <div class="firstcall__layout">
 
           <div class="firstcall__left reveal">
-            <span class="section-tag">Primera toma de contacto</span>
-            <h2 class="section-title">
+            <span class="section-tag" data-i18n="firstcall.tag">Primera toma de contacto</span>
+            <h2 class="section-title" data-i18n-html="firstcall.title">
               Lo que obtendrás en tu<br /><span class="text-gold">primera llamada</span>
             </h2>
-            <p class="firstcall__desc">Una toma de contacto para entender tu situación, resolver tus dudas y definir la mejor estrategia hipotecaria para ti.</p>
+            <p class="firstcall__desc" data-i18n="firstcall.desc">Una toma de contacto para entender tu situación, resolver tus dudas y definir la mejor estrategia hipotecaria para ti.</p>
             <div class="firstcall__tags">
-              <span class="tag">✦ Asesoramiento estratégico</span>
-              <span class="tag">✦ Proceso personalizado</span>
-              <span class="tag">✦ Sin compromiso inicial</span>
+              <span class="tag" data-i18n="firstcall.tag1">✦ Asesoramiento estratégico</span>
+              <span class="tag" data-i18n="firstcall.tag2">✦ Proceso personalizado</span>
+              <span class="tag" data-i18n="firstcall.tag3">✦ Sin compromiso inicial</span>
             </div>
-            <a href="#" data-estudio class="btn btn--gold firstcall__cta">Mi Estudio Gratuito</a>
+            <a href="#" data-estudio class="btn btn--gold firstcall__cta" data-i18n="nav.cta">Mi Estudio Gratuito</a>
           </div>
 
           <div class="firstcall__right">
             <div class="card card--call reveal">
               <div class="card__num text-gold">01</div>
-              <h4 class="card__title-sm">Análisis Personalizado</h4>
-              <p class="card__text">Revisamos tu situación financiera completa, ingresos y objetivos para trazar la estrategia más adecuada a tu perfil.</p>
+              <h4 class="card__title-sm" data-i18n="firstcall.c1.title">Análisis Personalizado</h4>
+              <p class="card__text" data-i18n="firstcall.c1.text">Revisamos tu situación financiera completa, ingresos y objetivos para trazar la estrategia más adecuada a tu perfil.</p>
             </div>
             <div class="card card--call reveal">
               <div class="card__num text-gold">02</div>
-              <h4 class="card__title-sm">Opciones Realistas</h4>
-              <p class="card__text">Te orientamos sobre viabilidad real, rangos de financiación y condiciones según tu perfil. Sin falsas promesas ni expectativas infladas.</p>
+              <h4 class="card__title-sm" data-i18n="firstcall.c2.title">Opciones Realistas</h4>
+              <p class="card__text" data-i18n="firstcall.c2.text">Te orientamos sobre viabilidad real, rangos de financiación y condiciones según tu perfil. Sin falsas promesas ni expectativas infladas.</p>
             </div>
             <div class="card card--call reveal">
               <div class="card__num text-gold">03</div>
-              <h4 class="card__title-sm">Resolución de Dudas</h4>
-              <p class="card__text">Te explicamos el proceso completo con claridad y lenguaje sencillo. Saldrás con las ideas claras sobre tu próximo paso.</p>
+              <h4 class="card__title-sm" data-i18n="firstcall.c3.title">Resolución de Dudas</h4>
+              <p class="card__text" data-i18n="firstcall.c3.text">Te explicamos el proceso completo con claridad y lenguaje sencillo. Saldrás con las ideas claras sobre tu próximo paso.</p>
             </div>
           </div>
 
@@ -278,8 +286,8 @@
     <section class="proceso" id="proceso">
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-tag">Paso a paso</span>
-          <h2 class="section-title">
+          <span class="section-tag" data-i18n="proceso.tag">Paso a paso</span>
+          <h2 class="section-title" data-i18n-html="proceso.title">
             Así será tu <span class="text-gold">proceso</span>
           </h2>
         </div>
@@ -290,15 +298,15 @@
             <div class="proceso__step-num"><span class="text-gold">01</span></div>
             <div class="proceso__step-dot" aria-hidden="true"></div>
             <div class="card proceso__step-card">
-              <h3 class="proceso__step-title">Primera toma de contacto</h3>
-              <p class="proceso__step-text">Entendemos tu situación y objetivos. Sin compromiso de ningún tipo.</p>
+              <h3 class="proceso__step-title" data-i18n="proceso.s1.title">Primera toma de contacto</h3>
+              <p class="proceso__step-text" data-i18n="proceso.s1.text">Entendemos tu situación y objetivos. Sin compromiso de ningún tipo.</p>
             </div>
           </div>
 
           <div class="proceso__step proceso__step--right reveal">
             <div class="card proceso__step-card">
-              <h3 class="proceso__step-title">Análisis estratégico</h3>
-              <p class="proceso__step-text">Estudiamos tu viabilidad y definimos las opciones reales disponibles para tu perfil.</p>
+              <h3 class="proceso__step-title" data-i18n="proceso.s2.title">Análisis estratégico</h3>
+              <p class="proceso__step-text" data-i18n="proceso.s2.text">Estudiamos tu viabilidad y definimos las opciones reales disponibles para tu perfil.</p>
             </div>
             <div class="proceso__step-dot" aria-hidden="true"></div>
             <div class="proceso__step-num proceso__step-num--right"><span class="text-gold">02</span></div>
@@ -308,15 +316,15 @@
             <div class="proceso__step-num"><span class="text-gold">03</span></div>
             <div class="proceso__step-dot" aria-hidden="true"></div>
             <div class="card proceso__step-card">
-              <h3 class="proceso__step-title">Búsqueda y negociación</h3>
-              <p class="proceso__step-text">En función de tu perfil financiero y de tus necesidades, acudimos a los bancos que con anterioridad sabemos que pueden encajar.</p>
+              <h3 class="proceso__step-title" data-i18n="proceso.s3.title">Búsqueda y negociación</h3>
+              <p class="proceso__step-text" data-i18n="proceso.s3.text">En función de tu perfil financiero y de tus necesidades, acudimos a los bancos que con anterioridad sabemos que pueden encajar.</p>
             </div>
           </div>
 
           <div class="proceso__step proceso__step--right reveal">
             <div class="card proceso__step-card">
-              <h3 class="proceso__step-title">Acompañamiento final</h3>
-              <p class="proceso__step-text">Te guiamos hasta la firma final y la resolución definitiva de la operación.</p>
+              <h3 class="proceso__step-title" data-i18n="proceso.s4.title">Acompañamiento final</h3>
+              <p class="proceso__step-text" data-i18n="proceso.s4.text">Te guiamos hasta la firma final y la resolución definitiva de la operación.</p>
             </div>
             <div class="proceso__step-dot" aria-hidden="true"></div>
             <div class="proceso__step-num proceso__step-num--right"><span class="text-gold">04</span></div>
@@ -330,8 +338,8 @@
     <section class="testimonios" id="testimonios">
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-tag">Clientes reales</span>
-          <h2 class="section-title">
+          <span class="section-tag" data-i18n="testimonios.tag">Clientes reales</span>
+          <h2 class="section-title" data-i18n-html="testimonios.title">
             Lo que dicen nuestros <span class="text-gold">clientes</span>
           </h2>
         </div>
@@ -347,14 +355,14 @@
                 <path d="M88 1L89.8 6.2H95.3L90.8 9.4L92.5 14.5L88 11.2L83.5 14.5L85.2 9.4L80.7 6.2H86.2Z"/>
               </svg>
             </div>
-            <blockquote class="testimonial__quote">
+            <blockquote class="testimonial__quote" data-i18n="testimonios.q1">
               "Llegué completamente perdida en el mundo hipotecario. NortFinance me explicó todo desde cero y consiguió condiciones que nunca habría logrado sola."
             </blockquote>
             <div class="testimonial__author">
               <div class="testimonial__avatar">AR</div>
               <div>
                 <div class="testimonial__name">Ana R.</div>
-                <div class="testimonial__role">Compra primera vivienda · Valencia</div>
+                <div class="testimonial__role" data-i18n="testimonios.q1.role">Compra primera vivienda · Valencia</div>
               </div>
             </div>
           </div>
@@ -369,14 +377,14 @@
                 <path d="M88 1L89.8 6.2H95.3L90.8 9.4L92.5 14.5L88 11.2L83.5 14.5L85.2 9.4L80.7 6.2H86.2Z"/>
               </svg>
             </div>
-            <blockquote class="testimonial__quote">
+            <blockquote class="testimonial__quote" data-i18n="testimonios.q2">
               "Llevábamos meses dando vueltas en bancos sin resultados. Con NortFinance tuvimos la hipoteca aprobada en pocas semanas."
             </blockquote>
             <div class="testimonial__author">
               <div class="testimonial__avatar">CP</div>
               <div>
                 <div class="testimonial__name">Carlos y Patricia M.</div>
-                <div class="testimonial__role">Segunda residencia · Madrid</div>
+                <div class="testimonial__role" data-i18n="testimonios.q2.role">Segunda residencia · Madrid</div>
               </div>
             </div>
           </div>
@@ -391,14 +399,14 @@
                 <path d="M88 1L89.8 6.2H95.3L90.8 9.4L92.5 14.5L88 11.2L83.5 14.5L85.2 9.4L80.7 6.2H86.2Z"/>
               </svg>
             </div>
-            <blockquote class="testimonial__quote">
+            <blockquote class="testimonial__quote" data-i18n="testimonios.q3">
               "Como autónomo pensaba que sería muy difícil conseguir buenas condiciones. NortFinance sabía exactamente cómo presentar mi perfil."
             </blockquote>
             <div class="testimonial__author">
               <div class="testimonial__avatar">JF</div>
               <div>
                 <div class="testimonial__name">Jordi F.</div>
-                <div class="testimonial__role">Autónomo · Barcelona</div>
+                <div class="testimonial__role" data-i18n="testimonios.q3.role">Autónomo · Barcelona</div>
               </div>
             </div>
           </div>
@@ -413,73 +421,73 @@
         <div class="faq__layout">
 
           <div class="faq__left reveal">
-            <span class="section-tag">Preguntas frecuentes</span>
-            <h2 class="section-title">
+            <span class="section-tag" data-i18n="faq.tag">Preguntas frecuentes</span>
+            <h2 class="section-title" data-i18n-html="faq.title">
               Todo lo que<br />necesitas <span class="text-gold">saber</span>
             </h2>
-            <p class="faq__desc">¿Tienes dudas? Aquí respondemos las preguntas más habituales de nuestros clientes antes de empezar.</p>
-            <a href="#contacto" class="btn btn--outline faq__cta">Hacer una pregunta →</a>
+            <p class="faq__desc" data-i18n="faq.desc">¿Tienes dudas? Aquí respondemos las preguntas más habituales de nuestros clientes antes de empezar.</p>
+            <a href="#contacto" class="btn btn--outline faq__cta" data-i18n="faq.cta">Hacer una pregunta →</a>
           </div>
 
           <div class="faq__accordion reveal">
 
             <div class="faq__item">
               <button class="faq__question" aria-expanded="false">
-                <span>¿Cómo es el proceso de trabajo?</span>
+                <span data-i18n="faq.q1.q">¿Cómo es el proceso de trabajo?</span>
                 <div class="faq__icon" aria-hidden="true"><span></span><span></span></div>
               </button>
               <div class="faq__answer" role="region">
-                <div class="faq__answer-inner">Comenzamos con una primera llamada sin compromiso para entender tu situación. A continuación hacemos un análisis estratégico de tu perfil, consultamos más de 20 entidades bancarias para encontrar las mejores condiciones y te acompañamos durante todo el proceso hasta la firma notarial.</div>
+                <div class="faq__answer-inner" data-i18n="faq.q1.a">Comenzamos con una primera llamada sin compromiso para entender tu situación. A continuación hacemos un análisis estratégico de tu perfil, consultamos más de 20 entidades bancarias para encontrar las mejores condiciones y te acompañamos durante todo el proceso hasta la firma notarial.</div>
               </div>
             </div>
 
             <div class="faq__item">
               <button class="faq__question" aria-expanded="false">
-                <span>¿Cuándo se realiza el primer pago?</span>
+                <span data-i18n="faq.q2.q">¿Cuándo se realiza el primer pago?</span>
                 <div class="faq__icon" aria-hidden="true"><span></span><span></span></div>
               </button>
               <div class="faq__answer" role="region">
-                <div class="faq__answer-inner">Se firma un contrato de aceptación de servicio, donde se especifican claramente los pagos a realizar.</div>
+                <div class="faq__answer-inner" data-i18n="faq.q2.a">Se firma un contrato de aceptación de servicio, donde se especifican claramente los pagos a realizar.</div>
               </div>
             </div>
 
             <div class="faq__item">
               <button class="faq__question" aria-expanded="false">
-                <span>¿Qué documentación necesitaré?</span>
+                <span data-i18n="faq.q3.q">¿Qué documentación necesitaré?</span>
                 <div class="faq__icon" aria-hidden="true"><span></span><span></span></div>
               </button>
               <div class="faq__answer" role="region">
-                <div class="faq__answer-inner">La documentación básica incluye: DNI/NIE, 3 últimas nóminas, última renta, extractos bancarios, recibos de deudas (si las hay), información sobre la vivienda a comprar (nota simple), contrato de arras (si existe) y vida laboral. Te guiaremos en cada paso para que el proceso sea lo más sencillo posible.</div>
+                <div class="faq__answer-inner" data-i18n="faq.q3.a">La documentación básica incluye: DNI/NIE, 3 últimas nóminas, última renta, extractos bancarios, recibos de deudas (si las hay), información sobre la vivienda a comprar (nota simple), contrato de arras (si existe) y vida laboral. Te guiaremos en cada paso para que el proceso sea lo más sencillo posible.</div>
               </div>
             </div>
 
             <div class="faq__item">
               <button class="faq__question" aria-expanded="false">
-                <span>¿Trabajáis cada caso de forma personalizada?</span>
+                <span data-i18n="faq.q4.q">¿Trabajáis cada caso de forma personalizada?</span>
                 <div class="faq__icon" aria-hidden="true"><span></span><span></span></div>
               </button>
               <div class="faq__answer" role="region">
-                <div class="faq__answer-inner">Absolutamente. Cada cliente tiene una situación financiera, objetivos y circunstancias únicas. Nunca usamos plantillas genéricas; analizamos tu caso en profundidad para ofrecerte la estrategia hipotecaria más adecuada a tu realidad concreta.</div>
+                <div class="faq__answer-inner" data-i18n="faq.q4.a">Absolutamente. Cada cliente tiene una situación financiera, objetivos y circunstancias únicas. Nunca usamos plantillas genéricas; analizamos tu caso en profundidad para ofrecerte la estrategia hipotecaria más adecuada a tu realidad concreta.</div>
               </div>
             </div>
 
             <div class="faq__item">
               <button class="faq__question" aria-expanded="false">
-                <span>¿Qué diferencia a NortFinance de un banco?</span>
+                <span data-i18n="faq.q5.q">¿Qué diferencia a NortFinance de un banco?</span>
                 <div class="faq__icon" aria-hidden="true"><span></span><span></span></div>
               </button>
               <div class="faq__answer" role="region">
-                <div class="faq__answer-inner">Un banco solo puede ofrecerte sus propios productos. NortFinance es una firma de asesoramiento que trabaja exclusivamente para ti: consultamos más de 20 bancos y negociamos en tu nombre para conseguir las mejores condiciones del mercado. Tu interés es siempre nuestra única prioridad.</div>
+                <div class="faq__answer-inner" data-i18n="faq.q5.a">Un banco solo puede ofrecerte sus propios productos. NortFinance es una firma de asesoramiento que trabaja exclusivamente para ti: consultamos más de 20 bancos y negociamos en tu nombre para conseguir las mejores condiciones del mercado. Tu interés es siempre nuestra única prioridad.</div>
               </div>
             </div>
 
             <div class="faq__item">
               <button class="faq__question" aria-expanded="false">
-                <span>¿Puedo contactar durante el proceso?</span>
+                <span data-i18n="faq.q6.q">¿Puedo contactar durante el proceso?</span>
                 <div class="faq__icon" aria-hidden="true"><span></span><span></span></div>
               </button>
               <div class="faq__answer" role="region">
-                <div class="faq__answer-inner">Por supuesto. Estamos disponibles en todo momento para resolver tus dudas, actualizar el estado de tu operación y acompañarte en cada decisión. Garantizamos respuesta en menos de 24 horas laborables.</div>
+                <div class="faq__answer-inner" data-i18n="faq.q6.a">Por supuesto. Estamos disponibles en todo momento para resolver tus dudas, actualizar el estado de tu operación y acompañarte en cada decisión. Garantizamos respuesta en menos de 24 horas laborables.</div>
               </div>
             </div>
 
@@ -492,18 +500,18 @@
     <section class="cta-final" id="contacto">
       <div class="container">
         <div class="cta-final__inner reveal">
-          <span class="section-tag">Empieza hoy</span>
-          <h2 class="cta-final__title">
+          <span class="section-tag" data-i18n="cta.tag">Empieza hoy</span>
+          <h2 class="cta-final__title" data-i18n-html="cta.title">
             Toma decisiones financieras<br />
             con total <span class="text-gold">claridad</span>
           </h2>
-          <p class="cta-final__text">
+          <p class="cta-final__text" data-i18n-html="cta.text">
             Te acompañamos durante todo el proceso con un enfoque cercano, transparente<br class="desktop-break" />
             y completamente adaptado a tu situación.
           </p>
           <div class="cta-final__actions">
-            <a href="#" data-estudio class="btn btn--gold btn--lg">Mi Estudio Gratuito</a>
-            <a href="https://wa.me/34600000000" class="btn btn--outline btn--lg" target="_blank" rel="noopener noreferrer">
+            <a href="#" data-estudio class="btn btn--gold btn--lg" data-i18n="nav.cta">Mi Estudio Gratuito</a>
+            <a href="https://wa.me/34600000000" class="btn btn--outline btn--lg" target="_blank" rel="noopener noreferrer" data-i18n="cta.btn2">
               Escríbenos
             </a>
           </div>
@@ -523,7 +531,7 @@
             <img src="logo.png" alt="NortFinance" class="navbar__logo-img" onerror="this.style.display='none'" />
             <span class="footer__logo-text">Nort<span class="text-gold">Finance</span></span>
           </a>
-          <p class="footer__desc">Firma de asesoramiento financiero y soluciones hipotecarias premium. Tu hipoteca, tu inversión y tu patrimonio, gestionados con criterio real.</p>
+          <p class="footer__desc" data-i18n="footer.desc">Firma de asesoramiento financiero y soluciones hipotecarias premium. Tu hipoteca, tu inversión y tu patrimonio, gestionados con criterio real.</p>
           <div class="footer__social">
             <a href="#" class="footer__social-link" aria-label="LinkedIn">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -535,29 +543,29 @@
         </div>
 
         <div class="footer__col">
-          <h4 class="footer__heading">Navegación</h4>
+          <h4 class="footer__heading" data-i18n="footer.nav.heading">Navegación</h4>
           <ul class="footer__links">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="hipotecas.html">Hipotecas</a></li>
-            <li><a href="servicios.html">Servicios</a></li>
-            <li><a href="recursos.html">Recursos</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="index.html" data-i18n="footer.nav.home">Inicio</a></li>
+            <li><a href="hipotecas.html" data-i18n="footer.nav.mortgages">Hipotecas</a></li>
+            <li><a href="servicios.html" data-i18n="footer.nav.services">Servicios</a></li>
+            <li><a href="recursos.html" data-i18n="footer.nav.resources">Recursos</a></li>
+            <li><a href="contacto.html" data-i18n="footer.nav.contact">Contacto</a></li>
           </ul>
         </div>
 
         <div class="footer__col">
-          <h4 class="footer__heading">Servicios</h4>
+          <h4 class="footer__heading" data-i18n="footer.services.heading">Servicios</h4>
           <ul class="footer__links">
-            <li><a href="hipotecas.html">Hipotecas Primera Vivienda</a></li>
-            <li><a href="servicios.html">Intermediación Inmobiliaria</a></li>
-            <li><a href="servicios.html">Inversión en Oro</a></li>
-            <li><a href="servicios.html">Club Privado de Inversores</a></li>
-            <li><a href="servicios.html">Corredor de Seguros</a></li>
+            <li><a href="hipotecas.html" data-i18n="footer.s1">Hipotecas Primera Vivienda</a></li>
+            <li><a href="servicios.html" data-i18n="footer.s2">Intermediación Inmobiliaria</a></li>
+            <li><a href="servicios.html" data-i18n="footer.s3">Inversión en Oro</a></li>
+            <li><a href="servicios.html" data-i18n="footer.s4">Club Privado de Inversores</a></li>
+            <li><a href="servicios.html" data-i18n="footer.s5">Corredor de Seguros</a></li>
           </ul>
         </div>
 
         <div class="footer__col">
-          <h4 class="footer__heading">Contacto</h4>
+          <h4 class="footer__heading" data-i18n="footer.contact.heading">Contacto</h4>
           <ul class="footer__contact">
             <li>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/></svg>
@@ -569,28 +577,28 @@
             </li>
             <li>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              Lun–Vie · 9:00 – 19:00h
+              <span data-i18n="footer.hours">Lun–Vie · 9:00 – 19:00h</span>
             </li>
             <li>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              España
+              <span data-i18n="footer.location">España</span>
             </li>
           </ul>
-          <a href="#" data-estudio class="btn btn--gold btn--sm footer__cta-btn">Mi Estudio Gratuito</a>
+          <a href="#" data-estudio class="btn btn--gold btn--sm footer__cta-btn" data-i18n="footer.cta">Mi Estudio Gratuito</a>
         </div>
 
       </div>
 
       <div class="footer__bottom">
-        <p class="footer__copy">© 2026 NortFinance. Todos los derechos reservados.</p>
+        <p class="footer__copy" data-i18n="footer.copy">© 2026 NortFinance. Todos los derechos reservados.</p>
         <div class="footer__legal">
-          <a href="privacidad.html">Política de privacidad</a>
+          <a href="privacidad.html" data-i18n="footer.privacy">Política de privacidad</a>
           <span aria-hidden="true">·</span>
-          <a href="cookies.html">Cookies</a>
+          <a href="cookies.html" data-i18n="footer.cookies">Cookies</a>
           <span aria-hidden="true">·</span>
-          <a href="aviso-legal.html">Aviso legal</a>
+          <a href="aviso-legal.html" data-i18n="footer.legal">Aviso legal</a>
           <span aria-hidden="true">·</span>
-          <a href="condiciones.html">Condiciones generales</a>
+          <a href="condiciones.html" data-i18n="footer.terms">Condiciones generales</a>
         </div>
       </div>
     </div>
@@ -606,5 +614,6 @@
   </div>
 
   <script src="script.js"></script>
+  <script src="i18n.js"></script>
 </body>
 </html>

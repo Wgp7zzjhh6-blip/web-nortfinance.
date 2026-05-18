@@ -432,13 +432,21 @@
 
       <nav class="navbar__nav" id="navMenu" aria-label="Navegación principal">
         <ul class="navbar__links">
-          <li><a href="hipotecas.html" class="navbar__link active">Hipotecas</a></li>
-          <li><a href="servicios.html" class="navbar__link">Servicios</a></li>
-          <li><a href="recursos.html" class="navbar__link">Recursos</a></li>
-          <li><a href="contacto.html" class="navbar__link">Contacto</a></li>
+          <li><a href="hipotecas.html" class="navbar__link active" data-i18n="nav.mortgages">Hipotecas</a></li>
+          <li><a href="servicios.html" class="navbar__link" data-i18n="nav.services">Servicios</a></li>
+          <li><a href="recursos.html" class="navbar__link" data-i18n="nav.resources">Recursos</a></li>
+          <li><a href="contacto.html" class="navbar__link" data-i18n="nav.contact">Contacto</a></li>
         </ul>
-        <a href="#hipo-contacto" class="btn btn--gold navbar__cta">Mi Estudio Gratuito</a>
+        <a href="#hipo-contacto" class="btn btn--gold navbar__cta" data-i18n="nav.cta">Mi Estudio Gratuito</a>
       </nav>
+
+      <div class="lang-switch" id="langSwitch">
+        <button class="lang-btn lang-btn--active" data-lang="es">ES</button>
+        <span class="lang-sep" aria-hidden="true">·</span>
+        <button class="lang-btn" data-lang="ca">CA</button>
+        <span class="lang-sep" aria-hidden="true">·</span>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
 
       <button class="navbar__hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
         <span></span>
@@ -455,33 +463,33 @@
       <div class="container">
         <div class="hipo-hero__inner">
           <div class="hipo-hero__copy reveal">
-            <div class="hipo-hero__eyebrow">Hipotecas</div>
-            <h1 class="hipo-hero__title">
+            <div class="hipo-hero__eyebrow" data-i18n="hipo.tag">Hipotecas</div>
+            <h1 class="hipo-hero__title" data-i18n-html="hipo.title">
               Hipotecas diseñadas<br />
               para tu <span class="text-gold">situación</span><br />
               real.
             </h1>
-            <p class="hipo-hero__desc">
+            <p class="hipo-hero__desc" data-i18n="hipo.subtitle">
               No buscamos la hipoteca más estándar. Buscamos la que encaja con tu vida, tu perfil financiero y tus objetivos a largo plazo. Más de 20 entidades analizadas, una sola estrategia hecha a medida.
             </p>
             <div class="hipo-hero__actions">
-              <a href="#hipo-contacto" class="btn btn--gold btn--lg">Mi Estudio Gratuito</a>
-              <a href="#para-quien" class="btn btn--outline btn--lg">¿Es para mí? →</a>
+              <a href="#hipo-contacto" class="btn btn--gold btn--lg" data-i18n="hipo.cta1">Mi Estudio Gratuito</a>
+              <a href="#para-quien" class="btn btn--outline btn--lg" data-i18n="hipo.cta2">¿Es para mí? →</a>
             </div>
           </div>
 
           <div class="hipo-hero__aside reveal">
             <div class="hipo-hero__stat">
               <div class="hipo-hero__stat-num">+200</div>
-              <div class="hipo-hero__stat-label">Hipotecas gestionadas</div>
+              <div class="hipo-hero__stat-label" data-i18n="hipo.stat1">Hipotecas gestionadas</div>
             </div>
             <div class="hipo-hero__stat">
               <div class="hipo-hero__stat-num">20+</div>
-              <div class="hipo-hero__stat-label">Entidades bancarias comparadas</div>
+              <div class="hipo-hero__stat-label" data-i18n="hipo.stat2">Entidades bancarias comparadas</div>
             </div>
             <div class="hipo-hero__stat">
               <div class="hipo-hero__stat-num">24h</div>
-              <div class="hipo-hero__stat-label">Respuesta garantizada</div>
+              <div class="hipo-hero__stat-label" data-i18n="hipo.stat3">Respuesta garantizada</div>
             </div>
           </div>
         </div>
@@ -492,8 +500,8 @@
     <section class="para-quien" id="para-quien">
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-tag">Para quién es</span>
-          <h2 class="section-title">
+          <span class="section-tag" data-i18n="pq.tag">Para quién es</span>
+          <h2 class="section-title" data-i18n-html="pq.title">
             Cada situación tiene<br />su <span class="text-gold">estrategia.</span>
           </h2>
         </div>
@@ -508,9 +516,9 @@
                 <path d="M9 21V12h6v9"/>
               </svg>
             </div>
-            <span class="pq-card__tag">Más habitual</span>
-            <h3 class="pq-card__title">Primera vivienda</h3>
-            <p class="pq-card__desc">El paso más importante de tu vida merece la mejor estrategia. Analizamos tu capacidad real, buscamos la financiación óptima y te guiamos desde el primer "quiero comprar" hasta la firma notarial. Sin sorpresas, con total claridad.</p>
+            <span class="pq-card__tag" data-i18n="pq.c1.tag">Más habitual</span>
+            <h3 class="pq-card__title" data-i18n="pq.c1.title">Primera vivienda</h3>
+            <p class="pq-card__desc" data-i18n="pq.c1.desc">El paso más importante de tu vida merece la mejor estrategia. Analizamos tu capacidad real, buscamos la financiación óptima y te guiamos desde el primer "quiero comprar" hasta la firma notarial. Sin sorpresas, con total claridad.</p>
           </div>
 
           <!-- 2 -->
@@ -521,9 +529,9 @@
                 <path d="M16 7V5a2 2 0 0 0-4 0v2M12 12v4M10 14h4"/>
               </svg>
             </div>
-            <span class="pq-card__tag">Perfil especial</span>
-            <h3 class="pq-card__title">Autónomos</h3>
-            <p class="pq-card__desc">Sabemos cómo presentar tu perfil para que los bancos vean tu solvencia real más allá de la nómina. Experiencia contrastada con autónomos de todos los sectores.</p>
+            <span class="pq-card__tag" data-i18n="pq.c2.tag">Perfil especial</span>
+            <h3 class="pq-card__title" data-i18n="pq.c2.title">Autónomos</h3>
+            <p class="pq-card__desc" data-i18n="pq.c2.desc">Sabemos cómo presentar tu perfil para que los bancos vean tu solvencia real más allá de la nómina. Experiencia contrastada con autónomos de todos los sectores.</p>
           </div>
 
           <!-- 3 -->
@@ -534,9 +542,9 @@
                 <path d="M3.51 15a9 9 0 1 0 .49-3.51"/>
               </svg>
             </div>
-            <span class="pq-card__tag">Mejorar condiciones</span>
-            <h3 class="pq-card__title">Cambio de hipoteca</h3>
-            <p class="pq-card__desc">Si tienes hipoteca y crees que puedes mejorar tus condiciones, tienes razón. Analizamos si una subrogación o novación te conviene y gestionamos todo el proceso.</p>
+            <span class="pq-card__tag" data-i18n="pq.c3.tag">Mejorar condiciones</span>
+            <h3 class="pq-card__title" data-i18n="pq.c3.title">Cambio de hipoteca</h3>
+            <p class="pq-card__desc" data-i18n="pq.c3.desc">Si tienes hipoteca y crees que puedes mejorar tus condiciones, tienes razón. Analizamos si una subrogación o novación te conviene y gestionamos todo el proceso.</p>
           </div>
 
           <!-- 4 -->
@@ -548,9 +556,9 @@
                 <circle cx="12" cy="10" r="1.5"/>
               </svg>
             </div>
-            <span class="pq-card__tag">Patrimonio</span>
-            <h3 class="pq-card__title">Segunda residencia</h3>
-            <p class="pq-card__desc">La financiación de una segunda vivienda tiene condiciones distintas a la habitual. Conocemos las particularidades de cada entidad y buscamos la propuesta más eficiente para tu patrimonio.</p>
+            <span class="pq-card__tag" data-i18n="pq.c4.tag">Patrimonio</span>
+            <h3 class="pq-card__title" data-i18n="pq.c4.title">Segunda residencia</h3>
+            <p class="pq-card__desc" data-i18n="pq.c4.desc">La financiación de una segunda vivienda tiene condiciones distintas a la habitual. Conocemos las particularidades de cada entidad y buscamos la propuesta más eficiente para tu patrimonio.</p>
           </div>
 
           <!-- 5 — Autopromoción -->
@@ -562,9 +570,9 @@
                 <path d="M7 8h10M7 12h6"/>
               </svg>
             </div>
-            <span class="pq-card__tag">Proyecto propio</span>
-            <h3 class="pq-card__title">Autopromoción</h3>
-            <p class="pq-card__desc">Financiación especializada para proyectos de autopromoción. Analizamos la viabilidad económica del proyecto, te acompañamos durante todo el proceso y coordinamos documentación, certificaciones de obra y aprobación bancaria.</p>
+            <span class="pq-card__tag" data-i18n="pq.c5.tag">Proyecto propio</span>
+            <h3 class="pq-card__title" data-i18n="pq.c5.title">Autopromoción</h3>
+            <p class="pq-card__desc" data-i18n="pq.c5.desc">Financiación especializada para proyectos de autopromoción. Analizamos la viabilidad económica del proyecto, te acompañamos durante todo el proceso y coordinamos documentación, certificaciones de obra y aprobación bancaria.</p>
           </div>
 
           <!-- 6 -->
@@ -576,12 +584,12 @@
                 <line x1="6" y1="20" x2="6" y2="16"/>
               </svg>
             </div>
-            <span class="pq-card__tag">Rentabilidad</span>
-            <h3 class="pq-card__title">Inversión</h3>
-            <p class="pq-card__desc">Para compradores con visión patrimonial. Estructuramos la financiación para maximizar el retorno y optimizar el apalancamiento en cada operación.</p>
+            <span class="pq-card__tag" data-i18n="pq.c6.tag">Rentabilidad</span>
+            <h3 class="pq-card__title" data-i18n="pq.c6.title">Inversión</h3>
+            <p class="pq-card__desc" data-i18n="pq.c6.desc">Para compradores con visión patrimonial. Estructuramos la financiación para maximizar el retorno y optimizar el apalancamiento en cada operación.</p>
           </div>
 
-          <!-- 6 -->
+          <!-- 7 -->
           <div class="pq-card reveal">
             <div class="pq-card__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
@@ -590,12 +598,12 @@
                 <path d="M16 3.5c1.5.5 2.5 2 2.5 3.5"/>
               </svg>
             </div>
-            <span class="pq-card__tag">Hasta el 100%</span>
-            <h3 class="pq-card__title">Jóvenes compradores</h3>
-            <p class="pq-card__desc">Acompañamiento especializado para primeros compradores. Exploramos vías de financiación ampliada y ayudas disponibles para perfiles jóvenes con alto potencial.</p>
+            <span class="pq-card__tag" data-i18n="pq.c7.tag">Hasta el 100%</span>
+            <h3 class="pq-card__title" data-i18n="pq.c7.title">Jóvenes compradores</h3>
+            <p class="pq-card__desc" data-i18n="pq.c7.desc">Acompañamiento especializado para primeros compradores. Exploramos vías de financiación ampliada y ayudas disponibles para perfiles jóvenes con alto potencial.</p>
           </div>
 
-          <!-- 7 -->
+          <!-- 8 -->
           <div class="pq-card reveal">
             <div class="pq-card__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
@@ -604,9 +612,9 @@
                 <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
               </svg>
             </div>
-            <span class="pq-card__tag">Perfil especial</span>
-            <h3 class="pq-card__title">No residentes</h3>
-            <p class="pq-card__desc">Somos conscientes de la complejidad que implica para los no residentes en España el conseguir una hipoteca. Por eso sabemos exactamente a qué bancos acudir para vosotros.</p>
+            <span class="pq-card__tag" data-i18n="pq.c8.tag">Perfil especial</span>
+            <h3 class="pq-card__title" data-i18n="pq.c8.title">No residentes</h3>
+            <p class="pq-card__desc" data-i18n="pq.c8.desc">Somos conscientes de la complejidad que implica para los no residentes en España el conseguir una hipoteca. Por eso sabemos exactamente a qué bancos acudir para vosotros.</p>
           </div>
 
 
@@ -618,8 +626,8 @@
     <section class="que-hacemos" id="que-hacemos">
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-tag">Nuestro método</span>
-          <h2 class="section-title">
+          <span class="section-tag" data-i18n="qh.tag">Nuestro método</span>
+          <h2 class="section-title" data-i18n-html="qh.title">
             Lo que <span class="text-gold">hacemos</span><br />
             por ti.
           </h2>
@@ -630,29 +638,29 @@
           <div class="qh-block reveal">
             <div class="qh-block__num">01</div>
             <div class="qh-block__line"></div>
-            <h3 class="qh-block__title">Analizamos tu perfil financiero</h3>
-            <p class="qh-block__desc">Estudiamos en profundidad tu situación económica, ingresos, ahorros y objetivos a largo plazo. Solo con ese mapa completo definimos qué hipoteca tiene sentido real para ti.</p>
+            <h3 class="qh-block__title" data-i18n="qh.s1.title">Analizamos tu perfil financiero</h3>
+            <p class="qh-block__desc" data-i18n="qh.s1.desc">Estudiamos en profundidad tu situación económica, ingresos, ahorros y objetivos a largo plazo. Solo con ese mapa completo definimos qué hipoteca tiene sentido real para ti.</p>
           </div>
 
           <div class="qh-block reveal">
             <div class="qh-block__num">02</div>
             <div class="qh-block__line"></div>
-            <h3 class="qh-block__title">Comparamos opciones</h3>
-            <p class="qh-block__desc">Consultamos más de 20 entidades bancarias —incluyendo alternativas que no están en comparadores públicos— para construir un mapa real de las mejores condiciones disponibles.</p>
+            <h3 class="qh-block__title" data-i18n="qh.s2.title">Comparamos opciones</h3>
+            <p class="qh-block__desc" data-i18n="qh.s2.desc">Consultamos más de 20 entidades bancarias —incluyendo alternativas que no están en comparadores públicos— para construir un mapa real de las mejores condiciones disponibles.</p>
           </div>
 
           <div class="qh-block reveal">
             <div class="qh-block__num">03</div>
             <div class="qh-block__line"></div>
-            <h3 class="qh-block__title">Negociamos condiciones</h3>
-            <p class="qh-block__desc">Presentamos tu perfil de la forma más sólida y favorable. Negociamos contigo como protagonista: tipo de interés, plazos, vinculaciones y comisiones están sobre la mesa.</p>
+            <h3 class="qh-block__title" data-i18n="qh.s3.title">Negociamos condiciones</h3>
+            <p class="qh-block__desc" data-i18n="qh.s3.desc">Presentamos tu perfil de la forma más sólida y favorable. Negociamos contigo como protagonista: tipo de interés, plazos, vinculaciones y comisiones están sobre la mesa.</p>
           </div>
 
           <div class="qh-block reveal">
             <div class="qh-block__num">04</div>
             <div class="qh-block__line"></div>
-            <h3 class="qh-block__title">Te acompañamos hasta la firma</h3>
-            <p class="qh-block__desc">No desaparecemos al conseguir la aprobación. Coordinamos tasación, revisamos la documentación final y estamos contigo hasta el día de la firma. Cierre total de la operación.</p>
+            <h3 class="qh-block__title" data-i18n="qh.s4.title">Te acompañamos hasta la firma</h3>
+            <p class="qh-block__desc" data-i18n="qh.s4.desc">No desaparecemos al conseguir la aprobación. Coordinamos tasación, revisamos la documentación final y estamos contigo hasta el día de la firma. Cierre total de la operación.</p>
           </div>
 
         </div>
@@ -671,11 +679,11 @@
         <div class="diferencia__layout">
 
           <div class="diferencia__left reveal">
-            <span class="section-tag">Nuestros pilares</span>
-            <h2 class="section-title">
+            <span class="section-tag" data-i18n="dif.tag">Nuestros pilares</span>
+            <h2 class="section-title" data-i18n-html="dif.title">
               Por qué nos<br />eligen a <span class="text-gold">nosotros.</span>
             </h2>
-            <p class="diferencia__left-desc">Cinco pilares que definen cómo trabajamos y por qué nuestros clientes nos recomiendan. No son valores de marketing — son compromisos que cumplimos operación a operación.</p>
+            <p class="diferencia__left-desc" data-i18n="dif.desc">Cinco pilares que definen cómo trabajamos y por qué nuestros clientes nos recomiendan. No son valores de marketing — son compromisos que cumplimos operación a operación.</p>
           </div>
 
           <div class="diferencia__pillars reveal">
@@ -688,8 +696,8 @@
                 </svg>
               </div>
               <div class="pillar__content">
-                <div class="pillar__title">Cercanía real</div>
-                <p class="pillar__desc">Trabajamos de tú a tú. Una persona real que conoce tu caso, responde tus llamadas y entiende lo que necesitas. Sin procesos automatizados, sin respuestas genéricas.</p>
+                <div class="pillar__title" data-i18n="dif.p1.title">Cercanía real</div>
+                <p class="pillar__desc" data-i18n="dif.p1.desc">Trabajamos de tú a tú. Una persona real que conoce tu caso, responde tus llamadas y entiende lo que necesitas. Sin procesos automatizados, sin respuestas genéricas.</p>
               </div>
             </div>
 
@@ -700,8 +708,8 @@
                 </svg>
               </div>
               <div class="pillar__content">
-                <div class="pillar__title">Tú eres nuestro cliente.</div>
-                <p class="pillar__desc">Un banco trabaja para su entidad, nosotros trabajamos para ti.</p>
+                <div class="pillar__title" data-i18n="dif.p2.title">Tú eres nuestro cliente.</div>
+                <p class="pillar__desc" data-i18n="dif.p2.desc">Un banco trabaja para su entidad, nosotros trabajamos para ti.</p>
               </div>
             </div>
 
@@ -713,8 +721,8 @@
                 </svg>
               </div>
               <div class="pillar__content">
-                <div class="pillar__title">Estrategia personalizada</div>
-                <p class="pillar__desc">Cada perfil es distinto. Diseñamos la estrategia hipotecaria que encaja con tu realidad concreta, no con una plantilla estándar.</p>
+                <div class="pillar__title" data-i18n="dif.p3.title">Estrategia personalizada</div>
+                <p class="pillar__desc" data-i18n="dif.p3.desc">Cada perfil es distinto. Diseñamos la estrategia hipotecaria que encaja con tu realidad concreta, no con una plantilla estándar.</p>
               </div>
             </div>
 
@@ -725,8 +733,8 @@
                 </svg>
               </div>
               <div class="pillar__content">
-                <div class="pillar__title">Transparencia total</div>
-                <p class="pillar__desc">Te decimos la verdad desde el primer momento: viabilidad real, condiciones exactas y costes sin letra pequeña. Nunca vendemos humo ni creamos falsas expectativas.</p>
+                <div class="pillar__title" data-i18n="dif.p4.title">Transparencia total</div>
+                <p class="pillar__desc" data-i18n="dif.p4.desc">Te decimos la verdad desde el primer momento: viabilidad real, condiciones exactas y costes sin letra pequeña. Nunca vendemos humo ni creamos falsas expectativas.</p>
               </div>
             </div>
 
@@ -738,8 +746,8 @@
                 </svg>
               </div>
               <div class="pillar__content">
-                <div class="pillar__title">Experiencia probada</div>
-                <p class="pillar__desc">Más de 200 operaciones gestionadas con éxito en perfiles muy distintos. Sabemos lo que funciona y lo que no, y eso marca la diferencia en el resultado final.</p>
+                <div class="pillar__title" data-i18n="dif.p5.title">Experiencia probada</div>
+                <p class="pillar__desc" data-i18n="dif.p5.desc">Más de 200 operaciones gestionadas con éxito en perfiles muy distintos. Sabemos lo que funciona y lo que no, y eso marca la diferencia en el resultado final.</p>
               </div>
             </div>
 
@@ -752,17 +760,17 @@
     <section class="hipo-cta" id="hipo-contacto">
       <div class="container">
         <div class="hipo-cta__inner reveal">
-          <span class="section-tag">Empieza hoy</span>
-          <h2 class="hipo-cta__title">
+          <span class="section-tag" data-i18n="hipo.cta.tag">Empieza hoy</span>
+          <h2 class="hipo-cta__title" data-i18n-html="hipo.cta.title">
             Tu hipoteca empieza<br />
             con una buena <span class="text-gold">estrategia.</span>
           </h2>
-          <p class="hipo-cta__desc">
+          <p class="hipo-cta__desc" data-i18n="hipo.cta.text">
             La primera llamada es gratuita, sin compromiso y sin letra pequeña. Cuéntanos tu situación y definimos juntos el mejor camino.
           </p>
           <div class="hipo-cta__actions">
-            <a href="mailto:info@nortfinance.com" class="btn btn--gold btn--lg">Mi Estudio Gratuito</a>
-            <a href="https://wa.me/34600000000" class="btn btn--outline btn--lg" target="_blank" rel="noopener noreferrer">
+            <a href="mailto:info@nortfinance.com" class="btn btn--gold btn--lg" data-i18n="nav.cta">Mi Estudio Gratuito</a>
+            <a href="https://wa.me/34600000000" class="btn btn--outline btn--lg" target="_blank" rel="noopener noreferrer" data-i18n="cta.btn2">
               Escríbenos
             </a>
           </div>
@@ -782,7 +790,7 @@
             <img src="logo.png" alt="NortFinance" class="navbar__logo-img" onerror="this.style.display='none'" />
             <span class="footer__logo-text">Nort<span class="text-gold">Finance</span></span>
           </a>
-          <p class="footer__desc">Firma de asesoramiento financiero y soluciones hipotecarias premium. Tu hipoteca, tu inversión y tu patrimonio, gestionados con criterio real.</p>
+          <p class="footer__desc" data-i18n="footer.desc">Firma de asesoramiento financiero y soluciones hipotecarias premium. Tu hipoteca, tu inversión y tu patrimonio, gestionados con criterio real.</p>
           <div class="footer__social">
             <a href="#" class="footer__social-link" aria-label="LinkedIn">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -794,29 +802,29 @@
         </div>
 
         <div class="footer__col">
-          <h4 class="footer__heading">Navegación</h4>
+          <h4 class="footer__heading" data-i18n="footer.nav.heading">Navegación</h4>
           <ul class="footer__links">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="hipotecas.html">Hipotecas</a></li>
-            <li><a href="servicios.html">Servicios</a></li>
-            <li><a href="recursos.html">Recursos</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="index.html" data-i18n="footer.nav.home">Inicio</a></li>
+            <li><a href="hipotecas.html" data-i18n="footer.nav.mortgages">Hipotecas</a></li>
+            <li><a href="servicios.html" data-i18n="footer.nav.services">Servicios</a></li>
+            <li><a href="recursos.html" data-i18n="footer.nav.resources">Recursos</a></li>
+            <li><a href="contacto.html" data-i18n="footer.nav.contact">Contacto</a></li>
           </ul>
         </div>
 
         <div class="footer__col">
-          <h4 class="footer__heading">Servicios</h4>
+          <h4 class="footer__heading" data-i18n="footer.services.heading">Servicios</h4>
           <ul class="footer__links">
-            <li><a href="hipotecas.html">Hipotecas Primera Vivienda</a></li>
-            <li><a href="servicios.html">Intermediación Inmobiliaria</a></li>
-            <li><a href="servicios.html">Inversión en Oro</a></li>
-            <li><a href="servicios.html">Club Privado de Inversores</a></li>
-            <li><a href="servicios.html">Corredor de Seguros</a></li>
+            <li><a href="hipotecas.html" data-i18n="footer.s1">Hipotecas Primera Vivienda</a></li>
+            <li><a href="servicios.html" data-i18n="footer.s2">Intermediación Inmobiliaria</a></li>
+            <li><a href="servicios.html" data-i18n="footer.s3">Inversión en Oro</a></li>
+            <li><a href="servicios.html" data-i18n="footer.s4">Club Privado de Inversores</a></li>
+            <li><a href="servicios.html" data-i18n="footer.s5">Corredor de Seguros</a></li>
           </ul>
         </div>
 
         <div class="footer__col">
-          <h4 class="footer__heading">Contacto</h4>
+          <h4 class="footer__heading" data-i18n="footer.contact.heading">Contacto</h4>
           <ul class="footer__contact">
             <li>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/></svg>
@@ -828,31 +836,34 @@
             </li>
             <li>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              Lun–Vie · 9:00 – 19:00h
+              <span data-i18n="footer.hours">Lun–Vie · 9:00 – 19:00h</span>
             </li>
             <li>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              España
+              <span data-i18n="footer.location">España</span>
             </li>
           </ul>
-          <a href="contacto.html" class="btn btn--gold btn--sm footer__cta-btn">Mi Estudio Gratuito</a>
+          <a href="#" data-estudio class="btn btn--gold btn--sm footer__cta-btn" data-i18n="footer.cta">Mi Estudio Gratuito</a>
         </div>
 
       </div>
 
       <div class="footer__bottom">
-        <p class="footer__copy">© 2026 NortFinance. Todos los derechos reservados.</p>
+        <p class="footer__copy" data-i18n="footer.copy">© 2026 NortFinance. Todos los derechos reservados.</p>
         <div class="footer__legal">
-          <a href="#">Política de privacidad</a>
+          <a href="privacidad.html" data-i18n="footer.privacy">Política de privacidad</a>
           <span aria-hidden="true">·</span>
-          <a href="#">Cookies</a>
+          <a href="cookies.html" data-i18n="footer.cookies">Cookies</a>
           <span aria-hidden="true">·</span>
-          <a href="#">Aviso legal</a>
+          <a href="aviso-legal.html" data-i18n="footer.legal">Aviso legal</a>
+          <span aria-hidden="true">·</span>
+          <a href="condiciones.html" data-i18n="footer.terms">Condiciones generales</a>
         </div>
       </div>
     </div>
   </footer>
 
+  <script src="i18n.js"></script>
   <script src="script.js"></script>
   <script>
     (function () {

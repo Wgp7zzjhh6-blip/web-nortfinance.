@@ -277,6 +277,40 @@ button { font: inherit; border: none; background: none; cursor: pointer; }
   width: 100%;
 }
 
+/* Language switcher */
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-left: 20px;
+  flex-shrink: 0;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.3);
+  padding: 4px 3px;
+  transition: color 0.2s;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.lang-btn:hover { color: rgba(255, 255, 255, 0.65); }
+.lang-btn--active { color: var(--gold); }
+
+.lang-sep {
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+  user-select: none;
+}
+
 /* Hamburger */
 .navbar__hamburger {
   display: none;
