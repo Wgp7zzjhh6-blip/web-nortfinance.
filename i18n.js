@@ -309,6 +309,111 @@
       'rec.cta.desc': 'Hablemos de tu caso y usemos criterios reales para encontrar tu viabilidad.',
       'rec.cta.btn2': 'Escríbenos',
 
+      /* ── Article pages — structural UI ────────── */
+      /* guia-hipotecaria-completa */
+      'art.guia.tag': 'Guía Hipotecaria · 2026',
+      'art.guia.title': 'Guía Hipotecaria Completa 2026:<br />Todo lo que Necesitas Saber',
+      'art.guia.meta': 'NortFinance · Asesoría Financiera · Mayo 2026 · 12 min de lectura',
+      'art.guia.breadcrumb': 'Guía Hipotecaria Completa',
+      'art.guia.cta.h2': '¿Listo para Empezar tu Proceso Hipotecario?',
+      'art.guia.cta.p': 'Te hacemos un estudio personalizado gratuito y sin compromiso. Analizamos tu perfil y te decimos exactamente qué hipoteca puedes conseguir.',
+      'art.guia.cta.btn': 'Solicitar Estudio Gratuito →',
+
+      /* hipoteca-primera-vivienda */
+      'art.pv.tag': 'Primera Vivienda · 2026',
+      'art.pv.title': 'Cómo Comprar tu Primera Vivienda<br />en España: Guía Paso a Paso',
+      'art.pv.meta': 'NortFinance · Asesoría Financiera · Mayo 2026 · 11 min de lectura',
+      'art.pv.breadcrumb': 'Primera Vivienda',
+      'art.pv.cta.h2': '¿Preparado para Comprar tu Primera Vivienda?',
+      'art.pv.cta.p': 'Analizamos tu situación y te orientamos sobre viabilidad real, ahorros necesarios y las mejores opciones del mercado.',
+      'art.pv.cta.btn': 'Solicitar Estudio Gratuito →',
+
+      /* hipoteca-autonomo */
+      'art.auto.tag': 'Hipoteca Autónomos · 2026',
+      'art.auto.title': 'Cómo Conseguir una Hipoteca<br />siendo Autónomo en España',
+      'art.auto.meta': 'NortFinance · Asesoría Financiera · Mayo 2026 · 10 min de lectura',
+      'art.auto.breadcrumb': 'Hipoteca para Autónomos',
+      'art.auto.cta.h2': '¿Eres Autónomo y Quieres una Hipoteca?',
+      'art.auto.cta.p': 'Sabemos exactamente cómo presentar tu perfil para que los bancos digan sí. Solicita tu estudio gratuito.',
+      'art.auto.cta.btn': 'Solicitar Estudio Gratuito →',
+
+      /* documentacion-necesaria-hipoteca */
+      'art.doc.tag': 'Documentación · 2026',
+      'art.doc.title': 'Documentación Necesaria para<br />Pedir una Hipoteca en 2026',
+      'art.doc.meta': 'NortFinance · Asesoría Financiera · Mayo 2026 · 9 min de lectura',
+      'art.doc.breadcrumb': 'Documentación Hipoteca',
+      'art.doc.cta.h2': '¿Tienes Todo Listo para el Banco?',
+      'art.doc.cta.p': 'Te ayudamos a preparar y organizar toda la documentación para maximizar las posibilidades de aprobación.',
+      'art.doc.cta.btn': 'Solicitar Estudio Gratuito →',
+
+      /* hipoteca-fija-variable-mixta */
+      'art.tipos.tag': 'Tipos de Hipoteca · 2026',
+      'art.tipos.title': 'Hipoteca Fija, Variable o Mixta:<br />¿Cuál Elegir en 2026?',
+      'art.tipos.meta': 'NortFinance · Asesoría Financiera · Mayo 2026 · 10 min de lectura',
+      'art.tipos.breadcrumb': 'Tipos de Hipoteca',
+      'art.tipos.cta.h2': '¿No Sabes Qué Hipoteca Elegir?',
+      'art.tipos.cta.p': 'Te ayudamos a elegir la modalidad hipotecaria que mejor encaja con tu perfil y objetivos financieros.',
+      'art.tipos.cta.btn': 'Solicitar Estudio Gratuito →',
+
+      /* preguntas-frecuentes-hipoteca */
+      'art.faq.tag': 'FAQ Hipotecas · 2026',
+      'art.faq.title': 'Preguntas Frecuentes sobre Hipotecas:<br />Todo Resuelto',
+      'art.faq.meta': 'NortFinance · Asesoría Financiera · Mayo 2026 · 14 min de lectura',
+      'art.faq.breadcrumb': 'FAQ Hipotecas',
+      'art.faq.cta.h2': '¿Tienes Más Preguntas sobre tu Hipoteca?',
+      'art.faq.cta.p': 'Cuéntanos tu caso y te respondemos con criterios reales y soluciones concretas.',
+      'art.faq.cta.btn': 'Solicitar Estudio Gratuito →',
+
+      /* euribor-que-es */
+      'art.euribor.tag': 'Euríbor · 2026',
+      'art.euribor.title': 'Euríbor 2026: Qué es, Cómo Funciona<br />y Cómo Afecta tu Hipoteca',
+      'art.euribor.meta': 'NortFinance · Asesoría Financiera · Mayo 2026 · 10 min de lectura',
+      'art.euribor.breadcrumb': 'Euríbor 2026',
+      'art.euribor.cta.h2': '¿Tienes Dudas sobre Hipoteca Fija o Variable?',
+      'art.euribor.cta.p': 'Analizamos el Euríbor actual y tu perfil para recomendarte la mejor modalidad hipotecaria.',
+      'art.euribor.cta.btn': 'Solicitar Estudio Gratuito →',
+
+      /* hipoteca-no-residente */
+      'art.nores.tag': 'No Residentes · 2026',
+      'art.nores.title': 'Hipoteca para No Residentes en España:<br />Guía Completa 2026',
+      'art.nores.meta': 'NortFinance · Asesoría Financiera · Mayo 2026 · 10 min de lectura',
+      'art.nores.breadcrumb': 'Hipoteca No Residentes',
+      'art.nores.cta.h2': '¿Buscas una Hipoteca en España sin ser Residente?',
+      'art.nores.cta.p': 'Conocemos los bancos que trabajan con no residentes y sabemos cómo presentar tu expediente para conseguir la aprobación.',
+      'art.nores.cta.btn': 'Solicitar Estudio Gratuito →',
+
+      /* mejorar-perfil-hipotecario */
+      'art.perfil.tag': 'Perfil Hipotecario · 2026',
+      'art.perfil.title': 'Cómo Mejorar tu Perfil Hipotecario<br />para que el Banco te diga Sí',
+      'art.perfil.meta': 'NortFinance · Asesoría Financiera · Mayo 2026 · 11 min de lectura',
+      'art.perfil.breadcrumb': 'Mejorar Perfil Hipotecario',
+      'art.perfil.cta.h2': '¿Quieres Mejorar tu Perfil antes de Pedir la Hipoteca?',
+      'art.perfil.cta.p': 'Te analizamos el perfil y te damos un plan de acción concreto para maximizar tus opciones.',
+      'art.perfil.cta.btn': 'Solicitar Estudio Gratuito →',
+
+      /* hipoteca-barcelona */
+      'art.bcn.tag': 'Barcelona · 2026',
+      'art.bcn.title': 'Hipoteca en Barcelona 2026: Guía para<br />Compradores y el Papel del Broker',
+      'art.bcn.meta': 'NortFinance · Asesoría Financiera · Mayo 2026 · 11 min de lectura',
+      'art.bcn.breadcrumb': 'Hipoteca Barcelona',
+      'art.bcn.cta.h2': '¿Compras en Barcelona y Necesitas una Hipoteca?',
+      'art.bcn.cta.p': 'Somos un broker hipotecario especializado en el mercado barcelonés. Te acompañamos en todo el proceso.',
+      'art.bcn.cta.btn': 'Solicitar Estudio Gratuito →',
+
+      /* recursos page — new guide cards */
+      'rec.g7.tag': 'Euríbor',
+      'rec.g7.title': 'Euríbor 2026: Guía Completa',
+      'rec.g7.desc': 'Qué es el Euríbor, cómo ha evolucionado y cómo afecta a tu hipoteca variable. Todo lo que necesitas saber para tomar decisiones informadas.',
+      'rec.g8.tag': 'No Residentes',
+      'rec.g8.title': 'Hipoteca para No Residentes',
+      'rec.g8.desc': 'Guía completa para extranjeros que quieren comprar vivienda en España: requisitos, financiación máxima, documentación y mejores bancos.',
+      'rec.g9.tag': 'Estrategia',
+      'rec.g9.title': 'Mejora tu Perfil Hipotecario',
+      'rec.g9.desc': 'Cómo mejorar tu puntuación crediticia, reducir deudas y presentar el mejor expediente posible para que el banco apruebe tu hipoteca.',
+      'rec.g10.tag': 'Barcelona',
+      'rec.g10.title': 'Hipoteca en Barcelona 2026',
+      'rec.g10.desc': 'Mercado inmobiliario barcelonés, precios actuales, mejores barrios y cómo un broker local puede marcar la diferencia en tu proceso.',
+
       /* ── Contacto page ──────────────────────── */
       'cnt.hero.badge': 'Contacto · NortFinance',
       'cnt.hero.title': 'Hablemos de tu<br /><span class="text-gold">situación financiera</span>',
@@ -631,6 +736,111 @@
       'rec.cta.desc': "Parlem del teu cas i fem servir criteris reals per trobar la teva viabilitat.",
       'rec.cta.btn2': 'Escriu-nos',
 
+      /* ── Article pages — structural UI ────────── */
+      /* guia-hipotecaria-completa */
+      'art.guia.tag': 'Guia Hipotecària · 2026',
+      'art.guia.title': 'Guia Hipotecària Completa 2026:<br />Tot el que Necessites Saber',
+      'art.guia.meta': 'NortFinance · Assessoria Financera · Maig 2026 · 12 min de lectura',
+      'art.guia.breadcrumb': 'Guia Hipotecària Completa',
+      'art.guia.cta.h2': 'Preparat per Iniciar el teu Procés Hipotecari?',
+      'art.guia.cta.p': "Et fem un estudi personalitzat gratuït i sense compromís. Analitzem el teu perfil i t'indiquem exactament quina hipoteca pots aconseguir.",
+      'art.guia.cta.btn': 'Sol·licitar Estudi Gratuït →',
+
+      /* hipoteca-primera-vivienda */
+      'art.pv.tag': 'Primera Habitatge · 2026',
+      'art.pv.title': 'Com Comprar el teu Primer Habitatge<br />a Espanya: Guia Pas a Pas',
+      'art.pv.meta': 'NortFinance · Assessoria Financera · Maig 2026 · 11 min de lectura',
+      'art.pv.breadcrumb': 'Primera Habitatge',
+      'art.pv.cta.h2': 'Preparat per Comprar el teu Primer Habitatge?',
+      'art.pv.cta.p': "Analitzem la teva situació i t'orientem sobre viabilitat real, estalvis necessaris i les millors opcions del mercat.",
+      'art.pv.cta.btn': 'Sol·licitar Estudi Gratuït →',
+
+      /* hipoteca-autonomo */
+      'art.auto.tag': 'Hipoteca Autònoms · 2026',
+      'art.auto.title': "Com Aconseguir una Hipoteca<br />sent Autònom a Espanya",
+      'art.auto.meta': 'NortFinance · Assessoria Financera · Maig 2026 · 10 min de lectura',
+      'art.auto.breadcrumb': 'Hipoteca per a Autònoms',
+      'art.auto.cta.h2': 'Ets Autònom i Vols una Hipoteca?',
+      'art.auto.cta.p': "Sabem exactament com presentar el teu perfil perquè els bancs diguin sí. Sol·licita el teu estudi gratuït.",
+      'art.auto.cta.btn': 'Sol·licitar Estudi Gratuït →',
+
+      /* documentacion-necesaria-hipoteca */
+      'art.doc.tag': 'Documentació · 2026',
+      'art.doc.title': 'Documentació Necessària per<br />Sol·licitar una Hipoteca el 2026',
+      'art.doc.meta': 'NortFinance · Assessoria Financera · Maig 2026 · 9 min de lectura',
+      'art.doc.breadcrumb': 'Documentació Hipoteca',
+      'art.doc.cta.h2': 'Tens Tot Llest per al Banc?',
+      'art.doc.cta.p': "T'ajudem a preparar i organitzar tota la documentació per maximitzar les possibilitats d'aprovació.",
+      'art.doc.cta.btn': 'Sol·licitar Estudi Gratuït →',
+
+      /* hipoteca-fija-variable-mixta */
+      'art.tipos.tag': "Tipus d'Hipoteca · 2026",
+      'art.tipos.title': "Hipoteca Fixa, Variable o Mixta:<br />Quina Triar el 2026?",
+      'art.tipos.meta': 'NortFinance · Assessoria Financera · Maig 2026 · 10 min de lectura',
+      'art.tipos.breadcrumb': "Tipus d'Hipoteca",
+      'art.tipos.cta.h2': 'No Saps Quina Hipoteca Triar?',
+      'art.tipos.cta.p': "T'ajudem a escollir la modalitat hipotecària que millor encaixa amb el teu perfil i objectius financers.",
+      'art.tipos.cta.btn': 'Sol·licitar Estudi Gratuït →',
+
+      /* preguntas-frecuentes-hipoteca */
+      'art.faq.tag': 'FAQ Hipoteques · 2026',
+      'art.faq.title': 'Preguntes Freqüents sobre Hipoteques:<br />Tot Resolt',
+      'art.faq.meta': 'NortFinance · Assessoria Financera · Maig 2026 · 14 min de lectura',
+      'art.faq.breadcrumb': 'FAQ Hipoteques',
+      'art.faq.cta.h2': 'Tens Més Preguntes sobre la teva Hipoteca?',
+      'art.faq.cta.p': "Explica'ns el teu cas i et responem amb criteris reals i solucions concretes.",
+      'art.faq.cta.btn': 'Sol·licitar Estudi Gratuït →',
+
+      /* euribor-que-es */
+      'art.euribor.tag': 'Euríbor · 2026',
+      'art.euribor.title': "Euríbor 2026: Què és, Com Funciona<br />i Com Afecta la teva Hipoteca",
+      'art.euribor.meta': 'NortFinance · Assessoria Financera · Maig 2026 · 10 min de lectura',
+      'art.euribor.breadcrumb': 'Euríbor 2026',
+      'art.euribor.cta.h2': 'Tens Dubtes sobre Hipoteca Fixa o Variable?',
+      'art.euribor.cta.p': "Analitzem l'Euríbor actual i el teu perfil per recomanar-te la millor modalitat hipotecària.",
+      'art.euribor.cta.btn': 'Sol·licitar Estudi Gratuït →',
+
+      /* hipoteca-no-residente */
+      'art.nores.tag': 'No Residents · 2026',
+      'art.nores.title': 'Hipoteca per a No Residents a Espanya:<br />Guia Completa 2026',
+      'art.nores.meta': 'NortFinance · Assessoria Financera · Maig 2026 · 10 min de lectura',
+      'art.nores.breadcrumb': 'Hipoteca No Residents',
+      'art.nores.cta.h2': "Busques una Hipoteca a Espanya sense ser Resident?",
+      'art.nores.cta.p': "Coneixem els bancs que treballen amb no residents i sabem com presentar el teu expedient per aconseguir l'aprovació.",
+      'art.nores.cta.btn': 'Sol·licitar Estudi Gratuït →',
+
+      /* mejorar-perfil-hipotecario */
+      'art.perfil.tag': 'Perfil Hipotecari · 2026',
+      'art.perfil.title': "Com Millorar el teu Perfil Hipotecari<br />perquè el Banc et digui Sí",
+      'art.perfil.meta': 'NortFinance · Assessoria Financera · Maig 2026 · 11 min de lectura',
+      'art.perfil.breadcrumb': 'Millorar Perfil Hipotecari',
+      'art.perfil.cta.h2': 'Vols Millorar el teu Perfil abans de Demanar la Hipoteca?',
+      'art.perfil.cta.p': "T'analitzem el perfil i et donem un pla d'acció concret per maximitzar les teves opcions.",
+      'art.perfil.cta.btn': 'Sol·licitar Estudi Gratuït →',
+
+      /* hipoteca-barcelona */
+      'art.bcn.tag': 'Barcelona · 2026',
+      'art.bcn.title': 'Hipoteca a Barcelona 2026: Guia per a<br />Compradors i el Paper del Broker',
+      'art.bcn.meta': 'NortFinance · Assessoria Financera · Maig 2026 · 11 min de lectura',
+      'art.bcn.breadcrumb': 'Hipoteca Barcelona',
+      'art.bcn.cta.h2': 'Compres a Barcelona i Necessites una Hipoteca?',
+      'art.bcn.cta.p': "Som un broker hipotecari especialitzat en el mercat barceloní. T'acompanyem en tot el procés.",
+      'art.bcn.cta.btn': 'Sol·licitar Estudi Gratuït →',
+
+      /* recursos page — new guide cards */
+      'rec.g7.tag': 'Euríbor',
+      'rec.g7.title': 'Euríbor 2026: Guia Completa',
+      'rec.g7.desc': "Què és l'Euríbor, com ha evolucionat i com afecta la teva hipoteca variable. Tot el que necessites saber per prendre decisions informades.",
+      'rec.g8.tag': 'No Residents',
+      'rec.g8.title': 'Hipoteca per a No Residents',
+      'rec.g8.desc': "Guia completa per a estrangers que volen comprar habitatge a Espanya: requisits, finançament màxim, documentació i millors bancs.",
+      'rec.g9.tag': 'Estratègia',
+      'rec.g9.title': 'Millora el teu Perfil Hipotecari',
+      'rec.g9.desc': "Com millorar la teva puntuació creditícia, reduir deutes i presentar el millor expedient possible perquè el banc aprovi la teva hipoteca.",
+      'rec.g10.tag': 'Barcelona',
+      'rec.g10.title': 'Hipoteca a Barcelona 2026',
+      'rec.g10.desc': "Mercat immobiliari barceloní, preus actuals, millors barris i com un broker local pot marcar la diferència en el teu procés.",
+
       /* ── Contacto page ──────────────────────── */
       'cnt.hero.badge': 'Contacte · NortFinance',
       'cnt.hero.title': 'Parlem de la teva<br /><span class="text-gold">situació financera</span>',
@@ -952,6 +1162,111 @@
       'rec.cta.title': 'Your financial strategy<br />deserves <span class="text-gold">absolute clarity</span>',
       'rec.cta.desc': "Let's talk about your case and use real criteria to find your viability.",
       'rec.cta.btn2': 'Write to us',
+
+      /* ── Article pages — structural UI ────────── */
+      /* guia-hipotecaria-completa */
+      'art.guia.tag': 'Mortgage Guide · 2026',
+      'art.guia.title': 'Complete 2026 Mortgage Guide:<br />Everything You Need to Know',
+      'art.guia.meta': 'NortFinance · Financial Advisory · May 2026 · 12 min read',
+      'art.guia.breadcrumb': 'Complete Mortgage Guide',
+      'art.guia.cta.h2': 'Ready to Start Your Mortgage Process?',
+      'art.guia.cta.p': 'We provide a personalised free study with no commitment. We analyse your profile and tell you exactly what mortgage you can get.',
+      'art.guia.cta.btn': 'Request Free Study →',
+
+      /* hipoteca-primera-vivienda */
+      'art.pv.tag': 'First Home · 2026',
+      'art.pv.title': 'How to Buy Your First Home<br />in Spain: Step-by-Step Guide',
+      'art.pv.meta': 'NortFinance · Financial Advisory · May 2026 · 11 min read',
+      'art.pv.breadcrumb': 'First Home',
+      'art.pv.cta.h2': 'Ready to Buy Your First Home?',
+      'art.pv.cta.p': 'We analyse your situation and advise you on real viability, savings needed and the best market options.',
+      'art.pv.cta.btn': 'Request Free Study →',
+
+      /* hipoteca-autonomo */
+      'art.auto.tag': 'Self-employed Mortgage · 2026',
+      'art.auto.title': 'How to Get a Mortgage<br />as Self-employed in Spain',
+      'art.auto.meta': 'NortFinance · Financial Advisory · May 2026 · 10 min read',
+      'art.auto.breadcrumb': 'Mortgage for Self-employed',
+      'art.auto.cta.h2': 'Self-employed and Want a Mortgage?',
+      'art.auto.cta.p': 'We know exactly how to present your profile so banks say yes. Request your free study.',
+      'art.auto.cta.btn': 'Request Free Study →',
+
+      /* documentacion-necesaria-hipoteca */
+      'art.doc.tag': 'Documentation · 2026',
+      'art.doc.title': 'Required Documentation<br />for a Mortgage in 2026',
+      'art.doc.meta': 'NortFinance · Financial Advisory · May 2026 · 9 min read',
+      'art.doc.breadcrumb': 'Mortgage Documentation',
+      'art.doc.cta.h2': 'Got Everything Ready for the Bank?',
+      'art.doc.cta.p': 'We help you prepare and organise all the documentation to maximise your chances of approval.',
+      'art.doc.cta.btn': 'Request Free Study →',
+
+      /* hipoteca-fija-variable-mixta */
+      'art.tipos.tag': 'Mortgage Types · 2026',
+      'art.tipos.title': 'Fixed, Variable or Mixed Mortgage:<br />Which to Choose in 2026?',
+      'art.tipos.meta': 'NortFinance · Financial Advisory · May 2026 · 10 min read',
+      'art.tipos.breadcrumb': 'Mortgage Types',
+      'art.tipos.cta.h2': "Not Sure Which Mortgage to Choose?",
+      'art.tipos.cta.p': 'We help you choose the mortgage type that best fits your profile and financial goals.',
+      'art.tipos.cta.btn': 'Request Free Study →',
+
+      /* preguntas-frecuentes-hipoteca */
+      'art.faq.tag': 'Mortgage FAQ · 2026',
+      'art.faq.title': 'Frequently Asked Questions about Mortgages:<br />Everything Answered',
+      'art.faq.meta': 'NortFinance · Financial Advisory · May 2026 · 14 min read',
+      'art.faq.breadcrumb': 'Mortgage FAQ',
+      'art.faq.cta.h2': 'Have More Questions about Your Mortgage?',
+      'art.faq.cta.p': 'Tell us your case and we will answer with real criteria and concrete solutions.',
+      'art.faq.cta.btn': 'Request Free Study →',
+
+      /* euribor-que-es */
+      'art.euribor.tag': 'Euribor · 2026',
+      'art.euribor.title': 'Euribor 2026: What It Is, How It Works<br />and How It Affects Your Mortgage',
+      'art.euribor.meta': 'NortFinance · Financial Advisory · May 2026 · 10 min read',
+      'art.euribor.breadcrumb': 'Euribor 2026',
+      'art.euribor.cta.h2': 'Unsure Between Fixed or Variable Mortgage?',
+      'art.euribor.cta.p': 'We analyse the current Euribor and your profile to recommend the best mortgage option.',
+      'art.euribor.cta.btn': 'Request Free Study →',
+
+      /* hipoteca-no-residente */
+      'art.nores.tag': 'Non-residents · 2026',
+      'art.nores.title': 'Mortgage for Non-residents in Spain:<br />Complete Guide 2026',
+      'art.nores.meta': 'NortFinance · Financial Advisory · May 2026 · 10 min read',
+      'art.nores.breadcrumb': 'Non-resident Mortgage',
+      'art.nores.cta.h2': 'Looking for a Mortgage in Spain as a Non-resident?',
+      'art.nores.cta.p': 'We know the banks that work with non-residents and how to present your application to get approval.',
+      'art.nores.cta.btn': 'Request Free Study →',
+
+      /* mejorar-perfil-hipotecario */
+      'art.perfil.tag': 'Mortgage Profile · 2026',
+      'art.perfil.title': 'How to Improve Your Mortgage Profile<br />so the Bank Says Yes',
+      'art.perfil.meta': 'NortFinance · Financial Advisory · May 2026 · 11 min read',
+      'art.perfil.breadcrumb': 'Improve Mortgage Profile',
+      'art.perfil.cta.h2': 'Want to Improve Your Profile Before Applying?',
+      'art.perfil.cta.p': 'We analyse your profile and give you a concrete action plan to maximise your chances.',
+      'art.perfil.cta.btn': 'Request Free Study →',
+
+      /* hipoteca-barcelona */
+      'art.bcn.tag': 'Barcelona · 2026',
+      'art.bcn.title': 'Mortgage in Barcelona 2026: Guide for<br />Buyers and the Role of the Broker',
+      'art.bcn.meta': 'NortFinance · Financial Advisory · May 2026 · 11 min read',
+      'art.bcn.breadcrumb': 'Barcelona Mortgage',
+      'art.bcn.cta.h2': 'Buying in Barcelona and Need a Mortgage?',
+      'art.bcn.cta.p': 'We are a mortgage broker specialised in the Barcelona market. We accompany you through the entire process.',
+      'art.bcn.cta.btn': 'Request Free Study →',
+
+      /* recursos page — new guide cards */
+      'rec.g7.tag': 'Euribor',
+      'rec.g7.title': 'Euribor 2026: Complete Guide',
+      'rec.g7.desc': 'What Euribor is, how it has evolved and how it affects your variable mortgage. Everything you need to know to make informed decisions.',
+      'rec.g8.tag': 'Non-residents',
+      'rec.g8.title': 'Mortgage for Non-residents',
+      'rec.g8.desc': 'Complete guide for foreigners who want to buy property in Spain: requirements, maximum financing, documentation and best banks.',
+      'rec.g9.tag': 'Strategy',
+      'rec.g9.title': 'Improve Your Mortgage Profile',
+      'rec.g9.desc': 'How to improve your credit score, reduce debts and submit the best possible application so the bank approves your mortgage.',
+      'rec.g10.tag': 'Barcelona',
+      'rec.g10.title': 'Mortgage in Barcelona 2026',
+      'rec.g10.desc': 'Barcelona real estate market, current prices, best neighbourhoods and how a local broker can make all the difference in your process.',
 
       /* ── Contacto page ──────────────────────── */
       'cnt.hero.badge': 'Contact · NortFinance',
