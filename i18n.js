@@ -194,7 +194,7 @@
 
       /* ── Servicios page ─────────────────────── */
       'srv.hero.badge': 'Servicios · NortFinance',
-      'srv.hero.title': 'Soluciones Financieras y<br /><span class="text-gold">Patrimoniales</span><br />de Alto Nivel.',
+      'srv.hero.title': 'Soluciones Financieras y<br /><span class="text-gold">Patrimoniales</span>',
       'srv.hero.desc': 'Ofrecemos un asesoramiento integral, cercano y estratégico. Nos encargamos de todo el proceso para proteger y hacer crecer tu patrimonio.',
       'srv.arch.tag': 'Arquitectura de servicios',
       'srv.arch.title': 'Lo que hacemos <span class="text-gold">por ti</span>',
@@ -516,7 +516,7 @@
 
       /* ── Servicios page ─────────────────────── */
       'srv.hero.badge': 'Serveis · NortFinance',
-      'srv.hero.title': 'Solucions Financeres i<br /><span class="text-gold">Patrimonials</span><br />d\'Alt Nivell.',
+      'srv.hero.title': 'Solucions Financeres i<br /><span class="text-gold">Patrimonials</span>',
       'srv.hero.desc': 'Oferim un assessorament integral, proper i estratègic. Ens encarreguem de tot el procés per protegir i fer créixer el teu patrimoni.',
       'srv.arch.tag': 'Arquitectura de serveis',
       'srv.arch.title': 'El que fem <span class="text-gold">per tu</span>',
