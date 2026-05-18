@@ -996,11 +996,11 @@
   }
 
   function updateSwitcher(lang) {
-    var flagMap = { es: '🇪🇸', ca: '🏴󠁥󠁳󠁣󠁴󠁿', en: '🇬🇧' };
+    var flagMap = { es: '🇪🇸', ca: '<img src="ca-flag.svg" style="width:1.3em;height:.9em;vertical-align:middle;border-radius:1px" alt="CA">', en: '🇬🇧' };
     var codeMap = { es: 'ES', ca: 'CA', en: 'EN' };
     var flagEl = document.getElementById('langCurrentFlag');
     var codeEl = document.getElementById('langCurrentCode');
-    if (flagEl) flagEl.textContent = flagMap[lang] || flagMap.es;
+    if (flagEl) flagEl.innerHTML = flagMap[lang] || flagMap.es;
     if (codeEl) codeEl.textContent = codeMap[lang] || codeMap.es;
     document.querySelectorAll('.lang-option').forEach(function (btn) {
       btn.classList.toggle('lang-option--active', btn.getAttribute('data-lang') === lang);
