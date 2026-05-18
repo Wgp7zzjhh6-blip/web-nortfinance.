@@ -437,7 +437,7 @@
           <li><a href="recursos.html" class="navbar__link" data-i18n="nav.resources">Recursos</a></li>
           <li><a href="contacto.html" class="navbar__link" data-i18n="nav.contact">Contacto</a></li>
         </ul>
-        <a href="#hipo-contacto" class="btn btn--gold navbar__cta" data-i18n="nav.cta">Mi Estudio Gratuito</a>
+        <a href="#" data-estudio class="btn btn--gold navbar__cta" data-i18n="nav.cta">Mi Estudio Gratuito</a>
       </nav>
 
       <div class="lang-dropdown" id="langDropdown">
@@ -478,7 +478,7 @@
               No buscamos la hipoteca más estándar. Buscamos la que encaja con tu vida, tu perfil financiero y tus objetivos a largo plazo. Más de 20 entidades analizadas, una sola estrategia hecha a medida.
             </p>
             <div class="hipo-hero__actions">
-              <a href="#hipo-contacto" class="btn btn--gold btn--lg" data-i18n="hipo.cta1">Mi Estudio Gratuito</a>
+              <a href="#" data-estudio class="btn btn--gold btn--lg" data-i18n="hipo.cta1">Mi Estudio Gratuito</a>
               <a href="#para-quien" class="btn btn--outline btn--lg" data-i18n="hipo.cta2">¿Es para mí? →</a>
             </div>
           </div>
@@ -774,7 +774,7 @@
             La primera llamada es gratuita, sin compromiso y sin letra pequeña. Cuéntanos tu situación y definimos juntos el mejor camino.
           </p>
           <div class="hipo-cta__actions">
-            <a href="mailto:info@nortfinance.com" class="btn btn--gold btn--lg" data-i18n="nav.cta">Mi Estudio Gratuito</a>
+            <a href="#" data-estudio class="btn btn--gold btn--lg" data-i18n="nav.cta">Mi Estudio Gratuito</a>
             <a href="https://wa.me/34600000000" class="btn btn--outline btn--lg" target="_blank" rel="noopener noreferrer" data-i18n="cta.btn2">
               Escríbenos
             </a>
@@ -867,6 +867,14 @@
       </div>
     </div>
   </footer>
+
+  <div id="questModal" class="quest-overlay" aria-modal="true" role="dialog" aria-hidden="true">
+    <div class="quest-dialog">
+      <button class="quest-close" aria-label="Cerrar">×</button>
+      <div class="quest-progress"><div class="quest-progress-bar" id="questProgressBar"></div></div>
+      <div id="questContent"></div>
+    </div>
+  </div>
 
   <script src="i18n.js"></script>
   <script src="script.js"></script>

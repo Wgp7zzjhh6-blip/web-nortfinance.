@@ -370,53 +370,148 @@
     'Comunidad de Madrid','Comunidad Valenciana','Extremadura','Galicia',
     'La Rioja','Melilla','Región de Murcia','Navarra','País Vasco'];
 
-  const SERVICES = [
-    { id: 'nueva_hipoteca',   label: 'Nueva hipoteca' },
-    { id: 'mejorar_hipoteca', label: 'Mejorar hipoteca actual' },
-    { id: 'reunificar_deuda', label: 'Reunificar deuda' },
-    { id: 'otros_servicios',  label: 'Otros servicios' },
-  ];
-
-  const TITULAR_FIELDS = [
-    { key: 'situacion',  label: 'Situación laboral',           placeholder: 'Asalariado/a, Autónomo/a, Funcionario/a...' },
-    { key: 'edad',       label: 'Edad',                        placeholder: 'Ej. 35' },
-    { key: 'ingresos',   label: 'Ingresos mensuales netos',    placeholder: 'Ej. 2.500 €' },
-    { key: 'antiguedad', label: 'Antigüedad laboral',          placeholder: 'Ej. 5 años' },
-    { key: 'pagas',      label: 'Número de pagas anuales',     placeholder: 'Ej. 14' },
-    { key: 'deudas',     label: '¿Tienes deudas activas?', type: 'yn_text', placeholder: 'Importe mensual de las deudas (Ej. 350 €/mes)' },
-  ];
-
-  const BASE_QUESTIONS = {
-    nueva_hipoteca: [
-      { id: 'precio', type: 'options', q: '¿Cuál es el precio aproximado de la vivienda?',
-        opts: ['Menos de 150.000 €', '150.000 – 300.000 €', '300.000 – 500.000 €', 'Más de 500.000 €'] },
-      { id: 'ahorro', type: 'text',   q: '¿Cuánto tienes ahorrado para la entrada?', placeholder: 'Ej. 40.000 €' },
-      { id: 'banco',  type: 'text',   q: '¿Con qué banco trabajas actualmente?', placeholder: 'Ej. BBVA, Santander, CaixaBank...' },
-      { id: 'ccaa',   type: 'select', q: '¿En qué comunidad autónoma está la vivienda?', opts: CCAA },
-      { id: 'num_titulares', type: 'options', q: '¿Cuántos titulares tendrá la hipoteca?',
-        opts: ['1', '2', 'Más de 2'], titulares_trigger: true },
-    ],
-    mejorar_hipoteca: [
-      { id: 'ccaa',   type: 'select', q: '¿En qué comunidad autónoma está la vivienda?', opts: CCAA },
-      { id: 'num_titulares', type: 'options', q: '¿Cuántas personas solicitan la hipoteca?',
-        opts: ['1', '2', 'Más de 2'], titulares_trigger: true },
-    ],
-    reunificar_deuda: [
-      { id: 'tipo_deuda',  type: 'options', q: '¿Qué tipo de deudas tienes?',
-        opts: ['Hipoteca + préstamos', 'Solo préstamos / tarjetas', 'Hipoteca + tarjetas'] },
-      { id: 'total_deuda', type: 'options', q: '¿Cuál es el total aproximado de tu deuda?',
-        opts: ['Menos de 50.000 €', '50.000 – 100.000 €', 'Más de 100.000 €'] },
-      { id: 'vivienda',    type: 'options', q: '¿Tienes vivienda propia?',
-        opts: ['Sí, con hipoteca', 'Sí, sin hipoteca', 'No'] },
-    ],
-    otros_servicios: [
-      { id: 'servicio', type: 'options', q: '¿Qué servicio te interesa?',
-        opts: ['Intermediación inmobiliaria', 'Inversión en Oro', 'Club Privado de Inversores', 'Corredor de Seguros'] },
-    ],
+  const QT = {
+    es: {
+      svc_nueva:'Nueva hipoteca', svc_mejorar:'Mejorar hipoteca actual', svc_reunificar:'Reunificar deuda', svc_otros:'Otros servicios',
+      step_label_svc:'¿En qué podemos ayudarte?', step_q_svc:'¿Qué necesitas?',
+      nav_back:'← Volver', nav_next:'Continuar →',
+      step_of:'Paso {n} de {total}', titular_label:'Titular {n} · Paso {step} de {total}', titular_q:'Datos del Titular {n}',
+      tit_situacion_label:'Situación laboral', tit_situacion_ph:'Asalariado/a, Autónomo/a, Funcionario/a...',
+      tit_edad_label:'Edad', tit_edad_ph:'Ej. 35',
+      tit_ingresos_label:'Ingresos mensuales netos', tit_ingresos_ph:'Ej. 2.500 €',
+      tit_antiguedad_label:'Antigüedad laboral', tit_antiguedad_ph:'Ej. 5 años',
+      tit_pagas_label:'Número de pagas anuales', tit_pagas_ph:'Ej. 14',
+      tit_deudas_label:'¿Tienes deudas activas?', tit_deudas_ph:'Importe mensual de las deudas (Ej. 350 €/mes)',
+      yn_no:'No', yn_si:'Sí', select_ph:'— Selecciona una opción —',
+      q_precio:'¿Cuál es el precio aproximado de la vivienda?',
+      q_ahorro:'¿Cuánto tienes ahorrado para la entrada?', q_ahorro_ph:'Ej. 40.000 €',
+      q_banco:'¿Con qué banco trabajas actualmente?', q_banco_ph:'Ej. BBVA, Santander, CaixaBank...',
+      q_ccaa:'¿En qué comunidad autónoma está la vivienda?',
+      q_tit_nueva:'¿Cuántos titulares tendrá la hipoteca?', q_tit_mejorar:'¿Cuántas personas solicitan la hipoteca?',
+      q_tipo_deuda:'¿Qué tipo de deudas tienes?', q_total_deuda:'¿Cuál es el total aproximado de tu deuda?', q_vivienda:'¿Tienes vivienda propia?',
+      q_servicio:'¿Qué servicio te interesa?',
+      opt_precio:['Menos de 150.000 €','150.000 – 300.000 €','300.000 – 500.000 €','Más de 500.000 €'],
+      opt_tit:['1','2','Más de 2'],
+      opt_deuda:['Hipoteca + préstamos','Solo préstamos / tarjetas','Hipoteca + tarjetas'],
+      opt_total_deuda:['Menos de 50.000 €','50.000 – 100.000 €','Más de 100.000 €'],
+      opt_vivienda:['Sí, con hipoteca','Sí, sin hipoteca','No'],
+      opt_servicio:['Intermediación inmobiliaria','Inversión en Oro','Club Privado de Inversores','Corredor de Seguros'],
+      contact_label:'Último paso', contact_q:'¿Cómo nos ponemos en contacto contigo?',
+      contact_nombre_ph:'Nombre completo', contact_email_ph:'Correo electrónico', contact_tel_ph:'Teléfono',
+      contact_privacy:'He leído y acepto la', contact_privacy_link:'Política de privacidad', contact_book:'Solicitar llamada →',
+    },
+    ca: {
+      svc_nueva:'Nova hipoteca', svc_mejorar:'Millorar hipoteca actual', svc_reunificar:'Reunificar deute', svc_otros:'Altres serveis',
+      step_label_svc:'En què podem ajudar-te?', step_q_svc:'Què necessites?',
+      nav_back:'← Tornar', nav_next:'Continuar →',
+      step_of:'Pas {n} de {total}', titular_label:'Titular {n} · Pas {step} de {total}', titular_q:'Dades del Titular {n}',
+      tit_situacion_label:'Situació laboral', tit_situacion_ph:'Assalariat/a, Autònom/a, Funcionari/a...',
+      tit_edad_label:'Edat', tit_edad_ph:'Ex. 35',
+      tit_ingresos_label:'Ingressos mensuals nets', tit_ingresos_ph:'Ex. 2.500 €',
+      tit_antiguedad_label:'Antiguitat laboral', tit_antiguedad_ph:'Ex. 5 anys',
+      tit_pagas_label:'Nombre de pagues anuals', tit_pagas_ph:'Ex. 14',
+      tit_deudas_label:'Tens deutes actius?', tit_deudas_ph:'Import mensual dels deutes (Ex. 350 €/mes)',
+      yn_no:'No', yn_si:'Sí', select_ph:'— Selecciona una opció —',
+      q_precio:'Quin és el preu aproximat de l\'habitatge?',
+      q_ahorro:'Quant tens estalviat per a l\'entrada?', q_ahorro_ph:'Ex. 40.000 €',
+      q_banco:'Amb quin banc treballes actualment?', q_banco_ph:'Ex. BBVA, Santander, CaixaBank...',
+      q_ccaa:'En quina comunitat autònoma és l\'habitatge?',
+      q_tit_nueva:'Quants titulars tindrà la hipoteca?', q_tit_mejorar:'Quantes persones sol·liciten la hipoteca?',
+      q_tipo_deuda:'Quin tipus de deutes tens?', q_total_deuda:'Quin és el total aproximat del teu deute?', q_vivienda:'Tens habitatge propi?',
+      q_servicio:'Quin servei t\'interessa?',
+      opt_precio:['Menys de 150.000 €','150.000 – 300.000 €','300.000 – 500.000 €','Més de 500.000 €'],
+      opt_tit:['1','2','Més de 2'],
+      opt_deuda:['Hipoteca + préstecs','Només préstecs / targetes','Hipoteca + targetes'],
+      opt_total_deuda:['Menys de 50.000 €','50.000 – 100.000 €','Més de 100.000 €'],
+      opt_vivienda:['Sí, amb hipoteca','Sí, sense hipoteca','No'],
+      opt_servicio:['Intermediació immobiliària','Inversió en Or','Club Privat d\'Inversors','Corredor d\'Assegurances'],
+      contact_label:'Últim pas', contact_q:'Com ens posem en contacte amb tu?',
+      contact_nombre_ph:'Nom complet', contact_email_ph:'Correu electrònic', contact_tel_ph:'Telèfon',
+      contact_privacy:'He llegit i accepto la', contact_privacy_link:'Política de privacitat', contact_book:'Sol·licitar trucada →',
+    },
+    en: {
+      svc_nueva:'New mortgage', svc_mejorar:'Improve current mortgage', svc_reunificar:'Consolidate debt', svc_otros:'Other services',
+      step_label_svc:'How can we help you?', step_q_svc:'What do you need?',
+      nav_back:'← Back', nav_next:'Continue →',
+      step_of:'Step {n} of {total}', titular_label:'Applicant {n} · Step {step} of {total}', titular_q:'Details of Applicant {n}',
+      tit_situacion_label:'Employment status', tit_situacion_ph:'Employed, Self-employed, Civil servant...',
+      tit_edad_label:'Age', tit_edad_ph:'E.g. 35',
+      tit_ingresos_label:'Net monthly income', tit_ingresos_ph:'E.g. €2,500',
+      tit_antiguedad_label:'Employment seniority', tit_antiguedad_ph:'E.g. 5 years',
+      tit_pagas_label:'Number of annual payments', tit_pagas_ph:'E.g. 14',
+      tit_deudas_label:'Do you have active debts?', tit_deudas_ph:'Monthly debt amount (E.g. €350/month)',
+      yn_no:'No', yn_si:'Yes', select_ph:'— Select an option —',
+      q_precio:'What is the approximate price of the property?',
+      q_ahorro:'How much do you have saved for the deposit?', q_ahorro_ph:'E.g. €40,000',
+      q_banco:'Which bank do you currently work with?', q_banco_ph:'E.g. BBVA, Santander, CaixaBank...',
+      q_ccaa:'Which autonomous community is the property in?',
+      q_tit_nueva:'How many applicants will the mortgage have?', q_tit_mejorar:'How many people are applying for the mortgage?',
+      q_tipo_deuda:'What types of debts do you have?', q_total_deuda:'What is the approximate total of your debt?', q_vivienda:'Do you own a property?',
+      q_servicio:'Which service are you interested in?',
+      opt_precio:['Less than €150,000','€150,000 – €300,000','€300,000 – €500,000','More than €500,000'],
+      opt_tit:['1','2','More than 2'],
+      opt_deuda:['Mortgage + loans','Loans / credit cards only','Mortgage + credit cards'],
+      opt_total_deuda:['Less than €50,000','€50,000 – €100,000','More than €100,000'],
+      opt_vivienda:['Yes, with mortgage','Yes, without mortgage','No'],
+      opt_servicio:['Real estate brokerage','Gold investment','Private investors club','Insurance broker'],
+      contact_label:'Last step', contact_q:'How can we contact you?',
+      contact_nombre_ph:'Full name', contact_email_ph:'Email address', contact_tel_ph:'Phone',
+      contact_privacy:'I have read and accept the', contact_privacy_link:'Privacy policy', contact_book:'Request a call →',
+    },
   };
 
+  function t(key) {
+    var lang = 'es';
+    try { lang = localStorage.getItem('nf_lang') || 'es'; } catch(e) {}
+    return (QT[lang] && QT[lang][key] !== undefined ? QT[lang][key] : QT.es[key]) || key;
+  }
+
+  function getServices() {
+    return [
+      { id: 'nueva_hipoteca',   label: t('svc_nueva') },
+      { id: 'mejorar_hipoteca', label: t('svc_mejorar') },
+      { id: 'reunificar_deuda', label: t('svc_reunificar') },
+      { id: 'otros_servicios',  label: t('svc_otros') },
+    ];
+  }
+
+  function getTitularFields() {
+    return [
+      { key: 'situacion',  label: t('tit_situacion_label'), placeholder: t('tit_situacion_ph') },
+      { key: 'edad',       label: t('tit_edad_label'),      placeholder: t('tit_edad_ph') },
+      { key: 'ingresos',   label: t('tit_ingresos_label'),  placeholder: t('tit_ingresos_ph') },
+      { key: 'antiguedad', label: t('tit_antiguedad_label'),placeholder: t('tit_antiguedad_ph') },
+      { key: 'pagas',      label: t('tit_pagas_label'),     placeholder: t('tit_pagas_ph') },
+      { key: 'deudas',     label: t('tit_deudas_label'), type: 'yn_text', placeholder: t('tit_deudas_ph') },
+    ];
+  }
+
+  function getBaseQuestions() {
+    return {
+      nueva_hipoteca: [
+        { id: 'precio', type: 'options', q: t('q_precio'), opts: t('opt_precio') },
+        { id: 'ahorro', type: 'text',   q: t('q_ahorro'), placeholder: t('q_ahorro_ph') },
+        { id: 'banco',  type: 'text',   q: t('q_banco'),  placeholder: t('q_banco_ph') },
+        { id: 'ccaa',   type: 'select', q: t('q_ccaa'),   opts: CCAA },
+        { id: 'num_titulares', type: 'options', q: t('q_tit_nueva'), opts: t('opt_tit'), titulares_trigger: true },
+      ],
+      mejorar_hipoteca: [
+        { id: 'ccaa',   type: 'select', q: t('q_ccaa'),        opts: CCAA },
+        { id: 'num_titulares', type: 'options', q: t('q_tit_mejorar'), opts: t('opt_tit'), titulares_trigger: true },
+      ],
+      reunificar_deuda: [
+        { id: 'tipo_deuda',  type: 'options', q: t('q_tipo_deuda'),  opts: t('opt_deuda') },
+        { id: 'total_deuda', type: 'options', q: t('q_total_deuda'), opts: t('opt_total_deuda') },
+        { id: 'vivienda',    type: 'options', q: t('q_vivienda'),    opts: t('opt_vivienda') },
+      ],
+      otros_servicios: [
+        { id: 'servicio', type: 'options', q: t('q_servicio'), opts: t('opt_servicio') },
+      ],
+    };
+  }
+
   function buildSteps(serviceId, numTitulares) {
-    const base = (BASE_QUESTIONS[serviceId] || []).map(q => Object.assign({}, q));
+    const base = (getBaseQuestions()[serviceId] || []).map(q => Object.assign({}, q));
     if ((serviceId === 'nueva_hipoteca' || serviceId === 'mejorar_hipoteca') && numTitulares > 0) {
       const trigIdx = base.findIndex(s => s.titulares_trigger);
       const titSteps = [];
@@ -470,19 +565,20 @@
 
   function nav(back) {
     return `<div class="quest-nav">
-      ${back ? '<button class="quest-back" id="qBack">← Volver</button>' : '<span></span>'}
-      <button class="quest-next" id="qNext" disabled>Continuar →</button>
+      ${back ? `<button class="quest-back" id="qBack">${t('nav_back')}</button>` : '<span></span>'}
+      <button class="quest-next" id="qNext" disabled>${t('nav_next')}</button>
     </div>`;
   }
 
   function renderService() {
+    const svcs = getServices();
     content.innerHTML = `
-      <div class="quest-step-label">¿En qué podemos ayudarte?</div>
-      <div class="quest-question">¿Qué necesitas?</div>
+      <div class="quest-step-label">${t('step_label_svc')}</div>
+      <div class="quest-question">${t('step_q_svc')}</div>
       <div class="quest-options">
-        ${SERVICES.map(s => `<button class="quest-option${service === s.id ? ' selected' : ''}" data-svc="${s.id}">${s.label}</button>`).join('')}
+        ${svcs.map(s => `<button class="quest-option${service === s.id ? ' selected' : ''}" data-svc="${s.id}">${s.label}</button>`).join('')}
       </div>
-      <div class="quest-nav"><span></span><button class="quest-next" id="qNext"${!service ? ' disabled' : ''}>Continuar →</button></div>`;
+      <div class="quest-nav"><span></span><button class="quest-next" id="qNext"${!service ? ' disabled' : ''}>${t('nav_next')}</button></div>`;
     content.querySelectorAll('.quest-option').forEach(b => b.addEventListener('click', () => {
       service = b.dataset.svc;
       content.querySelectorAll('.quest-option').forEach(x => x.classList.remove('selected'));
@@ -499,7 +595,7 @@
   function renderOptions(s) {
     const sel = answers[s.id];
     content.innerHTML = `
-      <div class="quest-step-label">Paso ${step + 1} de ${steps.length - 1}</div>
+      <div class="quest-step-label">${t('step_of').replace('{n}', step + 1).replace('{total}', steps.length - 1)}</div>
       <div class="quest-question">${s.q}</div>
       <div class="quest-options">
         ${s.opts.map(o => `<button class="quest-option${sel === o ? ' selected' : ''}" data-val="${o}">${o}</button>`).join('')}
@@ -530,7 +626,7 @@
   function renderText(s) {
     const val = answers[s.id] || '';
     content.innerHTML = `
-      <div class="quest-step-label">Paso ${step + 1} de ${steps.length - 1}</div>
+      <div class="quest-step-label">${t('step_of').replace('{n}', step + 1).replace('{total}', steps.length - 1)}</div>
       <div class="quest-question">${s.q}</div>
       <div class="quest-text-wrap">
         <input class="quest-input" id="qIn" type="text" placeholder="${s.placeholder || ''}" value="${val}" autocomplete="off" />
@@ -550,11 +646,11 @@
   function renderSelect(s) {
     const sel = answers[s.id] || '';
     content.innerHTML = `
-      <div class="quest-step-label">Paso ${step + 1} de ${steps.length - 1}</div>
+      <div class="quest-step-label">${t('step_of').replace('{n}', step + 1).replace('{total}', steps.length - 1)}</div>
       <div class="quest-question">${s.q}</div>
       <div class="quest-select-wrap">
         <select class="quest-select" id="qSel">
-          <option value="">— Selecciona una opción —</option>
+          <option value="">${t('select_ph')}</option>
           ${s.opts.map(o => `<option value="${o}"${sel === o ? ' selected' : ''}>${o}</option>`).join('')}
         </select>
       </div>
@@ -570,11 +666,12 @@
 
   function renderTitularForm(s) {
     const val = answers[s.id] || {};
-    const regularFields = TITULAR_FIELDS.filter(f => f.type !== 'yn_text');
-    const ynFields      = TITULAR_FIELDS.filter(f => f.type === 'yn_text');
+    const titFields = getTitularFields();
+    const regularFields = titFields.filter(f => f.type !== 'yn_text');
+    const ynFields      = titFields.filter(f => f.type === 'yn_text');
     content.innerHTML = `
-      <div class="quest-step-label">Titular ${s.titular_num} · Paso ${step + 1} de ${steps.length - 1}</div>
-      <div class="quest-question">Datos del Titular ${s.titular_num}</div>
+      <div class="quest-step-label">${t('titular_label').replace('{n}', s.titular_num).replace('{step}', step + 1).replace('{total}', steps.length - 1)}</div>
+      <div class="quest-question">${t('titular_q').replace('{n}', s.titular_num)}</div>
       <div class="quest-titular-form">
         ${regularFields.map(f => `
           <div class="quest-field">
@@ -585,8 +682,8 @@
           <div class="quest-field">
             <label class="quest-label">${f.label}</label>
             <div class="quest-yn">
-              <button type="button" class="quest-yn-btn${val[f.key+'_yn']==='no'?' active':''}" data-yn-field="${f.key}" data-yn="no">No</button>
-              <button type="button" class="quest-yn-btn${val[f.key+'_yn']==='si'?' active':''}" data-yn-field="${f.key}" data-yn="si">Sí</button>
+              <button type="button" class="quest-yn-btn${val[f.key+'_yn']==='no'?' active':''}" data-yn-field="${f.key}" data-yn="no">${t('yn_no')}</button>
+              <button type="button" class="quest-yn-btn${val[f.key+'_yn']==='si'?' active':''}" data-yn-field="${f.key}" data-yn="si">${t('yn_si')}</button>
             </div>
             <input class="quest-input" data-key="${f.key}_importe" type="text" placeholder="${f.placeholder}"
                    value="${(val[f.key+'_importe']||'').replace(/"/g,'&quot;')}"
@@ -632,20 +729,20 @@
     progressBar.style.width = '100%';
     const a = answers._contact || {};
     content.innerHTML = `
-      <div class="quest-step-label">Último paso</div>
-      <div class="quest-question">¿Cómo nos ponemos en contacto contigo?</div>
+      <div class="quest-step-label">${t('contact_label')}</div>
+      <div class="quest-question">${t('contact_q')}</div>
       <div class="quest-contact-form">
-        <input class="quest-input" id="qNombre" type="text"  placeholder="Nombre completo"    value="${a.nombre   || ''}" />
-        <input class="quest-input" id="qEmail"  type="email" placeholder="Correo electrónico" value="${a.email    || ''}" />
-        <input class="quest-input" id="qTel"    type="tel"   placeholder="Teléfono"            value="${a.telefono || ''}" />
+        <input class="quest-input" id="qNombre" type="text"  placeholder="${t('contact_nombre_ph')}" value="${a.nombre   || ''}" />
+        <input class="quest-input" id="qEmail"  type="email" placeholder="${t('contact_email_ph')}"  value="${a.email    || ''}" />
+        <input class="quest-input" id="qTel"    type="tel"   placeholder="${t('contact_tel_ph')}"    value="${a.telefono || ''}" />
       </div>
       <label class="quest-privacy-check">
         <input type="checkbox" id="qPrivacy" />
-        <span>He leído y acepto la <a href="privacidad.html" target="_blank" rel="noopener">Política de privacidad</a></span>
+        <span>${t('contact_privacy')} <a href="privacidad.html" target="_blank" rel="noopener">${t('contact_privacy_link')}</a></span>
       </label>
       <div class="quest-nav" style="flex-direction:column;gap:12px;align-items:stretch;margin-top:16px">
-        <button class="quest-book-btn" id="qBook" disabled>Solicitar llamada →</button>
-        <button class="quest-back" id="qBack" style="align-self:flex-start">← Volver</button>
+        <button class="quest-book-btn" id="qBook" disabled>${t('contact_book')}</button>
+        <button class="quest-back" id="qBack" style="align-self:flex-start">${t('nav_back')}</button>
       </div>`;
     const nombre  = content.querySelector('#qNombre');
     const email   = content.querySelector('#qEmail');
@@ -684,7 +781,7 @@
           payload[key] = answers[key];
         }
       });
-      const serviceLabel = (SERVICES.find(s => s.id === service) || {}).label || service;
+      const serviceLabel = (getServices().find(s => s.id === service) || {}).label || service;
       payload._subject = `Lead NortFinance · ${payload.nombre} · ${serviceLabel}`;
       payload._replyto = payload.email;
       fetch('https://formspree.io/f/xrejngqv', {
