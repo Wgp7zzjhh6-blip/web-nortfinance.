@@ -586,6 +586,34 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
   50%       { opacity: 0.35; }
 }
 
+/* Shimmer on all page hero badges */
+.hipo-hero__badge,
+.srv-hero__badge,
+.rec-hero__badge,
+.cnt-hero__badge {
+  position: relative;
+  overflow: hidden;
+}
+.hipo-hero__badge::after,
+.srv-hero__badge::after,
+.rec-hero__badge::after,
+.cnt-hero__badge::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.1) 50%, transparent 100%);
+  background-size: 200% auto;
+  animation: shimmer 4s linear infinite;
+  pointer-events: none;
+}
+
+/* Pulse dot on all page hero badge dots */
+.hipo-hero__badge-dot,
+.rec-hero__badge-dot,
+.cnt-hero__badge-dot {
+  animation: pulse-dot 3s ease infinite;
+}
+
 /* Title */
 .hero__title {
   font-family: 'Cormorant Garamond', Georgia, serif;
