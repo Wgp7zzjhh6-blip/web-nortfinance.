@@ -413,6 +413,30 @@
       'rec.g10.tag': 'Barcelona',
       'rec.g10.title': 'Hipoteca en Barcelona 2026',
       'rec.g10.desc': 'Mercado inmobiliario barcelonés, precios actuales, mejores barrios y cómo un broker local puede marcar la diferencia en tu proceso.',
+      'rec.g11.tag': 'Segunda Vivienda',
+      'rec.g11.title': 'Hipoteca Segunda Vivienda',
+      'rec.g11.desc': 'Financiación máxima del 70–75%, diferencias fiscales con la vivienda habitual y cómo acceder a las mejores condiciones en una operación más exigente.',
+      'rec.g12.tag': 'Cómo Funciona',
+      'rec.g12.title': 'Cómo Trabaja un Broker',
+      'rec.g12.desc': 'Qué hace un broker hipotecario paso a paso, cuándo cobra (solo en el momento de la firma) y por qué puede conseguirte mejores condiciones que el banco directo.',
+
+      /* ── Article: Segunda Vivienda ─────────── */
+      'art.seg.tag': 'Segunda Vivienda · 2026',
+      'art.seg.title': 'Hipoteca para Segunda Vivienda:<br />Requisitos y Diferencias con la Vivienda Habitual',
+      'art.seg.meta': 'NortFinance · Asesoría Financiera · Mayo 2026 · 10 min de lectura',
+      'art.seg.breadcrumb': 'Hipoteca Segunda Vivienda',
+      'art.seg.cta.h2': '¿Pensando en Comprar una Segunda Vivienda?',
+      'art.seg.cta.p': 'Analizamos tu capacidad financiera, te orientamos sobre el porcentaje de financiación alcanzable y buscamos el banco que mejores condiciones te ofrece para tu segunda residencia.',
+      'art.seg.cta.btn': 'Solicitar Estudio Gratuito →',
+
+      /* ── Article: Broker Hipotecario ───────── */
+      'art.broker.tag': 'Cómo Funciona · 2026',
+      'art.broker.title': 'Cómo Funciona un Broker Hipotecario:<br />Qué Hace, Cuánto Cobra y Por Qué Usarlo',
+      'art.broker.meta': 'NortFinance · Asesoría Financiera · Mayo 2026 · 9 min de lectura',
+      'art.broker.breadcrumb': 'Cómo Funciona un Broker Hipotecario',
+      'art.broker.cta.h2': '¿Quieres Saber Qué Hipoteca Puedes Conseguir?',
+      'art.broker.cta.p': 'Primera reunión gratuita y sin compromiso. Te analizamos, te orientamos y, si decides avanzar, gestionamos tu hipoteca de principio a fin. Sin hipoteca, sin honorarios.',
+      'art.broker.cta.btn': 'Solicitar Estudio Gratuito →',
 
       /* ── Contacto page ──────────────────────── */
       'cnt.hero.badge': 'Contacto · NortFinance',
@@ -840,6 +864,30 @@
       'rec.g10.tag': 'Barcelona',
       'rec.g10.title': 'Hipoteca a Barcelona 2026',
       'rec.g10.desc': "Mercat immobiliari barceloní, preus actuals, millors barris i com un broker local pot marcar la diferència en el teu procés.",
+      'rec.g11.tag': 'Segona Residència',
+      'rec.g11.title': 'Hipoteca Segona Residència',
+      'rec.g11.desc': "Finançament màxim del 70–75%, diferències fiscals amb l'habitatge habitual i com accedir a les millors condicions en una operació més exigent.",
+      'rec.g12.tag': 'Com Funciona',
+      'rec.g12.title': 'Com Treballa un Broker',
+      'rec.g12.desc': "Què fa un broker hipotecari pas a pas, quan cobra (només en el moment de la signatura) i per què pot aconseguir-te millors condicions que el banc directe.",
+
+      /* ── Article: Segona Residència ────────── */
+      'art.seg.tag': 'Segona Residència · 2026',
+      'art.seg.title': "Hipoteca per a Segona Residència:<br />Requisits i Diferències amb l'Habitatge Habitual",
+      'art.seg.meta': 'NortFinance · Assessoria Financera · Maig 2026 · 10 min de lectura',
+      'art.seg.breadcrumb': 'Hipoteca Segona Residència',
+      'art.seg.cta.h2': 'Pensant en Comprar una Segona Residència?',
+      'art.seg.cta.p': "Analitzem la teva capacitat financera, t'orientem sobre el percentatge de finançament assolible i busquem el banc que millors condicions t'ofereix per a la teva segona residència.",
+      'art.seg.cta.btn': 'Sol·licitar Estudi Gratuït →',
+
+      /* ── Article: Broker Hipotecari ─────────── */
+      'art.broker.tag': 'Com Funciona · 2026',
+      'art.broker.title': "Com Funciona un Broker Hipotecari:<br />Què Fa, Quant Cobra i Per Què Usar-lo",
+      'art.broker.meta': 'NortFinance · Assessoria Financera · Maig 2026 · 9 min de lectura',
+      'art.broker.breadcrumb': 'Com Funciona un Broker Hipotecari',
+      'art.broker.cta.h2': 'Vols Saber Quina Hipoteca Pots Aconseguir?',
+      'art.broker.cta.p': 'Primera reunió gratuïta i sense compromís. T\'analitzem, t\'orientem i, si decideixes avançar, gestionem la teva hipoteca de principi a fi. Sense hipoteca, sense honoraris.',
+      'art.broker.cta.btn': 'Sol·licitar Estudi Gratuït →',
 
       /* ── Contacto page ──────────────────────── */
       'cnt.hero.badge': 'Contacte · NortFinance',
@@ -1267,6 +1315,30 @@
       'rec.g10.tag': 'Barcelona',
       'rec.g10.title': 'Mortgage in Barcelona 2026',
       'rec.g10.desc': 'Barcelona real estate market, current prices, best neighbourhoods and how a local broker can make all the difference in your process.',
+      'rec.g11.tag': 'Second Home',
+      'rec.g11.title': 'Second Home Mortgage',
+      'rec.g11.desc': 'Maximum financing of 70–75%, fiscal differences with primary residence and how to access the best conditions in a more demanding operation.',
+      'rec.g12.tag': 'How It Works',
+      'rec.g12.title': 'How a Broker Works',
+      'rec.g12.desc': 'What a mortgage broker does step by step, when they charge (only at signing) and why they can get you better conditions than going directly to the bank.',
+
+      /* ── Article: Second Home ───────────────── */
+      'art.seg.tag': 'Second Home · 2026',
+      'art.seg.title': 'Mortgage for a Second Home:<br />Requirements and Differences from Primary Residence',
+      'art.seg.meta': 'NortFinance · Financial Advisory · May 2026 · 10 min read',
+      'art.seg.breadcrumb': 'Second Home Mortgage',
+      'art.seg.cta.h2': 'Thinking About Buying a Second Home?',
+      'art.seg.cta.p': 'We analyse your financial capacity, guide you on achievable financing percentages and find the bank offering the best conditions for your second property.',
+      'art.seg.cta.btn': 'Request Free Study →',
+
+      /* ── Article: Mortgage Broker ───────────── */
+      'art.broker.tag': 'How It Works · 2026',
+      'art.broker.title': 'How a Mortgage Broker Works:<br />What They Do, How Much They Charge and Why Use One',
+      'art.broker.meta': 'NortFinance · Financial Advisory · May 2026 · 9 min read',
+      'art.broker.breadcrumb': 'How a Mortgage Broker Works',
+      'art.broker.cta.h2': 'Want to Know What Mortgage You Can Get?',
+      'art.broker.cta.p': 'Free first meeting with no commitment. We analyse your profile, guide you and, if you decide to proceed, manage your mortgage from start to finish. No mortgage, no fees.',
+      'art.broker.cta.btn': 'Request Free Study →',
 
       /* ── Contacto page ──────────────────────── */
       'cnt.hero.badge': 'Contact · NortFinance',

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="200" viewBox="0 0 600 200">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap');
+      .logo-text { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; letter-spacing: 8px; }
+    </style>
+  </defs>
+  <rect width="600" height="200" fill="#050505"/>
+  <text x="300" y="120" class="logo-text" text-anchor="middle">
+    <tspan fill="#ffffff">Nort</tspan><tspan fill="#D4AF37">Finance</tspan>
+  </text>
+</svg>

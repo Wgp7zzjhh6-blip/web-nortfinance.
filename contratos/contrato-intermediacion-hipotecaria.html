@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contrato de Intermediación en Operaciones de Crédito — NortFinance</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Georgia', serif;
+    font-size: 11pt;
+    color: #1a1a1a;
+    background: #f0ede8;
+    padding: 40px 20px;
+  }
+
+  .page {
+    background: #fff;
+    max-width: 210mm;
+    margin: 0 auto 40px;
+    padding: 28mm 24mm 24mm;
+    box-shadow: 0 4px 40px rgba(0,0,0,.18);
+    position: relative;
+  }
+
+  /* ── Header ── */
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-bottom: 2px solid #C5A040;
+    padding-bottom: 18px;
+    margin-bottom: 26px;
+  }
+  .header-brand { display: flex; flex-direction: column; gap: 4px; }
+  .header-brand .brand-name {
+    font-family: 'Palatino Linotype', 'Palatino', serif;
+    font-size: 22pt;
+    font-weight: 700;
+    letter-spacing: .04em;
+    color: #111;
+  }
+  .header-brand .brand-tagline {
+    font-family: 'Arial', sans-serif;
+    font-size: 8pt;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #888;
+  }
+  .header-ref {
+    text-align: right;
+    font-family: 'Arial', sans-serif;
+    font-size: 8.5pt;
+    color: #999;
+    line-height: 1.6;
+  }
+  .header-ref strong { color: #555; }
+
+  /* ── Title block ── */
+  .doc-title {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .doc-title h1 {
+    font-family: 'Palatino Linotype', 'Palatino', serif;
+    font-size: 15pt;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #111;
+    margin-bottom: 6px;
+  }
+  .doc-title .subtitle {
+    font-family: 'Arial', sans-serif;
+    font-size: 9pt;
+    color: #777;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── Parties block ── */
+  .parties {
+    background: #faf8f4;
+    border-left: 3px solid #C5A040;
+    padding: 18px 20px;
+    margin-bottom: 28px;
+  }
+  .parties h2 {
+    font-family: 'Arial', sans-serif;
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: #C5A040;
+    margin-bottom: 14px;
+  }
+  .party {
+    margin-bottom: 16px;
+    line-height: 1.7;
+    font-size: 10.5pt;
+  }
+  .party:last-child { margin-bottom: 0; }
+  .party-role {
+    font-family: 'Arial', sans-serif;
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #555;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* ── Clause sections ── */
+  .section {
+    margin-bottom: 22px;
+  }
+  .section-title {
+    font-family: 'Arial', sans-serif;
+    font-size: 9pt;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #333;
+    border-bottom: 1px solid #e0d9cc;
+    padding-bottom: 5px;
+    margin-bottom: 12px;
+  }
+  .section-title .num {
+    color: #C5A040;
+    margin-right: 6px;
+  }
+  .section p, .section li {
+    font-size: 10.5pt;
+    line-height: 1.75;
+    color: #2a2a2a;
+    margin-bottom: 8px;
+  }
+  .section ol, .section ul {
+    padding-left: 22px;
+    margin-bottom: 8px;
+  }
+  .section li { margin-bottom: 5px; }
+
+  /* ── Highlight box ── */
+  .highlight-box {
+    background: #fdf6e3;
+    border: 1px solid #e8d48a;
+    border-radius: 3px;
+    padding: 14px 16px;
+    margin: 12px 0;
+    font-size: 10.5pt;
+    line-height: 1.7;
+  }
+  .highlight-box .label {
+    font-family: 'Arial', sans-serif;
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #b8940a;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* ── Fee box ── */
+  .fee-box {
+    border: 2px solid #C5A040;
+    border-radius: 3px;
+    padding: 18px 20px;
+    margin: 14px 0;
+    text-align: center;
+  }
+  .fee-box .fee-label {
+    font-family: 'Arial', sans-serif;
+    font-size: 8pt;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 8px;
+  }
+  .fee-box .fee-amount {
+    font-family: 'Palatino Linotype', 'Palatino', serif;
+    font-size: 26pt;
+    font-weight: 700;
+    color: #111;
+    letter-spacing: .02em;
+  }
+  .fee-box .fee-words {
+    font-size: 10pt;
+    color: #555;
+    margin-top: 4px;
+    font-style: italic;
+  }
+  .fee-box .fee-note {
+    margin-top: 10px;
+    font-family: 'Arial', sans-serif;
+    font-size: 9pt;
+    color: #666;
+  }
+
+  /* ── Field (fillable) ── */
+  .field {
+    display: inline-block;
+    border-bottom: 1.5px solid #999;
+    min-width: 140px;
+    margin: 0 3px;
+    padding: 0 4px;
+    color: #333;
+  }
+  .field--long { min-width: 220px; }
+  .field--short { min-width: 80px; }
+
+  /* ── Signature block ── */
+  .signature-section {
+    margin-top: 36px;
+    page-break-inside: avoid;
+  }
+  .signature-section .sig-location {
+    font-size: 10.5pt;
+    margin-bottom: 30px;
+    color: #555;
+  }
+  .sig-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 10px;
+  }
+  .sig-block { display: flex; flex-direction: column; gap: 6px; }
+  .sig-block .sig-title {
+    font-family: 'Arial', sans-serif;
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #C5A040;
+    margin-bottom: 6px;
+  }
+  .sig-line {
+    border-bottom: 1.5px solid #333;
+    height: 52px;
+    margin-bottom: 8px;
+  }
+  .sig-block p {
+    font-size: 9.5pt;
+    line-height: 1.6;
+    color: #444;
+  }
+  .sig-block p.label {
+    font-family: 'Arial', sans-serif;
+    font-size: 8pt;
+    color: #888;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  /* ── Footer ── */
+  .doc-footer {
+    margin-top: 36px;
+    border-top: 1px solid #e0d9cc;
+    padding-top: 12px;
+    font-family: 'Arial', sans-serif;
+    font-size: 8pt;
+    color: #aaa;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    border: none;
+    border-top: 1px dashed #ddd;
+    margin: 20px 0;
+  }
+
+  /* ── No-pay banner ── */
+  .no-pay {
+    background: #f0faf0;
+    border: 1px solid #99cc88;
+    border-radius: 3px;
+    padding: 12px 16px;
+    margin: 10px 0;
+    font-size: 10pt;
+    line-height: 1.7;
+    color: #2a5a20;
+  }
+  .no-pay strong { font-size: 10.5pt; }
+
+  /* ── Print ── */
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; margin: 0 auto; padding: 18mm 20mm 18mm; }
+    .no-print { display: none; }
+    @page { size: A4; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ PRINT BUTTON (only visible on screen) ══ -->
+<div class="no-print" style="max-width:210mm;margin:0 auto 16px;display:flex;gap:12px;align-items:center">
+  <button onclick="window.print()" style="background:#C5A040;border:none;color:#fff;font-family:Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;padding:10px 24px;cursor:pointer;border-radius:3px;text-transform:uppercase">
+    Guardar / Imprimir PDF
+  </button>
+  <span style="font-family:Arial,sans-serif;font-size:11px;color:#888">Rellenar los campos antes de imprimir · Los campos subrayados son editables en pantalla</span>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--               PÁGINA 1                    -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-brand">
+      <span class="brand-name">NortFinance</span>
+      <span class="brand-tagline">Asesoría Financiera · Barcelona</span>
+    </div>
+    <div class="header-ref">
+      <strong>Ref. contrato:</strong> NF-HIP-<span class="field field--short" contenteditable="true">____</span>/<span class="field field--short" contenteditable="true">20__</span><br/>
+      <strong>Fecha:</strong> <span class="field" contenteditable="true">____ de ______________ de 20____</span>
+    </div>
+  </div>
+
+  <!-- Title -->
+  <div class="doc-title">
+    <h1>Contrato de Intermediación en Operaciones de Crédito</h1>
+    <span class="subtitle">Intermediación hipotecaria · Ley 5/2019, de 15 de marzo</span>
+  </div>
+
+  <!-- Parties -->
+  <div class="parties">
+    <h2>Las Partes</h2>
+    <div class="party">
+      <span class="party-role">El Intermediario</span>
+      Don <strong>Javier de Vilar Postigo</strong>, con DNI <strong>38.096.980X</strong>, mayor de edad, con domicilio en Barcelona, actuando en nombre y representación de <strong>NORTFINANCE</strong> (en adelante, <em>"el Intermediario"</em>).
+    </div>
+    <div class="party">
+      <span class="party-role">El Cliente</span>
+      Don/Doña <span class="field field--long" contenteditable="true">Nombre completo del cliente</span>, con DNI/NIE <span class="field" contenteditable="true">__________</span>, mayor de edad, con domicilio en <span class="field field--long" contenteditable="true">Dirección completa</span>, teléfono <span class="field" contenteditable="true">__________</span>, correo electrónico <span class="field field--long" contenteditable="true">__________________</span> (en adelante, <em>"el Cliente"</em>).
+      <br/><br/>
+      <em>En caso de dos titulares:</em> y Don/Doña <span class="field field--long" contenteditable="true">Nombre 2º titular (si aplica)</span>, con DNI/NIE <span class="field" contenteditable="true">__________</span>.
+    </div>
+  </div>
+
+  <p style="font-size:10.5pt;line-height:1.75;margin-bottom:24px;">Reconociéndose mutuamente capacidad legal suficiente para contratar y obligarse, <strong>acuerdan suscribir el presente Contrato de Intermediación en Operaciones de Crédito</strong>, al amparo de la <strong>Ley 5/2019, de 15 de marzo, reguladora de los contratos de crédito inmobiliario</strong>, de acuerdo con las siguientes cláusulas:</p>
+
+  <!-- CLÁUSULA 1 -->
+  <div class="section">
+    <div class="section-title"><span class="num">I.</span> Objeto del Contrato</div>
+    <p>El presente contrato tiene por objeto la prestación por parte de NORTFINANCE de servicios de <strong>intermediación financiera</strong> con el fin de obtener la mejor oferta de crédito hipotecario disponible en el mercado para la siguiente operación:</p>
+    <div class="highlight-box">
+      <span class="label">Operación objeto del contrato</span>
+      Tipo de operación: <span class="field" contenteditable="true">Nueva hipoteca / Subrogación / Reunificación de deuda</span><br/>
+      Inmueble (si aplica): <span class="field field--long" contenteditable="true">Dirección del inmueble o "pendiente de selección"</span><br/>
+      Importe de financiación estimado: <span class="field" contenteditable="true">_____________ €</span>
+    </div>
+    <p>Los servicios incluidos son:</p>
+    <ol>
+      <li>Análisis personalizado de la situación económica y financiera del Cliente.</li>
+      <li>Estudio de mercado y comparativa de productos hipotecarios disponibles.</li>
+      <li>Presentación del perfil del Cliente ante las entidades financieras seleccionadas.</li>
+      <li>Negociación activa de condiciones (tipo de interés, plazo, comisiones, vinculaciones) en beneficio del Cliente.</li>
+      <li>Gestión integral del expediente hasta la firma ante Notario.</li>
+      <li>Asesoramiento en la revisión de la FEIN, FIAE y demás documentación precontractual obligatoria.</li>
+      <li>Acompañamiento y soporte durante todo el proceso.</li>
+    </ol>
+  </div>
+
+  <!-- CLÁUSULA 2 -->
+  <div class="section">
+    <div class="section-title"><span class="num">II.</span> Obligaciones de NortFinance</div>
+    <p>NORTFINANCE se compromete a:</p>
+    <ol>
+      <li>Actuar en todo momento en el <strong>mejor interés del Cliente</strong>, con diligencia, transparencia e independencia.</li>
+      <li>Presentar la operación a las entidades financieras que, a su criterio profesional, ofrezcan las condiciones más ventajosas.</li>
+      <li>Mantener al Cliente informado del estado de su expediente de forma periódica y proactiva.</li>
+      <li>Gestionar la documentación con total confidencialidad y conforme a la normativa de protección de datos.</li>
+      <li>No recibir remuneración alguna de las entidades financieras en relación con la presente operación que pueda generar conflicto de interés.</li>
+      <li>Informar al Cliente de forma clara y comprensible de todas las ofertas recibidas.</li>
+    </ol>
+    <p>NORTFINANCE actúa como <strong>intermediario independiente</strong>. La decisión de conceder o denegar el crédito corresponde exclusivamente a la entidad financiera.</p>
+  </div>
+
+  <!-- CLÁUSULA 3 -->
+  <div class="section">
+    <div class="section-title"><span class="num">III.</span> Obligaciones del Cliente</div>
+    <p>El Cliente se compromete a:</p>
+    <ol>
+      <li>Facilitar a NORTFINANCE toda la documentación e información requerida de forma <strong>veraz, completa y actualizada</strong>.</li>
+      <li>Comunicar de inmediato cualquier cambio en su situación económica, laboral o personal que pueda afectar a la operación.</li>
+      <li>No iniciar gestiones paralelas con entidades financieras para la misma operación sin comunicárselo previamente a NORTFINANCE, salvo acuerdo expreso.</li>
+      <li>Responder con diligencia a los requerimientos de documentación e información de NORTFINANCE en los plazos indicados.</li>
+      <li>Autorizar expresamente a NORTFINANCE a compartir sus datos con las entidades financieras necesarias para la gestión del expediente.</li>
+    </ol>
+  </div>
+
+</div><!-- /page 1 -->
+
+<!-- ══════════════════════════════════════════ -->
+<!--               PÁGINA 2                    -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page">
+
+  <!-- CLÁUSULA 4 - Honorarios -->
+  <div class="section">
+    <div class="section-title"><span class="num">IV.</span> Honorarios y Forma de Pago</div>
+
+    <div class="fee-box">
+      <div class="fee-label">Honorarios pactados</div>
+      <div class="fee-amount"><span contenteditable="true" style="border-bottom:2px solid #C5A040;min-width:160px;display:inline-block;padding:0 8px">______,00 €</span></div>
+      <div class="fee-words">(<span contenteditable="true">______________________________________________ euros</span>)</div>
+      <div class="fee-note">Exento de IVA — art. 20.Uno.18º Ley 37/1992 del IVA</div>
+    </div>
+
+    <p>El pago se realizará <strong>en un único importe, en el momento de la firma del préstamo hipotecario ante Notario</strong>, mediante transferencia bancaria a la cuenta que NORTFINANCE indique, con carácter previo o simultáneo al otorgamiento de la escritura.</p>
+
+    <div class="no-pay">
+      <strong>Política "Sin hipoteca, sin honorarios":</strong> Si la operación no llegara a formalizarse por causas ajenas a la voluntad del Cliente (denegación bancaria, circunstancias sobrevenidas del inmueble, etc.), <strong>no se devengará ningún honorario</strong>. El Cliente no pagará nada si no se consigue resultado.
+    </div>
+
+    <p>En caso de que el Cliente desista voluntariamente de la operación <em>después</em> de haber recibido una oferta vinculante en las condiciones pactadas, NORTFINANCE podrá reclamar hasta el <strong>20 % de los honorarios</strong> acordados en concepto de gestión y trabajos efectivamente realizados, previa justificación detallada.</p>
+
+    <div class="highlight-box">
+      <span class="label">Exención de IVA</span>
+      Los honorarios del presente contrato están <strong>exentos de IVA</strong> de conformidad con el artículo <strong>20.Uno.18.º de la Ley 37/1992, de 28 de diciembre, del Impuesto sobre el Valor Añadido</strong>, en la medida en que los servicios de intermediación en la concesión de créditos constituyen operaciones financieras expresamente exentas.
+    </div>
+  </div>
+
+  <!-- CLÁUSULA 5 -->
+  <div class="section">
+    <div class="section-title"><span class="num">V.</span> Duración del Contrato</div>
+    <p>El presente contrato tendrá una duración de <strong>seis (6) meses</strong> a partir de la fecha de su firma, prorrogable de mutuo acuerdo por escrito.</p>
+    <p>El contrato se extinguirá automáticamente por la formalización del préstamo hipotecario, por el transcurso del plazo sin resultado, por renuncia escrita de cualquiera de las partes, o por incumplimiento grave de sus obligaciones.</p>
+  </div>
+
+  <!-- CLÁUSULA 6 -->
+  <div class="section">
+    <div class="section-title"><span class="num">VI.</span> Derecho de Desistimiento del Cliente</div>
+    <p>El Cliente podrá desistir del presente contrato en un plazo de <strong>14 días naturales</strong> desde la fecha de su firma, sin necesidad de justificación y sin coste alguno, ejerciendo su derecho mediante comunicación escrita o por correo electrónico a NORTFINANCE.</p>
+    <p>Transcurrido dicho plazo sin que el Cliente haya ejercido el desistimiento, el contrato desplegará plenos efectos.</p>
+  </div>
+
+  <!-- CLÁUSULA 7 -->
+  <div class="section">
+    <div class="section-title"><span class="num">VII.</span> Confidencialidad</div>
+    <p>Ambas partes se obligan a mantener la más estricta confidencialidad sobre la información intercambiada en el marco del presente contrato y a no divulgarla a terceros sin consentimiento expreso de la otra parte, salvo obligación legal. Esta obligación se mantendrá dos (2) años tras la extinción del contrato.</p>
+  </div>
+
+  <!-- CLÁUSULA 8 -->
+  <div class="section">
+    <div class="section-title"><span class="num">VIII.</span> Protección de Datos Personales</div>
+    <p>En cumplimiento del <strong>Reglamento (UE) 2016/679 (RGPD)</strong> y la <strong>Ley Orgánica 3/2018 (LOPDGDD)</strong>, se informa al Cliente:</p>
+    <ul>
+      <li><strong>Responsable:</strong> NORTFINANCE, representada por Javier de Vilar Postigo.</li>
+      <li><strong>Finalidad:</strong> Gestión de la intermediación contratada y comunicación de datos a entidades financieras para la obtención de ofertas de crédito.</li>
+      <li><strong>Base jurídica:</strong> Ejecución del contrato y consentimiento expreso.</li>
+      <li><strong>Cesión de datos:</strong> Los datos del Cliente serán compartidos exclusivamente con entidades financieras en el contexto de la presente operación.</li>
+      <li><strong>Derechos:</strong> El Cliente puede ejercer sus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a <strong>info@nortfinance.com</strong>.</li>
+      <li><strong>Plazo de conservación:</strong> Durante la relación contractual y el tiempo legalmente exigido tras su extinción.</li>
+    </ul>
+    <p>El Cliente presta su consentimiento expreso al tratamiento de sus datos para las finalidades indicadas mediante la firma del presente contrato.</p>
+  </div>
+
+  <!-- CLÁUSULA 9 -->
+  <div class="section">
+    <div class="section-title"><span class="num">IX.</span> Limitación de Responsabilidad</div>
+    <p>NORTFINANCE no será responsable de la denegación de financiación por parte de las entidades financieras, siempre que haya actuado con la debida diligencia profesional; de cambios en las condiciones de mercado o en la política crediticia de las entidades; ni de retrasos derivados de la actuación de terceros (registros, notarías, administraciones públicas).</p>
+    <p>NORTFINANCE no asume ninguna responsabilidad por inexactitudes u omisiones en la información facilitada por el Cliente.</p>
+  </div>
+
+  <!-- CLÁUSULA 10 -->
+  <div class="section">
+    <div class="section-title"><span class="num">X.</span> Ley Aplicable y Jurisdicción</div>
+    <p>El presente contrato se rige por la legislación española vigente, en particular por la <strong>Ley 5/2019, de 15 de marzo, reguladora de los contratos de crédito inmobiliario</strong>, y las normas de protección al consumidor aplicables.</p>
+    <p>Para cualquier controversia derivada de la interpretación o ejecución de este contrato, las partes se someten a los <strong>Juzgados y Tribunales de Barcelona</strong>, con renuncia expresa a cualquier otro fuero.</p>
+  </div>
+
+  <!-- CLÁUSULA 11 -->
+  <div class="section">
+    <div class="section-title"><span class="num">XI.</span> Integralidad y Modificaciones</div>
+    <p>El presente contrato constituye el acuerdo íntegro entre las partes y sustituye cualquier acuerdo o negociación previa. Cualquier modificación deberá constar por escrito y ser suscrita por ambas partes.</p>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- FIRMA -->
+  <div class="signature-section">
+    <p class="sig-location" style="font-size:10.5pt;color:#555;">
+      En Barcelona, a <span class="field" contenteditable="true">____</span> de <span class="field" contenteditable="true">______________</span> de <span class="field field--short" contenteditable="true">20____</span>
+    </p>
+    <p style="font-size:10pt;color:#555;margin-bottom:24px;">Leído y conforme, ambas partes firman el presente contrato en dos ejemplares de igual validez, quedando uno en poder de cada parte.</p>
+
+    <div class="sig-grid">
+      <div class="sig-block">
+        <div class="sig-title">Por NortFinance · El Intermediario</div>
+        <div class="sig-line"></div>
+        <p><strong>Javier de Vilar Postigo</strong></p>
+        <p class="label">DNI</p>
+        <p>38.096.980X</p>
+        <p class="label">En representación de</p>
+        <p>NORTFINANCE</p>
+      </div>
+      <div class="sig-block">
+        <div class="sig-title">El Cliente</div>
+        <div class="sig-line"></div>
+        <p class="label">Nombre completo</p>
+        <p><span class="field field--long" contenteditable="true">________________________________</span></p>
+        <p class="label">DNI / NIE</p>
+        <p><span class="field" contenteditable="true">_______________</span></p>
+        <p class="label" style="margin-top:14px">2.º Titular (si aplica)</p>
+        <p><span class="field field--long" contenteditable="true">________________________________</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="doc-footer">
+    NORTFINANCE · Intermediación Financiera · Barcelona · info@nortfinance.com · www.nortfinance.com<br/>
+    Documento confidencial · Protegido por la Ley Orgánica 3/2018 de Protección de Datos Personales
+  </div>
+
+</div><!-- /page 2 -->
+
+</body>
+</html>

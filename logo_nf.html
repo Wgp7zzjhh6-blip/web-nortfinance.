@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #050505;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.frame {
+  border: 1px solid rgba(212,175,55,0.4);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 16px 10px;
+  gap: 10px;
+}
+.letters {
+  display: flex;
+  align-items: flex-end;
+  line-height: 1;
+  margin-top: -12px;
+}
+.n {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 110px;
+  font-weight: 300;
+  color: #EDE0CC;
+  letter-spacing: -0.12em;
+  line-height: 1;
+}
+.f {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 130px;
+  font-weight: 300;
+  color: #D4AF37;
+  line-height: 1;
+  margin-bottom: -5px;
+}
+.line {
+  width: 50px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #D4AF37, transparent);
+}
+.sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  color: rgba(212,175,55,0.7);
+  text-transform: uppercase;
+}
+</style>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+<body>
+  <div class="frame">
+    <div class="letters">
+      <span class="n">N</span><span class="f">F</span>
+    </div>
+    <div class="line"></div>
+    <div class="sub">NortFinance</div>
+  </div>
+<button onclick="descargar()" style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#D4AF37;color:#050505;border:none;padding:10px 20px;font-family:serif;font-size:14px;cursor:pointer;letter-spacing:0.1em;">DESCARGAR PNG</button>
+<script>
+function descargar() {
+  html2canvas(document.querySelector('.frame'), {backgroundColor: '#050505', scale: 2}).then(canvas => {
+    const a = document.createElement('a');
+    a.download = 'logo_nf.jpg';
+    a.href = canvas.toDataURL('image/jpeg', 0.9);
+    a.click();
+  });
+}
+</script>
+</body>
+</html>
