@@ -782,7 +782,7 @@
     book.addEventListener('click', () => {
       book.disabled = true;
 
-      // Construir payload
+      // Construir payload con toda la info del formulario
       const payload = {};
       Object.keys(answers).forEach(key => {
         if (key === '_contact') {
@@ -804,17 +804,46 @@
         }
       });
       const serviceLabel = (getServices().find(s => s.id === service) || {}).label || service;
-      payload._subject = `🔴 LLAMAR · Lead NortFinance · ${payload.nombre} · ${serviceLabel}`;
       payload._replyto = payload.email;
-      fetch('https://formspree.io/f/xrejngqv', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(payload),
-      }).catch(() => {});
 
       const nombre = payload.nombre || '';
       const whatsappMsg = encodeURIComponent(`Hola, soy ${nombre}. He rellenado el formulario de NortFinance y prefiero que me contactéis por WhatsApp para recibir mi estudio personalizado.`);
       const whatsappUrl = `https://wa.me/34600000000?text=${whatsappMsg}`;
+
+      // Un único envío con asunto según preferencia del cliente
+      let sent = false;
+      function sendLead(pref) {
+        if (sent) return;
+        sent = true;
+        const subjects = {
+          llamada:       `🔴 LLAMAR · Lead NortFinance · ${nombre} · ${serviceLabel}`,
+          email:         `📧 Lead NortFinance · ${nombre} · ${serviceLabel} · Prefiere EMAIL`,
+          whatsapp:      `💬 Lead NortFinance · ${nombre} · ${serviceLabel} · Prefiere WHATSAPP`,
+          sin_confirmar: `⚠️ Lead sin confirmar · NortFinance · ${nombre} · ${serviceLabel}`,
+        };
+        const data = Object.assign({}, payload, { _subject: subjects[pref] || subjects.sin_confirmar });
+        if (pref !== 'llamada') {
+          data.preferencia_contacto = pref === 'email' ? 'Email' : pref === 'whatsapp' ? 'WhatsApp' : 'No confirmó';
+          data.nota = pref === 'email'    ? 'No reservó llamada — quiere recibir el estudio por EMAIL' :
+                      pref === 'whatsapp' ? 'No reservó llamada — quiere contacto por WHATSAPP' :
+                                            'No reservó llamada ni eligió preferencia de contacto';
+        }
+        fetch('https://formspree.io/f/xrejngqv', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data),
+        }).catch(() => {});
+      }
+
+      // Safety net: si cierra sin elegir, capturamos el lead igualmente
+      overlay.querySelector('.quest-close').addEventListener('click', () => sendLead('sin_confirmar'), { once: true });
+      function onOverlayClick(e) {
+        if (e.target === overlay) { sendLead('sin_confirmar'); overlay.removeEventListener('click', onOverlayClick); }
+      }
+      overlay.addEventListener('click', onOverlayClick);
+      document.addEventListener('keydown', function onEsc(e) {
+        if (e.key === 'Escape') { sendLead('sin_confirmar'); document.removeEventListener('keydown', onEsc); }
+      }, { once: true });
 
       // Pantalla de confirmación con opciones
       content.innerHTML = `
@@ -822,8 +851,7 @@
           <div style="width:56px;height:56px;border-radius:50%;background:rgba(212,175,55,0.12);border:1px solid rgba(212,175,55,0.3);display:flex;align-items:center;justify-content:center;font-size:24px;color:#D4AF37">✓</div>
           <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:300;color:#F0EDE8;line-height:1.2;margin:0">¡Solicitud enviada!</h2>
           <p style="font-size:0.86rem;color:#B8C4D4;line-height:1.75;max-width:300px;margin:0">Hemos recibido toda tu información.<br>El último paso es reservar tu llamada gratuita.</p>
-          <a href="${CALENDAR_URL}" target="_blank" rel="noopener noreferrer"
-             onclick="setTimeout(()=>{document.getElementById('questModal').classList.remove('open')},300)"
+          <a id="qCalendar" href="${CALENDAR_URL}" target="_blank" rel="noopener noreferrer"
              style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 26px;width:100%;box-sizing:border-box;background:linear-gradient(135deg,#F5E3A0 0%,#D4AF37 60%,#AA8226 100%);color:#0A0805;font-family:'Inter',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:2px">
             Reservar llamada →
           </a>
@@ -836,29 +864,26 @@
           <p style="font-size:0.65rem;color:rgba(184,196,212,0.3);letter-spacing:0.1em;text-transform:uppercase;margin:0">NortFinance · Sin hipoteca, sin honorarios</p>
         </div>`;
 
+      // Reservar llamada → envía lead y abre calendario
+      content.querySelector('#qCalendar').addEventListener('click', () => {
+        sendLead('llamada');
+        setTimeout(() => overlay.classList.remove('open'), 300);
+      });
+
       // Preferencia: Email
       content.querySelector('#qPrefEmail').addEventListener('click', function () {
+        sendLead('email');
         this.textContent = '✓ Te enviamos el estudio';
         this.style.borderColor = 'rgba(212,175,55,0.5)';
         this.style.color = '#D4AF37';
         this.disabled = true;
         const wa = content.querySelector('#qPrefWA');
         if (wa) wa.style.display = 'none';
-        fetch('https://formspree.io/f/xrejngqv', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({
-            _subject: `📧 Sin llamada · Prefiere EMAIL · ${nombre}`,
-            nombre,
-            email: payload.email,
-            telefono: payload.telefono,
-            nota: 'El cliente NO reservó llamada — prefiere recibir el estudio personalizado por EMAIL',
-          }),
-        }).catch(() => {});
       });
 
       // Preferencia: WhatsApp
       content.querySelector('#qPrefWA').addEventListener('click', function () {
+        sendLead('whatsapp');
         window.open(whatsappUrl, '_blank');
         this.textContent = '✓ Abriendo WhatsApp';
         this.style.borderColor = 'rgba(37,211,102,0.45)';
@@ -866,17 +891,6 @@
         this.disabled = true;
         const em = content.querySelector('#qPrefEmail');
         if (em) em.style.display = 'none';
-        fetch('https://formspree.io/f/xrejngqv', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({
-            _subject: `💬 Sin llamada · Prefiere WHATSAPP · ${nombre}`,
-            nombre,
-            email: payload.email,
-            telefono: payload.telefono,
-            nota: 'El cliente NO reservó llamada — prefiere contacto por WHATSAPP',
-          }),
-        }).catch(() => {});
       });
     });
     content.querySelector('#qBack').addEventListener('click', () => { step--; render(); });
