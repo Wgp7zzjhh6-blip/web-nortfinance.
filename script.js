@@ -781,16 +781,8 @@
     check();
     book.addEventListener('click', () => {
       book.disabled = true;
-      // Primero mostrar confirmación, luego el usuario va al calendario
-      content.innerHTML = `
-        <div style="text-align:center;padding:40px 20px 30px;display:flex;flex-direction:column;align-items:center;gap:18px">
-          <div style="width:64px;height:64px;border-radius:50%;background:rgba(212,175,55,0.12);border:1px solid rgba(212,175,55,0.3);display:flex;align-items:center;justify-content:center;font-size:28px;color:#D4AF37">✓</div>
-          <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;color:#F0EDE8;line-height:1.2">¡Solicitud enviada!</h2>
-          <p style="font-size:0.88rem;color:#B8C4D4;line-height:1.85;max-width:320px">Hemos recibido toda tu información.<br>El último paso es reservar tu llamada gratuita.</p>
-          <a href="${CALENDAR_URL}" target="_blank" rel="noopener noreferrer" onclick="setTimeout(()=>{document.getElementById('questModal').classList.remove('open')},300)" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:linear-gradient(135deg,#F5E3A0 0%,#D4AF37 60%,#AA8226 100%);color:#0A0805;font-family:'Inter',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:2px;margin-top:6px">Reservar llamada →</a>
-          <div style="width:40px;height:1px;background:linear-gradient(to right,transparent,rgba(212,175,55,0.4),transparent)"></div>
-          <p style="font-size:0.72rem;color:rgba(184,196,212,0.45);letter-spacing:0.1em;text-transform:uppercase">NortFinance · Sin hipoteca, sin honorarios</p>
-        </div>`;
+
+      // Construir payload
       const payload = {};
       Object.keys(answers).forEach(key => {
         if (key === '_contact') {
@@ -814,12 +806,78 @@
       const serviceLabel = (getServices().find(s => s.id === service) || {}).label || service;
       payload._subject = `🔴 LLAMAR · Lead NortFinance · ${payload.nombre} · ${serviceLabel}`;
       payload._replyto = payload.email;
-      payload._autoresponse = `Hola ${payload.nombre},\n\nHemos recibido tu solicitud correctamente. Nos pondremos en contacto contigo en menos de 24 horas.\n\nSi quieres acelerar el proceso, puedes reservar tu llamada gratuita ahora mismo aquí:\n${CALENDAR_URL}\n\nEn NortFinance no cobramos nada hasta que firmes tu hipoteca. Sin hipoteca, sin honorarios.\n\nUn saludo,\nEl equipo de NortFinance\n935 593 571`;
       fetch('https://formspree.io/f/xrejngqv', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(payload),
       }).catch(() => {});
+
+      const nombre = payload.nombre || '';
+      const whatsappMsg = encodeURIComponent(`Hola, soy ${nombre}. He rellenado el formulario de NortFinance y prefiero que me contactéis por WhatsApp para recibir mi estudio personalizado.`);
+      const whatsappUrl = `https://wa.me/34600000000?text=${whatsappMsg}`;
+
+      // Pantalla de confirmación con opciones
+      content.innerHTML = `
+        <div style="text-align:center;padding:32px 20px 24px;display:flex;flex-direction:column;align-items:center;gap:14px">
+          <div style="width:56px;height:56px;border-radius:50%;background:rgba(212,175,55,0.12);border:1px solid rgba(212,175,55,0.3);display:flex;align-items:center;justify-content:center;font-size:24px;color:#D4AF37">✓</div>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:300;color:#F0EDE8;line-height:1.2;margin:0">¡Solicitud enviada!</h2>
+          <p style="font-size:0.86rem;color:#B8C4D4;line-height:1.75;max-width:300px;margin:0">Hemos recibido toda tu información.<br>El último paso es reservar tu llamada gratuita.</p>
+          <a href="${CALENDAR_URL}" target="_blank" rel="noopener noreferrer"
+             onclick="setTimeout(()=>{document.getElementById('questModal').classList.remove('open')},300)"
+             style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 26px;width:100%;box-sizing:border-box;background:linear-gradient(135deg,#F5E3A0 0%,#D4AF37 60%,#AA8226 100%);color:#0A0805;font-family:'Inter',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:2px">
+            Reservar llamada →
+          </a>
+          <div style="width:100%;height:1px;background:linear-gradient(to right,transparent,rgba(212,175,55,0.18),transparent);margin:2px 0"></div>
+          <p style="font-size:0.7rem;color:rgba(184,196,212,0.45);letter-spacing:0.09em;text-transform:uppercase;margin:0">¿Prefieres que te contactemos nosotros?</p>
+          <div style="display:flex;gap:8px;width:100%">
+            <button id="qPrefEmail" style="flex:1;padding:11px 8px;background:transparent;border:1px solid rgba(212,175,55,0.22);color:#B8C4D4;font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.04em;border-radius:2px;cursor:pointer">📧 Estudio por email</button>
+            <button id="qPrefWA"    style="flex:1;padding:11px 8px;background:transparent;border:1px solid rgba(37,211,102,0.22);color:#B8C4D4;font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.04em;border-radius:2px;cursor:pointer">💬 WhatsApp</button>
+          </div>
+          <p style="font-size:0.65rem;color:rgba(184,196,212,0.3);letter-spacing:0.1em;text-transform:uppercase;margin:0">NortFinance · Sin hipoteca, sin honorarios</p>
+        </div>`;
+
+      // Preferencia: Email
+      content.querySelector('#qPrefEmail').addEventListener('click', function () {
+        this.textContent = '✓ Te enviamos el estudio';
+        this.style.borderColor = 'rgba(212,175,55,0.5)';
+        this.style.color = '#D4AF37';
+        this.disabled = true;
+        const wa = content.querySelector('#qPrefWA');
+        if (wa) wa.style.display = 'none';
+        fetch('https://formspree.io/f/xrejngqv', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            _subject: `📧 Sin llamada · Prefiere EMAIL · ${nombre}`,
+            nombre,
+            email: payload.email,
+            telefono: payload.telefono,
+            nota: 'El cliente NO reservó llamada — prefiere recibir el estudio personalizado por EMAIL',
+          }),
+        }).catch(() => {});
+      });
+
+      // Preferencia: WhatsApp
+      content.querySelector('#qPrefWA').addEventListener('click', function () {
+        window.open(whatsappUrl, '_blank');
+        this.textContent = '✓ Abriendo WhatsApp';
+        this.style.borderColor = 'rgba(37,211,102,0.45)';
+        this.style.color = 'rgba(37,211,102,0.8)';
+        this.disabled = true;
+        const em = content.querySelector('#qPrefEmail');
+        if (em) em.style.display = 'none';
+        fetch('https://formspree.io/f/xrejngqv', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            _subject: `💬 Sin llamada · Prefiere WHATSAPP · ${nombre}`,
+            nombre,
+            email: payload.email,
+            telefono: payload.telefono,
+            nota: 'El cliente NO reservó llamada — prefiere contacto por WHATSAPP',
+          }),
+        }).catch(() => {});
+      });
     });
     content.querySelector('#qBack').addEventListener('click', () => { step--; render(); });
     nombre.focus();
