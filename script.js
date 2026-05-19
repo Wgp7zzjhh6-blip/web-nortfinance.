@@ -812,8 +812,9 @@
         }
       });
       const serviceLabel = (getServices().find(s => s.id === service) || {}).label || service;
-      payload._subject = `Lead NortFinance · ${payload.nombre} · ${serviceLabel}`;
+      payload._subject = `🔴 LLAMAR · Lead NortFinance · ${payload.nombre} · ${serviceLabel}`;
       payload._replyto = payload.email;
+      payload._autoresponse = `Hola ${payload.nombre},\n\nHemos recibido tu solicitud correctamente. Nos pondremos en contacto contigo en menos de 24 horas.\n\nSi quieres acelerar el proceso, puedes reservar tu llamada gratuita ahora mismo aquí:\n${CALENDAR_URL}\n\nEn NortFinance no cobramos nada hasta que firmes tu hipoteca. Sin hipoteca, sin honorarios.\n\nUn saludo,\nEl equipo de NortFinance\n935 593 571`;
       fetch('https://formspree.io/f/xrejngqv', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
