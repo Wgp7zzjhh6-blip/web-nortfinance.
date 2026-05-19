@@ -781,17 +781,16 @@
     check();
     book.addEventListener('click', () => {
       book.disabled = true;
-      window.open(CALENDAR_URL, '_blank', 'noopener,noreferrer');
-      // Mostrar pantalla de confirmación antes de cerrar
+      // Primero mostrar confirmación, luego el usuario va al calendario
       content.innerHTML = `
         <div style="text-align:center;padding:40px 20px 30px;display:flex;flex-direction:column;align-items:center;gap:18px">
-          <div style="width:64px;height:64px;border-radius:50%;background:rgba(212,175,55,0.12);border:1px solid rgba(212,175,55,0.3);display:flex;align-items:center;justify-content:center;font-size:28px">✓</div>
-          <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:#F0EDE8;line-height:1.2">¡Todo listo!</h2>
-          <p style="font-size:0.88rem;color:#B8C4D4;line-height:1.8;max-width:320px">Tu solicitud ha sido enviada correctamente.<br>Hemos abierto el calendario para que reserves tu llamada.<br><br>Nos pondremos en contacto contigo en menos de <strong style="color:#D4AF37">24 horas</strong>.</p>
-          <div style="width:40px;height:1px;background:linear-gradient(to right,transparent,#D4AF37,transparent);margin:4px 0"></div>
-          <p style="font-size:0.75rem;color:rgba(184,196,212,0.5);letter-spacing:0.1em;text-transform:uppercase">NortFinance · Sin hipoteca, sin honorarios</p>
+          <div style="width:64px;height:64px;border-radius:50%;background:rgba(212,175,55,0.12);border:1px solid rgba(212,175,55,0.3);display:flex;align-items:center;justify-content:center;font-size:28px;color:#D4AF37">✓</div>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;color:#F0EDE8;line-height:1.2">¡Solicitud enviada!</h2>
+          <p style="font-size:0.88rem;color:#B8C4D4;line-height:1.85;max-width:320px">Hemos recibido toda tu información.<br>El último paso es reservar tu llamada gratuita.</p>
+          <a href="${CALENDAR_URL}" target="_blank" rel="noopener noreferrer" onclick="setTimeout(()=>{document.getElementById('questModal').classList.remove('open')},300)" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:linear-gradient(135deg,#F5E3A0 0%,#D4AF37 60%,#AA8226 100%);color:#0A0805;font-family:'Inter',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:2px;margin-top:6px">Reservar llamada →</a>
+          <div style="width:40px;height:1px;background:linear-gradient(to right,transparent,rgba(212,175,55,0.4),transparent)"></div>
+          <p style="font-size:0.72rem;color:rgba(184,196,212,0.45);letter-spacing:0.1em;text-transform:uppercase">NortFinance · Sin hipoteca, sin honorarios</p>
         </div>`;
-      setTimeout(close, 4000);
       const payload = {};
       Object.keys(answers).forEach(key => {
         if (key === '_contact') {
