@@ -1409,10 +1409,11 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
 
 /* ── ≤ 900px ─────────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  /* Logo: ocultar texto en móvil, solo mostrar imagen */
-  .navbar__logo-text { display: none; }
-  .navbar__logo-img { height: 34px; }
-  .navbar__inner { gap: 12px; }
+  /* Logo: reducir tamaño en móvil para que quepa el hamburger */
+  .navbar__logo-text { font-size: 1rem; letter-spacing: 0.05em; }
+  .navbar__logo-img { height: 28px; }
+  .navbar__logo { gap: 7px; }
+  .navbar__inner { gap: 8px; }
 
   /* Slide-in mobile nav */
   .navbar__nav {
