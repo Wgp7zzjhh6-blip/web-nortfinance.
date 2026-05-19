@@ -819,7 +819,7 @@
           llamada:       `🔴 LLAMAR · Lead NortFinance · ${nombre} · ${serviceLabel}`,
           email:         `📧 Lead NortFinance · ${nombre} · ${serviceLabel} · Prefiere EMAIL`,
           whatsapp:      `💬 Lead NortFinance · ${nombre} · ${serviceLabel} · Prefiere WHATSAPP`,
-          sin_confirmar: `⚠️ Lead sin confirmar · NortFinance · ${nombre} · ${serviceLabel}`,
+          sin_confirmar: `📞 Llamar al tel · Sin confirmar · NortFinance · ${nombre} · ${serviceLabel}`,
         };
         const data = Object.assign({}, payload, { _subject: subjects[pref] || subjects.sin_confirmar });
         if (pref !== 'llamada') {
