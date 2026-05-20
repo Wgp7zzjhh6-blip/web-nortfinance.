@@ -32,6 +32,7 @@
     border-bottom: 2px solid #C5A040;
     padding-bottom: 18px;
     margin-bottom: 26px;
+    gap: 16px;
   }
   .header-brand { display: flex; flex-direction: column; gap: 4px; }
   .header-brand .brand-name {
@@ -115,6 +116,7 @@
   /* ── Clause sections ── */
   .section {
     margin-bottom: 22px;
+    page-break-inside: avoid;
   }
   .section-title {
     font-family: 'Arial', sans-serif;
@@ -198,6 +200,42 @@
     font-family: 'Arial', sans-serif;
     font-size: 9pt;
     color: #666;
+  }
+
+  /* ── Payment split ── */
+  .payment-split {
+    display: flex;
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .payment-part {
+    flex: 1;
+    border: 1px solid #C5A040;
+    border-radius: 3px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .payment-part .pay-pct {
+    font-family: 'Palatino Linotype', 'Palatino', serif;
+    font-size: 22pt;
+    font-weight: 700;
+    color: #C5A040;
+    display: block;
+  }
+  .payment-part .pay-label {
+    font-family: 'Arial', sans-serif;
+    font-size: 8pt;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #555;
+    display: block;
+    margin-top: 4px;
+  }
+  .payment-part .pay-desc {
+    font-size: 9.5pt;
+    color: #666;
+    margin-top: 6px;
+    line-height: 1.5;
   }
 
   /* ── Field (fillable) ── */
@@ -288,19 +326,82 @@
   }
   .no-pay strong { font-size: 10.5pt; }
 
-  /* ── Print ── */
+  /* ══════════════════════════════════════
+     MOBILE — pantallas pequeñas
+     ══════════════════════════════════════ */
+  @media (max-width: 680px) {
+    body { padding: 0; background: #fff; }
+
+    .page {
+      padding: 24px 16px 20px;
+      margin: 0 0 24px;
+      box-shadow: none;
+      max-width: 100%;
+    }
+
+    .header {
+      flex-direction: column;
+      gap: 10px;
+    }
+    .header-ref { text-align: left; }
+    .header-brand .brand-name { font-size: 17pt; }
+
+    .doc-title h1 { font-size: 12pt; }
+
+    .parties { padding: 14px 12px; }
+    .party { font-size: 9.5pt; }
+
+    .section p, .section li { font-size: 9.5pt; }
+
+    .fee-box .fee-amount { font-size: 20pt; }
+
+    .payment-split { flex-direction: column; gap: 10px; }
+
+    .sig-grid { grid-template-columns: 1fr; gap: 28px; }
+
+    .field { min-width: 100px; }
+    .field--long { min-width: 160px; }
+
+    .no-print { padding: 12px 16px; }
+    .no-print button { width: 100%; }
+    .no-print span { display: block; margin-top: 8px; }
+  }
+
+  /* ══════════════════════════════════════
+     PRINT — impresión / guardar PDF
+     ══════════════════════════════════════ */
   @media print {
-    body { background: #fff; padding: 0; }
-    .page { box-shadow: none; margin: 0 auto; padding: 18mm 20mm 18mm; }
-    .no-print { display: none; }
+    body { background: #fff; padding: 0; font-size: 10.5pt; }
+    .page {
+      box-shadow: none;
+      margin: 0;
+      padding: 16mm 18mm 14mm;
+      max-width: 100%;
+      page-break-after: always;
+    }
+    .page:last-child { page-break-after: auto; }
+    .no-print { display: none !important; }
     @page { size: A4; margin: 0; }
+
+    .section { page-break-inside: avoid; }
+    .signature-section { page-break-inside: avoid; }
+    .fee-box { page-break-inside: avoid; }
+    .payment-split { page-break-inside: avoid; }
+    .highlight-box { page-break-inside: avoid; }
+    .no-pay { page-break-inside: avoid; }
+    .parties { page-break-inside: avoid; }
+
+    .field {
+      border-bottom: 1px solid #666;
+      color: #000;
+    }
   }
 </style>
 </head>
 <body>
 
 <!-- ══ PRINT BUTTON (only visible on screen) ══ -->
-<div class="no-print" style="max-width:210mm;margin:0 auto 16px;display:flex;gap:12px;align-items:center">
+<div class="no-print" style="max-width:210mm;margin:0 auto 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:0 20px">
   <button onclick="window.print()" style="background:#C5A040;border:none;color:#fff;font-family:Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;padding:10px 24px;cursor:pointer;border-radius:3px;text-transform:uppercase">
     Guardar / Imprimir PDF
   </button>
@@ -350,7 +451,7 @@
   <!-- CLÁUSULA 1 -->
   <div class="section">
     <div class="section-title"><span class="num">I.</span> Objeto del Contrato</div>
-    <p>El presente contrato tiene por objeto la prestación por parte de NORTFINANCE de servicios de <strong>intermediación financiera</strong> con el fin de obtener la mejor oferta de crédito hipotecario disponible en el mercado para la siguiente operación:</p>
+    <p>El presente contrato tiene por objeto la prestación por parte de NORTFINANCE de servicios de <strong>intermediación financiera</strong> con el fin de obtener una buena oferta de crédito hipotecario para la siguiente operación en función de este perfil financiero:</p>
     <div class="highlight-box">
       <span class="label">Operación objeto del contrato</span>
       Tipo de operación: <span class="field" contenteditable="true">Nueva hipoteca / Subrogación / Reunificación de deuda</span><br/>
@@ -378,7 +479,6 @@
       <li>Presentar la operación a las entidades financieras que, a su criterio profesional, ofrezcan las condiciones más ventajosas.</li>
       <li>Mantener al Cliente informado del estado de su expediente de forma periódica y proactiva.</li>
       <li>Gestionar la documentación con total confidencialidad y conforme a la normativa de protección de datos.</li>
-      <li>No recibir remuneración alguna de las entidades financieras en relación con la presente operación que pueda generar conflicto de interés.</li>
       <li>Informar al Cliente de forma clara y comprensible de todas las ofertas recibidas.</li>
     </ol>
     <p>NORTFINANCE actúa como <strong>intermediario independiente</strong>. La decisión de conceder o denegar el crédito corresponde exclusivamente a la entidad financiera.</p>
@@ -415,13 +515,28 @@
       <div class="fee-note">Exento de IVA — art. 20.Uno.18º Ley 37/1992 del IVA</div>
     </div>
 
-    <p>El pago se realizará <strong>en un único importe, en el momento de la firma del préstamo hipotecario ante Notario</strong>, mediante transferencia bancaria a la cuenta que NORTFINANCE indique, con carácter previo o simultáneo al otorgamiento de la escritura.</p>
+    <p>El pago se realizará en <strong>dos partes</strong>:</p>
+
+    <div class="payment-split">
+      <div class="payment-part">
+        <span class="pay-pct">50%</span>
+        <span class="pay-label">Primera parte</span>
+        <div class="pay-desc">A la firma de la <strong>FEIN</strong> (Ficha Europea de Información Normalizada)</div>
+      </div>
+      <div class="payment-part">
+        <span class="pay-pct">50%</span>
+        <span class="pay-label">Segunda parte</span>
+        <div class="pay-desc">A la firma del préstamo hipotecario ante <strong>Notario</strong></div>
+      </div>
+    </div>
+
+    <p>Ambos pagos se realizarán mediante transferencia bancaria a la cuenta que NORTFINANCE indique en cada momento.</p>
 
     <div class="no-pay">
       <strong>Política "Sin hipoteca, sin honorarios":</strong> Si la operación no llegara a formalizarse por causas ajenas a la voluntad del Cliente (denegación bancaria, circunstancias sobrevenidas del inmueble, etc.), <strong>no se devengará ningún honorario</strong>. El Cliente no pagará nada si no se consigue resultado.
     </div>
 
-    <p>En caso de que el Cliente desista voluntariamente de la operación <em>después</em> de haber recibido una oferta vinculante en las condiciones pactadas, NORTFINANCE podrá reclamar hasta el <strong>20 % de los honorarios</strong> acordados en concepto de gestión y trabajos efectivamente realizados, previa justificación detallada.</p>
+    <p>En caso de que el Cliente desista voluntariamente de la operación <em>después</em> de haber recibido una oferta vinculante en las condiciones pactadas, NORTFINANCE podrá reclamar hasta el <strong>50 % de los honorarios</strong> acordados en concepto de gestión y trabajos efectivamente realizados.</p>
 
     <div class="highlight-box">
       <span class="label">Exención de IVA</span>
@@ -441,6 +556,8 @@
     <div class="section-title"><span class="num">VI.</span> Derecho de Desistimiento del Cliente</div>
     <p>El Cliente podrá desistir del presente contrato en un plazo de <strong>14 días naturales</strong> desde la fecha de su firma, sin necesidad de justificación y sin coste alguno, ejerciendo su derecho mediante comunicación escrita o por correo electrónico a NORTFINANCE.</p>
     <p>Transcurrido dicho plazo sin que el Cliente haya ejercido el desistimiento, el contrato desplegará plenos efectos.</p>
+    <p>El Cliente solicita expresamente que NORTFINANCE inicie la prestación de los servicios contratados <strong>desde la firma del presente documento</strong>, aun cuando no haya finalizado el plazo legal de desistimiento.</p>
+    <p>En caso de ejercicio del derecho de desistimiento, el Cliente abonará a NORTFINANCE la <strong>parte proporcional correspondiente a los servicios efectivamente prestados</strong> hasta la fecha de la comunicación del desistimiento.</p>
   </div>
 
   <!-- CLÁUSULA 7 -->
