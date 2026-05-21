@@ -428,8 +428,22 @@
           <li><a href="casos-exito.html" class="navbar__link active">Casos de éxito</a></li>
           <li><a href="contacto.html" class="navbar__link">Contacto</a></li>
         </ul>
-        <a href="#" data-estudio class="btn btn--gold navbar__cta">Mi Estudio Gratuito</a>
+        <a href="#" data-estudio class="btn btn--gold navbar__cta" data-i18n="nav.cta">Mi Estudio Gratuito</a>
       </nav>
+
+      <div class="lang-dropdown" id="langDropdown">
+        <button class="lang-current" id="langToggle" aria-haspopup="listbox" aria-expanded="false">
+          <span id="langCurrentFlag">🇪🇸</span>
+          <span id="langCurrentCode">ES</span>
+          <svg class="lang-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="1 1 5 5 9 1"/></svg>
+        </button>
+        <ul class="lang-menu" role="listbox">
+          <li><button class="lang-option lang-option--active" data-lang="es" data-flag="🇪🇸">🇪🇸 Español</button></li>
+          <li><button class="lang-option" data-lang="ca" data-flag="ca-flag"><img src="ca-flag.svg" style="width:1.3em;height:.9em;vertical-align:middle;border-radius:1px" alt="CA"> Català</button></li>
+          <li><button class="lang-option" data-lang="en" data-flag="🇬🇧">🇬🇧 English</button></li>
+        </ul>
+      </div>
+
       <button class="navbar__hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -981,15 +995,9 @@
     </div>
   </div>
 
+  <script src="script.js"></script>
+  <script src="i18n.js"></script>
   <script>
-    // ── Navbar scroll ──
-    var nb=document.getElementById('navbar');
-    window.addEventListener('scroll',function(){nb.classList.toggle('scrolled',window.scrollY>40);},{ passive:true });
-
-    // ── Hamburger ──
-    var hbg=document.getElementById('hamburger'),nm=document.getElementById('navMenu');
-    if(hbg&&nm){hbg.addEventListener('click',function(){var o=nm.classList.toggle('open');hbg.setAttribute('aria-expanded',o);});}
-
     // ── Quest modal ──
     var qModal=document.getElementById('questModal');
     var qClose=document.getElementById('questClose');
