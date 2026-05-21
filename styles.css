@@ -393,7 +393,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
 .navbar__links {
   display: flex;
   align-items: center;
-  gap: 36px;
+  gap: 28px;
 }
 
 .navbar__link {
@@ -405,6 +405,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
   color: rgba(240, 237, 232, 0.55);
   transition: color var(--transition);
   padding-bottom: 3px;
+  white-space: nowrap;
 }
 
 .navbar__link::after {
