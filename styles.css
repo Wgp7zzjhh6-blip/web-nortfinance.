@@ -362,10 +362,9 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
 
 .navbar__logo-img {
   height: 40px;
-  width: auto;
-  object-fit: contain;
-  mix-blend-mode: screen;
-  filter: brightness(1.1) contrast(1.05);
+  width: 40px;
+  object-fit: cover;
+  border-radius: 50%;
   /* Alt text styling — aplica quan la imatge no carrega */
   font-family: 'Cormorant Garamond', serif;
   font-size: 1rem;
@@ -1437,7 +1436,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
 @media (max-width: 900px) {
   /* Logo: reducir tamaño en móvil para que quepa el hamburger */
   .navbar__logo-text { font-size: 1rem; letter-spacing: 0.05em; }
-  .navbar__logo-img { height: 28px; }
+  .navbar__logo-img { height: 28px; width: 28px; }
   .navbar__logo { gap: 7px; }
   .navbar__inner { gap: 8px; }
 
