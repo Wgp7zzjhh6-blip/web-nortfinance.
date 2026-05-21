@@ -928,8 +928,28 @@
       return;
     }
 
-    submitBtn.textContent = '✓ Mensaje enviado — Te contactamos pronto';
-    submitBtn.classList.add('success');
-    form.querySelectorAll('input, select, textarea').forEach(el => el.disabled = true);
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando…';
+
+    const fd = new FormData(form);
+    fetch('https://formspree.io/f/xrejngqv', {
+      method: 'POST',
+      body: fd,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function(res) {
+      if (res.ok) {
+        submitBtn.textContent = '✓ Mensaje enviado — Te contactamos pronto';
+        submitBtn.classList.add('success');
+        form.querySelectorAll('input, select, textarea').forEach(el => el.disabled = true);
+      } else {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Error al enviar — inténtalo de nuevo';
+      }
+    })
+    .catch(function() {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Error al enviar — inténtalo de nuevo';
+    });
   });
 })();
