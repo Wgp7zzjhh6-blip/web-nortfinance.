@@ -32,10 +32,20 @@
       background: radial-gradient(ellipse 70% 50% at 50% -10%, rgba(212,175,55,.07) 0%, transparent 70%);
     }
     .ce-eyebrow{
-      font-family:'Inter',sans-serif;font-size:11px;font-weight:500;
+      display:inline-flex;align-items:center;gap:10px;
+      padding:6px 16px;border:1px solid rgba(212,175,55,.25);border-radius:50px;
+      font-family:'Inter',sans-serif;font-size:0.67rem;font-weight:500;
       letter-spacing:.22em;text-transform:uppercase;
-      color:var(--gold-dim);margin-bottom:20px;
+      color:var(--gold);margin-bottom:20px;position:relative;overflow:hidden;
+      background:linear-gradient(90deg,transparent 0%,rgba(212,175,55,.05) 50%,transparent 100%);
+      background-size:200% auto;animation:shimmer 5s linear infinite;
     }
+    .ce-eyebrow::before{
+      content:'';display:inline-block;width:4px;height:4px;border-radius:50%;
+      background:var(--gold);opacity:.7;flex-shrink:0;animation:pulse-dot 3s ease infinite;
+    }
+    @keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+    @keyframes pulse-dot{0%,100%{opacity:.7}50%{opacity:.3}}
     .ce-hero h1{
       font-family:'Cormorant Garamond',serif;font-size:clamp(38px,6vw,72px);
       font-weight:300;color:var(--cream);line-height:1.1;margin-bottom:24px;
@@ -82,9 +92,17 @@
       text-align:center;margin-bottom:64px;
     }
     .ce-section-tag{
-      font-family:'Inter',sans-serif;font-size:10px;font-weight:500;
-      letter-spacing:.22em;text-transform:uppercase;color:var(--gold-dim);
-      margin-bottom:14px;
+      display:inline-flex;align-items:center;gap:10px;
+      padding:5px 14px;border:1px solid rgba(212,175,55,.22);border-radius:50px;
+      font-family:'Inter',sans-serif;font-size:0.67rem;font-weight:500;
+      letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
+      margin-bottom:14px;position:relative;overflow:hidden;
+      background:linear-gradient(90deg,transparent 0%,rgba(212,175,55,.05) 50%,transparent 100%);
+      background-size:200% auto;animation:shimmer 5s linear infinite;
+    }
+    .ce-section-tag::before{
+      content:'';display:inline-block;width:4px;height:4px;border-radius:50%;
+      background:var(--gold);opacity:.65;flex-shrink:0;animation:pulse-dot 3s ease infinite;
     }
     .ce-section-hd h2{
       font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4vw,48px);
@@ -468,24 +486,39 @@
     </section>
 
     <!-- ══════════════════════════ STATS ══════════════════════════ -->
-    <section class="ce-stats">
+    <section class="stats" id="stats-ce" style="border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);">
       <div class="container">
-        <div class="ce-stats-grid">
-          <div class="ce-stat">
-            <div class="ce-stat-num">+300</div>
-            <div class="ce-stat-label">Hipotecas gestionadas</div>
+        <div class="stats__grid">
+          <div class="stats__item reveal">
+            <div class="stats__number">
+              <span class="counter text-gold" data-target="300">0</span><span class="text-gold">+</span>
+            </div>
+            <div class="stats__label">Hipotecas gestionadas</div>
+            <div class="stats__bar"></div>
           </div>
-          <div class="ce-stat">
-            <div class="ce-stat-num">€6.2M</div>
-            <div class="ce-stat-label">Ahorro total generado a clientes</div>
+          <div class="stats__divider" aria-hidden="true"></div>
+          <div class="stats__item reveal reveal-d1">
+            <div class="stats__number">
+              <span class="text-gold">+€6.2M</span>
+            </div>
+            <div class="stats__label">Ahorro total a clientes</div>
+            <div class="stats__bar"></div>
           </div>
-          <div class="ce-stat">
-            <div class="ce-stat-num">97%</div>
-            <div class="ce-stat-label">Tasa de aprobación<br>(vs ~68% media sector)</div>
+          <div class="stats__divider" aria-hidden="true"></div>
+          <div class="stats__item reveal reveal-d2">
+            <div class="stats__number">
+              <span class="counter text-gold" data-target="97">0</span><span class="text-gold">%</span>
+            </div>
+            <div class="stats__label">Tasa de aprobación</div>
+            <div class="stats__bar"></div>
           </div>
-          <div class="ce-stat">
-            <div class="ce-stat-num">4.9★</div>
-            <div class="ce-stat-label">Valoración media<br>Google Reviews</div>
+          <div class="stats__divider" aria-hidden="true"></div>
+          <div class="stats__item reveal reveal-d3">
+            <div class="stats__number">
+              <span class="text-gold">4.9</span><span class="text-gold">★</span>
+            </div>
+            <div class="stats__label">Google Reviews</div>
+            <div class="stats__bar"></div>
           </div>
         </div>
       </div>
@@ -514,7 +547,7 @@
             </div>
             <div class="ce-case-savings">
               <div class="ce-case-savings-label">Ahorro total</div>
-              <div class="ce-case-savings-amount">€38.400</div>
+              <div class="ce-case-savings-amount">€59.400</div>
               <div class="ce-case-savings-sub">en intereses totales</div>
             </div>
           </div>
@@ -551,7 +584,7 @@
                 </div>
                 <div class="ce-item">
                   <div class="ce-item-icon prob">✕</div>
-                  <span>El coste real de las vinculaciones sumaba €4.200/año más en seguros caros</span>
+                  <span>El coste real de las vinculaciones sumaba €950/mes más en seguros y comisiones</span>
                 </div>
                 <div class="ce-item">
                   <div class="ce-item-icon prob">✕</div>
@@ -612,7 +645,7 @@
                 Madrid · Autónomo · Segunda opinión · 2025
               </div>
               <h3>Autónomo con 3 años de actividad.<br>Tres bancos lo rechazaron. Nosotros no.</h3>
-              <p>Consultor independiente con ingresos irregulares y dos modelos 130 negativos en el último ejercicio. Los grandes bancos le cerraron la puerta. Nosotros encontramos la estructura correcta para presentar su perfil y conseguimos financiación del 75% para un piso de €290.000 en Salamanca (Madrid).</p>
+              <p>Consultor independiente con ingresos irregulares y dos modelos 130 negativos en el último ejercicio. Los grandes bancos le cerraron la puerta. Nosotros encontramos la estructura correcta para presentar su perfil y conseguimos financiación del 75% para un piso de €290.000 en Retiro (Madrid).</p>
             </div>
             <div class="ce-case-savings">
               <div class="ce-case-savings-label">Diferencia conseguida</div>
@@ -625,7 +658,7 @@
             <div class="ce-metric">
               <div class="ce-metric-label">Precio del inmueble</div>
               <div class="ce-metric-val">€290.000</div>
-              <div class="ce-metric-note">Salamanca, Madrid</div>
+              <div class="ce-metric-note">Retiro, Madrid</div>
             </div>
             <div class="ce-metric">
               <div class="ce-metric-label">Hipoteca concedida</div>
@@ -813,7 +846,7 @@
                 <td class="tc-bad">3,95% fijo<br><span style="font-size:11px;color:rgba(255,255,255,.35)">+vinculaciones</span></td>
                 <td class="tc-good">2,69% fijo<br><span style="font-size:11px;color:rgba(255,255,255,.35)">sin vinculaciones</span></td>
                 <td class="tc-good">−€165 / mes</td>
-                <td class="tc-good">€38.400</td>
+                <td class="tc-good">€59.400</td>
               </tr>
               <tr class="tc-row-hl">
                 <td>Autónomo · €217.500 · mixta</td>
