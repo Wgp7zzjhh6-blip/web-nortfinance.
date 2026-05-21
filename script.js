@@ -808,7 +808,7 @@
 
       const nombre = payload.nombre || '';
       const whatsappMsg = encodeURIComponent(`Hola, soy ${nombre}. He rellenado el formulario de NortFinance y prefiero que me contactéis por WhatsApp para recibir mi estudio personalizado.`);
-      const whatsappUrl = `https://wa.me/34600000000?text=${whatsappMsg}`;
+      const whatsappUrl = `https://wa.me/34668502066?text=${whatsappMsg}`;
 
       // Un único envío con asunto según preferencia del cliente
       let sent = false;
