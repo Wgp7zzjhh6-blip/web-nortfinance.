@@ -141,7 +141,10 @@
   /* ── Smooth scroll for anchor links ─────────────────────── */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
-      const target = document.querySelector(anchor.getAttribute('href'));
+      const href = anchor.getAttribute('href');
+      if (!href || href === '#') return; // Let data-estudio handlers manage these
+      let target;
+      try { target = document.querySelector(href); } catch(err) { return; }
       if (!target) return;
       e.preventDefault();
       const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height'), 10) || 80;
@@ -417,7 +420,7 @@
       opt_deuda:['Hipoteca + préstamos','Solo préstamos / tarjetas','Hipoteca + tarjetas'],
       opt_total_deuda:['Menos de 50.000 €','50.000 – 100.000 €','Más de 100.000 €'],
       opt_vivienda:['Sí, con hipoteca','Sí, sin hipoteca','No'],
-      opt_servicio:['Intermediación inmobiliaria','Inversión en Oro','Club Privado de Inversores','Corredor de Seguros'],
+      opt_servicio:['Intermediación inmobiliaria','Inversión en Oro','Club Privado de Inversores','Seguros'],
       contact_label:'Último paso', contact_q:'¿Cómo nos ponemos en contacto contigo?',
       contact_nombre_ph:'Nombre completo', contact_email_ph:'Correo electrónico', contact_tel_ph:'Teléfono',
       contact_privacy:'He leído y acepto la', contact_privacy_link:'Política de privacidad', contact_book:'Solicitar llamada →',
@@ -446,7 +449,7 @@
       opt_deuda:['Hipoteca + préstecs','Només préstecs / targetes','Hipoteca + targetes'],
       opt_total_deuda:['Menys de 50.000 €','50.000 – 100.000 €','Més de 100.000 €'],
       opt_vivienda:['Sí, amb hipoteca','Sí, sense hipoteca','No'],
-      opt_servicio:['Intermediació immobiliària','Inversió en Or','Club Privat d\'Inversors','Corredor d\'Assegurances'],
+      opt_servicio:['Intermediació immobiliària','Inversió en Or','Club Privat d\'Inversors','Assegurances'],
       contact_label:'Últim pas', contact_q:'Com ens posem en contacte amb tu?',
       contact_nombre_ph:'Nom complet', contact_email_ph:'Correu electrònic', contact_tel_ph:'Telèfon',
       contact_privacy:'He llegit i accepto la', contact_privacy_link:'Política de privacitat', contact_book:'Sol·licitar trucada →',
@@ -475,7 +478,7 @@
       opt_deuda:['Mortgage + loans','Loans / credit cards only','Mortgage + credit cards'],
       opt_total_deuda:['Less than €50,000','€50,000 – €100,000','More than €100,000'],
       opt_vivienda:['Yes, with mortgage','Yes, without mortgage','No'],
-      opt_servicio:['Real estate brokerage','Gold investment','Private investors club','Insurance broker'],
+      opt_servicio:['Real estate brokerage','Gold investment','Private investors club','Insurance'],
       contact_label:'Last step', contact_q:'How can we contact you?',
       contact_nombre_ph:'Full name', contact_email_ph:'Email address', contact_tel_ph:'Phone',
       contact_privacy:'I have read and accept the', contact_privacy_link:'Privacy policy', contact_book:'Request a call →',
