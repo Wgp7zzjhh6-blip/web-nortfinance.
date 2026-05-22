@@ -956,3 +956,41 @@
     });
   });
 })();
+
+/* ── Email copy-to-clipboard (footer mailto links) ──────────── */
+(function () {
+  function showToast(msg) {
+    var t = document.createElement('div');
+    t.textContent = msg;
+    t.style.cssText = [
+      'position:fixed','bottom:28px','left:50%','transform:translateX(-50%) translateY(10px)',
+      'background:#1a1a1a','color:#D4AF37','padding:10px 20px',
+      'border-radius:4px','border:1px solid rgba(212,175,55,0.3)',
+      'font-family:Inter,sans-serif','font-size:12px','letter-spacing:0.06em',
+      'z-index:99999','opacity:0','transition:opacity 0.25s,transform 0.25s',
+      'pointer-events:none','white-space:nowrap'
+    ].join(';');
+    document.body.appendChild(t);
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        t.style.opacity = '1';
+        t.style.transform = 'translateX(-50%) translateY(0)';
+      });
+    });
+    setTimeout(function() {
+      t.style.opacity = '0';
+      t.style.transform = 'translateX(-50%) translateY(10px)';
+      setTimeout(function() { t.remove(); }, 300);
+    }, 2200);
+  }
+
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[href^="mailto:"]');
+    if (!link) return;
+    var email = link.getAttribute('href').replace('mailto:', '').split('?')[0];
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(email).catch(function() {});
+    }
+    showToast('✓ ' + email + ' copiado al portapapeles');
+  });
+})();
