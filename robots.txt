@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nortfinance.com/sitemap.xml
+Sitemap: https://www.nortfinance.com/sitemap.xml
