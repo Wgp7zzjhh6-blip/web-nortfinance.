@@ -34,7 +34,7 @@
       'why.c2.title': 'Estrategia adaptada<br /><span class="text-gold">a tu situación</span>',
       'why.c2.text': 'Cada cliente es único. Analizamos tu perfil en profundidad para encontrar la solución coherente con tu realidad.',
       'why.c3.title': 'Transparencia<br /><span class="text-gold">desde el primer momento</span>',
-      'why.c3.text': 'Te decimos la verdad sobre viabilidad, opciones y condiciones reales desde el inicio.',
+      'why.c3.text': 'Te decimos la verdad sobre viabilidad, opciones y condiciones reales.',
       'why.c4.title': 'Acompañamiento<br /><span class="text-gold">durante todo el proceso</span>',
       'why.c4.text': 'Estamos a tu lado desde el análisis inicial hasta la firma notarial.',
 
@@ -99,7 +99,7 @@
       'cta.btn2': 'Escríbenos',
 
       /* ── Hipotecas hero ─────────────────────── */
-      'hipo.tag': 'Asesoramiento hipotecario',
+      'hipo.tag': 'Broker Hipotecario',
       'hipo.title': 'Tus necesidades,<br />nuestra <span class="text-gold">estrategia.</span>',
       'hipo.subtitle': 'Cada perfil financiero es único. Diseñamos la estrategia hipotecaria que encaja con tu situación real, no con una plantilla.',
       'hipo.cta1': 'Mi Estudio Gratuito',
