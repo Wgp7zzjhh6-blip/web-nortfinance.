@@ -836,6 +836,18 @@
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify(data),
         }).catch(() => {});
+
+        // Enviar a n8n para automatización MailerLite
+        fetch('http://178.104.1.37:5678/webhook/adb65236-6440-4ef6-9bd7-3c2b71471032', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nombre:   payload.nombre   || '',
+            email:    payload.email    || '',
+            telefono: payload.telefono || '',
+            servicio: serviceLabel     || '',
+          }),
+        }).catch(() => {});
       }
 
       // Safety net: si cierra sin elegir, capturamos el lead igualmente
@@ -933,6 +945,13 @@
 
     submitBtn.disabled = true;
     submitBtn.textContent = 'Enviando…';
+
+    // Enviar a n8n para automatización MailerLite
+    fetch('http://178.104.1.37:5678/webhook/adb65236-6440-4ef6-9bd7-3c2b71471032', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nombre, email, telefono, servicio: situacion }),
+    }).catch(() => {});
 
     const fd = new FormData(form);
     fetch('https://formspree.io/f/xrejngqv', {
