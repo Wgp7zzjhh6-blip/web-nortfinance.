@@ -67,11 +67,11 @@
       /* ── Testimonials ───────────────────────── */
       'testimonios.tag': 'Clientes reales',
       'testimonios.title': 'Lo que dicen nuestros <span class="text-gold">clientes</span>',
-      'testimonios.q1': '"Desde el primer día nos sentimos totalmente acogidos. Nos explicaron cada paso con paciencia y siempre estuvieron disponibles para cualquier duda. Al final conseguimos unas condiciones mucho mejores de lo que esperábamos. Los recomendamos sin dudarlo."',
+      'testimonios.q1': '"Desde el primer día nos sentimos en buenas manos. Todo muy claro, sin sorpresas, y con un resultado mejor del esperado. Sin NortFinance no habríamos conseguido las condiciones que tenemos ahora."',
       'testimonios.q1.role': 'Primera vivienda · Barcelona',
-      'testimonios.q2': '"Llevaba tiempo intentando que algún banco me aprobara la hipoteca, sin éxito. NortFinance analizó mi perfil, habló con los bancos adecuados y en pocas semanas tenía varias ofertas encima de la mesa. El resultado fue increíble, no me lo podía creer."',
+      'testimonios.q2': '"Dos bancos me habían dicho que no. NortFinance encontró la solución en dos semanas. Proceso directo, sin rodeos y con resultado. No volvería a gestionar una hipoteca sin ellos."',
       'testimonios.q2.role': 'Autónomo · Madrid',
-      'testimonios.q3': '"Durante todo el proceso sentimos que teníamos a alguien de verdad en nuestro lado. No solo gestionaron todo con total eficiencia, sino que nos asesoraron con una cercanía y profesionalidad que no esperábamos. Muy recomendable."',
+      'testimonios.q3': '"Trato cercano y muy profesional en todo momento. Nos guiaron sin agobios, resolvieron cada duda y el resultado superó lo que esperábamos. Repetiríamos sin dudarlo."',
       'testimonios.q3.role': 'Segunda residencia · Valencia',
 
       /* ── FAQ ────────────────────────────────── */

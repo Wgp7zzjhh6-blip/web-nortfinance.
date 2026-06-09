@@ -1069,6 +1069,8 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
   gap: 22px;
   position: relative;
   overflow: hidden;
+  background: #111114;
+  border-color: rgba(255,255,255,0.1);
 }
 
 .card--testimonial::before {
@@ -1079,7 +1081,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
   font-family: 'Cormorant Garamond', serif;
   font-size: 8rem;
   color: var(--gold);
-  opacity: 0.04;
+  opacity: 0.08;
   line-height: 1;
   pointer-events: none;
   user-select: none;
@@ -1134,20 +1136,21 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
 /* Centre card slightly elevated and with a gold hairline */
 .card--testimonial-featured {
   margin-top: -16px;
-  border-color: var(--gold-line);
+  background: #161618;
+  border-color: rgba(212,175,55,0.35);
 }
 
 .testimonial__stars svg {
-  opacity: 0.75;
+  opacity: 1;
 }
 
 .testimonial__quote {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.05rem;
-  font-weight: 300;
+  font-size: 1.08rem;
+  font-weight: 400;
   font-style: italic;
   line-height: 1.75;
-  color: var(--text-sub);
+  color: rgba(240, 237, 232, 0.9);
   flex: 1;
   letter-spacing: 0.01em;
 }
@@ -1161,16 +1164,16 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
 }
 
 .testimonial__avatar {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: rgba(212, 175, 55, 0.1);
-  border: 0.5px solid var(--gold-line);
+  background: rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.68rem;
-  font-weight: 500;
+  font-size: 0.72rem;
+  font-weight: 600;
   letter-spacing: 0.04em;
   color: var(--gold);
   flex-shrink: 0;
