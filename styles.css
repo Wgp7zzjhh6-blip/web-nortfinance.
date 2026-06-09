@@ -1085,6 +1085,52 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
   user-select: none;
 }
 
+/* Rating bar above the grid */
+.testimonios__rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 18px;
+}
+.testimonios__rating-score {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.testimonios__rating-count {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  letter-spacing: 0.02em;
+}
+
+/* Top row inside each card: stars + Google badge */
+.testimonial__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.testimonial__source {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  opacity: 0.55;
+  transition: opacity 0.2s;
+}
+.card--testimonial:hover .testimonial__source {
+  opacity: 0.8;
+}
+.testimonial__source span {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--text-faint);
+  letter-spacing: 0.03em;
+}
+
 /* Centre card slightly elevated and with a gold hairline */
 .card--testimonial-featured {
   margin-top: -16px;
