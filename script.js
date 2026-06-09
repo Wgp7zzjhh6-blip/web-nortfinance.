@@ -838,7 +838,7 @@
         }).catch(() => {});
 
         // Enviar a n8n para automatización MailerLite
-        fetch('http://178.104.1.37:5678/webhook/adb65236-6440-4ef6-9bd7-3c2b71471032', {
+        fetch('https://n8n.nortfinance.com/webhook/adb65236-6440-4ef6-9bd7-3c2b71471032', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -947,7 +947,7 @@
     submitBtn.textContent = 'Enviando…';
 
     // Enviar a n8n para automatización MailerLite
-    fetch('http://178.104.1.37:5678/webhook/adb65236-6440-4ef6-9bd7-3c2b71471032', {
+    fetch('https://n8n.nortfinance.com/webhook/adb65236-6440-4ef6-9bd7-3c2b71471032', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nombre, email, telefono, servicio: situacion }),
