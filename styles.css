@@ -1142,6 +1142,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
 
 .testimonial__stars svg {
   opacity: 1;
+  filter: drop-shadow(0 0 4px rgba(212,175,55,0.5));
 }
 
 .testimonial__quote {
