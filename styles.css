@@ -627,7 +627,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
   align-items: center;
   gap: 12px;
   padding: 6px 16px;
-  border: 1px solid var(--gold-line);
+  border: 1px solid rgba(196, 150, 58, 0.25);
   border-radius: 2px;
   font-size: 0.67rem;
   font-weight: 500;
@@ -2220,10 +2220,21 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
   background-color: rgb(17, 17, 9) !important;
 }
 
-/* ── Unified serif font stack ── */
-h1, h2, h3, h4, h5, h6,
+
+/* ── section-tag inside flex column containers ── */
+.cta-final__inner > .section-tag,
+.firstcall__left > .section-tag,
+.faq__left > .section-tag,
+.partners-cta__left > .section-tag {
+  align-self: center;
+  width: fit-content;
+}
+
+/* ── Remaining serif elements with Georgia fallback ── */
+h3, h4, h5, h6,
 .stats__number,
 .card__num,
-.proceso__step-num {
+.proceso__step-num,
+.text-gold {
   font-family: "Cormorant Garant", Georgia, serif;
 }
