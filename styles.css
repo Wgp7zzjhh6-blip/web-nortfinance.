@@ -50,7 +50,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6,
+.stats__number,
+.card__num,
+.proceso__step-num {
   font-family: 'Cormorant Garant', Georgia, serif;
 }
 
@@ -628,7 +631,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  padding: 7px 20px;
+  padding: 6px 16px;
   border: 1px solid var(--gold-line);
   border-radius: 2px;
   font-size: 0.67rem;
@@ -1095,7 +1098,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
   gap: 22px;
   position: relative;
   overflow: hidden;
-  background: #111114;
+  background-color: #111109;
   border-color: rgba(255,255,255,0.1);
 }
 
@@ -1162,7 +1165,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
 /* Centre card slightly elevated and with a gold hairline */
 .card--testimonial-featured {
   margin-top: -16px;
-  background: #161618;
+  background: #14140c;
   border-color: rgba(196,150,58,0.35);
 }
 
@@ -1338,6 +1341,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
 }
 
 .cta-final__inner {
+  align-items: center;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -2191,4 +2195,31 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
 @media (max-width: 600px) {
   .partners-grid { grid-template-columns: 1fr; }
   .partners-form__row { grid-template-columns: 1fr; }
+}
+
+/* ── Testimonial warm backgrounds ── */
+.card--testimonial {
+  background-color: rgb(17, 17, 9) !important;
+}
+.card--testimonial-featured {
+  background-color: rgb(20, 20, 12) !important;
+}
+
+/* ── Contact form full-width button ── */
+.contacto .btn--gold,
+.contact-form .btn--gold,
+.contact-form__submit {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+/* ── Card accent italic (Cormorant italic is elegant) ── */
+.card--why .card__title .text-gold {
+  font-style: italic;
+}
+
+/* ── Card why h3 weight matches heading system ── */
+.card--why .card__title {
+  font-weight: 300;
 }
