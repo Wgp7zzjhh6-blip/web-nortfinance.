@@ -1013,3 +1013,68 @@
     showToast('✓ ' + email + ' copiado al portapapeles');
   });
 })();
+
+/* ── Hero Simulator (index.html only) ───────────────────────── */
+(function () {
+  const simPrecio = document.getElementById('simPrecio');
+  if (!simPrecio) return; // Only runs on index.html
+
+  const simAhorro = document.getElementById('simAhorro');
+  const simPlazo  = document.getElementById('simPlazo');
+  const simTipo   = document.getElementById('simTipo');
+
+  const simPrecioVal  = document.getElementById('simPrecioVal');
+  const simAhorroVal  = document.getElementById('simAhorroVal');
+  const simPlazoVal   = document.getElementById('simPlazoVal');
+  const simTipoVal    = document.getElementById('simTipoVal');
+  const simCuota      = document.getElementById('simCuota');
+  const simCapital    = document.getElementById('simCapital');
+  const simPct        = document.getElementById('simPct');
+  const simIngresos   = document.getElementById('simIngresos');
+
+  function fmt(n) {
+    return n.toLocaleString('es-ES');
+  }
+
+  function calcular() {
+    const precio  = parseFloat(simPrecio.value);
+    const ahorro  = parseFloat(simAhorro.value);
+    const plazo   = parseInt(simPlazo.value);
+    const tipo    = parseFloat(simTipo.value);
+
+    const capital  = Math.max(0, precio - ahorro);
+    const pct      = precio > 0 ? Math.round((capital / precio) * 100) : 0;
+    const n        = plazo * 12;
+    const r        = tipo / 100 / 12;
+
+    let cuota;
+    if (r === 0) {
+      cuota = capital / n;
+    } else {
+      cuota = capital * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    }
+
+    const ingresosMin = cuota / 0.30; // recomendado: cuota ≤ 30% ingresos
+
+    simPrecioVal.textContent = fmt(Math.round(precio));
+    simAhorroVal.textContent = fmt(Math.round(ahorro));
+    simPlazoVal.textContent  = plazo;
+    simTipoVal.textContent   = tipo.toFixed(1).replace('.', ',');
+    simCuota.textContent     = fmt(Math.round(cuota));
+    simCapital.textContent   = fmt(Math.round(capital)) + ' €';
+    simPct.textContent       = pct + '%';
+    simIngresos.textContent  = '~' + fmt(Math.round(ingresosMin)) + ' €/mes';
+
+    // Visual feedback: clamp ahorro <= precio
+    if (ahorro > precio) {
+      simAhorro.value = precio;
+      simAhorroVal.textContent = fmt(Math.round(precio));
+    }
+  }
+
+  [simPrecio, simAhorro, simPlazo, simTipo].forEach(el => {
+    el.addEventListener('input', calcular);
+  });
+
+  calcular(); // initial render
+})();
