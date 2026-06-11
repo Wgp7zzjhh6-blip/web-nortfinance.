@@ -1011,6 +1011,15 @@
         valid = false;
       }
     });
+    // Validate privacy checkbox
+    const privacyLabel = form.querySelector('#pPrivacidad') ? form.querySelector('#pPrivacidad').closest('label') : null;
+    if (!privOk && privacyLabel) {
+      privacyLabel.style.color = 'rgba(220,80,80,0.9)';
+      form.querySelector('#pPrivacidad').addEventListener('change', function () {
+        privacyLabel.style.color = '';
+      }, { once: true });
+      valid = false;
+    }
     if (!valid) return;
 
     const _lang2 = (function(){ try { return localStorage.getItem('nf_lang') || 'es'; } catch(e){ return 'es'; } })();
