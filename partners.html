@@ -42,13 +42,13 @@
 
       <nav class="navbar__nav" id="navMenu" aria-label="Navegación principal">
         <ul class="navbar__links">
-          <li><a href="hipotecas.html" class="navbar__link">Hipotecas</a></li>
-          <li><a href="servicios.html" class="navbar__link">Servicios</a></li>
-          <li><a href="recursos.html" class="navbar__link">Recursos</a></li>
+          <li><a href="hipotecas.html" class="navbar__link" data-i18n="nav.mortgages">Hipotecas</a></li>
+          <li><a href="servicios.html" class="navbar__link" data-i18n="nav.services">Servicios</a></li>
+          <li><a href="recursos.html" class="navbar__link" data-i18n="nav.resources">Recursos</a></li>
           <li><a href="casos-exito.html" class="navbar__link" data-i18n="nav.cases">Casos de éxito</a></li>
-          <li><a href="contacto.html" class="navbar__link">Contacto</a></li>
+          <li><a href="contacto.html" class="navbar__link" data-i18n="nav.contact">Contacto</a></li>
         </ul>
-        <a href="#" data-estudio class="btn btn--gold navbar__cta">Mi Estudio Gratuito</a>
+        <a href="#" data-estudio class="btn btn--gold navbar__cta" data-i18n="nav.cta">Mi Estudio Gratuito</a>
       </nav>
 
       <div class="lang-dropdown" id="langDropdown">
@@ -77,11 +77,11 @@
     <!-- ══════════════════════════ HERO ══════════════════════════ -->
     <section class="partners-hero">
       <div class="container partners-hero__inner reveal">
-        <span class="section-tag">Colaboradores</span>
-        <h1 class="partners-hero__title">
+        <span class="section-tag" data-i18n="partners.hero.tag">Colaboradores</span>
+        <h1 class="partners-hero__title" data-i18n-html="partners.hero.title">
           Empresas que comparten<br />nuestro <span class="text-gold">criterio</span>
         </h1>
-        <p class="partners-hero__sub">
+        <p class="partners-hero__sub" data-i18n="partners.hero.sub">
           NortFinance trabaja con una red seleccionada de profesionales y empresas
           que ofrecen servicios complementarios con la misma exigencia y honestidad
           que nosotros aplicamos al asesoramiento hipotecario.
@@ -93,8 +93,8 @@
     <section class="partners-section">
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-tag">Nuestra red</span>
-          <h2 class="section-title">
+          <span class="section-tag" data-i18n="partners.grid.tag">Nuestra red</span>
+          <h2 class="section-title" data-i18n-html="partners.grid.title">
             Partners <span class="text-gold">actuales</span>
           </h2>
         </div>
@@ -104,15 +104,15 @@
           <!-- Placeholder: Construcción — pendiente de confirmar -->
           <div class="partner-card reveal">
             <div class="partner-card__initial">C</div>
-            <span class="partner-card__category">Construcción</span>
-            <h3 class="partner-card__name">Empresa de Construcciones</h3>
-            <p class="partner-card__desc">Especialistas en construcción residencial y rehabilitación. Proyectos de calidad con décadas de experiencia en el sector.</p>
-            <span class="partner-card__link">Próximamente →</span>
+            <span class="partner-card__category" data-i18n="partners.card.cat">Construcción</span>
+            <h3 class="partner-card__name" data-i18n="partners.card.name">Empresa de Construcciones</h3>
+            <p class="partner-card__desc" data-i18n="partners.card.desc">Especialistas en construcción residencial y rehabilitación. Proyectos de calidad con décadas de experiencia en el sector.</p>
+            <span class="partner-card__link" data-i18n="partners.card.soon">Próximamente →</span>
           </div>
 
         </div>
 
-        <p class="reveal" style="text-align:center;margin-top:48px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:300;color:var(--text-faint);letter-spacing:0.02em;">
+        <p class="reveal" style="text-align:center;margin-top:48px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:300;color:var(--text-faint);letter-spacing:0.02em;" data-i18n="partners.net.note">
           ✦ &nbsp; Red en construcción — nuevos partners próximamente
         </p>
 
@@ -125,61 +125,65 @@
         <div class="partners-cta__layout">
 
           <div class="partners-cta__left reveal">
-            <span class="section-tag">Colabora con nosotros</span>
-            <h2 class="partners-cta__title">
+            <span class="section-tag" data-i18n="partners.cta.tag">Colabora con nosotros</span>
+            <h2 class="partners-cta__title" data-i18n-html="partners.cta.title">
               ¿Quieres ser<br />partner de <span class="text-gold">NortFinance?</span>
             </h2>
-            <p class="partners-cta__desc">
+            <p class="partners-cta__desc" data-i18n="partners.cta.desc1">
               Si tu empresa ofrece servicios complementarios al asesoramiento hipotecario o patrimonial,
               y compartes nuestra filosofía de trabajo honesto y orientado al cliente, nos encantaría
               conocerte.
             </p>
             <br />
-            <p class="partners-cta__desc">
+            <p class="partners-cta__desc" data-i18n="partners.cta.desc2">
               Trabajamos con inmobiliarias, promotores, constructores, gestorías, seguros
               y cualquier profesional que quiera ofrecer más valor a sus clientes.
             </p>
           </div>
 
           <div class="reveal">
-            <form class="partners-form" id="partnersForm" action="https://formsubmit.co/info@nortfinance.com" method="POST">
-              <input type="hidden" name="_subject" value="Nueva solicitud de partnership · NortFinance" />
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_next" value="https://www.nortfinance.com/partners.html?gracias=1" />
+            <form class="partners-form" id="partnersForm" novalidate>
 
               <div class="partners-form__row">
                 <div class="partners-form__group">
-                  <label class="partners-form__label" for="pNombre">Nombre</label>
-                  <input class="partners-form__input" type="text" id="pNombre" name="nombre" placeholder="Tu nombre" required />
+                  <label class="partners-form__label" for="pNombre" data-i18n="partners.form.nombre">Nombre</label>
+                  <input class="partners-form__input" type="text" id="pNombre" name="nombre" placeholder="Tu nombre" data-i18n-placeholder="partners.form.nombre.ph" required />
                 </div>
                 <div class="partners-form__group">
-                  <label class="partners-form__label" for="pEmpresa">Empresa</label>
-                  <input class="partners-form__input" type="text" id="pEmpresa" name="empresa" placeholder="Nombre de tu empresa" required />
+                  <label class="partners-form__label" for="pEmpresa" data-i18n="partners.form.empresa">Empresa</label>
+                  <input class="partners-form__input" type="text" id="pEmpresa" name="empresa" placeholder="Nombre de tu empresa" data-i18n-placeholder="partners.form.empresa.ph" required />
                 </div>
               </div>
 
               <div class="partners-form__row">
                 <div class="partners-form__group">
-                  <label class="partners-form__label" for="pWeb">Web</label>
-                  <input class="partners-form__input" type="url" id="pWeb" name="web" placeholder="https://tuempresa.com" />
+                  <label class="partners-form__label" for="pEmail" data-i18n="partners.form.email">Email</label>
+                  <input class="partners-form__input" type="email" id="pEmail" name="email" placeholder="tu@empresa.com" data-i18n-placeholder="partners.form.email.ph" required autocomplete="email" />
                 </div>
                 <div class="partners-form__group">
-                  <label class="partners-form__label" for="pTelefono">Teléfono</label>
-                  <input class="partners-form__input" type="tel" id="pTelefono" name="telefono" placeholder="+34 600 000 000" required />
+                  <label class="partners-form__label" for="pTelefono" data-i18n="partners.form.tel">Teléfono</label>
+                  <input class="partners-form__input" type="tel" id="pTelefono" name="telefono" placeholder="+34 600 000 000" data-i18n-placeholder="partners.form.tel.ph" required autocomplete="tel" />
+                </div>
+              </div>
+
+              <div class="partners-form__row">
+                <div class="partners-form__group">
+                  <label class="partners-form__label" for="pWeb" data-i18n="partners.form.web">Web</label>
+                  <input class="partners-form__input" type="url" id="pWeb" name="web" placeholder="https://tuempresa.com" data-i18n-placeholder="partners.form.web.ph" />
                 </div>
               </div>
 
               <div class="partners-form__group">
-                <label class="partners-form__label" for="pMensaje">Cuéntanos sobre tu empresa</label>
-                <textarea class="partners-form__textarea" id="pMensaje" name="mensaje" placeholder="¿A qué os dedicáis? ¿Por qué crees que encajaríamos?" required></textarea>
+                <label class="partners-form__label" for="pMensaje" data-i18n="partners.form.msg">Cuéntanos sobre tu empresa</label>
+                <textarea class="partners-form__textarea" id="pMensaje" name="mensaje" placeholder="¿A qué os dedicáis? ¿Por qué crees que encajaríamos?" data-i18n-placeholder="partners.form.msg.ph" required></textarea>
               </div>
 
               <label class="partners-form__privacy">
-                <input type="checkbox" name="privacidad" required />
-                <span>He leído y acepto la <a href="privacidad.html">Política de Privacidad</a> de NortFinance.</span>
+                <input type="checkbox" id="pPrivacidad" name="privacidad" required />
+                <span data-i18n-html="partners.form.privacy">He leído y acepto la <a href="privacidad.html">Política de Privacidad</a> de NortFinance.</span>
               </label>
 
-              <button type="submit" class="btn btn--gold btn--lg" style="width:100%;justify-content:center">
+              <button type="submit" id="pSubmitBtn" class="btn btn--gold btn--lg" style="width:100%;justify-content:center" data-i18n="partners.form.submit">
                 Enviar solicitud →
               </button>
             </form>
@@ -201,7 +205,7 @@
             <img src="logo-redondo.png" alt="NortFinance" class="navbar__logo-img" onerror="this.style.display='none'" />
             <span class="footer__logo-text">Nort<span class="text-gold">Finance</span></span>
           </a>
-          <p class="footer__desc">Firma de asesoramiento financiero y soluciones hipotecarias premium. Tu hipoteca, tu inversión y tu patrimonio, gestionados con criterio real.</p>
+          <p class="footer__desc" data-i18n="footer.desc">Firma de asesoramiento financiero y soluciones hipotecarias premium. Tu hipoteca, tu inversión y tu patrimonio, gestionados con criterio real.</p>
           <div class="footer__social">
             <a href="#" class="footer__social-link" aria-label="LinkedIn">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -213,32 +217,33 @@
         </div>
 
         <div class="footer__col">
-          <h4 class="footer__heading">Navegación</h4>
+          <h4 class="footer__heading" data-i18n="footer.nav.heading">Navegación</h4>
           <ul class="footer__links">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="hipotecas.html">Broker Hipotecario</a></li>
-            <li><a href="servicios.html">Servicios</a></li>
-            <li><a href="recursos.html">Recursos</a></li>
+            <li><a href="index.html" data-i18n="footer.nav.home">Inicio</a></li>
+            <li><a href="hipotecas.html" data-i18n="footer.nav.mortgages">Broker Hipotecario</a></li>
+            <li><a href="servicios.html" data-i18n="footer.nav.services">Servicios</a></li>
+            <li><a href="recursos.html" data-i18n="footer.nav.resources">Recursos</a></li>
             <li><a href="partners.html" data-i18n="footer.nav.partners">Partners</a></li>
             <li><a href="casos-exito.html" data-i18n="footer.nav.cases">Casos de éxito</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="contacto.html" data-i18n="footer.nav.contact">Contacto</a></li>
           </ul>
         </div>
 
         <div class="footer__col">
-          <h4 class="footer__heading">Servicios</h4>
+          <h4 class="footer__heading" data-i18n="footer.services.heading">Servicios</h4>
           <ul class="footer__links">
-            <li><a href="hipotecas.html">Hipotecas Primera Vivienda</a></li>
-            <li><a href="servicios.html">Intermediación Inmobiliaria</a></li>
-            <li><a href="servicios.html">Inversión en Oro</a></li>
-            <li><a href="servicios.html">Club Privado de Inversores</a></li>
-            <li><a href="servicios.html">Seguros</a></li>
+            <li><a href="hipotecas.html" data-i18n="footer.s1">Hipotecas Primera Vivienda</a></li>
+            <li><a href="servicios.html" data-i18n="footer.s2">Intermediación Inmobiliaria</a></li>
+            <li><a href="servicios.html" data-i18n="footer.s3">Inversión en Oro</a></li>
+            <li><a href="servicios.html" data-i18n="footer.s4">Club Privado de Inversores</a></li>
+            <li><a href="servicios.html" data-i18n="footer.s5">Seguros</a></li>
             <li><a href="recursos.html#simulador" data-i18n="footer.sim">Simulador de hipoteca</a></li>
+            <li><a href="contacto.html" data-i18n="footer.estudio">Estudio gratuito</a></li>
           </ul>
         </div>
 
         <div class="footer__col">
-          <h4 class="footer__heading">Contacto</h4>
+          <h4 class="footer__heading" data-i18n="footer.contact.heading">Contacto</h4>
           <ul class="footer__contact">
             <li>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/></svg>
@@ -250,28 +255,28 @@
             </li>
             <li>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              <span>Lun–Vie · 9:00 – 19:00h</span>
+              <span data-i18n="footer.hours">Lun–Vie · 9:00 – 19:00h</span>
             </li>
             <li>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span>España</span>
+              <span data-i18n="footer.location">España</span>
             </li>
           </ul>
-          <a href="#ser-partner" class="btn btn--gold btn--sm footer__cta-btn">Ser partner →</a>
+          <a href="#ser-partner" class="btn btn--gold btn--sm footer__cta-btn" data-i18n="partners.footer.cta">Ser partner →</a>
         </div>
 
       </div>
 
       <div class="footer__bottom">
-        <p class="footer__copy">© 2026 NortFinance. Todos los derechos reservados.</p>
+        <p class="footer__copy" data-i18n="footer.copy">© 2026 NortFinance. Todos los derechos reservados.</p>
         <div class="footer__legal">
-          <a href="privacidad.html">Política de privacidad</a>
+          <a href="privacidad.html" data-i18n="footer.privacy">Política de privacidad</a>
           <span aria-hidden="true">·</span>
-          <a href="cookies.html">Cookies</a>
+          <a href="cookies.html" data-i18n="footer.cookies">Cookies</a>
           <span aria-hidden="true">·</span>
-          <a href="aviso-legal.html">Aviso legal</a>
+          <a href="aviso-legal.html" data-i18n="footer.legal">Aviso legal</a>
           <span aria-hidden="true">·</span>
-          <a href="condiciones.html">Condiciones generales</a>
+          <a href="condiciones.html" data-i18n="footer.terms">Condiciones generales</a>
         </div>
       </div>
     </div>

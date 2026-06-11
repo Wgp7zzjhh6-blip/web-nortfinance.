@@ -474,6 +474,70 @@
       'cnt.info.l3': 'Nuestro compromiso',
       'cnt.info.v2': 'Lunes a Viernes<br />9:00h a 19:00h',
       'cnt.info.v3': 'Como firma familiar, respondemos directamente de persona a persona en menos de 24 horas.',
+
+      /* ── Contact form select & placeholders ─── */
+      'cnt.select.default': 'Selecciona tu situación',
+      'cnt.select.opt1': 'Quiero comprar mi primera vivienda',
+      'cnt.select.opt2': 'Soy autónomo/a',
+      'cnt.select.opt3': 'Quiero cambiar de hipoteca',
+      'cnt.select.opt4': 'Inversión o Segunda residencia',
+      'cnt.select.opt5': 'Otros servicios patrimoniales',
+      'cnt.form.name.ph': 'Tu nombre y apellidos',
+      'cnt.form.msg.ph': 'Cuéntanos brevemente tu situación: precio de la vivienda que buscas, ingresos aproximados, plazos… cualquier detalle nos ayuda a preparar tu estudio.',
+
+      /* ── Footer brand description ───────────── */
+      'footer.desc': 'Firma de asesoramiento financiero y soluciones hipotecarias premium. Tu hipoteca, tu inversión y tu patrimonio, gestionados con criterio real.',
+
+      /* ── Partners page ──────────────────────── */
+      'partners.hero.tag': 'Colaboradores',
+      'partners.hero.title': 'Empresas que comparten<br />nuestro <span class="text-gold">criterio</span>',
+      'partners.hero.sub': 'NortFinance trabaja con una red seleccionada de profesionales y empresas que ofrecen servicios complementarios con la misma exigencia y honestidad que nosotros aplicamos al asesoramiento hipotecario.',
+      'partners.grid.tag': 'Nuestra red',
+      'partners.grid.title': 'Partners <span class="text-gold">actuales</span>',
+      'partners.card.cat': 'Construcción',
+      'partners.card.name': 'Empresa de Construcciones',
+      'partners.card.desc': 'Especialistas en construcción residencial y rehabilitación. Proyectos de calidad con décadas de experiencia en el sector.',
+      'partners.card.soon': 'Próximamente →',
+      'partners.net.note': '✦   Red en construcción — nuevos partners próximamente',
+      'partners.cta.tag': 'Colabora con nosotros',
+      'partners.cta.title': '¿Quieres ser<br />partner de <span class="text-gold">NortFinance?</span>',
+      'partners.cta.desc1': 'Si tu empresa ofrece servicios complementarios al asesoramiento hipotecario o patrimonial, y compartes nuestra filosofía de trabajo honesto y orientado al cliente, nos encantaría conocerte.',
+      'partners.cta.desc2': 'Trabajamos con inmobiliarias, promotores, constructores, gestorías, seguros y cualquier profesional que quiera ofrecer más valor a sus clientes.',
+      'partners.form.nombre': 'Nombre',
+      'partners.form.nombre.ph': 'Tu nombre',
+      'partners.form.empresa': 'Empresa',
+      'partners.form.empresa.ph': 'Nombre de tu empresa',
+      'partners.form.email': 'Email',
+      'partners.form.email.ph': 'tu@empresa.com',
+      'partners.form.web': 'Web',
+      'partners.form.web.ph': 'https://tuempresa.com',
+      'partners.form.tel': 'Teléfono',
+      'partners.form.tel.ph': '+34 600 000 000',
+      'partners.form.msg': 'Cuéntanos sobre tu empresa',
+      'partners.form.msg.ph': '¿A qué os dedicáis? ¿Por qué crees que encajaríamos?',
+      'partners.form.privacy': 'He leído y acepto la <a href="privacidad.html">Política de Privacidad</a> de NortFinance.',
+      'partners.form.submit': 'Enviar solicitud →',
+      'partners.footer.cta': 'Ser partner →',
+
+      /* ── Casos de éxito page ─────────────────── */
+      'ce.hero.badge': 'Resultados reales · Clientes reales',
+      'ce.hero.title': 'No te cuentes lo que<br>podemos hacer.<br><em>Te lo demostramos.</em>',
+      'ce.hero.sub': 'Cada caso aquí documentado es un cliente real que llegó con una situación concreta — y salió con las mejores condiciones que el mercado podía ofrecer.',
+      'ce.hero.t1': 'Datos reales anonimizados',
+      'ce.hero.t2': 'Ahorro verificable',
+      'ce.hero.t3': 'Proceso transparente',
+      'ce.hero.t4': '+20 bancos comparados',
+      'ce.stats.l1': 'Hipotecas gestionadas',
+      'ce.stats.l2': 'Ahorro total a clientes',
+      'ce.stats.l3': 'Tasa de aprobación',
+      'ce.stats.l4': 'Google Reviews',
+      'ce.cases.tag': 'Casos documentados',
+      'ce.cases.title': 'Lo que conseguimos para<br>nuestros clientes',
+      'ce.cases.sub': 'Tres situaciones distintas, un mismo resultado: las mejores condiciones posibles.',
+      'ce.cta.title': '¿Quieres ser el próximo<br><em>caso de éxito</em>?',
+      'ce.cta.sub': 'El estudio es gratuito, sin compromiso y sin letra pequeña. En 24–48h te decimos exactamente qué podemos conseguir para tu perfil.',
+      'ce.cta.btn1': 'Mi Estudio Gratuito',
+      'ce.cta.btn2': 'Simular mi hipoteca →',
     },
 
     /* ════════════════════════════════════════
@@ -936,6 +1000,70 @@
       'cnt.info.l3': 'El nostre compromís',
       'cnt.info.v2': 'Dilluns a Divendres<br />9:00h a 19:00h',
       'cnt.info.v3': "Com a firma familiar, responem directament de persona a persona en menys de 24 hores.",
+
+      /* ── Contact form select & placeholders ─── */
+      'cnt.select.default': 'Selecciona la teva situació',
+      'cnt.select.opt1': 'Vull comprar el meu primer habitatge',
+      'cnt.select.opt2': 'Sóc autònom/a',
+      'cnt.select.opt3': "Vull canviar d'hipoteca",
+      'cnt.select.opt4': 'Inversió o Segona residència',
+      'cnt.select.opt5': 'Altres serveis patrimonials',
+      'cnt.form.name.ph': 'El teu nom i cognoms',
+      'cnt.form.msg.ph': "Explica'ns breument la teva situació: preu de l'habitatge que busques, ingressos aproximats, terminis… qualsevol detall ens ajuda a preparar el teu estudi.",
+
+      /* ── Footer brand description ───────────── */
+      'footer.desc': "Firma d'assessorament financer i solucions hipotecàries premium. La teva hipoteca, la teva inversió i el teu patrimoni, gestionats amb criteri real.",
+
+      /* ── Partners page ──────────────────────── */
+      'partners.hero.tag': 'Col·laboradors',
+      'partners.hero.title': 'Empreses que comparteixen<br />el nostre <span class="text-gold">criteri</span>',
+      'partners.hero.sub': "NortFinance treballa amb una xarxa seleccionada de professionals i empreses que ofereixen serveis complementaris amb la mateixa exigència i honestedat que nosaltres apliquem a l'assessorament hipotecari.",
+      'partners.grid.tag': 'La nostra xarxa',
+      'partners.grid.title': 'Partners <span class="text-gold">actuals</span>',
+      'partners.card.cat': 'Construcció',
+      'partners.card.name': 'Empresa de Construccions',
+      'partners.card.desc': "Especialistes en construcció residencial i rehabilitació. Projectes de qualitat amb dècades d'experiència en el sector.",
+      'partners.card.soon': 'Properament →',
+      'partners.net.note': '✦   Xarxa en construcció — nous partners properament',
+      'partners.cta.tag': 'Col·labora amb nosaltres',
+      'partners.cta.title': 'Vols ser<br />partner de <span class="text-gold">NortFinance?</span>',
+      'partners.cta.desc1': "Si la teva empresa ofereix serveis complementaris a l'assessorament hipotecari o patrimonial, i comparteixes la nostra filosofia de treball honest i orientat al client, ens encantaria conèixer-te.",
+      'partners.cta.desc2': "Treballem amb immobiliàries, promotors, constructors, gestories, assegurances i qualsevol professional que vulgui oferir més valor als seus clients.",
+      'partners.form.nombre': 'Nom',
+      'partners.form.nombre.ph': 'El teu nom',
+      'partners.form.empresa': 'Empresa',
+      'partners.form.empresa.ph': 'Nom de la teva empresa',
+      'partners.form.email': 'Email',
+      'partners.form.email.ph': 'tu@empresa.com',
+      'partners.form.web': 'Web',
+      'partners.form.web.ph': 'https://latevaweb.com',
+      'partners.form.tel': 'Telèfon',
+      'partners.form.tel.ph': '+34 600 000 000',
+      'partners.form.msg': "Explica'ns sobre la teva empresa",
+      'partners.form.msg.ph': "A què us dediqueu? Per què creus que encaixaríem?",
+      'partners.form.privacy': 'He llegit i accepto la <a href="privacidad.html">Política de Privacitat</a> de NortFinance.',
+      'partners.form.submit': 'Enviar sol·licitud →',
+      'partners.footer.cta': 'Ser partner →',
+
+      /* ── Casos de éxito page ─────────────────── */
+      'ce.hero.badge': 'Resultats reals · Clients reals',
+      'ce.hero.title': 'No et contes el que<br>podem fer.<br><em>T\'ho demostrem.</em>',
+      'ce.hero.sub': "Cada cas aquí documentat és un client real que va arribar amb una situació concreta — i va sortir amb les millors condicions que el mercat podia oferir.",
+      'ce.hero.t1': 'Dades reals anonimitzades',
+      'ce.hero.t2': 'Estalvi verificable',
+      'ce.hero.t3': 'Procés transparent',
+      'ce.hero.t4': '+20 bancs comparats',
+      'ce.stats.l1': 'Hipoteques gestionades',
+      'ce.stats.l2': 'Estalvi total a clients',
+      'ce.stats.l3': "Taxa d'aprovació",
+      'ce.stats.l4': 'Google Reviews',
+      'ce.cases.tag': 'Casos documentats',
+      'ce.cases.title': 'El que aconseguim per<br>als nostres clients',
+      'ce.cases.sub': 'Tres situacions diferents, un mateix resultat: les millors condicions possibles.',
+      'ce.cta.title': "Vols ser el proper<br><em>cas d'èxit</em>?",
+      'ce.cta.sub': "L'estudi és gratuït, sense compromís i sense lletra petita. En 24–48h et diem exactament què podem aconseguir per al teu perfil.",
+      'ce.cta.btn1': 'El meu estudi gratuït',
+      'ce.cta.btn2': 'Simular la meva hipoteca →',
     },
 
     /* ════════════════════════════════════════
@@ -1398,6 +1526,70 @@
       'cnt.info.l3': 'Our commitment',
       'cnt.info.v2': 'Monday to Friday<br />9:00 to 19:00',
       'cnt.info.v3': 'As a family firm, we respond directly person to person within 24 hours.',
+
+      /* ── Contact form select & placeholders ─── */
+      'cnt.select.default': 'Select your situation',
+      'cnt.select.opt1': 'I want to buy my first home',
+      'cnt.select.opt2': "I'm self-employed",
+      'cnt.select.opt3': 'I want to switch mortgages',
+      'cnt.select.opt4': 'Investment or second home',
+      'cnt.select.opt5': 'Other wealth management services',
+      'cnt.form.name.ph': 'Your full name',
+      'cnt.form.msg.ph': 'Briefly tell us your situation: property price you are looking for, approximate income, term… any detail helps us prepare your study.',
+
+      /* ── Footer brand description ───────────── */
+      'footer.desc': 'Financial advisory firm and premium mortgage solutions. Your mortgage, your investment and your assets, managed with real expertise.',
+
+      /* ── Partners page ──────────────────────── */
+      'partners.hero.tag': 'Collaborators',
+      'partners.hero.title': 'Companies that share<br />our <span class="text-gold">criteria</span>',
+      'partners.hero.sub': 'NortFinance works with a selected network of professionals and companies that offer complementary services with the same level of excellence and honesty we apply to mortgage advisory.',
+      'partners.grid.tag': 'Our network',
+      'partners.grid.title': 'Current <span class="text-gold">partners</span>',
+      'partners.card.cat': 'Construction',
+      'partners.card.name': 'Construction Company',
+      'partners.card.desc': 'Specialists in residential construction and renovation. Quality projects with decades of sector experience.',
+      'partners.card.soon': 'Coming soon →',
+      'partners.net.note': '✦   Network under construction — new partners coming soon',
+      'partners.cta.tag': 'Collaborate with us',
+      'partners.cta.title': 'Want to become<br />a partner of <span class="text-gold">NortFinance?</span>',
+      'partners.cta.desc1': 'If your company offers services complementary to mortgage or wealth advisory, and shares our philosophy of honest, client-focused work, we would love to get to know you.',
+      'partners.cta.desc2': 'We work with estate agents, developers, builders, administration firms, insurance brokers and any professional who wants to offer more value to their clients.',
+      'partners.form.nombre': 'Name',
+      'partners.form.nombre.ph': 'Your name',
+      'partners.form.empresa': 'Company',
+      'partners.form.empresa.ph': 'Your company name',
+      'partners.form.email': 'Email',
+      'partners.form.email.ph': 'you@company.com',
+      'partners.form.web': 'Website',
+      'partners.form.web.ph': 'https://yourcompany.com',
+      'partners.form.tel': 'Phone',
+      'partners.form.tel.ph': '+34 600 000 000',
+      'partners.form.msg': 'Tell us about your company',
+      'partners.form.msg.ph': 'What do you do? Why do you think we would be a good match?',
+      'partners.form.privacy': 'I have read and accept the <a href="privacidad.html">Privacy Policy</a> of NortFinance.',
+      'partners.form.submit': 'Send request →',
+      'partners.footer.cta': 'Become a partner →',
+
+      /* ── Casos de éxito page ─────────────────── */
+      'ce.hero.badge': 'Real results · Real clients',
+      'ce.hero.title': "Don't just take our word for it.<br><em>We'll show you.</em>",
+      'ce.hero.sub': 'Every case documented here is a real client who came with a specific situation — and left with the best conditions the market could offer.',
+      'ce.hero.t1': 'Anonymised real data',
+      'ce.hero.t2': 'Verifiable savings',
+      'ce.hero.t3': 'Transparent process',
+      'ce.hero.t4': '+20 banks compared',
+      'ce.stats.l1': 'Mortgages handled',
+      'ce.stats.l2': 'Total client savings',
+      'ce.stats.l3': 'Approval rate',
+      'ce.stats.l4': 'Google Reviews',
+      'ce.cases.tag': 'Documented cases',
+      'ce.cases.title': 'What we achieve for<br>our clients',
+      'ce.cases.sub': 'Three different situations, one consistent result: the best possible conditions.',
+      'ce.cta.title': 'Want to be the next<br><em>success case</em>?',
+      'ce.cta.sub': 'The study is free, no commitment and no small print. In 24–48h we tell you exactly what we can achieve for your profile.',
+      'ce.cta.btn1': 'My Free Study',
+      'ce.cta.btn2': 'Simulate my mortgage →',
     }
   };
 
@@ -1411,6 +1603,10 @@
     document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
       var v = t[el.getAttribute('data-i18n-html')];
       if (v !== undefined) el.innerHTML = v;
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+      var v = t[el.getAttribute('data-i18n-placeholder')];
+      if (v !== undefined) el.placeholder = v;
     });
     document.documentElement.lang = lang;
   }

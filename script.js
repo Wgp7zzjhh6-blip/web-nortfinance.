@@ -944,7 +944,14 @@
     }
 
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Enviando…';
+    const _lang = (function(){ try { return localStorage.getItem('nf_lang') || 'es'; } catch(e){ return 'es'; } })();
+    const _msgs = {
+      es: { sending: 'Enviando…', success: '✓ Mensaje enviado — Te contactamos pronto', error: 'Error al enviar — inténtalo de nuevo' },
+      ca: { sending: 'Enviant…', success: '✓ Missatge enviat — Et contactem aviat', error: "Error en enviar — torna-ho a intentar" },
+      en: { sending: 'Sending…', success: '✓ Message sent — We will contact you soon', error: 'Error sending — please try again' }
+    };
+    const _m = _msgs[_lang] || _msgs.es;
+    submitBtn.textContent = _m.sending;
 
     // Enviar a n8n para automatización MailerLite
     fetch('https://n8n.nortfinance.com/webhook/adb65236-6440-4ef6-9bd7-3c2b71471032', {
@@ -961,17 +968,90 @@
     })
     .then(function(res) {
       if (res.ok) {
-        submitBtn.textContent = '✓ Mensaje enviado — Te contactamos pronto';
+        submitBtn.textContent = _m.success;
         submitBtn.classList.add('success');
         form.querySelectorAll('input, select, textarea').forEach(el => el.disabled = true);
       } else {
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Error al enviar — inténtalo de nuevo';
+        submitBtn.textContent = _m.error;
       }
     })
     .catch(function() {
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Error al enviar — inténtalo de nuevo';
+      submitBtn.textContent = _m.error;
+    });
+  });
+})();
+
+/* ── Partners form handler (partners.html only) ──────────── */
+(function () {
+  const form = document.getElementById('partnersForm');
+  if (!form) return;
+
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const nombre   = form.querySelector('#pNombre').value.trim();
+    const empresa  = form.querySelector('#pEmpresa').value.trim();
+    const telefono = form.querySelector('#pTelefono').value.trim();
+    const privOk   = form.querySelector('#pPrivacidad') ? form.querySelector('#pPrivacidad').checked : true;
+
+    const required = [
+      form.querySelector('#pNombre'),
+      form.querySelector('#pEmpresa'),
+      form.querySelector('#pTelefono')
+    ];
+    let valid = true;
+    required.forEach(el => {
+      if (el && !el.value.trim()) {
+        el.style.borderColor = 'rgba(212,100,100,0.55)';
+        el.addEventListener('input', function () { el.style.borderColor = ''; }, { once: true });
+        valid = false;
+      }
+    });
+    if (!valid) return;
+
+    const _lang2 = (function(){ try { return localStorage.getItem('nf_lang') || 'es'; } catch(e){ return 'es'; } })();
+    const _pm = {
+      es: { sending: 'Enviando…', success: '✓ Solicitud enviada — Te contactamos pronto', error: 'Error al enviar — inténtalo de nuevo' },
+      ca: { sending: 'Enviant…', success: '✓ Sol·licitud enviada — Ens posem en contacte aviat', error: "Error en enviar — torna-ho a intentar" },
+      en: { sending: 'Sending…', success: '✓ Request sent — We will contact you soon', error: 'Error sending — please try again' }
+    };
+    const pm = _pm[_lang2] || _pm.es;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = pm.sending;
+
+    // Notify n8n
+    const email = form.querySelector('#pEmail') ? form.querySelector('#pEmail').value.trim() : '';
+    fetch('https://n8n.nortfinance.com/webhook/adb65236-6440-4ef6-9bd7-3c2b71471032', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nombre, empresa, email, telefono, servicio: 'Partnership' }),
+    }).catch(() => {});
+
+    const fd = new FormData(form);
+    fd.append('_tipo', 'Solicitud de Partnership');
+    fetch('https://formspree.io/f/xrejngqv', {
+      method: 'POST',
+      body: fd,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function (res) {
+      if (res.ok) {
+        submitBtn.textContent = pm.success;
+        submitBtn.classList.add('success');
+        form.querySelectorAll('input, textarea').forEach(el => el.disabled = true);
+      } else {
+        submitBtn.disabled = false;
+        submitBtn.textContent = pm.error;
+      }
+    })
+    .catch(function () {
+      submitBtn.disabled = false;
+      submitBtn.textContent = pm.error;
     });
   });
 })();

@@ -647,6 +647,7 @@
                     name="nombre"
                     class="cnt-form__input"
                     placeholder="Tu nombre y apellidos"
+                    data-i18n-placeholder="cnt.form.name.ph"
                     required
                     autocomplete="name"
                   />
@@ -682,12 +683,12 @@
                 <div class="cnt-form__field" style="margin-top:16px">
                   <label class="cnt-form__label" for="cnt-situacion"><span data-i18n="cnt.form.situation">Situación actual</span> <span style="color:var(--gold)">*</span></label>
                   <select id="cnt-situacion" name="situacion" class="cnt-form__select" required>
-                    <option value="" disabled selected>Selecciona tu situación</option>
-                    <option value="primera-vivienda">Quiero comprar mi primera vivienda</option>
-                    <option value="autonomo">Soy autónomo</option>
-                    <option value="cambio-hipoteca">Quiero cambiar de hipoteca</option>
-                    <option value="inversion">Inversión o Segunda residencia</option>
-                    <option value="otros">Otros servicios patrimoniales</option>
+                    <option value="" disabled selected data-i18n="cnt.select.default">Selecciona tu situación</option>
+                    <option value="primera-vivienda" data-i18n="cnt.select.opt1">Quiero comprar mi primera vivienda</option>
+                    <option value="autonomo" data-i18n="cnt.select.opt2">Soy autónomo/a</option>
+                    <option value="cambio-hipoteca" data-i18n="cnt.select.opt3">Quiero cambiar de hipoteca</option>
+                    <option value="inversion" data-i18n="cnt.select.opt4">Inversión o Segunda residencia</option>
+                    <option value="otros" data-i18n="cnt.select.opt5">Otros servicios patrimoniales</option>
                   </select>
                 </div>
 
@@ -698,6 +699,7 @@
                     name="mensaje"
                     class="cnt-form__textarea"
                     placeholder="Cuéntanos brevemente tu situación: precio de la vivienda que buscas, ingresos aproximados, plazos… cualquier detalle nos ayuda a preparar tu estudio."
+                    data-i18n-placeholder="cnt.form.msg.ph"
                     rows="5"
                   ></textarea>
                 </div>
