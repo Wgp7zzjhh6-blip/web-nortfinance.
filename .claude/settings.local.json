@@ -5,7 +5,18 @@
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
       "Bash(git push *)",
-      "Bash(git checkout *)"
+      "Bash(git checkout *)",
+      "WebFetch(domain:www.pagina12.com.ar)",
+      "WebFetch(domain:www.clarin.com)",
+      "Bash(/Users/maxdevilar/Library/Python/3.9/lib/python/site-packages/imageio_ffmpeg/binaries/ffmpeg-macos-aarch64-v7.1 -i '/Users/maxdevilar/Desktop/video maradona.mov' -vf freezedetect=n=-55dB:d=2.5 -f null -)",
+      "Bash(awk '{printf \"start=%-10s end=%-10s dur=%s\\\\n\",$1,$3,$2}')",
+      "Bash(ls -lh /tmp/test_maradona_5s.mp4 2>/dev/null && echo \"TEST ENCODE OK\" || echo \"test encode still running or failed\" *)",
+      "Bash(/Users/maxdevilar/Library/Python/3.9/lib/python/site-packages/imageio_ffmpeg/binaries/ffmpeg-macos-aarch64-v7.1 -y -ss 39 -i '/Users/maxdevilar/Desktop/video maradona.mov' -t 3 -vf 'eq=contrast=1.08:brightness=-0.02:saturation=0.82,scale=1920:1080:flags=lanczos,crop=w='\\\\''if\\(between\\(t,40.03,43.37\\),1920/\\(1+0.06*min\\(1,max\\(0,\\(t-40.03\\)/3.34\\)\\)\\),1920\\)'\\\\'':h='\\\\''if\\(between\\(t,40.03,43.37\\),1080/\\(1+0.06*min\\(1,max\\(0,\\(t-40.03\\)/3.34\\)\\)\\),1080\\)'\\\\'':x='\\\\''\\(iw-ow\\)/2'\\\\'':y='\\\\''\\(ih-oh\\)/2'\\\\'':exact=1,scale=1920:1080:flags=lanczos,vignette=PI/5,noise=alls=3:allf=u+t' -c:v libx264 -preset ultrafast -crf 22 -pix_fmt yuv420p -an /tmp/test_vf.mp4)",
+      "Bash(/Users/maxdevilar/Library/Python/3.9/lib/python/site-packages/imageio_ffmpeg/binaries/ffmpeg-macos-aarch64-v7.1 -y -ss 39 -i '/Users/maxdevilar/Desktop/video maradona.mov' -t 5 -filter_complex ' *)",
+      "Bash(python3 /tmp/edit_maradona.py)",
+      "Bash(tee /tmp/encode_progress.log)",
+      "Bash(echo \"Encode PID: $!\")",
+      "Bash(pgrep -f \"ffmpeg-macos\" && echo \"ffmpeg IS running\" || echo \"ffmpeg NOT found\" *)"
     ]
   }
 }

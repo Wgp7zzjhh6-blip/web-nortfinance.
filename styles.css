@@ -50,6 +50,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garant', Georgia, serif;
+}
+
 img, svg { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
@@ -114,7 +118,7 @@ button { font: inherit; border: none; background: none; cursor: pointer; }
 
 /* ── Section titles — Cormorant Garamond, very light ────────── */
 .section-title {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Cormorant Garant', Georgia, serif;
   font-size: clamp(2.4rem, 4.2vw, 3.6rem);
   font-weight: 300;
   line-height: 1.1;
@@ -280,7 +284,7 @@ button { font: inherit; border: none; background: none; cursor: pointer; }
   opacity: 0.7;
 }
 .related-card__title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garant', serif;
   font-size: 1.05rem;
   font-weight: 400;
   color: var(--text);
@@ -411,7 +415,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
   object-fit: cover;
   border-radius: 50%;
   /* Alt text styling — aplica quan la imatge no carrega */
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garant', serif;
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: 0.15em;
@@ -420,7 +424,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
 }
 
 .navbar__logo-text {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garant', serif;
   font-size: 1.4rem;
   font-weight: 400;
   letter-spacing: 0.08em;
@@ -687,7 +691,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
 
 /* Title */
 .hero__title {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Cormorant Garant', Georgia, serif;
   font-size: clamp(3.2rem, 7vw, 6.4rem);
   font-weight: 300;
   line-height: 1.04;
@@ -769,7 +773,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
 }
 
 .stats__number {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garant', serif;
   font-size: clamp(3rem, 4.5vw, 4.8rem);
   font-weight: 300;
   letter-spacing: 0.02em;
@@ -870,7 +874,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
 }
 
 .card__title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garant', serif;
   font-size: 1.2rem;
   font-weight: 400;
   line-height: 1.35;
@@ -939,7 +943,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
 }
 
 .card__num {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garant', serif;
   font-size: 1.8rem;
   font-weight: 300;
   line-height: 1;
@@ -995,7 +999,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
 
 .proceso__step-num {
   text-align: right;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garant', serif;
   font-size: 3.5rem;
   font-weight: 300;
   line-height: 1;
@@ -1100,7 +1104,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
   position: absolute;
   top: -10px;
   right: 20px;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garant', serif;
   font-size: 8rem;
   color: var(--gold);
   opacity: 0.08;
@@ -1168,7 +1172,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
 }
 
 .testimonial__quote {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garant', serif;
   font-size: 1.08rem;
   font-weight: 400;
   font-style: italic;
@@ -1341,7 +1345,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
 }
 
 .cta-final__title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garant', serif;
   font-size: clamp(2.8rem, 5.5vw, 5rem);
   font-weight: 300;
   line-height: 1.08;
@@ -1391,7 +1395,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
 }
 
 .footer__logo-text {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garant', serif;
   font-size: 1.2rem;
   font-weight: 400;
   letter-spacing: 0.1em;
@@ -1729,7 +1733,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
 .quest-progress{height:2px;background:rgba(255,255,255,.07);border-radius:2px;margin-bottom:36px;overflow:hidden}
 .quest-progress-bar{height:100%;background:linear-gradient(90deg,#A8782C,#C4963A);border-radius:2px;transition:width .4s ease;width:0}
 .quest-step-label{font-family:'Inter',sans-serif;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(196,150,58,.65);margin-bottom:10px}
-.quest-question{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:#EDE0CC;line-height:1.3;margin-bottom:24px}
+.quest-question{font-family:'Cormorant Garant',serif;font-size:26px;font-weight:400;color:#EDE0CC;line-height:1.3;margin-bottom:24px}
 .quest-options{display:grid;gap:9px}
 .quest-option{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:3px;padding:13px 16px;color:rgba(255,255,255,.7);font-family:'Inter',sans-serif;font-size:14px;cursor:pointer;text-align:left;transition:all .2s}
 .quest-option:hover{border-color:rgba(196,150,58,.4);color:#EDE0CC;background:rgba(196,150,58,.05)}
@@ -1742,7 +1746,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
 .quest-next:disabled{opacity:.35;cursor:not-allowed}
 .quest-final{text-align:center;padding:16px 0 4px}
 .quest-final-icon{color:#C4963A;font-size:28px;margin-bottom:14px}
-.quest-final-title{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:400;color:#EDE0CC;margin-bottom:10px}
+.quest-final-title{font-family:'Cormorant Garant',serif;font-size:30px;font-weight:400;color:#EDE0CC;margin-bottom:10px}
 .quest-final-text{font-family:'Inter',sans-serif;font-size:14px;color:rgba(255,255,255,.5);line-height:1.65;margin-bottom:28px}
 .quest-book-btn{display:block;width:100%;background:#C4963A;color:#050505;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;letter-spacing:.07em;padding:15px 34px;text-decoration:none;border:none;border-radius:2px;cursor:pointer;transition:background .2s}
 .quest-book-btn:hover:not(:disabled){background:#A8782C}
@@ -1888,7 +1892,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
   border: none;
 }
 .hero-sim__value {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garant', serif;
   font-size: 1.05rem;
   font-weight: 400;
   color: var(--gold);
@@ -1915,7 +1919,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
   color: var(--text-faint);
 }
 .hero-sim__result-amount {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garant', serif;
   font-size: clamp(2.4rem, 4vw, 3.4rem);
   font-weight: 300;
   color: var(--gold);
@@ -2002,7 +2006,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
 }
 .partners-hero__inner { position: relative; text-align: center; }
 .partners-hero__title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garant', serif;
   font-size: clamp(2.8rem, 5.5vw, 5rem);
   font-weight: 300;
   line-height: 1.08;
@@ -2053,7 +2057,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garant', serif;
   font-size: 1.4rem;
   font-weight: 400;
   color: var(--gold);
@@ -2068,7 +2072,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
   color: var(--gold);
 }
 .partner-card__name {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garant', serif;
   font-size: 1.3rem;
   font-weight: 400;
   color: var(--text);
@@ -2106,7 +2110,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
 }
 .partners-cta__left { position: sticky; top: calc(var(--nav-height) + 40px); }
 .partners-cta__title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garant', serif;
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 300;
   line-height: 1.15;
