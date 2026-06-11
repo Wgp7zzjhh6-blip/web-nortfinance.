@@ -8,6 +8,7 @@
       'nav.services': 'Servicios',
       'nav.resources': 'Recursos',
       'nav.contact': 'Contacto',
+      'nav.cases': 'Casos de éxito',
       'nav.cta': 'Mi Estudio Gratuito',
       'nav.aria': 'Abrir menú',
 
@@ -178,11 +179,15 @@
       'footer.nav.services': 'Servicios',
       'footer.nav.resources': 'Recursos',
       'footer.nav.contact': 'Contacto',
+      'footer.nav.cases': 'Casos de éxito',
+      'footer.nav.partners': 'Partners',
       'footer.s1': 'Hipotecas Primera Vivienda',
       'footer.s2': 'Intermediación Inmobiliaria',
       'footer.s3': 'Inversión en Oro',
       'footer.s4': 'Club Privado de Inversores',
       'footer.s5': 'Corredor de Seguros',
+      'footer.sim': 'Simulador de hipoteca',
+      'footer.estudio': 'Estudio gratuito',
       'footer.hours': 'Lun–Vie · 9:00 – 19:00h',
       'footer.location': 'España',
       'footer.cta': 'Mi Estudio Gratuito',
@@ -191,6 +196,12 @@
       'footer.cookies': 'Cookies',
       'footer.legal': 'Aviso legal',
       'footer.terms': 'Condiciones generales',
+
+      /* ── Collaborators section (index) ──────── */
+      'collab.tag': 'Nuestros colaboradores',
+      'collab.title': 'Empresas que confían en <span class="text-gold">nosotros</span>',
+      'collab.desc': 'Trabajamos mano a mano con empresas del sector inmobiliario y de construcción para ofrecerte un servicio integral — desde la financiación hasta las llaves.',
+      'collab.btn': 'Ver colaboradores →',
 
       /* ── Servicios page ─────────────────────── */
       'srv.hero.badge': 'Servicios · NortFinance',
@@ -473,6 +484,7 @@
       'nav.services': 'Serveis',
       'nav.resources': 'Recursos',
       'nav.contact': 'Contacte',
+      'nav.cases': "Casos d'èxit",
       'nav.cta': 'El meu estudi gratuït',
       'nav.aria': 'Obrir menú',
 
@@ -629,11 +641,15 @@
       'footer.nav.services': 'Serveis',
       'footer.nav.resources': 'Recursos',
       'footer.nav.contact': 'Contacte',
+      'footer.nav.cases': "Casos d'èxit",
+      'footer.nav.partners': 'Partners',
       'footer.s1': 'Hipoteques Primera Habitatge',
       'footer.s2': 'Intermediació Immobiliària',
       'footer.s3': "Inversió en Or",
       'footer.s4': "Club Privat d'Inversors",
       'footer.s5': "Corredor d'Assegurances",
+      'footer.sim': "Simulador d'hipoteca",
+      'footer.estudio': 'Estudi gratuït',
       'footer.hours': 'Dl–Dv · 9:00 – 19:00h',
       'footer.location': 'Espanya',
       'footer.cta': 'El meu estudi gratuït',
@@ -642,6 +658,12 @@
       'footer.cookies': 'Galetes',
       'footer.legal': 'Avís legal',
       'footer.terms': 'Condicions generals',
+
+      /* ── Collaborators section (index) ──────── */
+      'collab.tag': 'Els nostres col·laboradors',
+      'collab.title': 'Empreses que confien en <span class="text-gold">nosaltres</span>',
+      'collab.desc': "Treballem colze a colze amb empreses del sector immobiliari i de la construcció per oferir-te un servei integral — des del finançament fins a les claus.",
+      'collab.btn': 'Veure col·laboradors →',
 
       /* ── Servicios page ─────────────────────── */
       'srv.hero.badge': 'Serveis · NortFinance',
@@ -924,6 +946,7 @@
       'nav.services': 'Services',
       'nav.resources': 'Resources',
       'nav.contact': 'Contact',
+      'nav.cases': 'Success Cases',
       'nav.cta': 'My Free Study',
       'nav.aria': 'Open menu',
 
@@ -1080,11 +1103,15 @@
       'footer.nav.services': 'Services',
       'footer.nav.resources': 'Resources',
       'footer.nav.contact': 'Contact',
+      'footer.nav.cases': 'Success Cases',
+      'footer.nav.partners': 'Partners',
       'footer.s1': 'First Home Mortgages',
       'footer.s2': 'Real Estate Brokerage',
       'footer.s3': 'Gold Investment',
       'footer.s4': 'Private Investors Club',
       'footer.s5': 'Insurance Broker',
+      'footer.sim': 'Mortgage simulator',
+      'footer.estudio': 'Free study',
       'footer.hours': 'Mon–Fri · 9:00 – 19:00',
       'footer.location': 'Spain',
       'footer.cta': 'My Free Study',
@@ -1093,6 +1120,12 @@
       'footer.cookies': 'Cookies',
       'footer.legal': 'Legal notice',
       'footer.terms': 'General conditions',
+
+      /* ── Collaborators section (index) ──────── */
+      'collab.tag': 'Our collaborators',
+      'collab.title': 'Companies that trust <span class="text-gold">us</span>',
+      'collab.desc': 'We work hand in hand with real estate and construction companies to offer you a complete service — from financing to the keys.',
+      'collab.btn': 'View collaborators →',
 
       /* ── Servicios page ─────────────────────── */
       'srv.hero.badge': 'Services · NortFinance',
