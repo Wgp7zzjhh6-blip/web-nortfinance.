@@ -778,6 +778,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
   line-height: 1;
   color: var(--gold);
   margin-bottom: 10px;
+  white-space: nowrap;
 }
 
 .stats__label {

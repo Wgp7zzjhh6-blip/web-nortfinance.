@@ -1097,7 +1097,7 @@
 
       /* ── Casos de éxito page ─────────────────── */
       'ce.hero.badge': 'Resultats reals · Clients reals',
-      'ce.hero.title': 'No comptes el que<br>podem fer.<br><em>T\'ho demostrem.</em>',
+      'ce.hero.title': 'No expliquis el que<br>podem fer.<br><em>T\'ho demostrem.</em>',
       'ce.hero.sub': "Cada cas aquí documentat és un client real que va arribar amb una situació concreta — i va sortir amb les millors condicions que el mercat podia oferir.",
       'ce.hero.t1': 'Dades reals anonimitzades',
       'ce.hero.t2': 'Estalvi verificable',
