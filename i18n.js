@@ -1201,9 +1201,9 @@
 
       /* ── Article: Quant Puc Demanar ─────────── */
       'art.cuanto.tag': 'Capacitat Hipotecària · 2026',
-      'art.cuanto.title': 'Quant Puc Demanar d'Hipoteca?<br />Càlcul i Requisits 2026',
+      'art.cuanto.title': "Quant Puc Demanar d'Hipoteca?<br />Càlcul i Requisits 2026",
       'art.cuanto.meta': 'NortFinance · Assessoria Financera · Maig 2026 · 11 min de lectura',
-      'art.cuanto.breadcrumb': 'Quant Puc Demanar d'Hipoteca?',
+      'art.cuanto.breadcrumb': "Quant Puc Demanar d'Hipoteca?",
       'art.cuanto.cta.h2': 'Vols Saber Quant Pots Demanar?',
       'art.cuanto.cta.p': 'Analitzem el teu perfil i et diem exactament quina finançament pots aconseguir.',
       'art.cuanto.cta.btn': 'Sol·licitar Estudi Gratuït →',
@@ -1219,7 +1219,7 @@
 
       /* ── Article: Millors Hipoteques 2026 ────── */
       'art.mejores.tag': 'Mercat Hipotecari · 2026',
-      'art.mejores.title': 'Les Millors Hipoteques de 2026:<br />Com Trobar l'Oferta Ideal',
+      'art.mejores.title': "Les Millors Hipoteques de 2026:<br />Com Trobar l'Oferta Ideal",
       'art.mejores.meta': 'NortFinance · Assessoria Financera · Maig 2026 · 13 min de lectura',
       'art.mejores.breadcrumb': 'Millors Hipoteques 2026',
       'art.mejores.cta.h2': 'Busques la Millor Hipoteca per al teu Perfil?',
