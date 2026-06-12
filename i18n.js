@@ -4905,4 +4905,14 @@
   } else {
     init();
   }
+
+  // Re-sync language when browser restores page from bfcache (back/forward navigation)
+  window.addEventListener('pageshow', function (e) {
+    if (e.persisted) {
+      var saved = 'es';
+      try { saved = localStorage.getItem('nf_lang') || 'es'; } catch (err) {}
+      applyTranslations(saved);
+      updateSwitcher(saved);
+    }
+  });
 })();
