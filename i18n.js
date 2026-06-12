@@ -74,6 +74,7 @@
       'testimonios.q2.role': 'Autónomo · Madrid',
       'testimonios.q3': '"Trato cercano y muy profesional en todo momento. Nos guiaron sin agobios, resolvieron cada duda y el resultado superó lo que esperábamos. Repetiríamos sin dudarlo."',
       'testimonios.q3.role': 'Segunda residencia · Valencia',
+      'trust.cta': 'Ver opiniones en Trustpilot',
 
       /* ── FAQ ────────────────────────────────── */
       'faq.tag': 'Preguntas frecuentes',
@@ -719,6 +720,7 @@
       'testimonios.q2.role': 'Autònom · Madrid',
       'testimonios.q3': '"Durant tot el procés vam sentir que teníem algú de veritat al nostre costat. No només van gestionar-ho tot amb eficiència, sinó que ens van assessorar amb una proximitat i professionalitat que no esperàvem. Molt recomanable."',
       'testimonios.q3.role': 'Segona residència · València',
+      'trust.cta': 'Veure opinions a Trustpilot',
 
       'faq.tag': 'Preguntes freqüents',
       'faq.title': 'Tot el que<br />necessites <span class="text-gold">saber</span>',
@@ -2658,6 +2660,7 @@
       'testimonios.q2.role': 'Self-employed · Madrid',
       'testimonios.q3': '"Throughout the whole process we felt we truly had someone on our side. Not only did they handle everything efficiently, they advised us with a warmth and professionalism we did not expect. Highly recommended."',
       'testimonios.q3.role': 'Second residence · Valencia',
+      'trust.cta': 'See reviews on Trustpilot',
 
       'faq.tag': 'Frequently asked questions',
       'faq.title': 'Everything you<br />need to <span class="text-gold">know</span>',

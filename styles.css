@@ -1220,6 +1220,42 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
   letter-spacing: 0.02em;
 }
 
+/* Trustpilot CTA */
+.trustpilot-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 52px;
+}
+.trustpilot-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  border: 1px solid rgba(0, 182, 122, 0.35);
+  border-radius: 2px;
+  background: rgba(0, 182, 122, 0.04);
+  color: rgba(255,255,255,0.75);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.trustpilot-cta__btn:hover {
+  border-color: rgba(0, 182, 122, 0.7);
+  background: rgba(0, 182, 122, 0.09);
+  color: #fff;
+}
+.trustpilot-cta__arrow {
+  color: rgba(0, 182, 122, 0.7);
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+.trustpilot-cta__btn:hover .trustpilot-cta__arrow {
+  transform: translateX(4px);
+}
+
 /* ═══════════════════════════════════════════════════════════════
    FAQ
    ═══════════════════════════════════════════════════════════════ */
