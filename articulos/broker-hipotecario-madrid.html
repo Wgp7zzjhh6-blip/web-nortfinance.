@@ -29,6 +29,26 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    .article-hero { padding: calc(var(--nav-height) + 80px) 0 60px; text-align: center; border-bottom: 1px solid var(--border); }
+    .article-tag { font-family: 'DM Sans', sans-serif; font-size: 0.68rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; display: block; }
+    .article-title { font-family: 'Cormorant Garant', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.15; color: var(--text); margin-bottom: 20px; }
+    .article-meta { font-family: 'DM Sans', sans-serif; font-size: 0.8rem; color: var(--text-sub); }
+    .article-body { max-width: 760px; margin: 0 auto; padding: 60px 20px 80px; }
+    .article-body h2 { font-family: 'Cormorant Garant', serif; font-size: 1.8rem; font-weight: 400; color: var(--text); margin: 48px 0 16px; }
+    .article-body h3 { font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--gold); margin: 32px 0 12px; letter-spacing: .05em; text-transform: uppercase; }
+    .article-body p { font-size: 0.95rem; line-height: 1.9; color: var(--text-sub); margin-bottom: 18px; }
+    .article-body ul, .article-body ol { padding-left: 20px; margin-bottom: 18px; }
+    .article-body li { font-size: 0.93rem; line-height: 1.85; color: var(--text-sub); margin-bottom: 6px; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body a { color: var(--gold); text-decoration: none; }
+    .article-body a:hover { text-decoration: underline; }
+    .article-cta { background: var(--bg-section); border: 1px solid var(--border); border-radius: var(--radius); padding: 48px 40px; text-align: center; margin-top: 60px; }
+    .article-cta h2 { font-family: 'Cormorant Garant', serif; font-size: 2rem; font-weight: 400; color: var(--text); margin-bottom: 12px; }
+    .article-cta p { font-size: 0.9rem; color: var(--text-sub); margin-bottom: 28px; }
+    .article-breadcrumb { font-family: 'DM Sans', sans-serif; font-size: 0.78rem; color: var(--text-sub); margin-bottom: 20px; }
+    .article-breadcrumb a { color: var(--gold); text-decoration: none; }
+  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -52,6 +72,17 @@
     "dateModified": "2026-06-11"
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.nortfinance.com/"},
+      {"@type":"ListItem","position":2,"name":"Recursos","item":"https://www.nortfinance.com/recursos.html"},
+      {"@type":"ListItem","position":3,"name":"Broker Hipotecario Madrid","item":"https://www.nortfinance.com/articulos/broker-hipotecario-madrid.html"}
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -64,13 +95,13 @@
       </a>
       <nav class="navbar__nav" id="navMenu" aria-label="Navegación principal">
         <ul class="navbar__links">
-          <li><a href="../hipotecas.html" class="navbar__link">Hipotecas</a></li>
-          <li><a href="../servicios.html" class="navbar__link">Servicios</a></li>
-          <li><a href="../recursos.html" class="navbar__link active">Recursos</a></li>
-          <li><a href="../casos-exito.html" class="navbar__link">Casos de éxito</a></li>
-          <li><a href="../contacto.html" class="navbar__link">Contacto</a></li>
+          <li><a href="../hipotecas.html" class="navbar__link" data-i18n="nav.mortgages">Hipotecas</a></li>
+          <li><a href="../servicios.html" class="navbar__link" data-i18n="nav.services">Servicios</a></li>
+          <li><a href="../recursos.html" class="navbar__link active" data-i18n="nav.resources">Recursos</a></li>
+          <li><a href="../casos-exito.html" class="navbar__link" data-i18n="nav.cases">Casos de éxito</a></li>
+          <li><a href="../contacto.html" class="navbar__link" data-i18n="nav.contact">Contacto</a></li>
         </ul>
-        <a href="#" data-estudio class="btn btn--gold navbar__cta">Mi Estudio Gratuito</a>
+        <a href="#" data-estudio class="btn btn--gold navbar__cta" data-i18n="nav.cta">Mi Estudio Gratuito</a>
       </nav>
       <div class="lang-dropdown" id="langDropdown">
         <button class="lang-current" id="langToggle" aria-haspopup="listbox" aria-expanded="false">
@@ -91,87 +122,46 @@
   </header>
 
   <main>
-    <section class="article-hero" style="padding: calc(var(--nav-height) + 60px) 0 60px; background: var(--bg);">
-      <div class="container" style="max-width: 760px;">
-        <div style="margin-bottom:20px;">
-          <a href="../recursos.html" style="font-family:'DM Sans',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-faint);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-faint)'">← Recursos</a>
-        </div>
-        <span class="section-tag">Asesoramiento hipotecario</span>
-        <h1 style="font-family:'Cormorant Garant',serif;font-size:clamp(2.2rem,5vw,3.6rem);font-weight:300;line-height:1.1;letter-spacing:0.02em;margin-top:16px;margin-bottom:24px;color:var(--text);">
-          Broker Hipotecario en Madrid: Cómo Conseguir la Mejor Hipoteca
-        </h1>
-        <p style="font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:300;line-height:1.85;color:var(--text-sub);letter-spacing:0.01em;">
-          El mercado hipotecario en Madrid es uno de los más dinámicos y competitivos de España. Con precios de vivienda entre los más altos del país y una demanda sostenida, conseguir las mejores condiciones hipotecarias requiere conocimiento, negociación y acceso a múltiples entidades.
-        </p>
-        <div style="display:flex;align-items:center;gap:20px;margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
-          <div style="font-family:'DM Sans',sans-serif;font-size:0.75rem;color:var(--text-faint);letter-spacing:0.06em;">
-            <span style="color:var(--gold)">NortFinance</span> &nbsp;·&nbsp; Junio 2026 &nbsp;·&nbsp; 5 min lectura
-          </div>
-        </div>
+    <section class="article-hero">
+      <div class="container">
+        <nav class="article-breadcrumb"><a href="../index.html" data-i18n="footer.nav.home">Inicio</a> › <a href="../recursos.html" data-i18n="nav.resources">Recursos</a> › <span data-i18n="art.madrid.breadcrumb">Broker Hipotecario Madrid</span></nav>
+        <span class="article-tag" data-i18n="art.madrid.tag">Asesoramiento Hipotecario · 2026</span>
+        <h1 class="article-title" data-i18n-html="art.madrid.title">Broker Hipotecario en Madrid:<br />Cómo Conseguir la Mejor Hipoteca</h1>
+        <p class="article-meta" data-i18n="art.madrid.meta">NortFinance · Asesoría Financiera · Junio 2026 · 5 min de lectura</p>
       </div>
     </section>
 
-    <article style="padding: 60px 0 80px; background: var(--bg);">
-      <div class="container" style="max-width: 760px;">
+    <div class="article-body">
 
-        <div style="font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:300;line-height:1.85;color:var(--text-sub);">
+      <div data-i18n-html="art.madrid.prose">
 
-          <h2 style="font-family:'Cormorant Garant',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;color:var(--text);margin:48px 0 18px;letter-spacing:0.02em;">
-            ¿Por qué necesitas un broker hipotecario en Madrid?
-          </h2>
-          <p style="margin-bottom:24px;">La oferta hipotecaria en Madrid es amplia, pero eso no significa que todos los productos sean igual de beneficiosos para tu perfil. Los bancos diseñan sus hipotecas para maximizar sus márgenes, no para adaptarse a tu situación particular. Un broker hipotecario en Madrid como NortFinance trabaja exclusivamente para ti: analiza tu perfil, accede a las ofertas de más de 20 entidades y negocia en tu nombre.</p>
+        <h2>¿Por qué necesitas un broker hipotecario en Madrid?</h2>
+        <p>La oferta hipotecaria en Madrid es amplia, pero eso no significa que todos los productos sean igual de beneficiosos para tu perfil. Los bancos diseñan sus hipotecas para maximizar sus márgenes, no para adaptarse a tu situación particular. Un broker hipotecario en Madrid como NortFinance trabaja exclusivamente para ti: analiza tu perfil, accede a las ofertas de más de 20 entidades y negocia en tu nombre.</p>
 
-          <div style="border-left:2px solid var(--gold);padding-left:24px;margin:36px 0;font-family:'Cormorant Garant',serif;font-style:italic;font-size:1.15rem;font-weight:400;color:var(--text);line-height:1.7;letter-spacing:0.01em;">
-            "Los bancos trabajan para los bancos. NortFinance trabaja para ti."
-          </div>
+        <h2>Perfiles que más se benefician del asesoramiento en Madrid</h2>
+        <p>En Madrid atendemos a compradores de primera vivienda, autónomos con declaraciones irregulares, inversores que buscan segunda residencia o inmueble de inversión, y expatriados que quieren comprar en España. En todos los casos, la complejidad del proceso y la cantidad de dinero en juego justifican ampliamente contar con un experto independiente.</p>
 
-          <h2 style="font-family:'Cormorant Garant',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;color:var(--text);margin:48px 0 18px;letter-spacing:0.02em;">
-            Perfiles que más se benefician del asesoramiento en Madrid
-          </h2>
-          <p style="margin-bottom:24px;">En Madrid atendemos a compradores de primera vivienda, autónomos con declaraciones irregulares, inversores que buscan segunda residencia o inmueble de inversión, y expatriados que quieren comprar en España. En todos los casos, la complejidad del proceso y la cantidad de dinero en juego justifican ampliamente contar con un experto independiente.</p>
+        <h2>Proceso de compra de vivienda en Madrid con NortFinance</h2>
+        <p>Trabajamos de forma 100% remota y presencial según tu preferencia. No es necesario que estés en Madrid para iniciar el proceso. Desde la primera consulta gratuita hasta la firma en notaría, te acompañamos en cada paso: análisis de viabilidad, comparativa bancaria, negociación de condiciones y gestión documental completa.</p>
 
-          <h2 style="font-family:'Cormorant Garant',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;color:var(--text);margin:48px 0 18px;letter-spacing:0.02em;">
-            Proceso de compra de vivienda en Madrid con NortFinance
-          </h2>
-          <p style="margin-bottom:24px;">Trabajamos de forma 100% remota y presencial según tu preferencia. No es necesario que estés en Madrid para iniciar el proceso. Desde la primera consulta gratuita hasta la firma en notaría, te acompañamos en cada paso: análisis de viabilidad, comparativa bancaria, negociación de condiciones y gestión documental completa.</p>
-
-          <!-- CTA dentro del artículo -->
-          <div style="margin:48px 0;padding:36px;background:var(--bg-card);border:1px solid rgba(196,150,58,0.2);">
-            <div style="font-family:'DM Sans',sans-serif;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Estudio gratuito</div>
-            <div style="font-family:'Cormorant Garant',serif;font-size:1.5rem;font-weight:400;color:var(--text);margin-bottom:12px;line-height:1.3;">
-              ¿Quieres saber cuánto puedes pedir y en qué condiciones?
-            </div>
-            <p style="font-size:0.88rem;margin-bottom:20px;">Te hacemos un análisis gratuito de tu perfil en menos de 24 horas.</p>
-            <a href="#" data-estudio class="btn btn--gold">Mi Estudio Gratuito →</a>
-          </div>
-
-          <h2 style="font-family:'Cormorant Garant',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;color:var(--text);margin:48px 0 18px;letter-spacing:0.02em;">
-            Cómo trabaja NortFinance en Madrid
-          </h2>
-          <p style="margin-bottom:16px;">Nuestro proceso es claro y sin sorpresas:</p>
-          <ol style="padding-left:0;list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:32px;">
-            <li style="display:flex;gap:16px;align-items:flex-start;">
-              <span style="font-family:'Cormorant Garant',serif;font-size:1.4rem;font-weight:300;color:var(--gold);opacity:0.6;line-height:1;flex-shrink:0;width:28px;">01</span>
-              <span><strong style="font-weight:500;color:var(--text);">Primera llamada gratuita</strong> — Entendemos tu situación y objetivos. Sin compromiso.</span>
-            </li>
-            <li style="display:flex;gap:16px;align-items:flex-start;">
-              <span style="font-family:'Cormorant Garant',serif;font-size:1.4rem;font-weight:300;color:var(--gold);opacity:0.6;line-height:1;flex-shrink:0;width:28px;">02</span>
-              <span><strong style="font-weight:500;color:var(--text);">Análisis de viabilidad</strong> — Evaluamos tu perfil y las opciones reales disponibles para ti.</span>
-            </li>
-            <li style="display:flex;gap:16px;align-items:flex-start;">
-              <span style="font-family:'Cormorant Garant',serif;font-size:1.4rem;font-weight:300;color:var(--gold);opacity:0.6;line-height:1;flex-shrink:0;width:28px;">03</span>
-              <span><strong style="font-weight:500;color:var(--text);">Comparativa bancaria</strong> — Consultamos más de 20 entidades y presentamos las mejores ofertas.</span>
-            </li>
-            <li style="display:flex;gap:16px;align-items:flex-start;">
-              <span style="font-family:'Cormorant Garant',serif;font-size:1.4rem;font-weight:300;color:var(--gold);opacity:0.6;line-height:1;flex-shrink:0;width:28px;">04</span>
-              <span><strong style="font-weight:500;color:var(--text);">Acompañamiento hasta la firma</strong> — Gestionamos documentación y te guiamos hasta el notario.</span>
-            </li>
-          </ol>
-
-        </div>
+        <h2>Cómo trabaja NortFinance en Madrid</h2>
+        <p>Nuestro proceso es claro y sin sorpresas:</p>
+        <ol>
+          <li><strong>Primera llamada gratuita</strong> — Entendemos tu situación y objetivos. Sin compromiso.</li>
+          <li><strong>Análisis de viabilidad</strong> — Evaluamos tu perfil y las opciones reales disponibles para ti.</li>
+          <li><strong>Comparativa bancaria</strong> — Consultamos más de 20 entidades y presentamos las mejores ofertas.</li>
+          <li><strong>Acompañamiento hasta la firma</strong> — Gestionamos documentación y te guiamos hasta el notario.</li>
+        </ol>
 
       </div>
-    </article>
+
+      <div class="article-cta">
+        <h2 data-i18n="art.madrid.cta.h2">¿Quieres saber cuánto puedes pedir y en qué condiciones?</h2>
+        <p data-i18n="art.madrid.cta.p">Te hacemos un análisis gratuito de tu perfil en menos de 24 horas.</p>
+        <a href="#" data-estudio class="btn btn--gold btn--lg" data-i18n="art.madrid.cta.btn">Mi Estudio Gratuito →</a>
+      </div>
+
+    </div>
 
     <!-- Artículos relacionados -->
     <div class="related-articles">
@@ -180,17 +170,17 @@
         <a href="como-funciona-broker-hipotecario.html" class="related-card">
           <span class="related-card__tag">Guía</span>
           <span class="related-card__title">Cómo funciona un broker hipotecario</span>
-          <span class="related-card__arrow">→</span>
+          <span class="related-card__arrow" data-i18n="art.read">Leer artículo →</span>
         </a>
         <a href="hipoteca-primera-vivienda.html" class="related-card">
           <span class="related-card__tag">Primera vivienda</span>
           <span class="related-card__title">Todo sobre la hipoteca para primera vivienda</span>
-          <span class="related-card__arrow">→</span>
+          <span class="related-card__arrow" data-i18n="art.read">Leer artículo →</span>
         </a>
         <a href="hipoteca-fija-variable-mixta.html" class="related-card">
           <span class="related-card__tag">Tipos de hipoteca</span>
           <span class="related-card__title">Fija, variable o mixta: ¿cuál te conviene?</span>
-          <span class="related-card__arrow">→</span>
+          <span class="related-card__arrow" data-i18n="art.read">Leer artículo →</span>
         </a>
       </div>
     </div>
@@ -206,28 +196,30 @@
             <img src="../logo-redondo.png" alt="NortFinance" class="navbar__logo-img" onerror="this.style.display='none'" />
             <span class="footer__logo-text">Nort<span class="text-gold">Finance</span></span>
           </a>
-          <p class="footer__desc">Firma de asesoramiento financiero y soluciones hipotecarias premium. Tu hipoteca, tu inversión y tu patrimonio, gestionados con criterio real.</p>
+          <p class="footer__desc" data-i18n="footer.desc">Firma de asesoramiento financiero y soluciones hipotecarias premium. Tu hipoteca, tu inversión y tu patrimonio, gestionados con criterio real.</p>
         </div>
         <div class="footer__col">
-          <h4 class="footer__heading">Navegación</h4>
+          <h4 class="footer__heading" data-i18n="footer.nav.heading">Navegación</h4>
           <ul class="footer__links">
-            <li><a href="../index.html">Inicio</a></li>
-            <li><a href="../hipotecas.html">Broker Hipotecario</a></li>
-            <li><a href="../servicios.html">Servicios</a></li>
-            <li><a href="../recursos.html">Recursos</a></li>
-            <li><a href="../partners.html">Partners</a></li>
-            <li><a href="../casos-exito.html">Casos de éxito</a></li>
-            <li><a href="../contacto.html">Contacto</a></li>
+            <li><a href="../index.html" data-i18n="footer.nav.home">Inicio</a></li>
+            <li><a href="../hipotecas.html" data-i18n="footer.nav.mortgages">Broker Hipotecario</a></li>
+            <li><a href="../servicios.html" data-i18n="footer.nav.services">Servicios</a></li>
+            <li><a href="../recursos.html" data-i18n="footer.nav.resources">Recursos</a></li>
+            <li><a href="../partners.html" data-i18n="footer.nav.partners">Partners</a></li>
+            <li><a href="../casos-exito.html" data-i18n="footer.nav.cases">Casos de éxito</a></li>
+            <li><a href="../contacto.html" data-i18n="footer.nav.contact">Contacto</a></li>
           </ul>
         </div>
         <div class="footer__col">
-          <h4 class="footer__heading">Servicios</h4>
+          <h4 class="footer__heading" data-i18n="footer.services.heading">Servicios</h4>
           <ul class="footer__links">
-            <li><a href="../hipotecas.html">Hipotecas Primera Vivienda</a></li>
-            <li><a href="../servicios.html">Inversión Patrimonial</a></li>
-            <li><a href="../servicios.html">Inversión en Oro</a></li>
-            <li><a href="../servicios.html">Club Privado de Inversores</a></li>
-            <li><a href="../servicios.html">Seguros</a></li>
+            <li><a href="../hipotecas.html" data-i18n="footer.s1">Hipotecas Primera Vivienda</a></li>
+            <li><a href="../servicios.html" data-i18n="footer.s2">Inversión Patrimonial</a></li>
+            <li><a href="../servicios.html" data-i18n="footer.s3">Inversión en Oro</a></li>
+            <li><a href="../servicios.html" data-i18n="footer.s4">Club Privado de Inversores</a></li>
+            <li><a href="../servicios.html" data-i18n="footer.s5">Seguros</a></li>
+            <li><a href="../recursos.html#simulador" data-i18n="footer.sim">Simulador de hipoteca</a></li>
+            <li><a href="../contacto.html" data-i18n="footer.estudio">Estudio gratuito</a></li>
           </ul>
         </div>
         <div class="footer__col">
@@ -274,8 +266,8 @@
   <a href="https://wa.me/34668502066?text=Hola%2C%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20vuestros%20servicios%20hipotecarios" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="#4ade80" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     <span class="whatsapp-btn__text">
-      <span class="whatsapp-btn__label">Escríbenos</span>
-      <span class="whatsapp-btn__sub">Respuesta inmediata</span>
+      <span class="whatsapp-btn__label" data-i18n="wa.label">Escríbenos</span>
+      <span class="whatsapp-btn__sub" data-i18n="wa.sub">Respuesta inmediata</span>
     </span>
   </a>
   <button class="back-to-top" aria-label="Volver arriba">
