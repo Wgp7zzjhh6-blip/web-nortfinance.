@@ -1164,7 +1164,7 @@
       /* ── Suite Maison ── */
       'partners.sm.cat': 'Construcció Sostenible',
       'partners.sm.name': 'Suite Maison',
-      'partners.sm.desc': "Especialistes en construcció d'habitatges sostenibles i eficients energèticament. Projectes llave en mà amb preu tancat, disseny personalitzat i certificació energètica categoria A.",
+      'partners.sm.desc': "Especialistes en construcció d'habitatges sostenibles i eficients energèticament. Projectes clau en mà amb preu tancat, disseny personalitzat i certificació energètica categoria A.",
       'partners.sm.link': 'Visitar web →',
       'partners.net.note': '✦   Xarxa en construcció — nous partners properament',
       'partners.cta.tag': 'Col·labora amb nosaltres',
