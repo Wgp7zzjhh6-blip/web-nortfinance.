@@ -523,6 +523,12 @@
       'partners.card.name': 'Empresa de Construcciones',
       'partners.card.desc': 'Especialistas en construcción residencial y rehabilitación. Proyectos de calidad con décadas de experiencia en el sector.',
       'partners.card.soon': 'Próximamente →',
+
+      /* ── Suite Maison ── */
+      'partners.sm.cat': 'Construcción Sostenible',
+      'partners.sm.name': 'Suite Maison',
+      'partners.sm.desc': 'Especialistas en construcción de viviendas sostenibles y eficientes energéticamente. Proyectos llave en mano con precio cerrado, diseño personalizado y certificación energética categoría A.',
+      'partners.sm.link': 'Visitar web →',
       'partners.net.note': '✦   Red en construcción — nuevos partners próximamente',
       'partners.cta.tag': 'Colabora con nosotros',
       'partners.cta.title': '¿Quieres ser<br />partner de <span class="text-gold">NortFinance?</span>',
@@ -1154,6 +1160,12 @@
       'partners.card.name': 'Empresa de Construccions',
       'partners.card.desc': "Especialistes en construcció residencial i rehabilitació. Projectes de qualitat amb dècades d'experiència en el sector.",
       'partners.card.soon': 'Properament →',
+
+      /* ── Suite Maison ── */
+      'partners.sm.cat': 'Construcció Sostenible',
+      'partners.sm.name': 'Suite Maison',
+      'partners.sm.desc': "Especialistes en construcció d'habitatges sostenibles i eficients energèticament. Projectes llave en mà amb preu tancat, disseny personalitzat i certificació energètica categoria A.",
+      'partners.sm.link': 'Visitar web →',
       'partners.net.note': '✦   Xarxa en construcció — nous partners properament',
       'partners.cta.tag': 'Col·labora amb nosaltres',
       'partners.cta.title': 'Vols ser<br />partner de <span class="text-gold">NortFinance?</span>',
@@ -3087,6 +3099,12 @@
       'partners.card.name': 'Construction Company',
       'partners.card.desc': 'Specialists in residential construction and renovation. Quality projects with decades of sector experience.',
       'partners.card.soon': 'Coming soon →',
+
+      /* ── Suite Maison ── */
+      'partners.sm.cat': 'Sustainable Construction',
+      'partners.sm.name': 'Suite Maison',
+      'partners.sm.desc': 'Specialists in sustainable and energy-efficient home construction. Turnkey projects with a fixed price, personalised design and Category A energy certification.',
+      'partners.sm.link': 'Visit website →',
       'partners.net.note': '✦   Network under construction — new partners coming soon',
       'partners.cta.tag': 'Collaborate with us',
       'partners.cta.title': 'Want to become<br />a partner of <span class="text-gold">NortFinance?</span>',

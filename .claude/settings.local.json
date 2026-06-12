@@ -31,7 +31,8 @@
       "Bash(/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Helpers/jsc -e \"try { eval\\(require\\('fs'\\).readFileSync\\('/Users/maxdevilar/Desktop/NortFinance/Web/i18n.js', 'utf8'\\)\\); print\\('OK'\\); } catch\\(e\\) { print\\('ERROR: ' + e\\); }\")",
       "Bash(/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Helpers/jsc /Users/maxdevilar/Desktop/NortFinance/Web/i18n.js)",
       "Bash(/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Helpers/jsc /tmp/test_syntax.js)",
-      "Bash(/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Helpers/jsc /tmp/test_script.js)"
+      "Bash(/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Helpers/jsc /tmp/test_script.js)",
+      "WebFetch(domain:www.suite-maison.com)"
     ]
   }
 }

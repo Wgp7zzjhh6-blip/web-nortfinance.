@@ -2093,6 +2093,8 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
   letter-spacing: 0.06em;
   transition: opacity 0.2s;
   margin-top: auto;
+  text-decoration: none;
+  display: inline-block;
 }
 .partner-card__link:hover { opacity: 0.7; }
 
