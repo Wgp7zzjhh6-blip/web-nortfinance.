@@ -2044,16 +2044,37 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
   flex-direction: column;
   gap: 16px;
   transition: border-color 0.3s ease, transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.partner-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--card-bg, none);
+  background-size: cover;
+  background-position: center;
+  filter: blur(3px) brightness(0.18) saturate(0.6);
+  transform: scale(1.08); /* avoids blur edge bleed */
+  z-index: 0;
+  transition: filter 0.4s ease;
+}
+.partner-card:hover::before {
+  filter: blur(2px) brightness(0.24) saturate(0.7);
+}
+.partner-card > * {
+  position: relative;
+  z-index: 1;
 }
 .partner-card:hover {
-  border-color: rgba(196,150,58,0.35);
+  border-color: rgba(196,150,58,0.45);
   transform: translateY(-4px);
 }
 .partner-card__initial {
   width: 52px;
   height: 52px;
-  background: rgba(196,150,58,0.1);
-  border: 1px solid rgba(196,150,58,0.3);
+  background: rgba(196,150,58,0.12);
+  border: 1px solid rgba(196,150,58,0.35);
   display: flex;
   align-items: center;
   justify-content: center;
