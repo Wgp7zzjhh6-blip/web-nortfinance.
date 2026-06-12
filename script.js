@@ -204,6 +204,42 @@
   const simWrap = document.getElementById('simulador');
   if (!simWrap) return;
 
+  /* ── Simulator i18n helper ── */
+  function getSimLang() {
+    try { return localStorage.getItem('nf_lang') || 'es'; } catch(e) { return 'es'; }
+  }
+  const SIM_T = {
+    mes:        { es: '/mes',  ca: '/mes',   en: '/month' },
+    anios:      { es: ' años', ca: ' anys',  en: ' years' },
+    estimacion: { es: 'Estimación orientativa · ', ca: 'Estimació orientativa · ', en: 'Estimated · ' },
+    fija:       { es: 'Hipoteca fija',    ca: 'Hipoteca fixa',    en: 'Fixed mortgage' },
+    variable:   { es: 'Variable · sujeta a revisión Euribor', ca: 'Variable · subjecta a revisió Euríbor', en: 'Variable · subject to Euribor review' },
+    msg90: {
+      es: 'Financiación superior al 90 %. Algunas entidades financian hasta el 100 % con perfil sólido o inmuebles de banco. Es una operación viable, aunque requiere análisis detallado del perfil crediticio.',
+      ca: 'Finançament superior al 90 %. Algunes entitats financen fins al 100 % amb perfil sòlid o immobles de banc. És una operació viable, tot i que requereix una anàlisi detallada del perfil creditici.',
+      en: 'Financing above 90%. Some lenders fund up to 100% with a solid profile or bank-owned properties. A viable deal, though it requires a detailed credit profile analysis.'
+    },
+    msg80: {
+      es: 'Financiación entre el 80 % y el 90 %. Varias entidades llegan hasta el 90–100 % en función del perfil. Con buena documentación y solvencia demostrable, es una operación completamente viable.',
+      ca: 'Finançament entre el 80 % i el 90 %. Diverses entitats arriben fins al 90–100 % en funció del perfil. Amb bona documentació i solvència demostrable, és una operació completament viable.',
+      en: 'Financing between 80% and 90%. Several lenders go up to 90–100% depending on the profile. With solid documentation and demonstrable solvency, this is a fully viable operation.'
+    },
+    msg60: {
+      es: 'Financiación dentro del límite habitual del 80 %. Perfil favorable para la aprobación bancaria y acceso a las mejores condiciones del mercado.',
+      ca: 'Finançament dins del límit habitual del 80 %. Perfil favorable per a l\'aprovació bancària i accés a les millors condicions del mercat.',
+      en: 'Financing within the usual 80% limit. Favorable profile for bank approval and access to the best market conditions.'
+    },
+    msg0: {
+      es: 'Financiación conservadora. Excelente posición negociadora para obtener las condiciones más competitivas y reducir el coste total de la operación.',
+      ca: 'Finançament conservador. Excel·lent posició negociadora per obtenir les condicions més competitives i reduir el cost total de l\'operació.',
+      en: 'Conservative financing. Excellent negotiating position to secure the most competitive terms and reduce the total cost of the operation.'
+    },
+  };
+  function simT(key) {
+    var lang = getSimLang();
+    return (SIM_T[key] && SIM_T[key][lang]) || (SIM_T[key] && SIM_T[key].es) || key;
+  }
+
   const priceInput   = document.getElementById('sim-precio');
   const savingsInput = document.getElementById('sim-ahorros');
   const yearsInput   = document.getElementById('sim-plazo');
@@ -316,15 +352,15 @@
     // Slider labels
     priceVal.textContent   = new Intl.NumberFormat('es-ES').format(price) + ' €';
     savingsVal.textContent = new Intl.NumberFormat('es-ES').format(savings) + ' €';
-    yearsVal.textContent   = years + ' años';
+    yearsVal.textContent   = years + simT('anios');
     tinVal.textContent     = (tin * 100).toFixed(1).replace('.', ',') + ' %';
 
     // Cuota + note
     resQuota.textContent = loan > 0
-      ? new Intl.NumberFormat('es-ES').format(Math.round(monthly)) + ' €/mes'
-      : '0 €/mes';
-    const modalLabels = { fija: 'Hipoteca fija', variable: 'Variable · sujeta a revisión Euribor' };
-    resQuotaNote.textContent = 'Estimación orientativa · ' + (modalLabels[tipoHipoteca] || '');
+      ? new Intl.NumberFormat('es-ES').format(Math.round(monthly)) + ' €' + simT('mes')
+      : '0 €' + simT('mes');
+    const modalLabels = { fija: simT('fija'), variable: simT('variable') };
+    resQuotaNote.textContent = simT('estimacion') + (modalLabels[tipoHipoteca] || '');
 
     // Metrics grid
     resFinanc.textContent    = fmtE(loan);
@@ -349,13 +385,13 @@
     if (resMsgEl) {
       const pct = parseFloat(pctFinanc);
       if (pct > 90) {
-        resMsgEl.textContent = 'Financiación superior al 90 %. Algunas entidades financian hasta el 100 % con perfil sólido o inmuebles de banco. Es una operación viable, aunque requiere análisis detallado del perfil crediticio.';
+        resMsgEl.textContent = simT('msg90');
       } else if (pct > 80) {
-        resMsgEl.textContent = 'Financiación entre el 80 % y el 90 %. Varias entidades llegan hasta el 90–100 % en función del perfil. Con buena documentación y solvencia demostrable, es una operación completamente viable.';
+        resMsgEl.textContent = simT('msg80');
       } else if (pct > 60) {
-        resMsgEl.textContent = 'Financiación dentro del límite habitual del 80 %. Perfil favorable para la aprobación bancaria y acceso a las mejores condiciones del mercado.';
+        resMsgEl.textContent = simT('msg60');
       } else {
-        resMsgEl.textContent = 'Financiación conservadora. Excelente posición negociadora para obtener las condiciones más competitivas y reducir el coste total de la operación.';
+        resMsgEl.textContent = simT('msg0');
       }
     }
 
@@ -384,6 +420,8 @@
   ccaaSel.addEventListener('change', calculate);
 
   calculate();
+  // Re-run when user switches language so dynamic text updates
+  document.addEventListener('nf:langchange', calculate);
 })();
 
 /* ── Questionnaire Modal ─────────────────────────────────── */
@@ -1152,7 +1190,9 @@
     simCuota.textContent     = fmt(Math.round(cuota));
     simCapital.textContent   = fmt(Math.round(capital)) + ' €';
     simPct.textContent       = pct + '%';
-    simIngresos.textContent  = '~' + fmt(Math.round(ingresosMin)) + ' €/mes';
+    var _heroLang = (function(){ try { return localStorage.getItem('nf_lang') || 'es'; } catch(e){ return 'es'; } })();
+    var _heroMes = { es: '/mes', ca: '/mes', en: '/month' };
+    simIngresos.textContent  = '~' + fmt(Math.round(ingresosMin)) + ' €' + (_heroMes[_heroLang] || '/mes');
 
     // Visual feedback: clamp ahorro <= precio
     if (ahorro > precio) {
@@ -1166,4 +1206,5 @@
   });
 
   calcular(); // initial render
+  document.addEventListener('nf:langchange', calcular);
 })();

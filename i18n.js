@@ -569,6 +569,8 @@
 
       /* ── Recursos: read article CTA ────────── */
       'art.read': 'Leer artículo →',
+      'art.also': 'También te puede interesar',
+      'art.more': 'Más recursos',
 
       /* ── Article: Cuánto Puedo Pedir ────────── */
       'art.cuanto.tag': 'Capacidad Hipotecaria · 2026',
@@ -1198,6 +1200,8 @@
 
       /* ── Recursos: read article CTA ────────── */
       'art.read': "Llegir l'article →",
+      'art.also': 'També et pot interessar',
+      'art.more': 'Més recursos',
 
       /* ── Article: Quant Puc Demanar ─────────── */
       'art.cuanto.tag': 'Capacitat Hipotecària · 2026',
@@ -3129,6 +3133,8 @@
 
       /* ── Recursos: read article CTA ────────── */
       'art.read': 'Read article →',
+      'art.also': 'You may also like',
+      'art.more': 'More resources',
 
       /* ── Article: How Much Can I Borrow ─────── */
       'art.cuanto.tag': 'Borrowing Capacity · 2026',
@@ -4862,6 +4868,7 @@
     updateSwitcher(lang);
     var dropdown = document.getElementById('langDropdown');
     if (dropdown) dropdown.classList.remove('open');
+    document.dispatchEvent(new CustomEvent('nf:langchange', { detail: { lang: lang } }));
   }
 
   function init() {
