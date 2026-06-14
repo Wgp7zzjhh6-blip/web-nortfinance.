@@ -42,6 +42,22 @@
 - 02_WEB/logo-redondo.png → isotipo circular (NO reemplazar sin nuevo PNG)
 - Marketing/CREDENCIALES-INFRAESTRUCTURA.md → credenciales (NO subir a GitHub)
 
+## Archivos importantes adicionales
+- 02_WEB/articulos/ — 20 artículos HTML de blog (tienen CSS inline propio)
+- 02_WEB/contratos/contrato-intermediacion-hipotecaria.html — contrato oficial
+- 02_WEB/i18n.js — traducciones ES/CA/EN del site
+- 02_WEB/script.js — lógica del site (formularios, idiomas)
+- googled9aac99f18ce142b.html — verificación Google Search Console, NO borrar
+
+## Logo redondo pendiente
+- El logo-redondo.png actual NO usa Cormorant Garant (Python no puede cargar fuentes web)
+- Hay que regenerarlo exportando el SVG del brand-board-v5.html correctamente
+- Hasta que se regenere, el logo actual funciona pero no es el definitivo
+
+## Archivos a eliminar cuando se pueda
+- 02_WEB/serve.py — no necesario en producción
+- 02_WEB/pendientes.html — archivo interno, no público
+
 ## Lo que NO debes hacer nunca
 - No subir CREDENCIALES-INFRAESTRUCTURA.md a GitHub
 - No cambiar logo-redondo.png sin tener el nuevo archivo
