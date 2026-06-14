@@ -325,7 +325,7 @@ button { font: inherit; border: none; background: none; cursor: pointer; }
 
 /* Primary — imperial gold gradient with metallic sheen */
 .btn--gold {
-  background: var(--gold-grad);
+  background: var(--dorado);
   color: #0A0805;
   border: 1px solid transparent;
   font-weight: 600;
@@ -434,7 +434,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
   letter-spacing: 0.18em;
   color: var(--crema);
   opacity: 0.85;
-  text-transform: uppercase;
+  text-transform: none;
 }
 .navbar__logo-text .text-gold {
   color: var(--dorado);
@@ -1446,7 +1446,7 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
   font-size: 1.2rem;
   font-weight: 300;
   letter-spacing: 0.18em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--crema);
   opacity: 0.85;
 }
@@ -1455,12 +1455,15 @@ a.btn--gold, button.btn--gold { color: #0A0805 !important; }
   opacity: 1;
 }
 .footer__eslogan {
-  font-size: 0.78rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.85rem;
   font-weight: 300;
-  letter-spacing: 0.12em;
+  letter-spacing: 0;
   color: var(--dorado);
-  opacity: 0.6;
-  text-transform: uppercase;
+  opacity: 0.7;
+  text-transform: none;
+  margin-top: 6px;
   margin-bottom: 16px;
 }
 
