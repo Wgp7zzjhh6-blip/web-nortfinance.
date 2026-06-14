@@ -1,0 +1,13 @@
+# Archivos de credenciales — nunca subir a GitHub
+*credenciales*.md
+*contraseñas*.md
+*passwords*.md
+CREDENCIALES-INFRAESTRUCTURA.md
+
+# Sistema
+.DS_Store
+.env
+.env.*
+
+# Claude Code
+.claude/
