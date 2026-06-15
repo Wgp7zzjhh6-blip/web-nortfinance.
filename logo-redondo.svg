@@ -6,6 +6,6 @@
   <circle cx="70" cy="135" r="1.6" fill="#C4963A" opacity="0.45"/>
   <circle cx="5" cy="70" r="1.6" fill="#C4963A" opacity="0.45"/>
   <circle cx="135" cy="70" r="1.6" fill="#C4963A" opacity="0.45"/>
-  <text text-anchor="end" x="69" y="86" font-family="Cormorant Garant, Georgia, serif" font-size="52" font-weight="400" fill="#C4963A" dominant-baseline="auto">N</text>
-  <text text-anchor="start" x="71" y="86" font-family="Cormorant Garant, Georgia, serif" font-size="52" font-weight="400" fill="#F5F0E8" dominant-baseline="auto">F</text>
+  <text text-anchor="end" x="69" y="70" font-family="Cormorant Garant, Georgia, serif" font-size="52" font-weight="400" fill="#C4963A" dominant-baseline="central">N</text>
+  <text text-anchor="start" x="71" y="70" font-family="Cormorant Garant, Georgia, serif" font-size="52" font-weight="400" fill="#F5F0E8" dominant-baseline="central">F</text>
 </svg>
