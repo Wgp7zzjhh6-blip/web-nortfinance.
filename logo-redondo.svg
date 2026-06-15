@@ -2,10 +2,10 @@
   <rect width="140" height="140" fill="#0B0A08"/>
   <circle cx="70" cy="70" r="65" stroke="#C4963A" stroke-width="0.45" opacity="0.5"/>
   <circle cx="70" cy="70" r="60" stroke="#C4963A" stroke-width="0.2" opacity="0.15"/>
-  <circle cx="70" cy="3" r="1.6" fill="#C4963A" opacity="0.45"/>
-  <circle cx="70" cy="137" r="1.6" fill="#C4963A" opacity="0.45"/>
-  <circle cx="3" cy="70" r="1.6" fill="#C4963A" opacity="0.45"/>
-  <circle cx="137" cy="70" r="1.6" fill="#C4963A" opacity="0.45"/>
-  <text text-anchor="end" x="68" y="84" font-family="Cormorant Garant, Georgia, serif" font-size="43" font-weight="400" fill="#C4963A" dominant-baseline="auto">N</text>
-  <text text-anchor="start" x="72" y="84" font-family="Cormorant Garant, Georgia, serif" font-size="43" font-weight="400" fill="#F5F0E8" dominant-baseline="auto">F</text>
+  <circle cx="70" cy="5" r="1.6" fill="#C4963A" opacity="0.45"/>
+  <circle cx="70" cy="135" r="1.6" fill="#C4963A" opacity="0.45"/>
+  <circle cx="5" cy="70" r="1.6" fill="#C4963A" opacity="0.45"/>
+  <circle cx="135" cy="70" r="1.6" fill="#C4963A" opacity="0.45"/>
+  <text text-anchor="end" x="69" y="86" font-family="Cormorant Garant, Georgia, serif" font-size="52" font-weight="400" fill="#C4963A" dominant-baseline="auto">N</text>
+  <text text-anchor="start" x="71" y="86" font-family="Cormorant Garant, Georgia, serif" font-size="52" font-weight="400" fill="#F5F0E8" dominant-baseline="auto">F</text>
 </svg>
