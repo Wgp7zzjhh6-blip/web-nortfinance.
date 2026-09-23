@@ -704,15 +704,17 @@ function descargarPDF() {
 
   const esMobil = /iPhone|iPad|Android/i.test(navigator.userAgent);
 
-  if (esMobil || typeof html2canvas === 'undefined' || typeof window.jspdf === 'undefined') {
-    // Fallback móvil: imprimir / AirPrint
+  if (esMobil) {
+    // Restaurar todo antes de imprimir
     reemplazos.forEach(({ input, span }) => { span.remove(); input.style.display = ''; });
     document.querySelector('.actions').style.display = '';
     document.querySelector('.selectores').style.display = '';
-    const tituloOriginal = document.title;
-    document.title = nombreArchivo.replace('.pdf', '');
     window.print();
-    setTimeout(() => { document.title = tituloOriginal; }, 1000);
+    return;
+  }
+
+  if (typeof html2canvas === 'undefined' || typeof window.jspdf === 'undefined') {
+    window.print();
     return;
   }
 
