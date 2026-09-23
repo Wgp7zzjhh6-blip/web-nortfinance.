@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=800">
+<title>Documentos — NortFinance</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0B0A08;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+  .wrap { width: 100%; max-width: 480px; }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1.4rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #F5F0E8;
+    margin-bottom: 8px;
+  }
+  .logo span { color: #C4963A; }
+  .sub {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #C4963A;
+    opacity: 0.7;
+    margin-bottom: 48px;
+  }
+  .titulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: #F5F0E8;
+    margin-bottom: 32px;
+  }
+  .cards { display: flex; flex-direction: column; gap: 16px; }
+  .card {
+    display: block;
+    border: 1px solid rgba(196,150,58,0.3);
+    padding: 28px 32px;
+    text-decoration: none;
+    background: rgba(196,150,58,0.04);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .card:hover { background: rgba(196,150,58,0.1); border-color: rgba(196,150,58,0.7); }
+  .card__label {
+    font-size: 0.58rem;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: #C4963A;
+    margin-bottom: 8px;
+  }
+  .card__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #F5F0E8;
+    margin-bottom: 6px;
+  }
+  .card__desc { font-size: 0.78rem; color: rgba(245,240,232,0.5); }
+  .card__arrow { float: right; color: #C4963A; font-size: 1.2rem; margin-top: -28px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo">NORT<span>FINANCE</span></div>
+  <div class="sub">Documentos</div>
+  <div class="titulo">¿Qué documento<br>necesitas?</div>
+  <div class="cards">
+    <a class="card" href="factura-nortfinance.html">
+      <div class="card__label">Documento 01</div>
+      <div class="card__title">Factura</div>
+      <div class="card__desc">Genera y descarga una factura de honorarios</div>
+      <div class="card__arrow">→</div>
+    </a>
+    <a class="card" href="contrato-intermediacion-hipotecaria.html">
+      <div class="card__label">Documento 02</div>
+      <div class="card__title">Contrato de intermediación</div>
+      <div class="card__desc">Contrato hipotecario entre NortFinance y el cliente</div>
+      <div class="card__arrow">→</div>
+    </a>
+  </div>
+</div>
+</body>
+</html>
