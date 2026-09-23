@@ -2,422 +2,378 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=800" />
 <title>Contrato de Intermediación en Operaciones de Crédito — NortFinance</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --negro: #0B0A08;
+    --crema: #F5F0E8;
+    --dorado: #C4963A;
+    --gris: #2e2c2a;
+    --linea: rgba(196,150,58,0.4);
+  }
 
   body {
-    font-family: 'Georgia', serif;
-    font-size: 11pt;
-    color: #1a1a1a;
-    background: #f0ede8;
+    background: #f0ece4;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 0.88rem;
+    color: var(--negro);
     padding: 40px 20px;
+    line-height: 1.75;
   }
 
   .page {
     background: #fff;
-    max-width: 210mm;
+    max-width: 800px;
     margin: 0 auto 40px;
-    padding: 28mm 24mm 24mm;
-    box-shadow: 0 4px 40px rgba(0,0,0,.18);
-    position: relative;
+    padding: 60px 64px;
+    box-shadow: 0 4px 40px rgba(0,0,0,0.08);
   }
 
-  /* ── Header ── */
+  /* ACCIONES */
+  .actions {
+    max-width: 800px;
+    margin: 0 auto 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid var(--dorado);
+  }
+  .btn--print { background: var(--dorado); color: #fff; }
+  .btn--reset { background: transparent; color: var(--dorado); }
+  .btn--hint { background: transparent; color: var(--gris); border-color: transparent; font-size: 0.7rem; letter-spacing: 0.04em; text-transform: none; cursor: default; }
+
+  /* HEADER */
   .header {
     display: flex;
-    align-items: flex-start;
     justify-content: space-between;
-    border-bottom: 2px solid #C5A040;
-    padding-bottom: 18px;
-    margin-bottom: 26px;
-    gap: 16px;
+    align-items: flex-start;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--linea);
+    margin-bottom: 36px;
   }
-  .header-brand { display: flex; flex-direction: column; gap: 4px; }
-  .header-brand .brand-name {
-    font-family: 'Palatino Linotype', 'Palatino', serif;
-    font-size: 22pt;
-    font-weight: 700;
-    letter-spacing: .04em;
-    color: #111;
-  }
-  .header-brand .brand-tagline {
-    font-family: 'Arial', sans-serif;
-    font-size: 8pt;
-    letter-spacing: .14em;
+  .logo-wrap { display: flex; align-items: center; gap: 16px; }
+  .wordmark {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1.5rem;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: #888;
+    line-height: 1;
+  }
+  .wordmark .n { color: var(--negro); }
+  .wordmark .f { color: var(--dorado); }
+  .eslogan {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.75rem;
+    color: var(--dorado);
+    opacity: 0.7;
+    margin-top: 4px;
+    letter-spacing: 0.04em;
   }
   .header-ref {
     text-align: right;
-    font-family: 'Arial', sans-serif;
-    font-size: 8.5pt;
-    color: #999;
-    line-height: 1.6;
+    font-size: 0.78rem;
+    color: var(--gris);
+    line-height: 1.9;
   }
-  .header-ref strong { color: #555; }
+  .header-ref strong { color: var(--negro); font-weight: 500; }
 
-  /* ── Title block ── */
+  /* TÍTULO */
   .doc-title {
     text-align: center;
-    margin-bottom: 28px;
+    margin-bottom: 36px;
   }
   .doc-title h1 {
-    font-family: 'Palatino Linotype', 'Palatino', serif;
-    font-size: 15pt;
-    font-weight: 700;
-    letter-spacing: .06em;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1.6rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #111;
-    margin-bottom: 6px;
+    color: var(--negro);
+    margin-bottom: 8px;
   }
   .doc-title .subtitle {
-    font-family: 'Arial', sans-serif;
-    font-size: 9pt;
-    color: #777;
-    letter-spacing: .08em;
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
+    color: var(--dorado);
+    opacity: 0.8;
   }
 
-  /* ── Parties block ── */
+  /* PARTES */
   .parties {
-    background: #faf8f4;
-    border-left: 3px solid #C5A040;
-    padding: 18px 20px;
-    margin-bottom: 28px;
+    background: var(--negro);
+    padding: 28px 32px;
+    margin-bottom: 32px;
   }
   .parties h2 {
-    font-family: 'Arial', sans-serif;
-    font-size: 8pt;
-    font-weight: 700;
-    letter-spacing: .16em;
+    font-size: 0.58rem;
+    font-weight: 400;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: #C5A040;
-    margin-bottom: 14px;
+    color: var(--dorado);
+    opacity: 0.7;
+    margin-bottom: 20px;
   }
-  .party {
-    margin-bottom: 16px;
-    line-height: 1.7;
-    font-size: 10.5pt;
-  }
+  .party { margin-bottom: 18px; font-size: 0.85rem; color: var(--crema); line-height: 1.8; }
   .party:last-child { margin-bottom: 0; }
   .party-role {
-    font-family: 'Arial', sans-serif;
-    font-size: 8pt;
-    font-weight: 700;
-    letter-spacing: .1em;
+    font-size: 0.58rem;
+    font-weight: 400;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: #555;
+    color: var(--dorado);
     display: block;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
   }
+  .party strong { color: #fff; font-weight: 500; }
+  .party em { color: rgba(245,240,232,0.6); }
 
-  /* ── Clause sections ── */
-  .section {
-    margin-bottom: 22px;
-    page-break-inside: avoid;
-  }
+  /* SECCIONES / CLÁUSULAS */
+  .section { margin-bottom: 28px; }
   .section-title {
-    font-family: 'Arial', sans-serif;
-    font-size: 9pt;
-    font-weight: 700;
-    letter-spacing: .12em;
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: #333;
-    border-bottom: 1px solid #e0d9cc;
-    padding-bottom: 5px;
-    margin-bottom: 12px;
+    color: var(--dorado);
+    border-bottom: 1px solid var(--linea);
+    padding-bottom: 8px;
+    margin-bottom: 14px;
   }
-  .section-title .num {
-    color: #C5A040;
-    margin-right: 6px;
-  }
-  .section p, .section li {
-    font-size: 10.5pt;
-    line-height: 1.75;
-    color: #2a2a2a;
-    margin-bottom: 8px;
-  }
-  .section ol, .section ul {
-    padding-left: 22px;
-    margin-bottom: 8px;
-  }
+  .section-title .num { margin-right: 8px; }
+  .section p, .section li { font-size: 0.85rem; line-height: 1.8; color: #2a2824; margin-bottom: 10px; }
+  .section ol, .section ul { padding-left: 20px; margin-bottom: 10px; }
   .section li { margin-bottom: 5px; }
+  .section strong { font-weight: 500; color: var(--negro); }
 
-  /* ── Highlight box ── */
+  /* HIGHLIGHT BOX */
   .highlight-box {
-    background: #fdf6e3;
-    border: 1px solid #e8d48a;
-    border-radius: 3px;
-    padding: 14px 16px;
-    margin: 12px 0;
-    font-size: 10.5pt;
-    line-height: 1.7;
+    border: 1px solid var(--linea);
+    background: rgba(196,150,58,0.03);
+    padding: 18px 22px;
+    margin: 14px 0;
+    font-size: 0.85rem;
+    line-height: 1.8;
   }
   .highlight-box .label {
-    font-family: 'Arial', sans-serif;
-    font-size: 8pt;
-    font-weight: 700;
-    letter-spacing: .12em;
+    font-size: 0.58rem;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: #b8940a;
+    color: var(--dorado);
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
   }
 
-  /* ── Fee box ── */
+  /* FEE BOX */
   .fee-box {
-    border: 2px solid #C5A040;
-    border-radius: 3px;
-    padding: 18px 20px;
-    margin: 14px 0;
+    border: 1px solid var(--linea);
+    padding: 28px 24px;
+    margin: 18px 0;
     text-align: center;
+    background: rgba(196,150,58,0.02);
   }
   .fee-box .fee-label {
-    font-family: 'Arial', sans-serif;
-    font-size: 8pt;
-    letter-spacing: .15em;
+    font-size: 0.58rem;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: #888;
-    margin-bottom: 8px;
+    color: var(--dorado);
+    opacity: 0.7;
+    margin-bottom: 12px;
   }
   .fee-box .fee-amount {
-    font-family: 'Palatino Linotype', 'Palatino', serif;
-    font-size: 26pt;
-    font-weight: 700;
-    color: #111;
-    letter-spacing: .02em;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 300;
+    color: var(--negro);
+    letter-spacing: 0.04em;
   }
   .fee-box .fee-words {
-    font-size: 10pt;
-    color: #555;
-    margin-top: 4px;
+    font-size: 0.82rem;
+    color: var(--gris);
+    margin-top: 6px;
     font-style: italic;
   }
   .fee-box .fee-note {
-    margin-top: 10px;
-    font-family: 'Arial', sans-serif;
-    font-size: 9pt;
-    color: #666;
+    margin-top: 14px;
+    font-size: 0.72rem;
+    color: var(--gris);
+    letter-spacing: 0.04em;
   }
 
-  /* ── Payment split ── */
-  .payment-split {
-    display: flex;
-    gap: 12px;
-    margin: 14px 0;
-  }
+  /* PAYMENT SPLIT */
+  .payment-split { display: flex; gap: 12px; margin: 18px 0; }
   .payment-part {
     flex: 1;
-    border: 1px solid #C5A040;
-    border-radius: 3px;
-    padding: 14px 16px;
+    border: 1px solid var(--linea);
+    padding: 20px 18px;
     text-align: center;
   }
   .payment-part .pay-pct {
-    font-family: 'Palatino Linotype', 'Palatino', serif;
-    font-size: 22pt;
-    font-weight: 700;
-    color: #C5A040;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--dorado);
     display: block;
   }
   .payment-part .pay-label {
-    font-family: 'Arial', sans-serif;
-    font-size: 8pt;
-    letter-spacing: .1em;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: #555;
+    color: var(--gris);
     display: block;
     margin-top: 4px;
+    margin-bottom: 8px;
   }
-  .payment-part .pay-desc {
-    font-size: 9.5pt;
-    color: #666;
-    margin-top: 6px;
-    line-height: 1.5;
-  }
+  .payment-part .pay-desc { font-size: 0.8rem; color: var(--gris); line-height: 1.6; }
+  .payment-part .pay-desc strong { font-weight: 500; color: var(--negro); }
 
-  /* ── Field (fillable) ── */
-  .field {
-    display: inline-block;
-    border-bottom: 1.5px solid #999;
-    min-width: 140px;
-    margin: 0 3px;
-    padding: 0 4px;
-    color: #333;
+  /* NO PAY BANNER */
+  .no-pay {
+    background: var(--negro);
+    color: var(--crema);
+    padding: 18px 22px;
+    margin: 14px 0;
+    font-size: 0.83rem;
+    line-height: 1.75;
   }
-  .field--long { min-width: 220px; }
-  .field--short { min-width: 80px; }
+  .no-pay strong { color: var(--dorado); font-weight: 500; }
 
-  /* ── Signature block ── */
-  .signature-section {
-    margin-top: 36px;
-    page-break-inside: avoid;
-  }
-  .signature-section .sig-location {
-    font-size: 10.5pt;
-    margin-bottom: 30px;
-    color: #555;
-  }
+  /* DIVIDER */
+  .divider { border: none; border-top: 1px solid var(--linea); margin: 28px 0; }
+
+  /* FIRMA */
+  .signature-section { margin-top: 36px; }
+  .sig-location { font-size: 0.85rem; margin-bottom: 12px; color: var(--gris); }
+  .sig-intro { font-size: 0.83rem; color: var(--gris); margin-bottom: 32px; line-height: 1.7; }
   .sig-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    gap: 48px;
     margin-top: 10px;
   }
-  .sig-block { display: flex; flex-direction: column; gap: 6px; }
-  .sig-block .sig-title {
-    font-family: 'Arial', sans-serif;
-    font-size: 8pt;
-    font-weight: 700;
-    letter-spacing: .12em;
+  .sig-block { display: flex; flex-direction: column; gap: 5px; }
+  .sig-title {
+    font-size: 0.58rem;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: #C5A040;
-    margin-bottom: 6px;
-  }
-  .sig-line {
-    border-bottom: 1.5px solid #333;
-    height: 52px;
+    color: var(--dorado);
     margin-bottom: 8px;
   }
-  .sig-block p {
-    font-size: 9.5pt;
-    line-height: 1.6;
-    color: #444;
-  }
+  .sig-line { border-bottom: 1px solid var(--negro); height: 52px; margin-bottom: 10px; }
+  .sig-block p { font-size: 0.82rem; line-height: 1.6; color: #444; }
   .sig-block p.label {
-    font-family: 'Arial', sans-serif;
-    font-size: 8pt;
-    color: #888;
-    letter-spacing: .06em;
+    font-size: 0.58rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
+    color: var(--dorado);
+    opacity: 0.7;
+    margin-top: 8px;
   }
 
-  /* ── Footer ── */
+  /* FOOTER */
   .doc-footer {
-    margin-top: 36px;
-    border-top: 1px solid #e0d9cc;
-    padding-top: 12px;
-    font-family: 'Arial', sans-serif;
-    font-size: 8pt;
-    color: #aaa;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--linea);
+    font-size: 0.7rem;
+    color: var(--gris);
     line-height: 1.6;
     text-align: center;
+    opacity: 0.7;
   }
 
-  /* ── Divider ── */
-  .divider {
+  /* CAMPOS */
+  .field {
+    display: inline-block;
     border: none;
-    border-top: 1px dashed #ddd;
-    margin: 20px 0;
+    border-bottom: 1.5px solid var(--dorado);
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+    padding: 0 4px;
+    outline: none;
+    min-width: 140px;
   }
+  .field:focus { background: rgba(196,150,58,0.06); }
+  .field--long { min-width: 220px; }
+  .field--short { min-width: 80px; }
 
-  /* ── No-pay banner ── */
-  .no-pay {
-    background: #f0faf0;
-    border: 1px solid #99cc88;
-    border-radius: 3px;
-    padding: 12px 16px;
-    margin: 10px 0;
-    font-size: 10pt;
-    line-height: 1.7;
-    color: #2a5a20;
-  }
-  .no-pay strong { font-size: 10.5pt; }
+  /* INTRO PÁRRAFO */
+  .intro-p { font-size: 0.85rem; line-height: 1.8; color: #2a2824; margin-bottom: 32px; }
+  .intro-p strong { font-weight: 500; color: var(--negro); }
 
-  /* ══════════════════════════════════════
-     MOBILE — pantallas pequeñas
-     ══════════════════════════════════════ */
   @media (max-width: 680px) {
     body { padding: 0; background: #fff; }
-
-    .page {
-      padding: 24px 16px 20px;
-      margin: 0 0 24px;
-      box-shadow: none;
-      max-width: 100%;
-    }
-
-    .header {
-      flex-direction: column;
-      gap: 10px;
-    }
+    .page { padding: 28px 20px; margin: 0 0 24px; box-shadow: none; }
+    .header { flex-direction: column; gap: 12px; }
     .header-ref { text-align: left; }
-    .header-brand .brand-name { font-size: 17pt; }
-
-    .doc-title h1 { font-size: 12pt; }
-
-    .parties { padding: 14px 12px; }
-    .party { font-size: 9.5pt; }
-
-    .section p, .section li { font-size: 9.5pt; }
-
-    .fee-box .fee-amount { font-size: 20pt; }
-
-    .payment-split { flex-direction: column; gap: 10px; }
-
-    .sig-grid { grid-template-columns: 1fr; gap: 28px; }
-
-    .field { min-width: 100px; }
-    .field--long { min-width: 160px; }
-
-    .no-print { padding: 12px 16px; }
-    .no-print button { width: 100%; }
-    .no-print span { display: block; margin-top: 8px; }
+    .payment-split { flex-direction: column; }
+    .sig-grid { grid-template-columns: 1fr; gap: 32px; }
+    .actions { padding: 0 16px; }
   }
 
-  /* ══════════════════════════════════════
-     PRINT — impresión / guardar PDF
-     ══════════════════════════════════════ */
   @media print {
-    body { background: #fff; padding: 0; font-size: 10.5pt; }
-    .page {
-      box-shadow: none;
-      margin: 0;
-      padding: 16mm 18mm 14mm;
-      max-width: 100%;
-      page-break-after: always;
-    }
+    body { background: #fff; padding: 0; }
+    .actions { display: none !important; }
+    .page { box-shadow: none; margin: 0; padding: 16mm 18mm 14mm; max-width: 100%; page-break-after: always; }
     .page:last-child { page-break-after: auto; }
-    .no-print { display: none !important; }
-    @page { size: A4; margin: 0; }
-
+    .field { border-bottom: 1px dashed #999; }
     .section { page-break-inside: avoid; }
     .signature-section { page-break-inside: avoid; }
     .fee-box { page-break-inside: avoid; }
     .payment-split { page-break-inside: avoid; }
-    .highlight-box { page-break-inside: avoid; }
-    .no-pay { page-break-inside: avoid; }
     .parties { page-break-inside: avoid; }
-
-    .field {
-      border-bottom: 1px solid #666;
-      color: #000;
-    }
+    @page { size: A4; margin: 0; }
   }
 </style>
 </head>
 <body>
 
-<!-- ══ PRINT BUTTON (only visible on screen) ══ -->
-<div class="no-print" style="max-width:210mm;margin:0 auto 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:0 20px">
-  <button onclick="window.print()" style="background:#C5A040;border:none;color:#fff;font-family:Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;padding:10px 24px;cursor:pointer;border-radius:3px;text-transform:uppercase">
-    Guardar / Imprimir PDF
-  </button>
-  <span style="font-family:Arial,sans-serif;font-size:11px;color:#888">Rellenar los campos antes de imprimir · Los campos subrayados son editables en pantalla</span>
+<!-- ACCIONES -->
+<div class="actions">
+  <span class="btn btn--hint">Los campos subrayados son editables en pantalla</span>
+  <button class="btn btn--reset" onclick="resetar()">↺ Limpiar campos</button>
+  <button class="btn btn--print" onclick="descargarPDF()">⬇ Descargar PDF</button>
 </div>
 
-<!-- ══════════════════════════════════════════ -->
-<!--               PÁGINA 1                    -->
-<!-- ══════════════════════════════════════════ -->
+<!-- ══════════════ PÁGINA 1 ══════════════ -->
 <div class="page">
 
   <!-- Header -->
   <div class="header">
-    <div class="header-brand">
-      <span class="brand-name">NortFinance</span>
-      <span class="brand-tagline">Asesoría Financiera · Barcelona</span>
+    <div class="logo-wrap">
+      <svg width="52" height="52" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="70" cy="70" r="65" stroke="#C4963A" stroke-width="0.45" opacity="0.5"/>
+        <circle cx="70" cy="70" r="60" stroke="#C4963A" stroke-width="0.2" opacity="0.25"/>
+        <circle cx="70" cy="5" r="1.6" fill="#C4963A" opacity="0.45"/>
+        <circle cx="70" cy="135" r="1.6" fill="#C4963A" opacity="0.45"/>
+        <circle cx="5" cy="70" r="1.6" fill="#C4963A" opacity="0.45"/>
+        <circle cx="135" cy="70" r="1.6" fill="#C4963A" opacity="0.45"/>
+        <text text-anchor="middle" x="70" y="70" dy="0.35em" font-family="Cormorant Garamond, serif" font-size="52" font-weight="400"><tspan fill="#C4963A">N</tspan><tspan fill="#0B0A08">F</tspan></text>
+      </svg>
+      <div>
+        <div class="wordmark"><span class="n">NORT</span><span class="f">FINANCE</span></div>
+        <div class="eslogan">Donde las finanzas toman dirección.</div>
+      </div>
     </div>
     <div class="header-ref">
       <strong>Ref. contrato:</strong> NF-HIP-<span class="field field--short" contenteditable="true">____</span>/<span class="field field--short" contenteditable="true">20__</span><br/>
@@ -425,13 +381,13 @@
     </div>
   </div>
 
-  <!-- Title -->
+  <!-- Título -->
   <div class="doc-title">
-    <h1>Contrato de Intermediación en Operaciones de Crédito</h1>
+    <h1>Contrato de Intermediación<br>en Operaciones de Crédito</h1>
     <span class="subtitle">Intermediación hipotecaria · Ley 5/2019, de 15 de marzo</span>
   </div>
 
-  <!-- Parties -->
+  <!-- Partes -->
   <div class="parties">
     <h2>Las Partes</h2>
     <div class="party">
@@ -440,15 +396,14 @@
     </div>
     <div class="party">
       <span class="party-role">El Cliente</span>
-      Don/Doña <span class="field field--long" contenteditable="true">Nombre completo del cliente</span>, con DNI/NIE <span class="field" contenteditable="true">__________</span>, mayor de edad, con domicilio en <span class="field field--long" contenteditable="true">Dirección completa</span>, teléfono <span class="field" contenteditable="true">__________</span>, correo electrónico <span class="field field--long" contenteditable="true">__________________</span> (en adelante, <em>"el Cliente"</em>).
-      <br/><br/>
+      Don/Doña <span class="field field--long" contenteditable="true">Nombre completo del cliente</span>, con DNI/NIE <span class="field" contenteditable="true">__________</span>, mayor de edad, con domicilio en <span class="field field--long" contenteditable="true">Dirección completa</span>, teléfono <span class="field" contenteditable="true">__________</span>, correo electrónico <span class="field field--long" contenteditable="true">__________________</span> (en adelante, <em>"el Cliente"</em>).<br/><br/>
       <em>En caso de dos titulares:</em> y Don/Doña <span class="field field--long" contenteditable="true">Nombre 2º titular (si aplica)</span>, con DNI/NIE <span class="field" contenteditable="true">__________</span>.
     </div>
   </div>
 
-  <p style="font-size:10.5pt;line-height:1.75;margin-bottom:24px;">Reconociéndose mutuamente capacidad legal suficiente para contratar y obligarse, <strong>acuerdan suscribir el presente Contrato de Intermediación en Operaciones de Crédito</strong>, al amparo de la <strong>Ley 5/2019, de 15 de marzo, reguladora de los contratos de crédito inmobiliario</strong>, de acuerdo con las siguientes cláusulas:</p>
+  <p class="intro-p">Reconociéndose mutuamente capacidad legal suficiente para contratar y obligarse, <strong>acuerdan suscribir el presente Contrato de Intermediación en Operaciones de Crédito</strong>, al amparo de la <strong>Ley 5/2019, de 15 de marzo, reguladora de los contratos de crédito inmobiliario</strong>, de acuerdo con las siguientes cláusulas:</p>
 
-  <!-- CLÁUSULA 1 -->
+  <!-- CLÁUSULA I -->
   <div class="section">
     <div class="section-title"><span class="num">I.</span> Objeto del Contrato</div>
     <p>El presente contrato tiene por objeto la prestación por parte de NORTFINANCE de servicios de <strong>intermediación financiera</strong> con el fin de obtener una buena oferta de crédito hipotecario para la siguiente operación en función de este perfil financiero:</p>
@@ -470,7 +425,7 @@
     </ol>
   </div>
 
-  <!-- CLÁUSULA 2 -->
+  <!-- CLÁUSULA II -->
   <div class="section">
     <div class="section-title"><span class="num">II.</span> Obligaciones de NortFinance</div>
     <p>NORTFINANCE se compromete a:</p>
@@ -484,7 +439,7 @@
     <p>NORTFINANCE actúa como <strong>intermediario independiente</strong>. La decisión de conceder o denegar el crédito corresponde exclusivamente a la entidad financiera.</p>
   </div>
 
-  <!-- CLÁUSULA 3 -->
+  <!-- CLÁUSULA III -->
   <div class="section">
     <div class="section-title"><span class="num">III.</span> Obligaciones del Cliente</div>
     <p>El Cliente se compromete a:</p>
@@ -497,20 +452,19 @@
     </ol>
   </div>
 
-</div><!-- /page 1 -->
+</div><!-- /página 1 -->
 
-<!-- ══════════════════════════════════════════ -->
-<!--               PÁGINA 2                    -->
-<!-- ══════════════════════════════════════════ -->
+
+<!-- ══════════════ PÁGINA 2 ══════════════ -->
 <div class="page">
 
-  <!-- CLÁUSULA 4 - Honorarios -->
+  <!-- CLÁUSULA IV -->
   <div class="section">
     <div class="section-title"><span class="num">IV.</span> Honorarios y Forma de Pago</div>
 
     <div class="fee-box">
       <div class="fee-label">Honorarios pactados</div>
-      <div class="fee-amount"><span contenteditable="true" style="border-bottom:2px solid #C5A040;min-width:160px;display:inline-block;padding:0 8px">______,00 €</span></div>
+      <div class="fee-amount"><span contenteditable="true" style="border-bottom:1px dashed var(--dorado);min-width:160px;display:inline-block;padding:0 8px">______,00 €</span></div>
       <div class="fee-words">(<span contenteditable="true">______________________________________________ euros</span>)</div>
       <div class="fee-note">Exento de IVA — art. 20.Uno.18º Ley 37/1992 del IVA</div>
     </div>
@@ -533,7 +487,7 @@
     <p>Ambos pagos se realizarán mediante transferencia bancaria a la cuenta que NORTFINANCE indique en cada momento.</p>
 
     <div class="no-pay">
-      <strong>Política "Sin hipoteca, sin honorarios":</strong> Si la operación no llegara a formalizarse por causas ajenas a la voluntad del Cliente (denegación bancaria, circunstancias sobrevenidas del inmueble, etc.), <strong>no se devengará ningún honorario</strong>. El Cliente no pagará nada si no se consigue resultado.
+      <strong>Política "Sin hipoteca, sin honorarios":</strong> Si la operación no llegara a formalizarse por causas ajenas a la voluntad del Cliente (denegación bancaria, circunstancias sobrevenidas del inmueble, etc.), <strong style="color:var(--crema)">no se devengará ningún honorario</strong>. El Cliente no pagará nada si no se consigue resultado.
     </div>
 
     <p>En caso de que el Cliente desista voluntariamente de la operación <em>después</em> de haber recibido una oferta vinculante en las condiciones pactadas, NORTFINANCE podrá reclamar hasta el <strong>50 % de los honorarios</strong> acordados en concepto de gestión y trabajos efectivamente realizados.</p>
@@ -544,14 +498,14 @@
     </div>
   </div>
 
-  <!-- CLÁUSULA 5 -->
+  <!-- CLÁUSULA V -->
   <div class="section">
     <div class="section-title"><span class="num">V.</span> Duración del Contrato</div>
     <p>El presente contrato tendrá una duración de <strong>seis (6) meses</strong> a partir de la fecha de su firma, prorrogable de mutuo acuerdo por escrito.</p>
     <p>El contrato se extinguirá automáticamente por la formalización del préstamo hipotecario, por el transcurso del plazo sin resultado, por renuncia escrita de cualquiera de las partes, o por incumplimiento grave de sus obligaciones.</p>
   </div>
 
-  <!-- CLÁUSULA 6 -->
+  <!-- CLÁUSULA VI -->
   <div class="section">
     <div class="section-title"><span class="num">VI.</span> Derecho de Desistimiento del Cliente</div>
     <p>El Cliente podrá desistir del presente contrato en un plazo de <strong>14 días naturales</strong> desde la fecha de su firma, sin necesidad de justificación y sin coste alguno, ejerciendo su derecho mediante comunicación escrita o por correo electrónico a NORTFINANCE.</p>
@@ -560,13 +514,13 @@
     <p>En caso de ejercicio del derecho de desistimiento, el Cliente abonará a NORTFINANCE la <strong>parte proporcional correspondiente a los servicios efectivamente prestados</strong> hasta la fecha de la comunicación del desistimiento.</p>
   </div>
 
-  <!-- CLÁUSULA 7 -->
+  <!-- CLÁUSULA VII -->
   <div class="section">
     <div class="section-title"><span class="num">VII.</span> Confidencialidad</div>
     <p>Ambas partes se obligan a mantener la más estricta confidencialidad sobre la información intercambiada en el marco del presente contrato y a no divulgarla a terceros sin consentimiento expreso de la otra parte, salvo obligación legal. Esta obligación se mantendrá dos (2) años tras la extinción del contrato.</p>
   </div>
 
-  <!-- CLÁUSULA 8 -->
+  <!-- CLÁUSULA VIII -->
   <div class="section">
     <div class="section-title"><span class="num">VIII.</span> Protección de Datos Personales</div>
     <p>En cumplimiento del <strong>Reglamento (UE) 2016/679 (RGPD)</strong> y la <strong>Ley Orgánica 3/2018 (LOPDGDD)</strong>, se informa al Cliente:</p>
@@ -581,21 +535,21 @@
     <p>El Cliente presta su consentimiento expreso al tratamiento de sus datos para las finalidades indicadas mediante la firma del presente contrato.</p>
   </div>
 
-  <!-- CLÁUSULA 9 -->
+  <!-- CLÁUSULA IX -->
   <div class="section">
     <div class="section-title"><span class="num">IX.</span> Limitación de Responsabilidad</div>
     <p>NORTFINANCE no será responsable de la denegación de financiación por parte de las entidades financieras, siempre que haya actuado con la debida diligencia profesional; de cambios en las condiciones de mercado o en la política crediticia de las entidades; ni de retrasos derivados de la actuación de terceros (registros, notarías, administraciones públicas).</p>
     <p>NORTFINANCE no asume ninguna responsabilidad por inexactitudes u omisiones en la información facilitada por el Cliente.</p>
   </div>
 
-  <!-- CLÁUSULA 10 -->
+  <!-- CLÁUSULA X -->
   <div class="section">
     <div class="section-title"><span class="num">X.</span> Ley Aplicable y Jurisdicción</div>
     <p>El presente contrato se rige por la legislación española vigente, en particular por la <strong>Ley 5/2019, de 15 de marzo, reguladora de los contratos de crédito inmobiliario</strong>, y las normas de protección al consumidor aplicables.</p>
     <p>Para cualquier controversia derivada de la interpretación o ejecución de este contrato, las partes se someten a los <strong>Juzgados y Tribunales de Barcelona</strong>, con renuncia expresa a cualquier otro fuero.</p>
   </div>
 
-  <!-- CLÁUSULA 11 -->
+  <!-- CLÁUSULA XI -->
   <div class="section">
     <div class="section-title"><span class="num">XI.</span> Integralidad y Modificaciones</div>
     <p>El presente contrato constituye el acuerdo íntegro entre las partes y sustituye cualquier acuerdo o negociación previa. Cualquier modificación deberá constar por escrito y ser suscrita por ambas partes.</p>
@@ -605,10 +559,10 @@
 
   <!-- FIRMA -->
   <div class="signature-section">
-    <p class="sig-location" style="font-size:10.5pt;color:#555;">
+    <p class="sig-location">
       En Barcelona, a <span class="field" contenteditable="true">____</span> de <span class="field" contenteditable="true">______________</span> de <span class="field field--short" contenteditable="true">20____</span>
     </p>
-    <p style="font-size:10pt;color:#555;margin-bottom:24px;">Leído y conforme, ambas partes firman el presente contrato en dos ejemplares de igual validez, quedando uno en poder de cada parte.</p>
+    <p class="sig-intro">Leído y conforme, ambas partes firman el presente contrato en dos ejemplares de igual validez, quedando uno en poder de cada parte.</p>
 
     <div class="sig-grid">
       <div class="sig-block">
@@ -635,11 +589,112 @@
 
   <!-- Footer -->
   <div class="doc-footer">
-    NORTFINANCE · Intermediación Financiera · Barcelona · info@nortfinance.com · www.nortfinance.com<br/>
+    NORTFINANCE · Intermediación Financiera · Barcelona · info@nortfinance.com · nortfinance.com<br/>
     Documento confidencial · Protegido por la Ley Orgánica 3/2018 de Protección de Datos Personales
   </div>
 
-</div><!-- /page 2 -->
+</div><!-- /página 2 -->
 
+<script>
+const STORAGE_KEY = 'nf-contrato-borrador';
+
+function getNombreCliente() {
+  let nombre = '';
+  document.querySelectorAll('[contenteditable]').forEach(el => {
+    const txt = el.textContent.trim();
+    if (!nombre && txt.length > 3 && !txt.includes('____') && !txt.includes('20__') && !txt.includes('Nombre completo')) {
+      nombre = txt;
+    }
+  });
+  return nombre.replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]/g, '').trim().replace(/\s+/g, '-') || 'Cliente';
+}
+
+function descargarPDF() {
+  const nombreArchivo = `Contrato-NortFinance-${getNombreCliente()}.pdf`;
+  const esMobil = /iPhone|iPad|Android/i.test(navigator.userAgent);
+
+  document.querySelector('.actions').style.display = 'none';
+
+  // Ocultar bordes de campos para el PDF
+  document.querySelectorAll('[contenteditable]').forEach(el => { el.style.borderBottom = 'none'; });
+
+  if (esMobil || typeof html2canvas === 'undefined' || typeof window.jspdf === 'undefined') {
+    document.querySelector('.actions').style.display = '';
+    document.querySelectorAll('[contenteditable]').forEach(el => { el.style.borderBottom = ''; });
+    const tituloOriginal = document.title;
+    document.title = nombreArchivo.replace('.pdf', '');
+    window.print();
+    setTimeout(() => { document.title = tituloOriginal; }, 1000);
+    return;
+  }
+
+  const contenedor = document.createElement('div');
+  document.querySelectorAll('.page').forEach(p => contenedor.appendChild(p.cloneNode(true)));
+  contenedor.style.cssText = 'position:absolute;left:-9999px;top:0;width:800px;background:white;';
+  document.body.appendChild(contenedor);
+
+  html2canvas(contenedor, { scale: 1.5, useCORS: true, windowWidth: 800 }).then(canvas => {
+    document.body.removeChild(contenedor);
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const pW = 210, pH = 297, margin = 8;
+    const maxW = pW - margin * 2, maxH = pH - margin * 2;
+    const ratio = Math.min(maxW / (canvas.width * 0.2645), maxH / (canvas.height * 0.2645));
+    const finalW = canvas.width * 0.2645 * ratio;
+    const finalH = canvas.height * 0.2645 * ratio;
+
+    // Si el contenido cabe en una página lo ponemos todo, si no hacemos páginas
+    if (finalH <= maxH) {
+      pdf.addImage(canvas.toDataURL('image/jpeg', 0.95), 'JPEG', margin, margin, finalW, finalH);
+    } else {
+      // Múltiples páginas A4
+      const pageHeightPx = (pH - margin * 2) / 0.2645 / ratio;
+      let offsetY = 0;
+      while (offsetY < canvas.height) {
+        const sliceH = Math.min(pageHeightPx, canvas.height - offsetY);
+        const sliceCanvas = document.createElement('canvas');
+        sliceCanvas.width = canvas.width;
+        sliceCanvas.height = sliceH;
+        sliceCanvas.getContext('2d').drawImage(canvas, 0, offsetY, canvas.width, sliceH, 0, 0, canvas.width, sliceH);
+        if (offsetY > 0) pdf.addPage();
+        pdf.addImage(sliceCanvas.toDataURL('image/jpeg', 0.95), 'JPEG', margin, margin, finalW, sliceH * 0.2645 * ratio);
+        offsetY += sliceH;
+      }
+    }
+
+    pdf.save(nombreArchivo);
+    document.querySelector('.actions').style.display = '';
+    document.querySelectorAll('[contenteditable]').forEach(el => { el.style.borderBottom = ''; });
+  });
+}
+
+function resetar() {
+  if (!confirm('¿Limpiar todos los campos?')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  document.querySelectorAll('[contenteditable]').forEach(el => { el.innerHTML = el.getAttribute('data-default') || ''; });
+}
+
+function guardarBorrador() {
+  const datos = {};
+  document.querySelectorAll('[contenteditable]').forEach((el, i) => { datos['c' + i] = el.innerHTML; });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(datos));
+}
+
+function cargarBorrador() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) return;
+  const datos = JSON.parse(raw);
+  document.querySelectorAll('[contenteditable]').forEach((el, i) => {
+    if (datos['c' + i] !== undefined) el.innerHTML = datos['c' + i];
+  });
+}
+
+document.querySelectorAll('[contenteditable]').forEach(el => {
+  el.setAttribute('data-default', el.innerHTML);
+  el.addEventListener('input', guardarBorrador);
+});
+
+window.addEventListener('load', cargarBorrador);
+</script>
 </body>
 </html>
