@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factura — NortFinance</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --negro: #0B0A08;
+    --crema: #F5F0E8;
+    --dorado: #C4963A;
+    --gris: #6B6760;
+    --linea: rgba(196,150,58,0.2);
+  }
+  body {
+    background: #f0ece4;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    color: var(--negro);
+    padding: 40px 20px;
+  }
+
+  .factura {
+    background: #fff;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 64px;
+    box-shadow: 0 4px 40px rgba(0,0,0,0.08);
+  }
+
+  /* ACCIONES */
+  .actions {
+    max-width: 800px;
+    margin: 0 auto 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+  .btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid var(--dorado);
+  }
+  .btn--print { background: var(--dorado); color: #fff; }
+  .btn--reset { background: transparent; color: var(--dorado); }
+
+  /* HEADER */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--linea);
+    margin-bottom: 36px;
+  }
+  .logo-wrap { display: flex; align-items: center; gap: 16px; }
+  .wordmark {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1.5rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .wordmark .n { color: var(--negro); }
+  .wordmark .f { color: var(--dorado); }
+  .eslogan {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.75rem;
+    color: var(--dorado);
+    opacity: 0.7;
+    margin-top: 4px;
+    letter-spacing: 0.04em;
+  }
+  .factura-label { text-align: right; }
+  .factura-label__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+    color: var(--negro);
+    text-transform: uppercase;
+  }
+  .factura-label__num {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    color: var(--gris);
+    margin-top: 6px;
+  }
+  .factura-label__num .num-value { color: var(--dorado); font-weight: 500; }
+
+  /* PARTES */
+  .partes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 36px;
+  }
+  .parte__label {
+    font-size: 0.6rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--dorado);
+    margin-bottom: 14px;
+  }
+  .parte__name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--negro);
+    margin-bottom: 8px;
+  }
+  .parte__data { font-size: 0.82rem; color: var(--gris); line-height: 1.8; }
+
+  /* META */
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: var(--negro);
+    margin-bottom: 36px;
+  }
+  .meta-item {
+    padding: 18px 22px;
+    border-right: 1px solid rgba(255,255,255,0.06);
+  }
+  .meta-item:last-child { border-right: none; }
+  .meta-item__label {
+    font-size: 0.58rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--dorado);
+    opacity: 0.7;
+    margin-bottom: 6px;
+  }
+  .meta-item__value { font-size: 0.85rem; color: var(--crema); }
+
+  /* CONCEPTOS */
+  .conceptos-header {
+    display: grid;
+    grid-template-columns: 1fr 90px 90px 100px;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--linea);
+    margin-bottom: 4px;
+  }
+  .conceptos-header span {
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--dorado);
+  }
+  .conceptos-header span:not(:first-child) { text-align: right; }
+  .concepto-row {
+    display: grid;
+    grid-template-columns: 1fr 90px 90px 100px;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    align-items: start;
+  }
+  .concepto-desc { font-size: 0.85rem; color: var(--negro); line-height: 1.5; }
+  .concepto-desc small { display: block; color: var(--gris); font-size: 0.75rem; margin-top: 3px; }
+  .concepto-cant, .concepto-precio, .concepto-total {
+    font-size: 0.85rem;
+    text-align: right;
+    color: var(--negro);
+    padding-top: 2px;
+  }
+
+  /* SELECTORES */
+  .selectores {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    justify-content: flex-end;
+    margin: 20px 0 10px;
+    flex-wrap: wrap;
+  }
+  .sel-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--dorado);
+  }
+  .sel-sep { width: 1px; height: 14px; background: var(--linea); margin: 0 4px; }
+  .selectores label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.78rem;
+    color: var(--gris);
+    cursor: pointer;
+  }
+  .selectores input[type=radio] { accent-color: var(--dorado); }
+
+  /* TOTALES */
+  .totales { margin-top: 8px; display: flex; justify-content: flex-end; }
+  .totales-box { width: 280px; }
+  .total-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+    font-size: 0.85rem;
+    color: var(--gris);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  .total-row.nota-exento {
+    font-size: 0.72rem;
+    color: var(--dorado);
+    opacity: 0.7;
+    border-bottom: none;
+    padding-top: 2px;
+  }
+  .total-row.final {
+    background: var(--negro);
+    color: var(--crema);
+    padding: 14px 16px;
+    margin-top: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-bottom: none;
+  }
+  .total-row.final span:last-child { color: var(--dorado); }
+
+  /* PAGO */
+  .pago {
+    margin-top: 36px;
+    padding: 24px 28px;
+    border: 1px solid var(--linea);
+    background: rgba(196,150,58,0.03);
+  }
+  .pago__label {
+    font-size: 0.58rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--dorado);
+    margin-bottom: 14px;
+  }
+  .pago__datos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    font-size: 0.82rem;
+    color: var(--negro);
+    line-height: 1.8;
+  }
+  .pago__datos dt { color: var(--gris); font-size: 0.75rem; }
+  .pago__datos dd { font-weight: 400; }
+
+  /* NOTA LEGAL */
+  .nota-legal {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--linea);
+    font-size: 0.72rem;
+    color: var(--gris);
+    line-height: 1.7;
+  }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid var(--linea);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer__brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dorado);
+    opacity: 0.5;
+  }
+  .footer__info { font-size: 0.7rem; color: var(--gris); text-align: right; line-height: 1.6; }
+
+  /* CAMPOS */
+  .field {
+    border: none;
+    border-bottom: 1px dashed var(--dorado);
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+    padding: 1px 4px;
+    outline: none;
+    min-width: 120px;
+  }
+  .field:focus { background: rgba(196,150,58,0.06); }
+  .field--short { min-width: 60px; }
+  .field--long { min-width: 220px; }
+  .field--num { min-width: 80px; text-align: right; }
+
+  @media (max-width: 640px) {
+    /* ── Base ── */
+    body { padding: 0; background: #f0ece4; }
+
+    .actions {
+      max-width: 100%;
+      padding: 12px 16px;
+      margin-bottom: 0;
+      gap: 8px;
+    }
+    .btn { flex: 1; text-align: center; font-size: 0.62rem; padding: 10px 6px; }
+
+    .factura {
+      max-width: 100%;
+      margin: 0;
+      padding: 28px 20px;
+      box-shadow: none;
+    }
+
+    /* ── Header ── */
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+    }
+    .logo-wrap { gap: 12px; }
+    .wordmark { font-size: 1.25rem; }
+    .factura-label { text-align: left; width: 100%; }
+    .factura-label__title { font-size: 1.6rem; }
+
+    /* ── Partes ── */
+    .partes {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    /* Todos los campos dentro de .parte__data: bloque separado del label */
+    .parte__data { line-height: 2.2; }
+    .parte__data .field,
+    .parte__data .field--long,
+    .parte__data .field--short {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      margin-top: 2px;
+      margin-bottom: 4px;
+    }
+    /* El nombre del cliente también */
+    .parte__name .field,
+    .parte__name .field--long { display: block; width: 100%; min-width: 0; }
+
+    /* ── Meta ── */
+    .meta { grid-template-columns: 1fr; }
+    .meta-item {
+      border-right: none;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 14px 16px;
+    }
+    .meta-item:last-child { border-bottom: none; }
+    .meta-item .field { color: #F5F0E8; border-bottom-color: rgba(196,150,58,0.4); width: 100%; min-width: 0; }
+
+    /* ── Conceptos ── */
+    .conceptos-header {
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+    }
+    .conceptos-header span:nth-child(2),
+    .conceptos-header span:nth-child(3) { display: none; }
+    .concepto-row {
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+    }
+    .concepto-cant, .concepto-precio { display: none; }
+    .concepto-desc { width: 100%; overflow: hidden; }
+    .concepto-desc input.field,
+    .concepto-desc small input.field {
+      display: block;
+      width: 100%;
+      min-width: 0;
+    }
+
+    /* ── Selectores ── */
+    .selectores {
+      justify-content: flex-start;
+      gap: 8px 12px;
+      flex-wrap: wrap;
+      margin: 16px 0 8px;
+    }
+    .sel-sep { display: none; }
+    .sel-label { width: 100%; margin-bottom: -4px; }
+
+    /* ── Totales ── */
+    .totales { justify-content: flex-start; }
+    .totales-box { width: 100%; }
+
+    /* ── Pago ── */
+    .pago { padding: 18px 16px; }
+    .pago__datos { grid-template-columns: 1fr; gap: 10px; }
+    .pago__datos .field,
+    .pago__datos .field--long { display: block; width: 100%; min-width: 0; }
+
+    /* ── Footer ── */
+    .footer { flex-direction: column; gap: 4px; align-items: flex-start; }
+    .footer__info { text-align: left; }
+
+    /* ── Regla global: ningún campo desborda ── */
+    input.field { min-width: 0 !important; max-width: 100%; box-sizing: border-box; }
+  }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .actions { display: none; }
+    .selectores { display: none; }
+    .factura { box-shadow: none; padding: 40px; }
+    .field { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="actions">
+  <button class="btn btn--reset" onclick="resetar()">↺ Limpiar campos</button>
+  <button class="btn btn--print" onclick="descargarPDF()">⬇ Descargar PDF</button>
+</div>
+
+<div class="factura">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-wrap">
+      <svg width="52" height="52" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="70" cy="70" r="65" stroke="#C4963A" stroke-width="0.45" opacity="0.5"/>
+        <circle cx="70" cy="70" r="60" stroke="#C4963A" stroke-width="0.2" opacity="0.25"/>
+        <circle cx="70" cy="5" r="1.6" fill="#C4963A" opacity="0.45"/>
+        <circle cx="70" cy="135" r="1.6" fill="#C4963A" opacity="0.45"/>
+        <circle cx="5" cy="70" r="1.6" fill="#C4963A" opacity="0.45"/>
+        <circle cx="135" cy="70" r="1.6" fill="#C4963A" opacity="0.45"/>
+        <text text-anchor="middle" x="70" y="70" dy="0.35em" font-family="Cormorant Garamond, serif" font-size="52" font-weight="400"><tspan fill="#C4963A">N</tspan><tspan fill="#0B0A08">F</tspan></text>
+      </svg>
+      <div>
+        <div class="wordmark"><span class="n">NORT</span><span class="f">FINANCE</span></div>
+        <div class="eslogan">Donde las finanzas toman dirección.</div>
+      </div>
+    </div>
+    <div class="factura-label">
+      <div class="factura-label__title">Factura</div>
+      <div class="factura-label__num">
+        Nº <span class="num-value">NF-<input class="field field--short" id="f-año" value="2026" style="width:44px">-<input class="field field--short" id="f-num" placeholder="001" style="width:36px"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTES -->
+  <div class="partes">
+    <div>
+      <div class="parte__label">Emisor</div>
+      <div class="parte__name">Javier de Vilar Postigo</div>
+      <div class="parte__data">
+        NIF: 38.096.980X<br>
+        Régimen: Autónomo — RETA<br>
+        Actividad: Intermediación financiera<br>
+        Email: info@nortfinance.com<br>
+        Tel: 935 593 571<br>
+        Barcelona, España
+      </div>
+    </div>
+    <div>
+      <div class="parte__label">Cliente</div>
+      <div class="parte__name"><input class="field field--long" id="c-nombre" placeholder="Nombre completo / Razón social"></div>
+      <div class="parte__data">
+        DNI/NIF: <input class="field field--short" id="c-nif" placeholder="00000000X"><br>
+        Dirección: <input class="field field--long" id="c-dir" placeholder="Calle, número, piso"><br>
+        CP y ciudad: <input class="field" id="c-cp" placeholder="00000 Ciudad"><br>
+        Email: <input class="field" id="c-email" placeholder="cliente@email.com"><br>
+        Tel: <input class="field field--short" id="c-tel" placeholder="600 000 000">
+      </div>
+    </div>
+  </div>
+
+  <!-- META -->
+  <div class="meta">
+    <div class="meta-item">
+      <div class="meta-item__label">Fecha de emisión</div>
+      <div class="meta-item__value"><input class="field" id="f-fecha" placeholder="dd/mm/aaaa" style="color:#F5F0E8;border-bottom-color:rgba(196,150,58,0.4)"></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-item__label">Fecha de vencimiento</div>
+      <div class="meta-item__value"><input class="field" id="f-vence" placeholder="dd/mm/aaaa" style="color:#F5F0E8;border-bottom-color:rgba(196,150,58,0.4)"></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-item__label">Operación</div>
+      <div class="meta-item__value"><input class="field" id="f-op" placeholder="Hipoteca primera vivienda" style="color:#F5F0E8;border-bottom-color:rgba(196,150,58,0.4);min-width:180px"></div>
+    </div>
+  </div>
+
+  <!-- CONCEPTOS -->
+  <div class="conceptos-header">
+    <span>Concepto</span>
+    <span>Cant.</span>
+    <span>Precio unit.</span>
+    <span>Total</span>
+  </div>
+
+  <div class="concepto-row">
+    <div class="concepto-desc">
+      <input class="field field--long" id="con-desc1" placeholder="Servicios de intermediación hipotecaria" style="min-width:320px">
+      <small><input class="field field--long" id="con-det1" placeholder="Gestión, negociación y formalización de operación hipotecaria" style="min-width:320px"></small>
+    </div>
+    <div class="concepto-cant"><input class="field field--num" id="con-cant1" value="1" oninput="calcular()" style="width:50px"></div>
+    <div class="concepto-precio"><input class="field field--num precio-field" id="con-precio1" placeholder="0,0 €" oninput="calcular()" onblur="formatearPrecio(this)" onfocus="limpiarPrecio(this)" style="width:90px"></div>
+    <div class="concepto-total" id="con-total1">—</div>
+  </div>
+
+  <div class="concepto-row">
+    <div class="concepto-desc">
+      <input class="field field--long" id="con-desc2" placeholder="Segundo concepto (opcional)" style="min-width:320px">
+    </div>
+    <div class="concepto-cant"><input class="field field--num" id="con-cant2" value="1" oninput="calcular()" style="width:50px"></div>
+    <div class="concepto-precio"><input class="field field--num precio-field" id="con-precio2" placeholder="0,0 €" onblur="formatearPrecio(this)" onfocus="limpiarPrecio(this)" oninput="calcular()" style="width:90px"></div>
+    <div class="concepto-total" id="con-total2">—</div>
+  </div>
+
+  <!-- SELECTORES -->
+  <div class="selectores">
+    <span class="sel-label">IRPF</span>
+    <label><input type="radio" name="irpf" value="15" checked onchange="calcular()"> 15%</label>
+    <label><input type="radio" name="irpf" value="7" onchange="calcular()"> 7%</label>
+    <label><input type="radio" name="irpf" value="0" onchange="calcular()"> 0%</label>
+    <div class="sel-sep"></div>
+    <span class="sel-label">IVA</span>
+    <label><input type="radio" name="iva" value="exento" checked onchange="calcular()"> Exento</label>
+    <label><input type="radio" name="iva" value="21" onchange="calcular()"> 21%</label>
+    <label><input type="radio" name="iva" value="10" onchange="calcular()"> 10%</label>
+    <label><input type="radio" name="iva" value="4" onchange="calcular()"> 4%</label>
+  </div>
+
+  <!-- TOTALES -->
+  <div class="totales">
+    <div class="totales-box">
+      <div class="total-row">
+        <span>Base imponible</span>
+        <span id="t-base">0,00 €</span>
+      </div>
+      <div class="total-row" id="row-iva" style="display:none">
+        <span id="lbl-iva">IVA (21%)</span>
+        <span id="t-iva">0,00 €</span>
+      </div>
+      <div class="total-row nota-exento" id="row-exento">
+        <span>IVA exento — art. 20.Uno.18.º Ley 37/1992</span>
+        <span>—</span>
+      </div>
+      <div class="total-row" id="row-irpf">
+        <span id="lbl-irpf">IRPF retención (15%)</span>
+        <span id="t-irpf">0,00 €</span>
+      </div>
+      <div class="total-row final">
+        <span>Total a pagar</span>
+        <span id="t-total">0,00 €</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGO -->
+  <div class="pago">
+    <div class="pago__label">Datos de pago</div>
+    <dl class="pago__datos">
+      <div>
+        <dt>Titular</dt>
+        <dd>Javier de Vilar Postigo</dd>
+      </div>
+      <div>
+        <dt>Forma de pago</dt>
+        <dd><input class="field" id="p-forma" placeholder="Transferencia bancaria"></dd>
+      </div>
+      <div>
+        <dt>IBAN</dt>
+        <dd><input class="field field--long" id="p-iban" placeholder="ES00 0000 0000 0000 0000 0000"></dd>
+      </div>
+      <div>
+        <dt>Entidad</dt>
+        <dd><input class="field" id="p-banco" placeholder="Nombre del banco"></dd>
+      </div>
+    </dl>
+  </div>
+
+  <!-- NOTA LEGAL -->
+  <div class="nota-legal" id="nota-legal">
+    <strong>Nota legal:</strong> Los servicios de intermediación en la concesión de créditos hipotecarios están exentos de IVA de conformidad con el artículo 20.Uno.18.º de la Ley 37/1992. Esta factura ha sido emitida al amparo de la Ley 5/2019, de 15 de marzo, reguladora de los contratos de crédito inmobiliario.
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer__brand">NortFinance · Intermediación hipotecaria</div>
+    <div class="footer__info">
+      info@nortfinance.com · 935 593 571<br>
+      nortfinance.com · Barcelona, España
+    </div>
+  </div>
+
+</div>
+
+<script>
+function parsePrecio(v) {
+  // Acepta: 1.000,50 / 1000,50 / 1000.50 / 1.000
+  v = v.replace(/€/g, '').trim();
+  // Si tiene punto Y coma, el punto es separador de miles
+  if (v.includes('.') && v.includes(',')) {
+    v = v.replace(/\./g, '').replace(',', '.');
+  } else if (v.includes(',')) {
+    // Solo coma → separador decimal
+    v = v.replace(',', '.');
+  } else {
+    // Solo punto → puede ser decimal o miles; si >3 decimales, es miles
+    const partes = v.split('.');
+    if (partes.length === 2 && partes[1].length === 3) {
+      v = v.replace('.', ''); // era miles
+    }
+  }
+  return parseFloat(v) || 0;
+}
+function formatEur(n) {
+  const fixed = n.toFixed(1); // "1000.0"
+  const [entero, decimal] = fixed.split('.');
+  const miles = entero.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  return miles + ',' + decimal + ' €';
+}
+function calcular() {
+  const c1 = parsePrecio(document.getElementById('con-precio1').value) * (parseFloat(document.getElementById('con-cant1').value) || 0);
+  const c2 = parsePrecio(document.getElementById('con-precio2').value) * (parseFloat(document.getElementById('con-cant2').value) || 0);
+  document.getElementById('con-total1').textContent = c1 ? formatEur(c1) : '—';
+  document.getElementById('con-total2').textContent = c2 ? formatEur(c2) : '—';
+  const base = c1 + c2;
+
+  const ivaOpt = document.querySelector('input[name="iva"]:checked').value;
+  let ivaImporte = 0;
+  if (ivaOpt === 'exento') {
+    document.getElementById('row-iva').style.display = 'none';
+    document.getElementById('row-exento').style.display = 'flex';
+  } else {
+    ivaImporte = base * parseFloat(ivaOpt) / 100;
+    document.getElementById('lbl-iva').textContent = 'IVA (' + ivaOpt + '%)';
+    document.getElementById('t-iva').textContent = formatEur(ivaImporte);
+    document.getElementById('row-iva').style.display = 'flex';
+    document.getElementById('row-exento').style.display = 'none';
+  }
+
+  const irpfPct = parseFloat(document.querySelector('input[name="irpf"]:checked').value);
+  const irpf = base * irpfPct / 100;
+  const total = base + ivaImporte - irpf;
+  document.getElementById('t-base').textContent = formatEur(base);
+  document.getElementById('lbl-irpf').textContent = irpfPct === 0 ? 'IRPF (sin retención)' : 'IRPF retención (' + irpfPct + '%)';
+  document.getElementById('t-irpf').textContent = irpfPct === 0 ? '—' : '−' + formatEur(irpf);
+  document.getElementById('row-irpf').style.display = irpfPct === 0 ? 'none' : 'flex';
+  document.getElementById('t-total').textContent = formatEur(total);
+
+  const nota = document.getElementById('nota-legal');
+  if (ivaOpt === 'exento') {
+    nota.innerHTML = '<strong>Nota legal:</strong> Los servicios de intermediación en la concesión de créditos hipotecarios están exentos de IVA de conformidad con el artículo 20.Uno.18.º de la Ley 37/1992. Esta factura ha sido emitida al amparo de la Ley 5/2019, de 15 de marzo, reguladora de los contratos de crédito inmobiliario.';
+  } else {
+    nota.innerHTML = '<strong>Nota legal:</strong> Factura sujeta a IVA al tipo del ' + ivaOpt + '% conforme a la Ley 37/1992, de 28 de diciembre, del Impuesto sobre el Valor Añadido.' + (irpfPct > 0 ? ' Sujeto a retención del IRPF del ' + irpfPct + '% (art. 101 Ley 35/2006).' : '');
+  }
+}
+function formatearPrecio(el) {
+  const n = parsePrecio(el.value);
+  if (n) el.value = formatEur(n);
+  calcular();
+}
+function limpiarPrecio(el) {
+  const n = parsePrecio(el.value);
+  if (n) el.value = n.toFixed(1).replace('.', ',');
+}
+
+function descargarPDF() {
+  const año = document.getElementById('f-año').value || '2026';
+  const num = document.getElementById('f-num').value || '001';
+  const cliente = document.getElementById('c-nombre').value || 'Cliente';
+  const nombreLimpio = cliente.replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ\s]/g, '').trim().replace(/\s+/g, '-');
+  const nombreArchivo = `Factura-NF-${año}-${num}-${nombreLimpio}.pdf`;
+
+  // Ocultar lo que no debe aparecer en el PDF
+  document.querySelector('.actions').style.display = 'none';
+  document.querySelector('.selectores').style.display = 'none';
+
+  // Reemplazar inputs por spans para evitar cortes en html2canvas
+  const reemplazos = [];
+  document.querySelectorAll('input.field').forEach(el => {
+    const span = document.createElement('span');
+    span.textContent = el.value || el.placeholder;
+    span.style.cssText = `font-family:${getComputedStyle(el).fontFamily};font-size:${getComputedStyle(el).fontSize};font-weight:${getComputedStyle(el).fontWeight};color:${el.value ? getComputedStyle(el).color : '#aaa'};border-bottom:none;display:inline;white-space:normal;word-break:break-word;`;
+    el.parentNode.insertBefore(span, el);
+    el.style.display = 'none';
+    reemplazos.push({ input: el, span });
+  });
+
+  const elemento = document.querySelector('.factura');
+
+  const esMobil = /iPhone|iPad|Android/i.test(navigator.userAgent);
+
+  if (esMobil || typeof html2canvas === 'undefined' || typeof window.jspdf === 'undefined') {
+    // Fallback móvil: imprimir / AirPrint
+    reemplazos.forEach(({ input, span }) => { span.remove(); input.style.display = ''; });
+    document.querySelector('.actions').style.display = '';
+    document.querySelector('.selectores').style.display = '';
+    const tituloOriginal = document.title;
+    document.title = nombreArchivo.replace('.pdf', '');
+    window.print();
+    setTimeout(() => { document.title = tituloOriginal; }, 1000);
+    return;
+  }
+
+  html2canvas(elemento, { scale: 2, useCORS: true }).then(canvas => {
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const pW = 210, pH = 297, margin = 8;
+    const maxW = pW - margin * 2, maxH = pH - margin * 2;
+    const imgW = canvas.width, imgH = canvas.height;
+    const ratio = Math.min(maxW / (imgW * 0.2645), maxH / (imgH * 0.2645));
+    pdf.addImage(canvas.toDataURL('image/jpeg', 0.98), 'JPEG', margin, margin, imgW * 0.2645 * ratio, imgH * 0.2645 * ratio);
+    pdf.save(nombreArchivo);
+
+    reemplazos.forEach(({ input, span }) => { span.remove(); input.style.display = ''; });
+    document.querySelector('.actions').style.display = '';
+    document.querySelector('.selectores').style.display = '';
+  });
+}
+
+function guardarBorrador() {
+  const campos = {};
+  document.querySelectorAll('input.field').forEach(i => { if (i.id) campos[i.id] = i.value; });
+  campos['_iva'] = document.querySelector('input[name="iva"]:checked').value;
+  campos['_irpf'] = document.querySelector('input[name="irpf"]:checked').value;
+  localStorage.setItem('nf-factura-borrador', JSON.stringify(campos));
+}
+
+function cargarBorrador() {
+  const raw = localStorage.getItem('nf-factura-borrador');
+  if (!raw) return;
+  const campos = JSON.parse(raw);
+  Object.entries(campos).forEach(([id, val]) => {
+    if (id.startsWith('_')) return;
+    const el = document.getElementById(id);
+    if (el) el.value = val;
+  });
+  if (campos['_iva']) { const r = document.querySelector(`input[name="iva"][value="${campos['_iva']}"]`); if (r) r.checked = true; }
+  if (campos['_irpf']) { const r = document.querySelector(`input[name="irpf"][value="${campos['_irpf']}"]`); if (r) r.checked = true; }
+  calcular();
+}
+
+function resetar() {
+  if (!confirm('¿Limpiar todos los campos?')) return;
+  localStorage.removeItem('nf-factura-borrador');
+  document.querySelectorAll('input.field').forEach(i => {
+    if (i.id === 'f-año') { i.value = '2026'; return; }
+    if (i.id === 'con-cant1' || i.id === 'con-cant2') { i.value = '1'; return; }
+    i.value = '';
+  });
+  document.querySelector('input[name="iva"][value="exento"]').checked = true;
+  document.querySelector('input[name="irpf"][value="15"]').checked = true;
+  ['con-total1','con-total2'].forEach(id => document.getElementById(id).textContent = '—');
+  calcular();
+}
+// Guardar borrador automáticamente al escribir
+document.querySelectorAll('input.field').forEach(i => i.addEventListener('input', guardarBorrador));
+document.querySelectorAll('input[name="iva"], input[name="irpf"]').forEach(i => i.addEventListener('change', guardarBorrador));
+
+window.addEventListener('load', () => { cargarBorrador(); calcular(); });
+</script>
+</body>
+</html>
