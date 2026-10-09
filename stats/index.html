@@ -867,6 +867,7 @@ async function loadData() {
       'Actualizado a las ' + now.toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'}) + ' · ' + now.toLocaleDateString('es-ES',{day:'2-digit',month:'long'});
   } catch(e) {
     document.getElementById('updateInfo').textContent = 'Error: '+e.message;
+    document.getElementById('kpiGrid').innerHTML = `<div style="grid-column:1/-1;padding:20px;color:var(--rojo);font-size:0.75rem;border:1px solid var(--rojo2);text-align:center">⚠️ Error cargando datos: ${e.message}</div>`;
   } finally {
     btn.classList.remove('spinning');
   }
