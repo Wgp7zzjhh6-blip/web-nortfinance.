@@ -42,17 +42,14 @@ module.exports = async function handler(req, res) {
   try {
     const token = await getToken();
 
-    const [overview, chart, pages, sources, devices, cities, events, realtime, leadEvents] = await Promise.all([
-      // KPIs con dateRange dimension para identificar cada fila correctamente
-      gaReport(token, {
-        dateRanges: [
-          { startDate: 'today', endDate: 'today' },
-          { startDate: '7daysAgo', endDate: 'today' },
-          { startDate: '30daysAgo', endDate: 'today' },
-        ],
-        dimensions: [{ name: 'dateRange' }],
-        metrics: [{ name: 'activeUsers' },{ name: 'sessions' },{ name: 'keyEvents' },{ name: 'averageSessionDuration' },{ name: 'bounceRate' },{ name: 'newUsers' }],
-      }),
+    const OV_METRICS = [
+      { name: 'activeUsers' },{ name: 'sessions' },{ name: 'keyEvents' },
+      { name: 'averageSessionDuration' },{ name: 'bounceRate' },{ name: 'newUsers' },
+    ];
+    const [ov0, ov7, ov30, chart, pages, sources, devices, cities, events, realtime, leadEvents] = await Promise.all([
+      gaReport(token, { dateRanges: [{ startDate: 'today', endDate: 'today' }], metrics: OV_METRICS }),
+      gaReport(token, { dateRanges: [{ startDate: '7daysAgo', endDate: 'today' }], metrics: OV_METRICS }),
+      gaReport(token, { dateRanges: [{ startDate: '30daysAgo', endDate: 'today' }], metrics: OV_METRICS }),
       // Gráfico 30 días
       gaReport(token, {
         dateRanges: [{ startDate: '30daysAgo', endDate: 'today' }],
@@ -132,7 +129,7 @@ module.exports = async function handler(req, res) {
     ]);
 
     res.status(200).json({
-      overview, chart, pages, sources, devices, cities, events, realtime, leadEvents,
+      overview: { ov0, ov7, ov30 }, chart, pages, sources, devices, cities, events, realtime, leadEvents,
       ts: Date.now()
     });
   } catch (e) {
