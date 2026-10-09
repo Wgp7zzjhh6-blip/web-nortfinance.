@@ -578,9 +578,8 @@ function fmtDur(s) {
 function fmtPct(n) { return (parseFloat(n)*100||0).toFixed(0)+'%'; }
 
 function getM(report, periodIdx, metricIdx) {
-  if (!report?.rows?.[0]) return 0;
-  const nMetrics = report.metricHeaders?.length || 1;
-  return parseFloat(report.rows[0].metricValues?.[periodIdx * nMetrics + metricIdx]?.value) || 0;
+  if (!report?.rows?.[periodIdx]) return 0;
+  return parseFloat(report.rows[periodIdx].metricValues?.[metricIdx]?.value) || 0;
 }
 
 function renderKPIs(data) {
