@@ -2,6 +2,21 @@
    NORTFINANCE — Main Script
    ═══════════════════════════════════════════════════════════════ */
 
+/* ── Anti-spam / bot detection ───────────────────────────────── */
+function isSpamEmail(email) {
+  if (!email) return true;
+  // Bots generan emails con muchos puntos entre letras sueltas: a.b.c.d.1.2@gmail.com
+  const localPart = email.split('@')[0] || '';
+  const segments = localPart.split('.');
+  // Si más de 4 segmentos de 1-3 caracteres seguidos → bot
+  const shortSegs = segments.filter(s => s.length <= 3);
+  if (shortSegs.length >= 4) return true;
+  // Si el local tiene más de 6 puntos → bot
+  if ((localPart.match(/\./g) || []).length > 6) return true;
+  return false;
+}
+window._nfPageLoad = Date.now();
+
 (function () {
   'use strict';
 
@@ -869,23 +884,28 @@
                       pref === 'whatsapp' ? 'No reservó llamada — quiere contacto por WHATSAPP' :
                                             'No reservó llamada ni eligió preferencia de contacto';
         }
-        fetch('https://formspree.io/f/xrejngqv', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(data),
-        }).catch(() => {});
+        // Anti-spam: no enviar si email parece bot o el formulario se rellenó en < 4s
+        const _emailVal = payload.email || '';
+        const _tooFast = (Date.now() - (window._nfPageLoad || 0)) < 4000;
+        if (!isSpamEmail(_emailVal) && !_tooFast) {
+          fetch('https://formspree.io/f/xrejngqv', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(data),
+          }).catch(() => {});
 
-        // Enviar a n8n para automatización MailerLite
-        fetch('https://n8n.nortfinance.com/webhook/adb65236-6440-4ef6-9bd7-3c2b71471032', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            nombre:   payload.nombre   || '',
-            email:    payload.email    || '',
-            telefono: payload.telefono || '',
-            servicio: serviceLabel     || '',
-          }),
-        }).catch(() => {});
+          // Enviar a n8n para automatización MailerLite
+          fetch('https://n8n.nortfinance.com/webhook/adb65236-6440-4ef6-9bd7-3c2b71471032', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              nombre:   payload.nombre   || '',
+              email:    payload.email    || '',
+              telefono: payload.telefono || '',
+              servicio: serviceLabel     || '',
+            }),
+          }).catch(() => {});
+        }
       }
 
       // Safety net: si cierra sin elegir, capturamos el lead igualmente
@@ -991,12 +1011,15 @@
     const _m = _msgs[_lang] || _msgs.es;
     submitBtn.textContent = _m.sending;
 
-    // Enviar a n8n para automatización MailerLite
-    fetch('https://n8n.nortfinance.com/webhook/adb65236-6440-4ef6-9bd7-3c2b71471032', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nombre, email, telefono, servicio: situacion }),
-    }).catch(() => {});
+    // Anti-spam: no enviar si email parece bot o formulario rellenado en < 4s
+    const _cTooFast = (Date.now() - (window._nfPageLoad || 0)) < 4000;
+    if (!isSpamEmail(email) && !_cTooFast) {
+      fetch('https://n8n.nortfinance.com/webhook/adb65236-6440-4ef6-9bd7-3c2b71471032', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, email, telefono, servicio: situacion }),
+      }).catch(() => {});
+    }
 
     const fd = new FormData(form);
     fetch('https://formspree.io/f/xrejngqv', {
@@ -1071,13 +1094,16 @@
     submitBtn.disabled = true;
     submitBtn.textContent = pm.sending;
 
-    // Notify n8n
+    // Notify n8n (anti-spam)
     const email = form.querySelector('#pEmail') ? form.querySelector('#pEmail').value.trim() : '';
-    fetch('https://n8n.nortfinance.com/webhook/adb65236-6440-4ef6-9bd7-3c2b71471032', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nombre, empresa, email, telefono, servicio: 'Partnership' }),
-    }).catch(() => {});
+    const _pTooFast = (Date.now() - (window._nfPageLoad || 0)) < 4000;
+    if (!isSpamEmail(email) && !_pTooFast) {
+      fetch('https://n8n.nortfinance.com/webhook/adb65236-6440-4ef6-9bd7-3c2b71471032', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, empresa, email, telefono, servicio: 'Partnership' }),
+      }).catch(() => {});
+    }
 
     const fd = new FormData(form);
     fd.append('_tipo', 'Solicitud de Partnership');
