@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="NortFinance Stats">
+<meta name="theme-color" content="#0B0A08">
+<title>NortFinance — Analytics</title>
+<link rel="manifest" href="/stats/manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0B0A08;
+  --bg2: #131210;
+  --bg3: #1a1815;
+  --oro: #C4963A;
+  --oro2: rgba(196,150,58,0.15);
+  --oro3: rgba(196,150,58,0.08);
+  --crema: #F5F0E8;
+  --gris: rgba(245,240,232,0.45);
+  --linea: rgba(196,150,58,0.2);
+  --verde: #4ade80;
+  --rojo: #f87171;
+}
+
+body {
+  background: var(--bg);
+  color: var(--crema);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* HEADER */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(11,10,8,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--linea);
+  padding: 16px 20px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header__logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 1.1rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.header__logo span { color: var(--oro); }
+.header__badge {
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--oro);
+  opacity: 0.7;
+  margin-top: 2px;
+}
+.header__refresh {
+  background: none;
+  border: 1px solid var(--linea);
+  color: var(--oro);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.header__refresh:hover { background: var(--oro2); }
+.header__refresh.spinning { animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* CONTENIDO */
+.content { padding: 24px 16px; max-width: 600px; margin: 0 auto; }
+
+/* PERIODO TABS */
+.period-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  background: var(--bg2);
+  border: 1px solid var(--linea);
+  border-radius: 2px;
+  padding: 4px;
+}
+.period-tab {
+  flex: 1;
+  padding: 8px;
+  text-align: center;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gris);
+  cursor: pointer;
+  border-radius: 1px;
+  transition: all 0.2s;
+  border: none;
+  background: none;
+}
+.period-tab.active {
+  background: var(--oro2);
+  color: var(--oro);
+  border: 1px solid var(--linea);
+}
+
+/* SECCIÓN */
+.section-label {
+  font-size: 0.58rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--oro);
+  opacity: 0.7;
+  margin-bottom: 12px;
+  margin-top: 28px;
+}
+
+/* KPI GRID */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.kpi {
+  background: var(--bg2);
+  border: 1px solid var(--linea);
+  padding: 18px 16px;
+  position: relative;
+  overflow: hidden;
+}
+.kpi::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--oro), transparent);
+}
+.kpi__label {
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gris);
+  margin-bottom: 8px;
+}
+.kpi__value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--crema);
+  line-height: 1;
+}
+.kpi__sub {
+  font-size: 0.65rem;
+  color: var(--gris);
+  margin-top: 4px;
+}
+.kpi__trend {
+  font-size: 0.68rem;
+  margin-top: 6px;
+  font-weight: 400;
+}
+.kpi__trend.up { color: var(--verde); }
+.kpi__trend.down { color: var(--rojo); }
+
+/* GRÁFICO */
+.chart-wrap {
+  background: var(--bg2);
+  border: 1px solid var(--linea);
+  padding: 20px 16px 12px;
+  margin-top: 10px;
+}
+.chart-canvas-wrap {
+  position: relative;
+  height: 140px;
+}
+canvas { width: 100% !important; }
+.chart-legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+}
+.chart-legend__item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  color: var(--gris);
+}
+.chart-legend__dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+}
+
+/* LISTA */
+.list-card {
+  background: var(--bg2);
+  border: 1px solid var(--linea);
+}
+.list-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--linea);
+  gap: 12px;
+}
+.list-item:last-child { border-bottom: none; }
+.list-item__rank {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: var(--oro);
+  opacity: 0.6;
+  min-width: 20px;
+  text-align: center;
+}
+.list-item__info { flex: 1; min-width: 0; }
+.list-item__name {
+  font-size: 0.78rem;
+  color: var(--crema);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.list-item__sub {
+  font-size: 0.65rem;
+  color: var(--gris);
+  margin-top: 2px;
+}
+.list-item__bar-wrap {
+  width: 60px;
+  height: 3px;
+  background: rgba(196,150,58,0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.list-item__bar {
+  height: 100%;
+  background: var(--oro);
+  border-radius: 2px;
+}
+.list-item__val {
+  font-size: 0.82rem;
+  color: var(--oro);
+  font-weight: 400;
+  min-width: 28px;
+  text-align: right;
+}
+
+/* DISPOSITIVOS */
+.devices-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.device-card {
+  background: var(--bg2);
+  border: 1px solid var(--linea);
+  padding: 16px 12px;
+  text-align: center;
+}
+.device-card__icon { font-size: 1.4rem; margin-bottom: 8px; }
+.device-card__pct {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--oro);
+}
+.device-card__label {
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gris);
+  margin-top: 4px;
+}
+
+/* ÚLTIMA ACTUALIZACIÓN */
+.update-info {
+  text-align: center;
+  font-size: 0.65rem;
+  color: var(--gris);
+  margin-top: 32px;
+  padding-bottom: 24px;
+  opacity: 0.6;
+}
+
+/* SKELETON */
+.skel {
+  background: linear-gradient(90deg, var(--bg3) 25%, var(--bg2) 50%, var(--bg3) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 2px;
+}
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+/* ERROR */
+.error-box {
+  background: rgba(248,113,113,0.08);
+  border: 1px solid rgba(248,113,113,0.3);
+  padding: 20px;
+  text-align: center;
+  color: var(--rojo);
+  font-size: 0.82rem;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="header__logo">NORT<span>FINANCE</span></div>
+    <div class="header__badge">Analytics</div>
+  </div>
+  <button class="header__refresh" id="btnRefresh" onclick="loadData()" title="Actualizar">↻</button>
+</div>
+
+<div class="content">
+  <div class="period-tabs">
+    <button class="period-tab active" data-period="0" onclick="setPeriod(0)">Hoy</button>
+    <button class="period-tab" data-period="1" onclick="setPeriod(1)">7 días</button>
+    <button class="period-tab" data-period="2" onclick="setPeriod(2)">30 días</button>
+  </div>
+
+  <div id="kpiSection">
+    <div class="section-label">Visitas</div>
+    <div class="kpi-grid" id="kpiGrid">
+      <div class="kpi"><div class="kpi__label">Usuarios</div><div class="skel" style="height:40px;width:70%;margin-top:4px"></div></div>
+      <div class="kpi"><div class="kpi__label">Sesiones</div><div class="skel" style="height:40px;width:70%;margin-top:4px"></div></div>
+      <div class="kpi"><div class="kpi__label">Leads</div><div class="skel" style="height:40px;width:70%;margin-top:4px"></div></div>
+      <div class="kpi"><div class="kpi__label">Duración media</div><div class="skel" style="height:40px;width:70%;margin-top:4px"></div></div>
+    </div>
+  </div>
+
+  <div class="section-label" style="margin-top:28px">Evolución 30 días</div>
+  <div class="chart-wrap">
+    <div class="chart-canvas-wrap">
+      <canvas id="chartCanvas"></canvas>
+    </div>
+    <div class="chart-legend">
+      <div class="chart-legend__item"><div class="chart-legend__dot" style="background:#C4963A"></div>Usuarios</div>
+      <div class="chart-legend__item"><div class="chart-legend__dot" style="background:rgba(196,150,58,0.4)"></div>Sesiones</div>
+    </div>
+  </div>
+
+  <div class="section-label">Páginas más vistas (30 días)</div>
+  <div class="list-card" id="pagesList">
+    <div class="list-item"><div class="skel" style="height:36px;width:100%"></div></div>
+    <div class="list-item"><div class="skel" style="height:36px;width:100%"></div></div>
+    <div class="list-item"><div class="skel" style="height:36px;width:100%"></div></div>
+  </div>
+
+  <div class="section-label">Fuentes de tráfico (30 días)</div>
+  <div class="list-card" id="sourcesList">
+    <div class="list-item"><div class="skel" style="height:36px;width:100%"></div></div>
+    <div class="list-item"><div class="skel" style="height:36px;width:100%"></div></div>
+  </div>
+
+  <div class="section-label">Dispositivos (30 días)</div>
+  <div class="devices-grid" id="devicesGrid">
+    <div class="device-card"><div class="skel" style="height:60px"></div></div>
+    <div class="device-card"><div class="skel" style="height:60px"></div></div>
+    <div class="device-card"><div class="skel" style="height:60px"></div></div>
+  </div>
+
+  <div class="update-info" id="updateInfo">Cargando datos...</div>
+</div>
+
+<script>
+let currentPeriod = 0;
+let cachedData = null;
+
+const DEVICE_ICONS = { mobile: '📱', desktop: '💻', tablet: '📟' };
+const DEVICE_LABELS = { mobile: 'Móvil', desktop: 'Ordenador', tablet: 'Tablet' };
+
+function setPeriod(p) {
+  currentPeriod = p;
+  document.querySelectorAll('.period-tab').forEach(t => t.classList.toggle('active', +t.dataset.period === p));
+  if (cachedData) renderKPIs(cachedData);
+}
+
+function fmt(n) {
+  n = parseFloat(n) || 0;
+  if (n >= 1000) return (n/1000).toFixed(1) + 'k';
+  return Math.round(n).toString();
+}
+
+function fmtDuration(secs) {
+  secs = Math.round(parseFloat(secs) || 0);
+  const m = Math.floor(secs / 60), s = secs % 60;
+  return m + 'm ' + s + 's';
+}
+
+function getMetric(report, periodIdx, metricIdx) {
+  if (!report || !report.rows) return 0;
+  const row = report.rows[0];
+  if (!row) return 0;
+  const base = periodIdx * (report.metricHeaders?.length || 1);
+  return parseFloat(row.metricValues?.[base + metricIdx]?.value) || 0;
+}
+
+function renderKPIs(data) {
+  const p = currentPeriod;
+  const ov = data.overview;
+
+  const users = getMetric(ov, p, 0);
+  const sessions = getMetric(ov, p, 1);
+  const leads = getMetric(ov, p, 2);
+  const duration = getMetric(ov, p, 3);
+  const bounce = getMetric(ov, p, 4);
+
+  document.getElementById('kpiGrid').innerHTML = `
+    <div class="kpi">
+      <div class="kpi__label">Usuarios únicos</div>
+      <div class="kpi__value">${fmt(users)}</div>
+      <div class="kpi__sub">activos en el periodo</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi__label">Sesiones</div>
+      <div class="kpi__value">${fmt(sessions)}</div>
+      <div class="kpi__sub">visitas totales</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi__label">Leads / Eventos</div>
+      <div class="kpi__value">${fmt(leads)}</div>
+      <div class="kpi__sub">key events</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi__label">Duración media</div>
+      <div class="kpi__value" style="font-size:1.4rem">${fmtDuration(duration)}</div>
+      <div class="kpi__sub">rebote ${(bounce * 100).toFixed(0)}%</div>
+    </div>
+  `;
+}
+
+function renderChart(data) {
+  const rows = data.chart?.rows || [];
+  if (!rows.length) return;
+
+  const labels = rows.map(r => {
+    const d = r.dimensionValues[0].value;
+    return d.slice(6,8) + '/' + d.slice(4,6);
+  });
+  const users = rows.map(r => parseFloat(r.metricValues[0].value) || 0);
+  const sessions = rows.map(r => parseFloat(r.metricValues[1].value) || 0);
+
+  const canvas = document.getElementById('chartCanvas');
+  const wrap = canvas.parentElement;
+  canvas.width = wrap.clientWidth * devicePixelRatio;
+  canvas.height = 140 * devicePixelRatio;
+  canvas.style.width = wrap.clientWidth + 'px';
+  canvas.style.height = '140px';
+
+  const ctx = canvas.getContext('2d');
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+
+  const W = wrap.clientWidth, H = 140;
+  const PAD = { t: 10, r: 8, b: 28, l: 32 };
+  const cW = W - PAD.l - PAD.r;
+  const cH = H - PAD.t - PAD.b;
+
+  const maxV = Math.max(...users, ...sessions, 1);
+  const step = cW / (labels.length - 1 || 1);
+
+  function xPos(i) { return PAD.l + i * step; }
+  function yPos(v) { return PAD.t + cH - (v / maxV) * cH; }
+
+  ctx.clearRect(0, 0, W, H);
+
+  // Grid lines
+  ctx.strokeStyle = 'rgba(196,150,58,0.1)';
+  ctx.lineWidth = 1;
+  [0, 0.25, 0.5, 0.75, 1].forEach(f => {
+    const y = PAD.t + cH * (1 - f);
+    ctx.beginPath(); ctx.moveTo(PAD.l, y); ctx.lineTo(W - PAD.r, y); ctx.stroke();
+  });
+
+  function drawLine(vals, color, fill) {
+    ctx.beginPath();
+    vals.forEach((v, i) => {
+      if (i === 0) ctx.moveTo(xPos(i), yPos(v));
+      else ctx.lineTo(xPos(i), yPos(v));
+    });
+    if (fill) {
+      ctx.lineTo(xPos(vals.length - 1), PAD.t + cH);
+      ctx.lineTo(xPos(0), PAD.t + cH);
+      ctx.closePath();
+      ctx.fillStyle = fill;
+      ctx.fill();
+    } else {
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+  }
+
+  // Sessions fill
+  drawLine(sessions, null, 'rgba(196,150,58,0.08)');
+  // Users fill
+  drawLine(users, null, 'rgba(196,150,58,0.18)');
+  // Sessions line
+  ctx.strokeStyle = 'rgba(196,150,58,0.4)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  sessions.forEach((v, i) => {
+    if (i === 0) ctx.moveTo(xPos(i), yPos(v)); else ctx.lineTo(xPos(i), yPos(v));
+  });
+  ctx.stroke();
+  // Users line
+  ctx.strokeStyle = '#C4963A';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  users.forEach((v, i) => {
+    if (i === 0) ctx.moveTo(xPos(i), yPos(v)); else ctx.lineTo(xPos(i), yPos(v));
+  });
+  ctx.stroke();
+
+  // X labels (every 5 days)
+  ctx.fillStyle = 'rgba(245,240,232,0.35)';
+  ctx.font = '9px DM Sans';
+  ctx.textAlign = 'center';
+  labels.forEach((l, i) => {
+    if (i % 5 === 0 || i === labels.length - 1) {
+      ctx.fillText(l, xPos(i), H - 6);
+    }
+  });
+
+  // Y labels
+  ctx.textAlign = 'right';
+  [0, Math.round(maxV / 2), Math.round(maxV)].forEach(v => {
+    ctx.fillText(v, PAD.l - 4, yPos(v) + 3);
+  });
+}
+
+function renderPages(data) {
+  const rows = data.pages?.rows || [];
+  const max = parseFloat(rows[0]?.metricValues[0].value) || 1;
+
+  const pageNames = {
+    '/': 'Inicio', '/index.html': 'Inicio',
+    '/hipotecas.html': 'Hipotecas', '/servicios.html': 'Servicios',
+    '/contacto.html': 'Contacto', '/recursos.html': 'Recursos',
+    '/partners.html': 'Partners', '/casos-exito.html': 'Casos de éxito',
+  };
+
+  document.getElementById('pagesList').innerHTML = rows.map((r, i) => {
+    const path = r.dimensionValues[0].value;
+    const views = parseFloat(r.metricValues[0].value) || 0;
+    const users = parseFloat(r.metricValues[1].value) || 0;
+    const pct = Math.round((views / max) * 100);
+    const name = pageNames[path] || path.replace('.html','').replace('/articulos/','Art: ').replace(/^\//, '').replace(/-/g, ' ') || 'Inicio';
+    return `
+      <div class="list-item">
+        <div class="list-item__rank">${i+1}</div>
+        <div class="list-item__info">
+          <div class="list-item__name">${name}</div>
+          <div class="list-item__sub">${users} usuarios</div>
+        </div>
+        <div class="list-item__bar-wrap"><div class="list-item__bar" style="width:${pct}%"></div></div>
+        <div class="list-item__val">${fmt(views)}</div>
+      </div>`;
+  }).join('') || '<div class="list-item"><div class="list-item__info"><div class="list-item__name" style="color:var(--gris)">Sin datos</div></div></div>';
+}
+
+function renderSources(data) {
+  const rows = data.sources?.rows || [];
+  const max = parseFloat(rows[0]?.metricValues[0].value) || 1;
+
+  const srcNames = {
+    'Organic Search': 'Búsqueda orgánica (Google)',
+    'Direct': 'Acceso directo',
+    'Referral': 'Referencias (links)',
+    'Organic Social': 'Redes sociales',
+    'Email': 'Email',
+    'Paid Search': 'SEM / Publicidad',
+    'Unassigned': 'Sin clasificar',
+  };
+
+  document.getElementById('sourcesList').innerHTML = rows.map((r, i) => {
+    const src = r.dimensionValues[0].value;
+    const sessions = parseFloat(r.metricValues[0].value) || 0;
+    const pct = Math.round((sessions / max) * 100);
+    return `
+      <div class="list-item">
+        <div class="list-item__rank">${i+1}</div>
+        <div class="list-item__info">
+          <div class="list-item__name">${srcNames[src] || src}</div>
+        </div>
+        <div class="list-item__bar-wrap"><div class="list-item__bar" style="width:${pct}%"></div></div>
+        <div class="list-item__val">${fmt(sessions)}</div>
+      </div>`;
+  }).join('') || '<div class="list-item"><div class="list-item__info"><div class="list-item__name" style="color:var(--gris)">Sin datos</div></div></div>';
+}
+
+function renderDevices(data) {
+  const rows = data.devices?.rows || [];
+  const total = rows.reduce((s, r) => s + (parseFloat(r.metricValues[0].value) || 0), 0) || 1;
+
+  const all = { mobile: 0, desktop: 0, tablet: 0 };
+  rows.forEach(r => {
+    const cat = r.dimensionValues[0].value.toLowerCase();
+    all[cat] = parseFloat(r.metricValues[0].value) || 0;
+  });
+
+  document.getElementById('devicesGrid').innerHTML = ['mobile','desktop','tablet'].map(cat => `
+    <div class="device-card">
+      <div class="device-card__icon">${DEVICE_ICONS[cat]}</div>
+      <div class="device-card__pct">${Math.round((all[cat]/total)*100)}%</div>
+      <div class="device-card__label">${DEVICE_LABELS[cat]}</div>
+    </div>
+  `).join('');
+}
+
+async function loadData() {
+  const btn = document.getElementById('btnRefresh');
+  btn.classList.add('spinning');
+  document.getElementById('updateInfo').textContent = 'Actualizando...';
+
+  try {
+    const res = await fetch('/api/stats');
+    if (!res.ok) throw new Error('Error ' + res.status);
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+
+    cachedData = data;
+    renderKPIs(data);
+    renderChart(data);
+    renderPages(data);
+    renderSources(data);
+    renderDevices(data);
+
+    const now = new Date();
+    document.getElementById('updateInfo').textContent =
+      'Actualizado a las ' + now.toLocaleTimeString('es-ES', {hour:'2-digit', minute:'2-digit'});
+  } catch(e) {
+    document.getElementById('updateInfo').textContent = 'Error: ' + e.message;
+  } finally {
+    btn.classList.remove('spinning');
+  }
+}
+
+// Resize chart on orientation change
+window.addEventListener('resize', () => { if (cachedData) renderChart(cachedData); });
+
+loadData();
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "NortFinance Analytics",
+  "short_name": "NortFinance",
+  "description": "Panel de analytics de NortFinance",
+  "start_url": "/stats/",
+  "display": "standalone",
+  "background_color": "#0B0A08",
+  "theme_color": "#0B0A08",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/logo-redondo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
