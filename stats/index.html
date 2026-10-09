@@ -624,7 +624,7 @@ function renderKPIs(data) {
       <div class="kpi__label">Tiempo medio</div>
       <div class="kpi__value" style="font-size:1.4rem">${fmtDur(dur)}</div>
       <div class="kpi__sub">rebote ${fmtPct(bounce)}</div>
-      <div class="kpi__trend ${bounce < 0.5 ? 'up' : 'down'}">${bounce < 0.5 ? '↑ buen engagement' : '↓ tasa alta'}</div>
+      <div class="kpi__trend ${sessions === 0 ? 'neu' : bounce < 0.5 ? 'up' : 'down'}">${sessions === 0 ? '→ sin visitas hoy' : bounce < 0.5 ? '↑ buen engagement' : '↓ tasa alta'}</div>
     </div>
   `;
 }
