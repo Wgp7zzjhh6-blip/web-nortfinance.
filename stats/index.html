@@ -442,7 +442,66 @@ body { background: var(--bg); color: var(--crema); font-family: 'DM Sans', sans-
 
     <div class="sec">Valoraciones — Trustpilot</div>
     <div id="trustpilotSection">
-      <div class="tp-pending">Añade la URL de Trustpilot para ver las valoraciones aquí</div>
+      <div class="tp-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+          <div>
+            <div style="font-size:0.56rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gris);margin-bottom:6px">TrustScore</div>
+            <div style="display:flex;align-items:baseline;gap:10px">
+              <div style="font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--crema);line-height:1">4,4</div>
+              <div>
+                <div class="tp-stars">★★★★½</div>
+                <div style="font-size:0.6rem;color:#00b67a;letter-spacing:0.1em;text-transform:uppercase">Excelente</div>
+              </div>
+            </div>
+            <div style="font-size:0.65rem;color:var(--gris);margin-top:6px">10 opiniones verificadas</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:2rem;margin-bottom:4px">🏆</div>
+            <div style="font-size:0.6rem;color:var(--oro);letter-spacing:0.1em">Perfil reclamado</div>
+            <div style="font-size:0.58rem;color:var(--gris)">Junio 2026</div>
+          </div>
+        </div>
+        <div style="background:var(--bg3);border:1px solid var(--linea2);padding:12px 14px;margin-bottom:8px">
+          <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:var(--gris);margin-bottom:10px">
+            <span>Distribución de valoraciones</span><span>10 total</span>
+          </div>
+          <div id="tpBars">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+              <div style="font-size:0.62rem;color:#00b67a;min-width:60px">5 estrellas</div>
+              <div style="flex:1;height:6px;background:var(--oro3);border-radius:3px;overflow:hidden"><div style="width:80%;height:100%;background:#00b67a;border-radius:3px"></div></div>
+              <div style="font-size:0.62rem;color:var(--gris);min-width:20px;text-align:right">8</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+              <div style="font-size:0.62rem;color:#73cf11;min-width:60px">4 estrellas</div>
+              <div style="flex:1;height:6px;background:var(--oro3);border-radius:3px;overflow:hidden"><div style="width:10%;height:100%;background:#73cf11;border-radius:3px"></div></div>
+              <div style="font-size:0.62rem;color:var(--gris);min-width:20px;text-align:right">1</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+              <div style="font-size:0.62rem;color:var(--gris);min-width:60px">3 estrellas</div>
+              <div style="flex:1;height:6px;background:var(--oro3);border-radius:3px;overflow:hidden"><div style="width:0%;height:100%;background:var(--gris);border-radius:3px"></div></div>
+              <div style="font-size:0.62rem;color:var(--gris);min-width:20px;text-align:right">0</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+              <div style="font-size:0.62rem;color:var(--gris);min-width:60px">2 estrellas</div>
+              <div style="flex:1;height:6px;background:var(--oro3);border-radius:3px;overflow:hidden"><div style="width:0%;height:100%;background:var(--gris);border-radius:3px"></div></div>
+              <div style="font-size:0.62rem;color:var(--gris);min-width:20px;text-align:right">0</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="font-size:0.62rem;color:var(--rojo);min-width:60px">1 estrella</div>
+              <div style="flex:1;height:6px;background:var(--oro3);border-radius:3px;overflow:hidden"><div style="width:10%;height:100%;background:var(--rojo);border-radius:3px"></div></div>
+              <div style="font-size:0.62rem;color:var(--gris);min-width:20px;text-align:right">1</div>
+            </div>
+          </div>
+        </div>
+        <a href="https://es.trustpilot.com/review/nortfinance.com" target="_blank"
+          style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;
+          border:1px solid rgba(0,182,122,0.3);background:rgba(0,182,122,0.06);
+          color:#00b67a;text-decoration:none;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;margin-top:8px;transition:background 0.2s"
+          onmouseover="this.style.background='rgba(0,182,122,0.12)'"
+          onmouseout="this.style.background='rgba(0,182,122,0.06)'">
+          ★ Ver todas las opiniones en Trustpilot →
+        </a>
+      </div>
     </div>
 
     <div class="update-info" id="updateInfo">Cargando datos...</div>
