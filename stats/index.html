@@ -442,6 +442,14 @@ body { background: var(--bg); color: var(--crema); font-family: 'DM Sans', sans-
 
     <div class="sec">Valoraciones — Trustpilot</div>
     <div id="trustpilotSection">
+      <a href="https://es.trustpilot.com/review/nortfinance.com" target="_blank"
+        style="display:flex;align-items:center;justify-content:center;gap:10px;padding:16px;
+        border:1px solid rgba(0,182,122,0.25);background:rgba(0,182,122,0.05);
+        color:#00b67a;text-decoration:none;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase">
+        ★ Ver opiniones en Trustpilot →
+      </a>
+    </div>
+    <div style="display:none" id="trustpilotSectionOLD">
       <div class="tp-card">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
           <div>
@@ -493,14 +501,6 @@ body { background: var(--bg); color: var(--crema); font-family: 'DM Sans', sans-
             </div>
           </div>
         </div>
-        <a href="https://es.trustpilot.com/review/nortfinance.com" target="_blank"
-          style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;
-          border:1px solid rgba(0,182,122,0.3);background:rgba(0,182,122,0.06);
-          color:#00b67a;text-decoration:none;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;margin-top:8px;transition:background 0.2s"
-          onmouseover="this.style.background='rgba(0,182,122,0.12)'"
-          onmouseout="this.style.background='rgba(0,182,122,0.06)'">
-          ★ Ver todas las opiniones en Trustpilot →
-        </a>
       </div>
     </div>
 
@@ -577,23 +577,20 @@ function fmtDur(s) {
 }
 function fmtPct(n) { return (parseFloat(n)*100||0).toFixed(0)+'%'; }
 
-function getM(report, periodIdx, metricIdx) {
-  if (!report?.rows?.[periodIdx]) return 0;
-  return parseFloat(report.rows[periodIdx].metricValues?.[metricIdx]?.value) || 0;
+function getM(report, metricIdx) {
+  if (!report?.rows?.[0]) return 0;
+  return parseFloat(report.rows[0].metricValues?.[metricIdx]?.value) || 0;
 }
 
 function renderKPIs(data) {
   const p = currentPeriod;
-  const ov = data.overview;
-  const users = getM(ov,p,0), sessions = getM(ov,p,1);
-  const leads = getM(ov,p,2), dur = getM(ov,p,3);
-  const bounce = getM(ov,p,4), newU = getM(ov,p,5);
+  const ov = p === 0 ? data.overviewToday : p === 1 ? data.overview7d : data.overview30d;
+  const users = getM(ov,0), sessions = getM(ov,1);
+  const leads = getM(ov,2), dur = getM(ov,3);
+  const bounce = getM(ov,4), newU = getM(ov,5);
 
-  // Compare with previous period for trend (use 7d vs 30d as proxy)
-  const usersPrev = p === 0 ? getM(ov,1,0) : getM(ov,2,0);
-  const trend = usersPrev > 0 ? ((users - usersPrev/7) / (usersPrev/7) * 100) : 0;
-  const trendClass = trend > 5 ? 'up' : trend < -5 ? 'down' : 'neu';
-  const trendIcon = trend > 5 ? '↑' : trend < -5 ? '↓' : '→';
+  const trendClass = 'neu';
+  const trendIcon = '→';
 
   document.getElementById('kpiGrid').innerHTML = `
     <div class="kpi">
