@@ -577,17 +577,21 @@ function fmtDur(s) {
 }
 function fmtPct(n) { return (parseFloat(n)*100||0).toFixed(0)+'%'; }
 
-function getM(report, metricIdx) {
-  if (!report?.rows?.[0]) return 0;
-  return parseFloat(report.rows[0].metricValues?.[metricIdx]?.value) || 0;
+function getM(report, periodLabel, metricIdx) {
+  if (!report?.rows) return 0;
+  // Con dimensión dateRange, cada fila tiene label 'date_range_0', 'date_range_1', 'date_range_2'
+  const row = report.rows.find(r => r.dimensionValues?.[0]?.value === periodLabel) || report.rows[0];
+  if (!row) return 0;
+  return parseFloat(row.metricValues?.[metricIdx]?.value) || 0;
 }
 
 function renderKPIs(data) {
   const p = currentPeriod;
-  const ov = p === 0 ? data.overviewToday : p === 1 ? data.overview7d : data.overview30d;
-  const users = getM(ov,0), sessions = getM(ov,1);
-  const leads = getM(ov,2), dur = getM(ov,3);
-  const bounce = getM(ov,4), newU = getM(ov,5);
+  const label = p === 0 ? 'date_range_0' : p === 1 ? 'date_range_1' : 'date_range_2';
+  const ov = data.overview;
+  const users = getM(ov,label,0), sessions = getM(ov,label,1);
+  const leads = getM(ov,label,2), dur = getM(ov,label,3);
+  const bounce = getM(ov,label,4), newU = getM(ov,label,5);
 
   const trendClass = 'neu';
   const trendIcon = '→';

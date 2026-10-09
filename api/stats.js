@@ -42,11 +42,17 @@ export default async function handler(req, res) {
   try {
     const token = await getToken();
 
-    const [overviewToday, overview7d, overview30d, chart, pages, sources, devices, cities, events, realtime, leadEvents] = await Promise.all([
-      // KPIs separados para evitar solapamiento de rangos
-      gaReport(token, { dateRanges: [{ startDate: 'today', endDate: 'today' }], metrics: [{ name: 'activeUsers' },{ name: 'sessions' },{ name: 'keyEvents' },{ name: 'averageSessionDuration' },{ name: 'bounceRate' },{ name: 'newUsers' }] }),
-      gaReport(token, { dateRanges: [{ startDate: '7daysAgo', endDate: 'today' }], metrics: [{ name: 'activeUsers' },{ name: 'sessions' },{ name: 'keyEvents' },{ name: 'averageSessionDuration' },{ name: 'bounceRate' },{ name: 'newUsers' }] }),
-      gaReport(token, { dateRanges: [{ startDate: '30daysAgo', endDate: 'today' }], metrics: [{ name: 'activeUsers' },{ name: 'sessions' },{ name: 'keyEvents' },{ name: 'averageSessionDuration' },{ name: 'bounceRate' },{ name: 'newUsers' }] }),
+    const [overview, chart, pages, sources, devices, cities, events, realtime, leadEvents] = await Promise.all([
+      // KPIs con dateRange dimension para identificar cada fila correctamente
+      gaReport(token, {
+        dateRanges: [
+          { startDate: 'today', endDate: 'today' },
+          { startDate: '7daysAgo', endDate: 'today' },
+          { startDate: '30daysAgo', endDate: 'today' },
+        ],
+        dimensions: [{ name: 'dateRange' }],
+        metrics: [{ name: 'activeUsers' },{ name: 'sessions' },{ name: 'keyEvents' },{ name: 'averageSessionDuration' },{ name: 'bounceRate' },{ name: 'newUsers' }],
+      }),
       // Gráfico 30 días
       gaReport(token, {
         dateRanges: [{ startDate: '30daysAgo', endDate: 'today' }],
@@ -126,8 +132,7 @@ export default async function handler(req, res) {
     ]);
 
     res.status(200).json({
-      overviewToday, overview7d, overview30d,
-      chart, pages, sources, devices, cities, events, realtime, leadEvents,
+      overview, chart, pages, sources, devices, cities, events, realtime, leadEvents,
       ts: Date.now()
     });
   } catch (e) {
